@@ -2,5 +2,9 @@
 
 signal win
 signal fail
-#@abstract func check_win()
-#@abstract func check_fail()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if (event.is_action_pressed("autoWin")):
+		win.emit()
+	elif (event.is_action_pressed("autoFail")):
+		fail.emit()

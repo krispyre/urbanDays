@@ -10,15 +10,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	progress_bar.value = timer.time_left
+	print(timer.time_left)
 
 #win condition
 func _on_goal_body_entered(body: Node3D) -> void:
 	win.emit()
-	get_tree().paused = true
-	print("win")
-
 
 func _on_timer_timeout() -> void:
 	fail.emit()
-	get_tree().paused = true
-	print("fail")

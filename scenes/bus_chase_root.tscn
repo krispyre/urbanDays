@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b4duxjc1kv1oj"]
+
+[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_group.gd" id="1_y7bmi"]
+[ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="2_pcxmy"]
+[ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="3_c2kp2"]
+[ext_resource type="PackedScene" uid="uid://bh1dtxjy55hnf" path="res://scenes/busChase_level.tscn" id="4_k82oq"]
+
+[node name="busChase_root" type="Node" unique_id=1336895189]
+script = ExtResource("1_y7bmi")
+
+[node name="fail" type="Node2D" parent="." unique_id=792139233]
+
+[node name="sprite" type="Sprite2D" parent="fail" unique_id=2107499337]
+texture = ExtResource("2_pcxmy")
+centered = false
+
+[node name="win" type="Node2D" parent="." unique_id=1867429581]
+
+[node name="Sprite2D" type="Sprite2D" parent="win" unique_id=472778511]
+texture = ExtResource("3_c2kp2")
+centered = false
+
+[node name="level" parent="." unique_id=405953474 instance=ExtResource("4_k82oq")]
+
+[connection signal="fail" from="level" to="." method="_on_level_fail"]
+[connection signal="win" from="level" to="." method="_on_level_win"]

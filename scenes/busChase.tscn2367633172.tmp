@@ -99,8 +99,6 @@ area_size = Vector2(8.635, 8.635)
 
 [node name="Timer" type="Timer" parent="." unique_id=226844839]
 wait_time = 6.0
-one_shot = true
-autostart = true
 
 [node name="Container" type="Control" parent="." unique_id=866896522]
 layout_mode = 3

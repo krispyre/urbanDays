@@ -1,4 +1,4 @@
-class_name Level extends Node
+class_name Level extends Scene
 
 signal win
 signal fail

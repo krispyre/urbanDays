@@ -6,6 +6,7 @@ extends CharacterBody3D
 var level_time = 5
 
 func _ready() -> void:
+	position.z = -6
 	var s = goal.global_position.z - player_body.global_position.z
 	velocity.z = s/level_time
 	#print(goal.position.z," ", player_body.position.z," ", velocity.z)

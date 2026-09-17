@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://dpd1d6oe3dvnd"]
+
+[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="1_r54hg"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="2_fp4j1"]
+[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="3_n5evy"]
+
+[sub_resource type="Animation" id="Animation_4213q"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("playerBody:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_b5jda"]
+resource_name = "down"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_kg4i3"]
+resource_name = "left"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_rb3wp"]
+resource_name = "right"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_hrdke"]
+resource_name = "up"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.66595906, 0, 0.03599912, 0, 0, 0, -0.98333335, 0.9032865, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4213q"]
+_data = {
+&"RESET": SubResource("Animation_4213q"),
+&"down": SubResource("Animation_b5jda"),
+&"left": SubResource("Animation_kg4i3"),
+&"right": SubResource("Animation_rb3wp"),
+&"up": SubResource("Animation_hrdke")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
+size = Vector3(1.132, 0.972, 0.05)
+
+[node name="playerView" type="CharacterBody3D" unique_id=393457650]
+script = ExtResource("1_r54hg")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=215621490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109303355, 1.3002968)
+current = true
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=887202219]
+libraries/ = SubResource("AnimationLibrary_4213q")
+
+[node name="playerBody" type="Area3D" parent="." unique_id=1151700607]
+script = ExtResource("2_fp4j1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerBody" unique_id=1891305927]
+shape = SubResource("BoxShape3D_swys0")
+
+[node name="Sprite3D" type="Sprite3D" parent="playerBody" unique_id=2042185353]
+texture = ExtResource("3_n5evy")

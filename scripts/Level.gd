@@ -8,3 +8,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		win.emit()
 	elif (event.is_action_pressed("autoFail")):
 		fail.emit()
+	else:
+		super._unhandled_input(event)

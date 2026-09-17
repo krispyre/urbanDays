@@ -12,3 +12,8 @@ func _on_win():
 	get_tree().paused = true
 	print("win")
 	win.emit()
+
+
+func _on_player_body_area_entered(area: Area3D) -> void:
+	print("die")
+	fail.emit()

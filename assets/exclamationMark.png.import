@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkrj6ytldk1fb"
-path="res://.godot/imported/lana_placeholder.png-9532a2ca1156acd021a7594c9d251a56.ctex"
+uid="uid://6dcf34wc57yn"
+path="res://.godot/imported/exclamationMark.png-6048f6685e94eea644a1eb422816f3ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lana_placeholder.png"
-dest_files=["res://.godot/imported/lana_placeholder.png-9532a2ca1156acd021a7594c9d251a56.ctex"]
+source_file="res://assets/exclamationMark.png"
+dest_files=["res://.godot/imported/exclamationMark.png-6048f6685e94eea644a1eb422816f3ae.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

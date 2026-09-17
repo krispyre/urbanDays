@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkrj6ytldk1fb"
-path="res://.godot/imported/lana_placeholder.png-9532a2ca1156acd021a7594c9d251a56.ctex"
+uid="uid://bvycui2pxemcc"
+path="res://.godot/imported/panel.png-98abd75f17820992d19abbe4c1e458c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lana_placeholder.png"
-dest_files=["res://.godot/imported/lana_placeholder.png-9532a2ca1156acd021a7594c9d251a56.ctex"]
+source_file="res://assets/panel.png"
+dest_files=["res://.godot/imported/panel.png-98abd75f17820992d19abbe4c1e458c7.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

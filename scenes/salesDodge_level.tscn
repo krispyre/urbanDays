@@ -6,7 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/salesDodge_sales1.png" id="3_42h2w"]
+[ext_resource type="Script" uid="uid://b2tnt36kby8ue" path="res://scripts/busChase_sales.gd" id="3_eaq61"]
 [ext_resource type="Script" uid="uid://ce8bvk7est4dx" path="res://scenes/goal.gd" id="6_rb3wp"]
+[ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
+[ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="9_b8js2"]
+[ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="9_f3fa5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
+viewport_path = NodePath("level")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hrdke"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -135,77 +142,122 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
 size = Vector3(1.132, 0.972, 0.1)
 
-[node name="salesDodge_level" type="Node3D" unique_id=837968943]
+[node name="Node2D" type="Sprite2D" unique_id=1501887509]
+texture = SubResource("ViewportTexture_1qa5v")
+centered = false
+
+[node name="level" type="SubViewport" parent="." unique_id=2049669510]
+size = Vector2i(720, 540)
+
+[node name="salesDodge_level" type="Node3D" parent="level" unique_id=837968943]
 process_mode = 1
 script = ExtResource("1_4213q")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1579828357]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="level/salesDodge_level" unique_id=1579828357]
 environment = SubResource("Environment_kg4i3")
 
-[node name="tunnel" type="Node3D" parent="." unique_id=1411071237]
+[node name="tunnel" type="Node3D" parent="level/salesDodge_level" unique_id=1411071237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045043945, -0.30029297, -2.4360352)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="tunnel" unique_id=1087225460]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=1087225460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_ch1rl")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="tunnel" unique_id=1929117151]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=1929117151]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.34841, 2, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_ch1rl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="tunnel" unique_id=191126020]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=191126020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.015438, 0)
 mesh = SubResource("BoxMesh_kph7b")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="tunnel" unique_id=756577321]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=756577321]
 material_override = SubResource("StandardMaterial3D_rb3wp")
 mesh = SubResource("BoxMesh_kph7b")
 
-[node name="AreaLight3D" type="AreaLight3D" parent="tunnel" unique_id=379349404]
+[node name="AreaLight3D" type="AreaLight3D" parent="level/salesDodge_level/tunnel" unique_id=379349404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
-[node name="sales" type="Area3D" parent="." unique_id=994070429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1422387, 1.0563474, 0)
+[node name="sales" type="Area3D" parent="level/salesDodge_level" unique_id=994070429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76086223, 1.0563474, 0)
+script = ExtResource("3_eaq61")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="sales" unique_id=549561409]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/salesDodge_level/sales" unique_id=549561409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10996282, 0, 0)
 shape = SubResource("BoxShape3D_1qa5v")
 
-[node name="Sprite3D" type="Sprite3D" parent="sales" unique_id=1366841373]
+[node name="Sprite3D" type="Sprite3D" parent="level/salesDodge_level/sales" unique_id=1366841373]
+texture_filter = 0
 texture = ExtResource("3_42h2w")
 
-[node name="warn" type="Marker3D" parent="." unique_id=1230354781]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6156284, 0.52518624, 0.90222216)
+[node name="showWarn" type="Marker3D" parent="level/salesDodge_level/sales" unique_id=1849680472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.127471)
 
-[node name="playerView" type="CharacterBody3D" parent="." unique_id=393457650]
+[node name="playerView" type="CharacterBody3D" parent="level/salesDodge_level" unique_id=393457650]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7753415, 0.08775997)
 script = ExtResource("2_kg4i3")
 metadata/_edit_group_ = true
 
-[node name="Camera3D" type="Camera3D" parent="playerView" unique_id=215621490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7176676, 1.3002968)
+[node name="Camera3D" type="Camera3D" parent="level/salesDodge_level/playerView" unique_id=215621490]
+transform = Transform3D(1, 0, 0, 0, 0.9732606, -0.22970374, 0, 0.22970374, 0.9732606, 0, 0.17821693, 1.1571686)
 current = true
 
-[node name="anim" type="AnimationPlayer" parent="playerView" unique_id=887202219]
+[node name="anim" type="AnimationPlayer" parent="level/salesDodge_level/playerView" unique_id=887202219]
 libraries/ = SubResource("AnimationLibrary_4213q")
 
-[node name="playerBody" type="Area3D" parent="playerView" unique_id=1151700607]
+[node name="playerBody" type="Area3D" parent="level/salesDodge_level/playerView" unique_id=1151700607]
 script = ExtResource("1_kph7b")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="playerView/playerBody" unique_id=1891305927]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level/salesDodge_level/playerView/playerBody" unique_id=1891305927]
 shape = SubResource("BoxShape3D_swys0")
 
-[node name="Sprite3D" type="Sprite3D" parent="playerView/playerBody" unique_id=2042185353]
+[node name="Sprite3D" type="Sprite3D" parent="level/salesDodge_level/playerView/playerBody" unique_id=2042185353]
+texture_filter = 0
 texture = ExtResource("2_hrdke")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1637954148]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="level/salesDodge_level" unique_id=1637954148]
 transform = Transform3D(1, 0, 0, 0, -0.8643181, 0.50294554, 0, -0.50294554, -0.8643181, 11.369305, -1.5410995, 3.7196817)
 
-[node name="goal" type="Marker3D" parent="." unique_id=433413933]
+[node name="goal" type="Marker3D" parent="level/salesDodge_level" unique_id=433413933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 16.884842)
 script = ExtResource("6_rb3wp")
 
-[connection signal="area_entered" from="playerView/playerBody" to="." method="_on_player_body_area_entered"]
+[node name="SalesDodgeLayout" type="TextureRect" parent="." unique_id=442978153]
+visible = false
+texture = ExtResource("9_6sc7e")
+
+[node name="warn" type="Control" parent="." unique_id=1688716495]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 573.0
+offset_top = 329.0
+offset_right = 573.0
+offset_bottom = 329.0
+script = ExtResource("9_b8js2")
+
+[node name="bg" type="ColorRect" parent="warn" unique_id=290182502]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.000008
+offset_top = -196.00003
+offset_right = 223.73984
+offset_bottom = 151.49301
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.40371466
+scale = Vector2(1, 0.995)
+pivot_offset = Vector2(149, 244)
+color = Color(0.17211533, 0.1721153, 0.1721153, 0.5058824)
+
+[node name="ExclamationMark" type="Sprite2D" parent="warn" unique_id=658076817]
+position = Vector2(29, -36)
+texture = ExtResource("9_f3fa5")
+
+[connection signal="area_entered" from="level/salesDodge_level/playerView/playerBody" to="level/salesDodge_level" method="_on_player_body_area_entered"]

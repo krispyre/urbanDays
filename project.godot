@@ -19,6 +19,10 @@ config/icon="res://assets/icon.svg"
 
 ScreenTransition="*uid://bs7acuwwwk31t"
 
+[debug]
+
+shapes/navigation/3d/geometry_face_color=Color(0, 0.8862745, 0.8901961, 0.43137255)
+
 [display]
 
 window/size/viewport_width=720

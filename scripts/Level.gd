@@ -1,4 +1,4 @@
-@abstract class_name Level extends Node
+class_name Level extends Node
 
 signal win
 signal fail

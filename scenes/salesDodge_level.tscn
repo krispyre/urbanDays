@@ -1,31 +1,154 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scenes/salesDodge_player.gd" id="1_kph7b"]
+[ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="1_kph7b"]
+[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/stripes.png" id="2_b5jda"]
 [ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
+[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
+[ext_resource type="Script" uid="uid://ce8bvk7est4dx" path="res://scenes/goal.gd" id="6_rb3wp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hrdke"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4213q"]
+sky_material = SubResource("ProceduralSkyMaterial_hrdke")
+
+[sub_resource type="Environment" id="Environment_kg4i3"]
+background_mode = 1
+background_color = Color(0.6484879, 0.6484883, 0.64848787, 1)
+background_energy_multiplier = 1.2
+sky = SubResource("Sky_4213q")
+ambient_light_source = 2
+ambient_light_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+reflected_light_source = 2
+glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
 size = Vector3(0.15, 7.6948853, 28.576172)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kph7b"]
-size = Vector3(4.1, 0.4, 29.101563)
+size = Vector3(4.1, 0.4, 38.293945)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb3wp"]
+albedo_texture = ExtResource("2_b5jda")
+uv1_scale = Vector3(9.615, 9.615, 9.615)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qa5v"]
 size = Vector3(1.1928711, 1, 0.11743164)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
-size = Vector3(1, 1.7, 0.1)
+[sub_resource type="Animation" id="Animation_4213q"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("playerBody:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
-[node name="salesDodge_level" type="Node3D" unique_id=678738024]
+[sub_resource type="Animation" id="Animation_b5jda"]
+resource_name = "down"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_kg4i3"]
+resource_name = "left"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_rb3wp"]
+resource_name = "right"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_hrdke"]
+resource_name = "up"
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerBody:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.66595906, 0, 0.03599912, 0, 0, 0, -0.98333335, 0.9032865, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4213q"]
+_data = {
+&"RESET": SubResource("Animation_4213q"),
+&"down": SubResource("Animation_b5jda"),
+&"left": SubResource("Animation_kg4i3"),
+&"right": SubResource("Animation_rb3wp"),
+&"up": SubResource("Animation_hrdke")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
+size = Vector3(0.7314453, 0.62890625, 0.1)
+
+[node name="salesDodge_level" type="Node3D" unique_id=837968943]
+script = ExtResource("1_4213q")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1579828357]
+environment = SubResource("Environment_kg4i3")
 
 [node name="tunnel" type="Node3D" parent="." unique_id=1411071237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045043945, -0.30029297, -2.4360352)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="tunnel" unique_id=1087225460]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2, 0, 0)
 mesh = SubResource("BoxMesh_ch1rl")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="tunnel" unique_id=1929117151]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 2, 0, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.34841, 2, 0, 0)
 mesh = SubResource("BoxMesh_ch1rl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="tunnel" unique_id=191126020]
@@ -33,7 +156,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.015438, 0)
 mesh = SubResource("BoxMesh_kph7b")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="tunnel" unique_id=756577321]
+material_override = SubResource("StandardMaterial3D_rb3wp")
 mesh = SubResource("BoxMesh_kph7b")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="tunnel" unique_id=379349404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="sales" type="Area3D" parent="." unique_id=994070429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6156284, 0.52518624, 0)
@@ -42,15 +169,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6156284, 0.52518624, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09643555, 0, -0.44128418)
 shape = SubResource("BoxShape3D_1qa5v")
 
-[node name="player" type="CharacterBody3D" parent="." unique_id=1763183811]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -10.731747)
+[node name="playerView" type="CharacterBody3D" parent="." unique_id=2012497149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -14.368435)
+script = ExtResource("2_kg4i3")
+
+[node name="Camera3D" type="Camera3D" parent="playerView" unique_id=1103171624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6827898, 1.6152105)
+current = true
+
+[node name="anim" type="AnimationPlayer" parent="playerView" unique_id=1731417792]
+libraries/ = SubResource("AnimationLibrary_4213q")
+
+[node name="playerBody" type="Area3D" parent="playerView" unique_id=890401458]
 script = ExtResource("1_kph7b")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=1628918356]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="playerView/playerBody" unique_id=1628918356]
 shape = SubResource("BoxShape3D_swys0")
 
-[node name="Camera3D" type="Camera3D" parent="player" unique_id=1103171624]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6330886, 1.6152108)
-
-[node name="Sprite3D" type="Sprite3D" parent="player" unique_id=916787342]
+[node name="Sprite3D" type="Sprite3D" parent="playerView/playerBody" unique_id=916787342]
 texture = ExtResource("2_hrdke")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1637954148]
+transform = Transform3D(1, 0, 0, 0, -0.8643181, 0.50294554, 0, -0.50294554, -0.8643181, 11.369305, -1.5410995, 3.7196817)
+
+[node name="goal" type="Marker3D" parent="." unique_id=433413933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 16.884842)
+script = ExtResource("6_rb3wp")

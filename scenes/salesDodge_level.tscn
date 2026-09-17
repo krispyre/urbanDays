@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
+
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scenes/salesDodge_player.gd" id="1_kph7b"]
+[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
+size = Vector3(0.15, 7.6948853, 28.576172)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kph7b"]
+size = Vector3(4.1, 0.4, 29.101563)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qa5v"]
+size = Vector3(1.1928711, 1, 0.11743164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
+size = Vector3(1, 1.7, 0.1)
+
+[node name="salesDodge_level" type="Node3D" unique_id=678738024]
+
+[node name="tunnel" type="Node3D" parent="." unique_id=1411071237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045043945, -0.30029297, -2.4360352)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="tunnel" unique_id=1087225460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = SubResource("BoxMesh_ch1rl")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="tunnel" unique_id=1929117151]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 2, 0, 0)
+mesh = SubResource("BoxMesh_ch1rl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="tunnel" unique_id=191126020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.015438, 0)
+mesh = SubResource("BoxMesh_kph7b")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="tunnel" unique_id=756577321]
+mesh = SubResource("BoxMesh_kph7b")
+
+[node name="sales" type="Area3D" parent="." unique_id=994070429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6156284, 0.52518624, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sales" unique_id=549561409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09643555, 0, -0.44128418)
+shape = SubResource("BoxShape3D_1qa5v")
+
+[node name="player" type="CharacterBody3D" parent="." unique_id=1763183811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -10.731747)
+script = ExtResource("1_kph7b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=1628918356]
+shape = SubResource("BoxShape3D_swys0")
+
+[node name="Camera3D" type="Camera3D" parent="player" unique_id=1103171624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6330886, 1.6152108)
+
+[node name="Sprite3D" type="Sprite3D" parent="player" unique_id=916787342]
+texture = ExtResource("2_hrdke")

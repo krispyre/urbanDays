@@ -207,13 +207,13 @@ texture = ExtResource("2_hrdke")
 position = Vector2(0, -90)
 shape = SubResource("RectangleShape2D_1qa5v")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=560576861]
-position = Vector2(637, 349)
-
 [node name="salesContainer" type="Node2D" parent="." unique_id=350079772]
 
+[node name="sales_target ref" type="Marker2D" parent="salesContainer" unique_id=560576861]
+position = Vector2(637, 349)
+
 [node name="sales" parent="." unique_id=484647474 instance=ExtResource("9_lu4ip")]
-position = Vector2(90, 345)
+visible = false
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
 [connection signal="timeout" from="beat" to="." method="_on_beat"]

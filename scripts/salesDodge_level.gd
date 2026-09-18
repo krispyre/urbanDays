@@ -70,7 +70,6 @@ func _on_time_left_timeout() -> void:
 	_on_win()
 
 func _on_beat() -> void:
-	
 	var step = sequence[curBeat]
 	curBeat += 1
 	if step == null:
@@ -78,6 +77,7 @@ func _on_beat() -> void:
 	
 	var s = salesObj.instantiate()
 	s.dir = "right"
+	s.position = Vector2(get_window().size.x, $"salesContainer/sales_target ref".position.y)
 	sales_container.add_child(s)
 	print("beat")
 	

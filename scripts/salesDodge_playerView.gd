@@ -1,15 +1,13 @@
-extends CharacterBody3D
+extends Camera3D
 
 @onready var goal: Marker3D = $"../goal"
-@onready var player_body: Area3D = $playerBody
-
-var level_time = 5
-
+var level_time
+var z_speed
 func _ready() -> void:
-	position.z = -6
-	var s = goal.global_position.z - player_body.global_position.z
-	velocity.z = s/level_time
-	#print(goal.position.z," ", player_body.position.z," ", velocity.z)
+	level_time = 4.0 * owner.measure_count * 60.0 / Globals.bpm
+	position.z = 0
+	z_speed = goal.global_position.z/level_time
+	#print(goal.global_position.z," ", z_speed, " ", level_time, " ", owner.measure_count)
 	
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	position.z += z_speed*delta

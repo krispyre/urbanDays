@@ -1,36 +1,17 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="1_kph7b"]
 [ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/stripes.png" id="2_b5jda"]
 [ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
-[ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/salesDodge_sales1.png" id="3_42h2w"]
-[ext_resource type="Script" uid="uid://b2tnt36kby8ue" path="res://scripts/busChase_sales.gd" id="3_eaq61"]
-[ext_resource type="Script" uid="uid://ce8bvk7est4dx" path="res://scenes/goal.gd" id="6_rb3wp"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="7_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
 [ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="9_b8js2"]
 [ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="9_f3fa5"]
+[ext_resource type="PackedScene" uid="uid://bs5rrdfontsb2" path="res://scenes/salesDodge_salesR.tscn" id="9_lu4ip"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
-viewport_path = NodePath("level")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hrdke"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_4213q"]
-sky_material = SubResource("ProceduralSkyMaterial_hrdke")
-
-[sub_resource type="Environment" id="Environment_kg4i3"]
-background_mode = 1
-background_color = Color(0.6484879, 0.6484883, 0.64848787, 1)
-background_energy_multiplier = 1.2
-sky = SubResource("Sky_4213q")
-ambient_light_source = 2
-ambient_light_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
-reflected_light_source = 2
-glow_enabled = true
+viewport_path = NodePath("bg_view")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
 size = Vector3(0.15, 7.6948853, 28.576172)
@@ -42,15 +23,26 @@ size = Vector3(4.1, 0.4, 38.293945)
 albedo_texture = ExtResource("2_b5jda")
 uv1_scale = Vector3(9.615, 9.615, 9.615)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1qa5v"]
-size = Vector3(1.7029258, 0.994, 0.1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rb3wp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Animation" id="Animation_4213q"]
+[sub_resource type="Sky" id="Sky_42h2w"]
+sky_material = SubResource("ProceduralSkyMaterial_rb3wp")
+
+[sub_resource type="Environment" id="Environment_eaq61"]
+background_mode = 1
+background_color = Color(0.5963672, 0.59636724, 0.59636724, 1)
+background_energy_multiplier = 1.14
+sky = SubResource("Sky_42h2w")
+glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_eaq61"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("playerBody:position:x")
+tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,7 +53,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("playerBody:position:y")
+tracks/1/path = NodePath(".:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,166 +62,101 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_b5jda"]
-resource_name = "down"
-step = 0.016666668
+[sub_resource type="Animation" id="Animation_f3fa5"]
+resource_name = "dodge"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("playerBody:position:y")
+tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-120, 0, 0, 0.8, 0, 0, -0.1, 30, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
-
-[sub_resource type="Animation" id="Animation_kg4i3"]
-resource_name = "left"
-step = 0.016666668
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("playerBody:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_rb3wp"]
-resource_name = "right"
-step = 0.016666668
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("playerBody:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.6, -0.015000001, 0, 0, 0, 0, -0.053333335, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_hrdke"]
-resource_name = "up"
-step = 0.016666668
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("playerBody:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.66595906, 0, 0.03599912, 0, 0, 0, -0.98333335, 0.9032865, 0, 0),
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(120, 0, 0, 0.8, 0, 0, -0.1, -30, 0, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4213q"]
 _data = {
-&"RESET": SubResource("Animation_4213q"),
-&"down": SubResource("Animation_b5jda"),
-&"left": SubResource("Animation_kg4i3"),
-&"right": SubResource("Animation_rb3wp"),
-&"up": SubResource("Animation_hrdke")
+&"RESET": SubResource("Animation_eaq61"),
+&"dodge": SubResource("Animation_f3fa5")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
-size = Vector3(1.132, 0.972, 0.1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
+size = Vector2(318, 208)
 
-[node name="Node2D" type="Sprite2D" unique_id=1501887509]
+[node name="salesDodge_level" type="Sprite2D" unique_id=1501887509]
 texture = SubResource("ViewportTexture_1qa5v")
 centered = false
-
-[node name="level" type="SubViewport" parent="." unique_id=2049669510]
-size = Vector2i(720, 540)
-
-[node name="salesDodge_level" type="Node3D" parent="level" unique_id=837968943]
-process_mode = 1
 script = ExtResource("1_4213q")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="level/salesDodge_level" unique_id=1579828357]
-environment = SubResource("Environment_kg4i3")
+[node name="timeLeft" type="Timer" parent="." unique_id=177160825]
 
-[node name="tunnel" type="Node3D" parent="level/salesDodge_level" unique_id=1411071237]
+[node name="beat" type="Timer" parent="." unique_id=2022712307]
+
+[node name="bg_view" type="SubViewport" parent="." unique_id=2049669510]
+size = Vector2i(720, 540)
+
+[node name="bg_world" type="Node3D" parent="bg_view" unique_id=837968943]
+process_mode = 1
+
+[node name="tunnel" type="Node3D" parent="bg_view/bg_world" unique_id=1411071237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045043945, -0.30029297, -2.4360352)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=1087225460]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=1087225460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2, 0, 0)
-visible = false
 mesh = SubResource("BoxMesh_ch1rl")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=1929117151]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=1929117151]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.34841, 2, 0, 0)
-visible = false
 mesh = SubResource("BoxMesh_ch1rl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=191126020]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=191126020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.015438, 0)
 mesh = SubResource("BoxMesh_kph7b")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="level/salesDodge_level/tunnel" unique_id=756577321]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=756577321]
 material_override = SubResource("StandardMaterial3D_rb3wp")
 mesh = SubResource("BoxMesh_kph7b")
 
-[node name="AreaLight3D" type="AreaLight3D" parent="level/salesDodge_level/tunnel" unique_id=379349404]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+[node name="AreaLight3D" type="AreaLight3D" parent="bg_view/bg_world/tunnel" unique_id=379349404]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.4769635, 0)
+light_energy = 8.803
+light_bake_mode = 1
+area_range = 7.596
 
-[node name="sales" type="Area3D" parent="level/salesDodge_level" unique_id=994070429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.76086223, 1.0563474, 0)
-script = ExtResource("3_eaq61")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/salesDodge_level/sales" unique_id=549561409]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10996282, 0, 0)
-shape = SubResource("BoxShape3D_1qa5v")
-
-[node name="Sprite3D" type="Sprite3D" parent="level/salesDodge_level/sales" unique_id=1366841373]
-texture_filter = 0
-texture = ExtResource("3_42h2w")
-
-[node name="showWarn" type="Marker3D" parent="level/salesDodge_level/sales" unique_id=1849680472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.127471)
-
-[node name="playerView" type="CharacterBody3D" parent="level/salesDodge_level" unique_id=393457650]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7753415, 0.08775997)
-script = ExtResource("2_kg4i3")
-metadata/_edit_group_ = true
-
-[node name="Camera3D" type="Camera3D" parent="level/salesDodge_level/playerView" unique_id=215621490]
-transform = Transform3D(1, 0, 0, 0, 0.9732606, -0.22970374, 0, 0.22970374, 0.9732606, 0, 0.17821693, 1.1571686)
+[node name="Camera3D" type="Camera3D" parent="bg_view/bg_world" unique_id=215621490]
+transform = Transform3D(1, 0, 0, 0, 0.9732606, -0.22970377, 0, 0.22970377, 0.9732606, 0, 0.95355844, 1.2449286)
 current = true
+fov = 53.2
+script = ExtResource("2_kg4i3")
 
-[node name="anim" type="AnimationPlayer" parent="level/salesDodge_level/playerView" unique_id=887202219]
-libraries/ = SubResource("AnimationLibrary_4213q")
-
-[node name="playerBody" type="Area3D" parent="level/salesDodge_level/playerView" unique_id=1151700607]
-script = ExtResource("1_kph7b")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="level/salesDodge_level/playerView/playerBody" unique_id=1891305927]
-shape = SubResource("BoxShape3D_swys0")
-
-[node name="Sprite3D" type="Sprite3D" parent="level/salesDodge_level/playerView/playerBody" unique_id=2042185353]
-texture_filter = 0
-texture = ExtResource("2_hrdke")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="level/salesDodge_level" unique_id=1637954148]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="bg_view/bg_world" unique_id=1637954148]
 transform = Transform3D(1, 0, 0, 0, -0.8643181, 0.50294554, 0, -0.50294554, -0.8643181, 11.369305, -1.5410995, 3.7196817)
 
-[node name="goal" type="Marker3D" parent="level/salesDodge_level" unique_id=433413933]
+[node name="goal" type="Marker3D" parent="bg_view/bg_world" unique_id=433413933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 16.884842)
-script = ExtResource("6_rb3wp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="bg_view/bg_world" unique_id=11882944]
+environment = SubResource("Environment_eaq61")
 
 [node name="SalesDodgeLayout" type="TextureRect" parent="." unique_id=442978153]
 visible = false
 texture = ExtResource("9_6sc7e")
 
 [node name="warn" type="Control" parent="." unique_id=1688716495]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 573.0
@@ -260,4 +187,29 @@ color = Color(0.17211533, 0.1721153, 0.1721153, 0.5058824)
 position = Vector2(29, -36)
 texture = ExtResource("9_f3fa5")
 
-[connection signal="area_entered" from="level/salesDodge_level/playerView/playerBody" to="level/salesDodge_level" method="_on_player_body_area_entered"]
+[node name="player" type="Node2D" parent="." unique_id=1052296223]
+position = Vector2(357, 391)
+
+[node name="playerBody" type="Area2D" parent="player" unique_id=1793518512]
+script = ExtResource("7_f3fa5")
+
+[node name="anim" type="AnimationPlayer" parent="player/playerBody" unique_id=887202219]
+libraries/ = SubResource("AnimationLibrary_4213q")
+
+[node name="Sprite2D" type="Sprite2D" parent="player/playerBody" unique_id=507733345]
+texture_filter = 1
+scale = Vector2(2.7200003, 2.7200005)
+texture = ExtResource("2_hrdke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player/playerBody" unique_id=80297843]
+position = Vector2(0, -90)
+shape = SubResource("RectangleShape2D_1qa5v")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=560576861]
+position = Vector2(637, 349)
+
+[node name="sales" parent="." unique_id=1121917019 instance=ExtResource("9_lu4ip")]
+position = Vector2(637, 349)
+
+[connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
+[connection signal="timeout" from="beat" to="." method="_on_beat"]

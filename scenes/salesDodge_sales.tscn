@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bs5rrdfontsb2"]
+
+[ext_resource type="Script" uid="uid://cy2u3tgp0n6fs" path="res://scripts/salesDodge_sales.gd" id="1_senp7"]
+[ext_resource type="Texture2D" uid="uid://biftoc4sontre" path="res://assets/salesDodge_salesL_1.png" id="2_bweku"]
+[ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/salesDodge_salesR_1.png" id="3_dtcbo"]
+[ext_resource type="Texture2D" uid="uid://cxk7j3xo0dg4e" path="res://assets/salesDodge_salesU_1.png" id="4_5pfek"]
+[ext_resource type="Texture2D" uid="uid://djfrmrjxjk1il" path="res://assets/salesDodge_salesD_1.png" id="5_amq4i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swys0"]
+size = Vector2(251, 107)
+
+[node name="sales" type="Node2D" unique_id=484647474]
+script = ExtResource("1_senp7")
+
+[node name="left" type="Area2D" parent="." unique_id=1678616909]
+visible = false
+
+[node name="hb" type="CollisionShape2D" parent="left" unique_id=260483450]
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_swys0")
+
+[node name="sprite" type="Sprite2D" parent="left" unique_id=1157864989]
+position = Vector2(-39, 0)
+scale = Vector2(2.6158347, 2.615835)
+texture = ExtResource("2_bweku")
+
+[node name="right" type="Area2D" parent="." unique_id=640891908]
+
+[node name="hb" type="CollisionShape2D" parent="right" unique_id=1618009936]
+position = Vector2(-50, 0)
+shape = SubResource("RectangleShape2D_swys0")
+
+[node name="sprite" type="Sprite2D" parent="right" unique_id=148086667]
+position = Vector2(-39, 0)
+scale = Vector2(2.6158347, 2.615835)
+texture = ExtResource("3_dtcbo")
+
+[node name="up" type="Area2D" parent="." unique_id=255315559]
+visible = false
+
+[node name="hb" type="CollisionShape2D" parent="up" unique_id=145553377]
+shape = SubResource("RectangleShape2D_swys0")
+
+[node name="sprite" type="Sprite2D" parent="up" unique_id=332578979]
+position = Vector2(-39, 0)
+scale = Vector2(2.6158347, 2.615835)
+texture = ExtResource("4_5pfek")
+
+[node name="down" type="Area2D" parent="." unique_id=656757501]
+visible = false
+
+[node name="hb" type="CollisionShape2D" parent="down" unique_id=1449920281]
+shape = SubResource("RectangleShape2D_swys0")
+
+[node name="sprite" type="Sprite2D" parent="down" unique_id=585313879]
+position = Vector2(-39, 0)
+scale = Vector2(2.6158347, 2.615835)
+texture = ExtResource("5_amq4i")

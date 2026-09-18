@@ -3,11 +3,40 @@ extends Level
 @onready var time_left: Timer = $timeLeft
 @onready var beat: Timer = $beat
 @onready var goal: Marker3D = $bg_view/bg_world/goal
-const SALES_DODGE_SALES_R = preload("uid://bs5rrdfontsb2")
+@onready var sales_container: Node = $salesContainer
+const salesObj = preload("uid://bs5rrdfontsb2")
+
 
 const timer_offset = 0
 const measure_count = 8
+
+#each sales appear at most on each beat
+var curBeat = 0
 var sequence = [
+	{"dir": "right"},
+	null,
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	null,
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	null,
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
+	{"dir": "right"},
 	{"dir": "right"},
 	null,
 	{"dir": "right"},
@@ -18,7 +47,7 @@ var sequence = [
 	{"dir": "right"}
 ] :
 	set(val):
-		assert(val.length == measure_count)
+		assert(val.length == measure_count*4)
 		sequence = val
 
 func _ready() -> void:
@@ -40,6 +69,15 @@ func _on_player_body_area_entered(area: Area3D) -> void:
 func _on_time_left_timeout() -> void:
 	_on_win()
 
-
 func _on_beat() -> void:
+	
+	var step = sequence[curBeat]
+	curBeat += 1
+	if step == null:
+		return
+	
+	var s = salesObj.instantiate()
+	s.dir = "right"
+	sales_container.add_child(s)
 	print("beat")
+	

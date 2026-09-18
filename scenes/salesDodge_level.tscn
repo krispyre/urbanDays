@@ -1,27 +1,29 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
-[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/stripes.png" id="2_b5jda"]
 [ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="7_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
 [ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="9_b8js2"]
 [ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="9_f3fa5"]
-[ext_resource type="PackedScene" uid="uid://bs5rrdfontsb2" path="res://scenes/salesDodge_salesR.tscn" id="9_lu4ip"]
+[ext_resource type="PackedScene" uid="uid://bs5rrdfontsb2" path="res://scenes/salesDodge_sales.tscn" id="9_lu4ip"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("bg_view")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
-size = Vector3(0.15, 7.6948853, 28.576172)
+size = Vector3(0.15, 7.6948853, 47.44702)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eaq61"]
+load_path = "res://.godot/imported/stripes.png-63b61f810b7cb6767162be347a716dc6.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3fa5"]
+albedo_texture = SubResource("CompressedTexture2D_eaq61")
+uv1_scale = Vector3(17.075, 17.075, 17.075)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kph7b"]
-size = Vector3(4.1, 0.4, 38.293945)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb3wp"]
-albedo_texture = ExtResource("2_b5jda")
-uv1_scale = Vector3(9.615, 9.615, 9.615)
+size = Vector3(4.1, 0.4, 63.168945)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rb3wp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -124,10 +126,10 @@ mesh = SubResource("BoxMesh_ch1rl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=191126020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.015438, 0)
+material_override = SubResource("StandardMaterial3D_f3fa5")
 mesh = SubResource("BoxMesh_kph7b")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="bg_view/bg_world/tunnel" unique_id=756577321]
-material_override = SubResource("StandardMaterial3D_rb3wp")
 mesh = SubResource("BoxMesh_kph7b")
 
 [node name="AreaLight3D" type="AreaLight3D" parent="bg_view/bg_world/tunnel" unique_id=379349404]
@@ -146,7 +148,7 @@ script = ExtResource("2_kg4i3")
 transform = Transform3D(1, 0, 0, 0, -0.8643181, 0.50294554, 0, -0.50294554, -0.8643181, 11.369305, -1.5410995, 3.7196817)
 
 [node name="goal" type="Marker3D" parent="bg_view/bg_world" unique_id=433413933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 16.884842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 30.803387)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="bg_view/bg_world" unique_id=11882944]
 environment = SubResource("Environment_eaq61")
@@ -208,8 +210,10 @@ shape = SubResource("RectangleShape2D_1qa5v")
 [node name="Marker2D" type="Marker2D" parent="." unique_id=560576861]
 position = Vector2(637, 349)
 
-[node name="sales" parent="." unique_id=1121917019 instance=ExtResource("9_lu4ip")]
-position = Vector2(637, 349)
+[node name="salesContainer" type="Node2D" parent="." unique_id=350079772]
+
+[node name="sales" parent="." unique_id=484647474 instance=ExtResource("9_lu4ip")]
+position = Vector2(90, 345)
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
 [connection signal="timeout" from="beat" to="." method="_on_beat"]

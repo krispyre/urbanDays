@@ -7,50 +7,29 @@ extends Level
 const salesObj = preload("uid://bs5rrdfontsb2")
 
 
-const timer_offset = 0
+const timer_offset = 0 #seconds
 const measure_count = 8
 
 #each sales appear at most on each beat
 var curBeat = 0
 var sequence = [
-	{"dir": "right"},
 	null,
 	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
 	null,
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
+	{"dir": "left"},
 	null,
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
+	{"dir": "up"},
 	null,
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"},
-	{"dir": "right"}
+	{"dir": "down"},
+	null,
 ] :
 	set(val):
-		assert(val.length == measure_count*4)
+		assert(val.length <= measure_count*4)
+		val.resize(measure_count*4)
 		sequence = val
 
 func _ready() -> void:
+	sequence.resize(measure_count*4)
 	time_left.wait_time = 4 * measure_count * 60.0/Globals.bpm
 	beat.wait_time = 60.0/Globals.bpm
 	await get_tree().create_timer(timer_offset).timeout

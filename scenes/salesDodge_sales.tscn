@@ -43,8 +43,8 @@ tracks/0/path = NodePath("..:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -100, -0.016666668, 0, 0.15, 0, 0, -0.16666667, 0, 0, 0),
+"handle_modes": PackedInt32Array(0, 3, 2),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, -100, -0.195, 0, 0.195, 0, 0, -0.16666667, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.2, 1)
 }
 tracks/1/type = "bezier"
@@ -54,8 +54,8 @@ tracks/1/path = NodePath("..:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.016666668, 0, 0.15, 0, 0, -0.16666667, 0, 0, 0),
+"handle_modes": PackedInt32Array(0, 3, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.195, 0, 0.195, 0, 0, -0.16666667, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.2, 1)
 }
 

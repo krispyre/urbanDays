@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
 [ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="9_b8js2"]
 [ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="9_f3fa5"]
-[ext_resource type="PackedScene" uid="uid://bs5rrdfontsb2" path="res://scenes/salesDodge_sales.tscn" id="9_lu4ip"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("bg_view")
@@ -210,19 +209,16 @@ shape = SubResource("RectangleShape2D_1qa5v")
 [node name="salesContainer" type="Node2D" parent="." unique_id=350079772]
 
 [node name="right" type="Marker2D" parent="salesContainer" unique_id=560576861]
-position = Vector2(720, 349)
+position = Vector2(1220, 349)
 
 [node name="left" type="Marker2D" parent="salesContainer" unique_id=1708607458]
-position = Vector2(0, 349)
+position = Vector2(-500, 349)
 
 [node name="down" type="Marker2D" parent="salesContainer" unique_id=1666671657]
-position = Vector2(420, 540)
+position = Vector2(420, 1040)
 
 [node name="up" type="Marker2D" parent="salesContainer" unique_id=304306386]
-position = Vector2(300, 0)
-
-[node name="sales" parent="." unique_id=484647474 instance=ExtResource("9_lu4ip")]
-position = Vector2(640, 350)
+position = Vector2(300, -500)
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
 [connection signal="timeout" from="beat" to="." method="_on_beat"]

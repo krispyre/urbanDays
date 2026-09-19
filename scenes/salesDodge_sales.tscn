@@ -43,9 +43,9 @@ tracks/0/path = NodePath("..:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 2),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -100, -0.016666668, 0, 0.15, 0, 0, -0.16666667, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 1)
+"times": PackedFloat32Array(0, 0.2, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -54,9 +54,9 @@ tracks/1/path = NodePath("..:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 2),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.016666668, 0, 0.15, 0, 0, -0.16666667, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.1, 1)
+"times": PackedFloat32Array(0, 0.2, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_amq4i"]
@@ -65,29 +65,29 @@ _data = {
 &"buttIn": SubResource("Animation_5pfek")
 }
 
-[node name="sales" type="Area2D" unique_id=484647474]
+[node name="sales" type="Node2D" unique_id=1304594477]
 script = ExtResource("1_senp7")
 
-[node name="left" type="Sprite2D" parent="." unique_id=1157864989]
+[node name="body" type="Area2D" parent="." unique_id=1662837674]
 scale = Vector2(2.6158347, 2.615835)
+
+[node name="left" type="Sprite2D" parent="body" unique_id=1157864989]
 texture = ExtResource("2_bweku")
 
-[node name="right" type="Sprite2D" parent="." unique_id=148086667]
-scale = Vector2(2.6158347, 2.615835)
+[node name="right" type="Sprite2D" parent="body" unique_id=148086667]
 texture = ExtResource("3_dtcbo")
 
-[node name="up" type="Sprite2D" parent="." unique_id=332578979]
-scale = Vector2(2.6158347, 2.615835)
+[node name="up" type="Sprite2D" parent="body" unique_id=332578979]
 texture = ExtResource("4_5pfek")
 
-[node name="down" type="Sprite2D" parent="." unique_id=585313879]
-scale = Vector2(2.6158347, 2.615835)
+[node name="down" type="Sprite2D" parent="body" unique_id=585313879]
 texture = ExtResource("5_amq4i")
 
-[node name="hb" type="CollisionShape2D" parent="." unique_id=1618009936]
-position = Vector2(-50, 0)
+[node name="hb" type="CollisionShape2D" parent="body" unique_id=1618009936]
+position = Vector2(-19.114357, 0)
+scale = Vector2(0.38228714, 0.3822871)
 shape = SubResource("RectangleShape2D_swys0")
 
-[node name="anim_player" type="AnimationPlayer" parent="." unique_id=1808536817]
+[node name="anim_player" type="AnimationPlayer" parent="body" unique_id=1808536817]
 root_node = NodePath("../hb")
 libraries/ = SubResource("AnimationLibrary_amq4i")

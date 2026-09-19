@@ -209,11 +209,20 @@ shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="salesContainer" type="Node2D" parent="." unique_id=350079772]
 
-[node name="sales_target ref" type="Marker2D" parent="salesContainer" unique_id=560576861]
-position = Vector2(637, 349)
+[node name="right" type="Marker2D" parent="salesContainer" unique_id=560576861]
+position = Vector2(720, 349)
+
+[node name="left" type="Marker2D" parent="salesContainer" unique_id=1708607458]
+position = Vector2(0, 349)
+
+[node name="down" type="Marker2D" parent="salesContainer" unique_id=1666671657]
+position = Vector2(420, 540)
+
+[node name="up" type="Marker2D" parent="salesContainer" unique_id=304306386]
+position = Vector2(300, 0)
 
 [node name="sales" parent="." unique_id=484647474 instance=ExtResource("9_lu4ip")]
-visible = false
+position = Vector2(640, 350)
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
 [connection signal="timeout" from="beat" to="." method="_on_beat"]

@@ -76,8 +76,8 @@ func _on_beat() -> void:
 		return
 	
 	var s = salesObj.instantiate()
-	s.dir = "right"
-	s.position = Vector2(get_window().size.x, $"salesContainer/sales_target ref".position.y)
+	s.dir = step["dir"]
+	s.position = sales_container.get_node(s.dir).position
 	sales_container.add_child(s)
-	print("beat")
+	print(s.position)
 	

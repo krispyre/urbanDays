@@ -7,6 +7,9 @@ var moved_away = 500 #starting point is this px away from the edge
 var poke_amp = 80+moved_away # root goes from edge towards poke_amp inside. see sales_target ref
 var hb_displace = 50 # hb displaces from root
 var anim_time = 1
+
+#1 sec 
+# the peak should be on beat
 func _ready() -> void:
 	assert (dir == "up" or dir == "down" or dir == "left" or dir == "right")
 	for child in get_children()[0].get_children():

@@ -157,7 +157,6 @@ visible = false
 texture = ExtResource("9_6sc7e")
 
 [node name="warn" type="Control" parent="." unique_id=1688716495]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 573.0

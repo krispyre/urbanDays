@@ -50,9 +50,13 @@ func _ready() -> void:
 			animation.bezier_track_set_key_value(0,1,0)
 			animation.bezier_track_set_key_value(1,1,-poke_amp)
 	
+	#align the animatino to peak at the next beat
+	var b = 60.0/Globals.bpm
+	var p = animation.track_get_key_time(0,1)
+	prints(b,p)
+	await get_tree().create_timer((b-p)*anim_player.speed_scale).timeout
 	anim_player.play("buttIn")
 	
 func _process(dt):
-	if $body.position.x != 0:
-		print($body.position.x)
+	pass
 	

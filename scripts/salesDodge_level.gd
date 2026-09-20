@@ -49,6 +49,7 @@ func _on_time_left_timeout() -> void:
 	_on_win()
 
 func _on_beat() -> void:
+	print("beat")
 	var step = sequence[curBeat]
 	curBeat += 1
 	if step == null:
@@ -58,5 +59,5 @@ func _on_beat() -> void:
 	s.dir = step["dir"]
 	s.position = sales_container.get_node(s.dir).position
 	sales_container.add_child(s)
-	print(s.position)
+	
 	

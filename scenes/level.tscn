@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mgke3jpvccdu"]
 
-[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_root.gd" id="1_2r41h"]
+[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_level.gd" id="1_2r41h"]
 [ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="2_klq6b"]
 [ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="3_b121j"]
 [ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="4_8c41q"]

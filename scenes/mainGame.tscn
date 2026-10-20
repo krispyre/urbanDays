@@ -2,26 +2,14 @@
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
 [ext_resource type="PackedScene" uid="uid://bq2aq6b2t66a6" path="res://scenes/salesDodge_level.tscn" id="2_d5h3d"]
-[ext_resource type="PackedScene" uid="uid://b4duxjc1kv1oj" path="res://scenes/busChase_root.tscn" id="3_x7hqj"]
+[ext_resource type="PackedScene" uid="uid://bqf6rylvt4ho7" path="res://scenes/busChase_root.tscn" id="3_x7hqj"]
 [ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="4_owcan"]
 [ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="5_2lgfs"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
+[ext_resource type="Texture2D" uid="uid://bvycui2pxemcc" path="res://assets/panel.png" id="7_d5h3d"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mwwrp"]
 viewport_path = NodePath("bg_view")
-
-[sub_resource type="GDScript" id="GDScript_dgh3m"]
-script/source = "extends Scene
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [node name="mainGame" type="Node" unique_id=255430358]
 script = ExtResource("1_mwwrp")
@@ -35,20 +23,7 @@ process_mode = 1
 [node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance=ExtResource("2_d5h3d")]
 texture = SubResource("ViewportTexture_mwwrp")
 
-[node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance=ExtResource("3_x7hqj")]
-
-[node name="level" type="Node" parent="gameProcess" unique_id=1630080778]
-script = SubResource("GDScript_dgh3m")
-metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
-
-[node name="Label" type="Label" parent="gameProcess/level" unique_id=1049080263]
-offset_left = 116.0
-offset_top = 288.0
-offset_right = 697.0
-offset_bottom = 492.0
-theme_override_font_sizes/font_size = 149
-text = "pickBun"
-metadata/_edit_use_anchors_ = true
+[node name="busChase_root" parent="gameProcess/levels" unique_id=2033061355 instance=ExtResource("3_x7hqj")]
 
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 script = ExtResource("4_owcan")
@@ -63,6 +38,20 @@ bpm = 175.0
 beat_length = 0.34285714285714286
 audio_stream_player = NodePath("../music_player")
 metadata/_custom_type_script = "uid://dos3qhffr4v0a"
+
+[node name="pauseMenu" type="Container" parent="." unique_id=774933695]
+process_mode = 2
+offset_left = 367.0
+offset_top = 276.0
+offset_right = 367.0
+offset_bottom = 276.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="pauseMenu" unique_id=1147199761]
+layout_mode = 2
+texture = ExtResource("7_d5h3d")
+region_rect = Rect2(2.385, 0, 0, 0)
+
+[node name="failScreen" type="Node" parent="." unique_id=1316311000]
 
 [connection signal="nextLevel" from="gameProcess/bgm" to="." method="_on_bgm_next_level"]
 [connection signal="outro" from="gameProcess/bgm" to="." method="_on_bgm_outro"]

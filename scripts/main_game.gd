@@ -1,4 +1,6 @@
 extends Scene
+
+var lives = 3
 func _unhandled_input(event: InputEvent):
 	if (event.is_action_pressed("pause")):
 		$gameProcess.paused = !$gameProcess.paused

@@ -57,7 +57,7 @@ mesh = SubResource("PlaneMesh_swys0")
 shape = SubResource("WorldBoundaryShape3D_1qa5v")
 
 [node name="bus" type="Node3D" parent="." unique_id=1754364475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -32.313026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -14.064045)
 
 [node name="goal" type="Area3D" parent="bus" unique_id=1509026711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6336796, -1.2846398, 0.06630325)

@@ -2,7 +2,7 @@ class_name Level extends Scene
 
 signal win
 signal fail
-
+signal timeout 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("autoWin")):
 		win.emit()

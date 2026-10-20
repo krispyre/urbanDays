@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://mgke3jpvccdu"]
+
+[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_root.gd" id="1_2r41h"]
+[ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="2_klq6b"]
+[ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="3_b121j"]
+[ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="4_8c41q"]
+[ext_resource type="PackedScene" uid="uid://bh1dtxjy55hnf" path="res://scenes/busChase_level.tscn" id="5_olg7q"]
+[ext_resource type="Texture2D" uid="uid://c3uhimvhht3et" path="res://assets/busChase_transition.png" id="6_t1rx8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mob72"]
+viewport_path = NodePath("transition")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c2kp2"]
+resource_local_to_scene = true
+shader = ExtResource("2_klq6b")
+shader_parameter/mask_texture = SubResource("ViewportTexture_mob72")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c2kp2"]
+viewport_path = NodePath("transition")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qa5v"]
+resource_local_to_scene = true
+shader = ExtResource("2_klq6b")
+shader_parameter/mask_texture = SubResource("ViewportTexture_c2kp2")
+
+[sub_resource type="Animation" id="Animation_pcxmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(197, 211)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c2kp2"]
+resource_name = "zoom"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(197, 211), Vector2(415, 232)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19995075),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(12.51, 12.51)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k82oq"]
+_data = {
+&"RESET": SubResource("Animation_pcxmy"),
+&"zoom": SubResource("Animation_c2kp2")
+}
+
+[node name="root" type="Node3D" unique_id=2033061355]
+script = ExtResource("1_2r41h")
+
+[node name="fail" type="Sprite2D" parent="." unique_id=2107499337]
+top_level = true
+material = SubResource("ShaderMaterial_c2kp2")
+texture = ExtResource("3_b121j")
+centered = false
+
+[node name="win" type="Sprite2D" parent="." unique_id=472778511]
+material = SubResource("ShaderMaterial_1qa5v")
+texture = ExtResource("4_8c41q")
+centered = false
+
+[node name="level" parent="." unique_id=405953474 instance=ExtResource("5_olg7q")]
+
+[node name="transition" type="SubViewport" parent="." unique_id=123210361]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(720, 540)
+
+[node name="anim" type="AnimationPlayer" parent="transition" unique_id=1453420212]
+root_node = NodePath("../mask")
+libraries/ = SubResource("AnimationLibrary_k82oq")
+
+[node name="mask" type="Sprite2D" parent="transition" unique_id=1079282751]
+position = Vector2(197, 211)
+texture = ExtResource("6_t1rx8")
+
+[connection signal="fail" from="level" to="." method="_on_level_fail"]
+[connection signal="win" from="level" to="." method="_on_level_win"]

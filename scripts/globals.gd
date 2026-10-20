@@ -1,3 +1,3 @@
 extends Node
 
-const bpm = 175
+const bgm = 

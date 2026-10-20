@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dj6vheaj2m1eo"]
+
+[ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="1_u4ddl"]
+[ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="2_48mr8"]
+[ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="3_dg162"]
+
+[node name="bgm" type="Node" unique_id=993576825]
+script = ExtResource("1_u4ddl")
+
+[node name="music_player" type="AudioStreamPlayer" parent="." unique_id=1616172852]
+stream = ExtResource("2_48mr8")
+autoplay = true
+
+[node name="RhythmNotifier" type="Node" parent="." unique_id=1809508973 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("3_dg162")
+bpm = 175.0
+beat_length = 0.34285714285714286
+audio_stream_player = NodePath("../music_player")
+metadata/_custom_type_script = "uid://dos3qhffr4v0a"

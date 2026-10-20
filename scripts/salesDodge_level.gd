@@ -30,8 +30,8 @@ var sequence = [
 
 func _ready() -> void:
 	sequence.resize(measure_count*4)
-	time_left.wait_time = 4 * measure_count * 60.0/Globals.bpm
-	beat.wait_time = 60.0/Globals.bpm
+	time_left.wait_time = 4 * measure_count * 60.0/bgm.bpm
+	beat.wait_time = 60.0/bgm.bpm
 	await get_tree().create_timer(timer_offset).timeout
 	time_left.start()
 	beat.start()

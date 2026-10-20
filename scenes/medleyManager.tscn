@@ -1,5 +1,49 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
-[node name="medleyManager" type="Node2D" unique_id=1115821336]
+[ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="1_37h54"]
+[ext_resource type="PackedScene" uid="uid://b4duxjc1kv1oj" path="res://scenes/busChase_root.tscn" id="1_gx3fm"]
+[ext_resource type="Script" uid="uid://dyu7vq6ejs5gp" path="res://scripts/Scene.gd" id="1_ug418"]
+[ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="3_sxv21"]
+[ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="4_sxv21"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=180853486]
+[sub_resource type="GDScript" id="GDScript_dgh3m"]
+script/source = "extends Scene
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="mainGp" type="Node" unique_id=255430358]
+script = ExtResource("1_ug418")
+metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
+
+[node name="busChase_root" parent="." unique_id=2033061355 instance=ExtResource("1_gx3fm")]
+
+[node name="level" type="Node" parent="." unique_id=1630080778]
+script = SubResource("GDScript_dgh3m")
+metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
+
+[node name="Label" type="Label" parent="level" unique_id=1049080263]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "pickBun"
+
+[node name="bgm" type="Node" parent="." unique_id=993576825]
+script = ExtResource("3_sxv21")
+
+[node name="music_player" type="AudioStreamPlayer" parent="bgm" unique_id=1616172852]
+stream = ExtResource("1_37h54")
+autoplay = true
+
+[node name="RhythmNotifier" type="Node" parent="bgm" unique_id=1809508973 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("4_sxv21")
+bpm = 175.0
+beat_length = 0.34285714285714286
+audio_stream_player = NodePath("../music_player")
+metadata/_custom_type_script = "uid://dos3qhffr4v0a"

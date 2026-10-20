@@ -22,7 +22,6 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 ScreenTransition="*uid://bs7acuwwwk31t"
-Globals="*uid://cco3tvcoe8jm7"
 
 [debug]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwc72vkte7xtq"]
 
 [ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="1_cqv0r"]
-[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_group.gd" id="1_x0h3l"]
+[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_root.gd" id="1_x0h3l"]
 [ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="2_cqv0r"]
 [ext_resource type="PackedScene" uid="uid://bh1dtxjy55hnf" path="res://scenes/busChase_level.tscn" id="2_q6odv"]
 

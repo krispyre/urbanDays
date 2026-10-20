@@ -5,7 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="2_pcxmy"]
 [ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="3_c2kp2"]
 [ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="3_k82oq"]
-[ext_resource type="PackedScene" uid="uid://bh1dtxjy55hnf" path="res://scenes/busChase_level.tscn" id="4_k82oq"]
+[ext_resource type="Script" uid="uid://bb8jogdhpugq6" path="res://scripts/busChase_level.gd" id="5_rrb4t"]
+[ext_resource type="Script" uid="uid://bn5tf1i0mw7ux" path="res://scripts/busChase_player.gd" id="6_crhpa"]
+[ext_resource type="Texture2D" uid="uid://cjm65rnwas0ua" path="res://assets/busChase_run.png" id="7_e3pmy"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mob72"]
 viewport_path = NodePath("transition")
@@ -22,6 +24,45 @@ viewport_path = NodePath("transition")
 resource_local_to_scene = true
 shader = ExtResource("3_k82oq")
 shader_parameter/mask_texture = SubResource("ViewportTexture_c2kp2")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pd1v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4etm"]
+albedo_color = Color(0.40146014, 0.40146014, 0.40146014, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_swys0"]
+material = SubResource("StandardMaterial3D_j4etm")
+size = Vector2(50, 200)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1qa5v"]
+plane = Plane(0, 2.985, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
+size = Vector3(6.0268555, 2.7042236, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_muhsh"]
+size = Vector3(5.7, 4.2, 14.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qa5v"]
+size = Vector3(1, 1.7, 0.1)
+
+[sub_resource type="SystemFont" id="SystemFont_5pd1v"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pd1v"]
+font = SubResource("SystemFont_5pd1v")
+font_size = 34
+
+[sub_resource type="Gradient" id="Gradient_cqv0r"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qsbq8"]
+gradient = SubResource("Gradient_cqv0r")
+width = 720
+height = 8
+fill_to = Vector2(1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_swys0"]
+size = Vector2(720, 8)
 
 [sub_resource type="Animation" id="Animation_pcxmy"]
 length = 0.001
@@ -99,7 +140,80 @@ material = SubResource("ShaderMaterial_1qa5v")
 texture = ExtResource("3_c2kp2")
 centered = false
 
-[node name="level" parent="." unique_id=405953474 instance=ExtResource("4_k82oq")]
+[node name="level" type="Node3D" parent="." unique_id=405953474]
+process_mode = 1
+script = ExtResource("5_rrb4t")
+
+[node name="floor" type="StaticBody3D" parent="level" unique_id=165753745]
+physics_material_override = SubResource("PhysicsMaterial_5pd1v")
+
+[node name="mesh" type="MeshInstance3D" parent="level/floor" unique_id=1958026555]
+mesh = SubResource("PlaneMesh_swys0")
+
+[node name="hb" type="CollisionShape3D" parent="level/floor" unique_id=1828126258]
+shape = SubResource("WorldBoundaryShape3D_1qa5v")
+
+[node name="bus" type="Node3D" parent="level" unique_id=1754364475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -14.064045)
+
+[node name="goal" type="Area3D" parent="level/bus" unique_id=1509026711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6336796, -1.2846398, 0.06630325)
+
+[node name="hb" type="CollisionShape3D" parent="level/bus/goal" unique_id=805149997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.817627, 0.8521118, 0)
+shape = SubResource("BoxShape3D_swys0")
+
+[node name="mesh" type="MeshInstance3D" parent="level/bus" unique_id=1862531295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
+mesh = SubResource("BoxMesh_muhsh")
+
+[node name="player" type="CharacterBody3D" parent="level" unique_id=1344844428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+script = ExtResource("6_crhpa")
+
+[node name="hb" type="CollisionShape3D" parent="level/player" unique_id=1561201773]
+shape = SubResource("BoxShape3D_1qa5v")
+
+[node name="Camera3D" type="Camera3D" parent="level/player" unique_id=1922675734]
+transform = Transform3D(1, 0, 0, 0, 0.97459006, 0.22399604, 0, -0.22399604, 0.97459006, -0.05735761, 1.2383004, 0.9075172)
+current = true
+fov = 98.9
+
+[node name="debugLabel" type="Label" parent="level/player/Camera3D" unique_id=1025912255]
+offset_right = 717.0
+offset_bottom = 467.0
+text = "SPEED: 123123 m/s"
+label_settings = SubResource("LabelSettings_5pd1v")
+
+[node name="Sprite3D" type="Sprite3D" parent="level/player" unique_id=1287133762]
+texture = ExtResource("7_e3pmy")
+
+[node name="AreaLight3D" type="AreaLight3D" parent="level" unique_id=1857042169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05735761, 15.834417, 0.22790289)
+area_range = 200.0
+area_size = Vector2(8.635, 8.635)
+
+[node name="Timer" type="Timer" parent="level" unique_id=226844839]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="Container" type="Control" parent="level" unique_id=866896522]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 720.0
+offset_bottom = 30.0
+
+[node name="ProgressBar" type="TextureProgressBar" parent="level/Container" unique_id=1051434737]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 27.0
+max_value = 6.0
+step = 0.05
+value = 2.35
+texture_under = SubResource("GradientTexture2D_qsbq8")
+texture_progress = SubResource("PlaceholderTexture2D_swys0")
+metadata/_edit_use_anchors_ = true
 
 [node name="transition" type="SubViewport" parent="." unique_id=123210361]
 disable_3d = true
@@ -116,3 +230,5 @@ texture = ExtResource("2_c2kp2")
 
 [connection signal="fail" from="level" to="." method="_on_level_fail"]
 [connection signal="win" from="level" to="." method="_on_level_win"]
+[connection signal="body_entered" from="level/bus/goal" to="level" method="_on_goal_body_entered"]
+[connection signal="timeout" from="level/Timer" to="level" method="_on_timer_timeout"]

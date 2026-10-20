@@ -4,8 +4,11 @@ extends Level
 @onready var beat: Timer = $beat
 @onready var goal: Marker3D = $bg_view/bg_world/goal
 @onready var sales_container: Node = $salesContainer
-const salesObj = preload("uid://bs5rrdfontsb2")
 
+@onready var fail_spr: Node = $fail
+@onready var win_spr: Node = $win
+
+const salesObj = preload("uid://bs5rrdfontsb2")
 
 const timer_offset = 0 #seconds
 const measure_count = 8
@@ -30,14 +33,13 @@ var sequence = [
 
 func _ready() -> void:
 	sequence.resize(measure_count*4)
-	time_left.wait_time = 4 * measure_count * 60.0/bgm.bpm
-	beat.wait_time = 60.0/bgm.bpm
+	time_left.wait_time = 4 * measure_count * 60.0/Globals.bpm
+	beat.wait_time = 60.0/Globals.bpm
 	await get_tree().create_timer(timer_offset).timeout
 	time_left.start()
 	beat.start()
 	
 func _on_win():
-	get_tree().paused = true
 	print("win")
 	win.emit()
 

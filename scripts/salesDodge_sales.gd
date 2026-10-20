@@ -51,7 +51,7 @@ func _ready() -> void:
 			animation.bezier_track_set_key_value(1,1,-poke_amp)
 	
 	#align the animatino to peak at the next beat
-	var b = 60.0/bgm.bpm
+	var b = 60.0/Globals.bpm
 	var p = animation.track_get_key_time(0,1)
 	prints(b,p)
 	await get_tree().create_timer((b-p)*anim_player.speed_scale).timeout

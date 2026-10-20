@@ -9,3 +9,4 @@ func _unhandled_input(event: InputEvent):
 			Engine.time_scale = 0.1
 		else:
 			Engine.time_scale = 1
+	

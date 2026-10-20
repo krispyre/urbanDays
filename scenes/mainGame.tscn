@@ -1,17 +1,87 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
-[ext_resource type="PackedScene" uid="uid://bq2aq6b2t66a6" path="res://scenes/salesDodge_level.tscn" id="2_d5h3d"]
-[ext_resource type="PackedScene" uid="uid://bqf6rylvt4ho7" path="res://scenes/busChase_root.tscn" id="3_x7hqj"]
 [ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="4_owcan"]
 [ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="5_2lgfs"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
 [ext_resource type="Texture2D" uid="uid://bvycui2pxemcc" path="res://assets/panel.png" id="7_d5h3d"]
+[ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/smiley.png" id="8_x7hqj"]
+[ext_resource type="Texture2D" uid="uid://cq86ttxkfdgsn" path="res://assets/sad.png" id="9_owcan"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mwwrp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d5h3d"]
 viewport_path = NodePath("bg_view")
 
+[sub_resource type="Animation" id="Animation_2lgfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slidesPlaceholder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x7hqj"]
+resource_name = "intro"
+length = 10.97
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slidesPlaceholder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.03333336, 9.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owcan"]
+_data = {
+&"RESET": SubResource("Animation_2lgfs"),
+&"intro": SubResource("Animation_x7hqj")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qa5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_x7hqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_owcan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x7hqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_owcan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x7hqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_owcan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x7hqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_owcan")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="mainGame" type="Node" unique_id=255430358]
+process_mode = 3
 script = ExtResource("1_mwwrp")
 metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 
@@ -20,10 +90,10 @@ process_mode = 1
 
 [node name="levels" type="Node" parent="gameProcess" unique_id=445493719]
 
-[node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance=ExtResource("2_d5h3d")]
-texture = SubResource("ViewportTexture_mwwrp")
+[node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance_placeholder="res://scenes/salesDodge_level.tscn"]
+texture = SubResource("ViewportTexture_d5h3d")
 
-[node name="busChase_root" parent="gameProcess/levels" unique_id=2033061355 instance=ExtResource("3_x7hqj")]
+[node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance_placeholder="res://scenes/busChase_root.tscn"]
 
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 script = ExtResource("4_owcan")
@@ -39,17 +109,37 @@ beat_length = 0.34285714285714286
 audio_stream_player = NodePath("../music_player")
 metadata/_custom_type_script = "uid://dos3qhffr4v0a"
 
-[node name="pauseMenu" type="Container" parent="." unique_id=774933695]
+[node name="pauseMenu" type="Control" parent="gameProcess" unique_id=497962982]
 process_mode = 2
+layout_mode = 3
+anchors_preset = 0
 offset_left = 367.0
 offset_top = 276.0
 offset_right = 367.0
 offset_bottom = 276.0
 
-[node name="NinePatchRect" type="NinePatchRect" parent="pauseMenu" unique_id=1147199761]
-layout_mode = 2
+[node name="NinePatchRect" type="NinePatchRect" parent="gameProcess/pauseMenu" unique_id=1147199761]
+visible = false
+z_index = 13
+layout_mode = 0
+offset_left = -266.0
+offset_top = -169.0
+offset_right = 175.0
+offset_bottom = 220.0
 texture = ExtResource("7_d5h3d")
-region_rect = Rect2(2.385, 0, 0, 0)
+region_rect = Rect2(14.400009, 14.400005, 231.19998, 231.19998)
+patch_margin_right = 13
+
+[node name="intro" type="Node2D" parent="gameProcess" unique_id=387021789]
+
+[node name="animPlayer" type="AnimationPlayer" parent="gameProcess/intro" unique_id=66875973]
+libraries/ = SubResource("AnimationLibrary_owcan")
+autoplay = &"intro"
+
+[node name="slidesPlaceholder" type="AnimatedSprite2D" parent="gameProcess/intro" unique_id=1253009659]
+position = Vector2(126, 404)
+scale = Vector2(0.45703125, 0.45703125)
+sprite_frames = SubResource("SpriteFrames_1qa5v")
 
 [node name="failScreen" type="Node" parent="." unique_id=1316311000]
 

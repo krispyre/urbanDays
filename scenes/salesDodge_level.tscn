@@ -105,7 +105,7 @@ centered = false
 script = ExtResource("1_4213q")
 
 [node name="timeLeft" type="Timer" parent="." unique_id=177160825]
-wait_time = 2.7399999999999998
+wait_time = 2.74
 
 [node name="bg_view" type="SubViewport" parent="." unique_id=2049669510]
 size = Vector2i(720, 540)
@@ -221,9 +221,11 @@ position = Vector2(420, 1040)
 position = Vector2(300, -500)
 
 [node name="win" type="Sprite2D" parent="." unique_id=1872389548]
+position = Vector2(693, 134)
 texture = ExtResource("8_f3fa5")
 
 [node name="fail" type="Sprite2D" parent="." unique_id=1041303028]
+position = Vector2(690, 426)
 texture = ExtResource("9_lu4ip")
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]

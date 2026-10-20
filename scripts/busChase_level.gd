@@ -13,7 +13,6 @@ func _ready():
 	win_spr.hide()
 	level.show()
 	progress_bar.max_value = timer.wait_time
-	get_tree().paused = false
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(timer):
@@ -24,7 +23,6 @@ func _on_level_win():
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.hide()
-	level.queue_free()
 	print("win")
 
 func _on_level_fail() -> void:
@@ -32,7 +30,6 @@ func _on_level_fail() -> void:
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.hide()
-	level.queue_free()
 	print("fail")
 
 func _on_goal_body_entered(_body: Node3D) -> void:

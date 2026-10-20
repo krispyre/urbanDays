@@ -1,5 +1,7 @@
 extends Level
 
+const bgmScene = preload("res://scenes/bgm.tscn")
+
 @onready var time_left: Timer = $timeLeft
 @onready var beat: Timer = $beat
 @onready var goal: Marker3D = $bg_view/bg_world/goal
@@ -10,7 +12,7 @@ extends Level
 
 const salesObj = preload("uid://bs5rrdfontsb2")
 
-const timer_offset = 0 #seconds
+const beat_offset = (8+4)*4 #8+4 bars before this scene starts
 const measure_count = 8
 
 #each sales appear at most on each beat
@@ -32,12 +34,16 @@ var sequence = [
 		sequence = val
 
 func _ready() -> void:
-	sequence.resize(measure_count*4)
-	time_left.wait_time = 4 * measure_count * 60.0/Globals.bpm
-	beat.wait_time = 60.0/Globals.bpm
-	await get_tree().create_timer(timer_offset).timeout
+	sequence.resize(measure_count * 4)
 	time_left.start()
-	beat.start()
+	var music := get_node_or_null("../../bgm")
+	if music:
+		music.globalBeat.connect(_on_beat)
+	else:
+		music = bgmScene.instantiate()
+		music.globalBeat.connect(_on_beat)
+		add_child(music)
+		music.get_node("music_player").seek(beat_offset * 60.0 / Globals.bpm)
 	
 func _on_win():
 	print("win")
@@ -50,10 +56,12 @@ func _on_player_body_area_entered(area: Area3D) -> void:
 func _on_time_left_timeout() -> void:
 	_on_win()
 
-func _on_beat() -> void:
-	print("beat")
+func _on_beat(globalBeat: int) -> void:
+	curBeat = globalBeat - beat_offset
+	print(curBeat)
+	if curBeat < 0 or curBeat >= sequence.size():
+		return
 	var step = sequence[curBeat]
-	curBeat += 1
 	if step == null:
 		return
 	

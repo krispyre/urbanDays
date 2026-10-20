@@ -105,8 +105,7 @@ centered = false
 script = ExtResource("1_4213q")
 
 [node name="timeLeft" type="Timer" parent="." unique_id=177160825]
-
-[node name="beat" type="Timer" parent="." unique_id=2022712307]
+wait_time = 2.7399999999999998
 
 [node name="bg_view" type="SubViewport" parent="." unique_id=2049669510]
 size = Vector2i(720, 540)
@@ -228,4 +227,3 @@ texture = ExtResource("8_f3fa5")
 texture = ExtResource("9_lu4ip")
 
 [connection signal="timeout" from="timeLeft" to="." method="_on_time_left_timeout"]
-[connection signal="timeout" from="beat" to="." method="_on_beat"]

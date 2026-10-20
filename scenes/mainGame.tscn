@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="5_2lgfs"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_74qtm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mwwrp"]
 viewport_path = NodePath("bg_view")
 
 [sub_resource type="GDScript" id="GDScript_dgh3m"]
@@ -33,7 +33,7 @@ process_mode = 1
 [node name="levels" type="Node" parent="gameProcess" unique_id=445493719]
 
 [node name="salesDodge_level" parent="gameProcess/levels" unique_id=1501887509 instance=ExtResource("2_d5h3d")]
-texture = SubResource("ViewportTexture_74qtm")
+texture = SubResource("ViewportTexture_mwwrp")
 
 [node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance=ExtResource("3_x7hqj")]
 
@@ -55,6 +55,7 @@ script = ExtResource("4_owcan")
 
 [node name="music_player" type="AudioStreamPlayer" parent="gameProcess/bgm" unique_id=1616172852]
 stream = ExtResource("5_2lgfs")
+autoplay = true
 
 [node name="RhythmNotifier" type="Node" parent="gameProcess/bgm" unique_id=1809508973 node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("6_42wf4")

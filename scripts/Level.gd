@@ -20,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	#only parent has the bgm node, testers no
-	#either reference the bgm node in the parent or load ur own (during testign)
+	#either reference the bgm node in the parent or load ur own+offset (during testign)
 	var shared := get_tree().current_scene.get_node_or_null("%bgm")
 	prints(shared)
 	if shared:

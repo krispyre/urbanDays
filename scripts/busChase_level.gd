@@ -8,6 +8,11 @@ extends Level
 @onready var timer: Timer = $level/Timer
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
 var isWin = false
+
+func _init() -> void:
+	beat_offset = 31+8*2
+	# 3rd level: 31+2 levels before this level
+
 func _level_ready() -> void:
 	fail_spr.hide()
 	win_spr.hide()

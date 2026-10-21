@@ -30,6 +30,5 @@ func _process(delta: float) -> void:
 					animation.bezier_track_set_key_value(1,0,dodge_length)
 			#print(animation.bezier_track_get_key_value(0,0))
 			#print(animation.bezier_track_get_key_value(1,0))
-			print("ow")
 			anim.play("dodge")
 			

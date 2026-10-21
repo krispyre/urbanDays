@@ -1,28 +1,27 @@
 extends Level
 
-
-@onready var time_left: Timer = $timeLeft
-@onready var beat: Timer = $beat
-@onready var goal: Marker3D = $bg_view/bg_world/goal
-@onready var sales_container: Node = $salesContainer
+@onready var goal: Marker3D = $gameplay/bg_view/bg_world/goal
+@onready var sales_container: Node = $gameplay/salesContainer
 
 @onready var fail_spr: Node = $fail
 @onready var win_spr: Node = $win
 
 const salesObj = preload("uid://bs5rrdfontsb2")
+const Sales = preload("uid://cy2u3tgp0n6fs")
 
 const measure_count = 8
+var isFail = false
 
 #each sales appear at most on each beat
 var sequence = [
 	null,
-	{"dir": "right"},
+	{"dir": Sales.direction.right},
 	null,
-	{"dir": "left"},
+	{"dir": Sales.direction.left},
 	null,
-	{"dir": "up"},
+	{"dir": Sales.direction.up},
 	null,
-	{"dir": "down"},
+	{"dir": Sales.direction.down},
 	null,
 ]:
 	set(val):
@@ -31,25 +30,21 @@ var sequence = [
 		sequence = val
 
 func _init() -> void:
-	beat_offset = (8 + 4) * 4 # 8+4 bars before this scene starts
+	beat_offset = 8 * 4 - 1 + 8 * 1
+	# intro + 1 level before
 
 func _level_ready() -> void:
+	win_spr.hide()
+	fail_spr.hide()
 	sequence.resize(measure_count * 4)
-	time_left.start()
 
-func _on_win():
-	print("win")
-	win.emit()
-
-func _on_player_body_area_entered(_area: Area3D) -> void:
+func _on_player_body_area_entered(_area: Area2D) -> void:
 	print("die")
+	isFail = true
 	fail.emit()
 
-func _on_time_left_timeout() -> void:
-	_on_win()
-
 func on_beat(local_beat: int) -> void:
-	print(local_beat)
+	prints("beat:", local_beat)
 	if local_beat >= sequence.size():
 		return
 	var step = sequence[local_beat]
@@ -58,5 +53,19 @@ func on_beat(local_beat: int) -> void:
 	
 	var s = salesObj.instantiate()
 	s.dir = step["dir"]
-	s.position = sales_container.get_node(s.dir).position
+	s.position = sales_container.get_node(s.dir_name()).position
 	sales_container.add_child(s)
+	
+	if local_beat == 12:
+		#win or fail
+		if (!isFail):
+			win.emit()
+			
+			
+func _on_fail():
+	fail_spr.show()
+	win_spr.hide()
+	
+func _on_win() -> void:
+	fail_spr.hide()
+	win_spr.show()

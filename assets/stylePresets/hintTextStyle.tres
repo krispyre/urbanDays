@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://b2vdknglqw7k5"]
+
+[ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="1_8j0xf"]
+
+[resource]
+resource_name = "hintStyle"
+font = ExtResource("1_8j0xf")
+font_size = 62
+outline_size = 33
+outline_color = Color(0, 0, 0, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 12
+stacked_outline_0/color = Color(1, 1, 1, 1)

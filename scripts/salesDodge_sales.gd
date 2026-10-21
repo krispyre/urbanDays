@@ -2,32 +2,33 @@ extends Node2D
 @onready var anim_player: AnimationPlayer = $body/anim_player
 @onready var hb: CollisionShape2D = $body/hb
 
-var dir := "up"
+enum direction {up, down, left, right}
+@export var dir: direction = direction.up
 var moved_away = 500 #starting point is this px away from the edge
 var poke_amp = 80+moved_away # root goes from edge towards poke_amp inside. see sales_target ref
 var hb_displace = 50 # hb displaces from root
 var anim_time = 1
 
+func dir_name() -> String:
+	return direction.keys()[dir]
+
 #1 sec 
 # the peak should be on beat
 func _ready() -> void:
-	assert (dir == "up" or dir == "down" or dir == "left" or dir == "right")
+	var facing := dir_name()
 	for child in get_children()[0].get_children():
 		if child is Sprite2D:
-			if child.name == dir:
-				child.visible = true
-			else:
-				child.visible = false
+			child.visible = child.name == facing
 				
 	#displace hitbox
 	match dir:
-		"left":
+		direction.left:
 			hb.position = Vector2(hb_displace,0)
-		"right":
+		direction.right:
 			hb.position = Vector2(-hb_displace,0)
-		"up":
+		direction.up:
 			hb.position = Vector2(0,hb_displace)
-		"down":
+		direction.down:
 			hb.position = Vector2(0,-hb_displace)
 			
 	#set anim
@@ -37,16 +38,16 @@ func _ready() -> void:
 	#keyframes: origin, go towards player (Change this keyframe 1), orign
 	#butt in towards the player
 	match dir: 
-		"left":
+		direction.left:
 			animation.bezier_track_set_key_value(0,1,poke_amp)
 			animation.bezier_track_set_key_value(1,1,0)
-		"right":
+		direction.right:
 			animation.bezier_track_set_key_value(0,1,-poke_amp)
 			animation.bezier_track_set_key_value(1,1,0)
-		"up":
+		direction.up:
 			animation.bezier_track_set_key_value(0,1,0)
 			animation.bezier_track_set_key_value(1,1,poke_amp)
-		"down":
+		direction.down:
 			animation.bezier_track_set_key_value(0,1,0)
 			animation.bezier_track_set_key_value(1,1,-poke_amp)
 	

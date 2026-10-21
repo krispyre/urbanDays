@@ -8,7 +8,7 @@ extends Level
 @onready var timer: Timer = $level/Timer
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
 
-func _ready():
+func _level_ready() -> void:
 	fail_spr.hide()
 	win_spr.hide()
 	level.show()
@@ -18,12 +18,16 @@ func _process(_delta: float) -> void:
 	if is_instance_valid(timer):
 		progress_bar.value = timer.time_left
 
+func on_beat(localBeat: int) -> void:
+	print("b owo")
+
 func _on_level_win():
 	win_spr.show()
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.hide()
 	print("win")
+	get_tree().paused = true
 
 func _on_level_fail() -> void:
 	fail_spr.show()
@@ -31,6 +35,7 @@ func _on_level_fail() -> void:
 	await tr_anim.animation_finished
 	level.hide()
 	print("fail")
+	get_tree().paused = true
 
 func _on_goal_body_entered(_body: Node3D) -> void:
 	win.emit()

@@ -6,6 +6,7 @@ var lives = 3
 var curLevel := -1
 var cur_level_node: Node
 var levels: Array[InstancePlaceholder] = []
+@onready var levels_node: Node = $gameProcess/levels
 
 func _unhandled_input(event: InputEvent):
 	if (event.is_action_pressed("pause")):
@@ -20,19 +21,19 @@ func load_level(index: int) -> Node:
 	return level
 
 func unload_level(level: Node) -> void:
-	level.get_parent().remove_child(level)
+	levels_node.remove_child(level)
 	level.queue_free()
 
 func _on_bgm_outro() -> void:
 	print("play outro")
 
 func _on_bgm_next_level() -> void:
-	prints("next level ",curLevel)
-	if curLevel== -1:
+	if curLevel == -1:
 		#intro finish
 		intro.hide()
 		intro.queue_free()
 	curLevel += 1
+	prints("next level ", curLevel)
 	if cur_level_node:
 		unload_level(cur_level_node)
 	cur_level_node = load_level(curLevel)

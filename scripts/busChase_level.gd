@@ -7,7 +7,7 @@ extends Level
 @onready var goal: Area3D = $level/bus/goal
 @onready var timer: Timer = $level/Timer
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
-
+var isWin = false
 func _level_ready() -> void:
 	fail_spr.hide()
 	win_spr.hide()
@@ -27,7 +27,7 @@ func _on_level_win():
 	await tr_anim.animation_finished
 	level.hide()
 	print("win")
-	get_tree().paused = true
+	isWin = true
 
 func _on_level_fail() -> void:
 	fail_spr.show()
@@ -35,10 +35,10 @@ func _on_level_fail() -> void:
 	await tr_anim.animation_finished
 	level.hide()
 	print("fail")
-	get_tree().paused = true
 
 func _on_goal_body_entered(_body: Node3D) -> void:
 	win.emit()
 
 func _on_timer_timeout() -> void:
-	fail.emit()
+	if (!isWin):
+		fail.emit()

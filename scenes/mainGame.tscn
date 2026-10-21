@@ -11,6 +11,9 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_d5h3d"]
 viewport_path = NodePath("bg_view")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_x7hqj"]
+viewport_path = NodePath("../salesDodge/bg_view")
+
 [sub_resource type="Animation" id="Animation_2lgfs"]
 length = 0.001
 tracks/0/type = "value"
@@ -95,7 +98,11 @@ texture = SubResource("ViewportTexture_d5h3d")
 
 [node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance_placeholder="res://scenes/busChase_root.tscn"]
 
+[node name="salesDodge2" parent="gameProcess/levels" unique_id=41596872 instance_placeholder="res://scenes/salesDodge_level.tscn"]
+texture = SubResource("ViewportTexture_x7hqj")
+
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
+unique_name_in_owner = true
 script = ExtResource("4_owcan")
 
 [node name="music_player" type="AudioStreamPlayer" parent="gameProcess/bgm" unique_id=1616172852]

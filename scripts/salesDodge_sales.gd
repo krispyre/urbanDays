@@ -5,13 +5,10 @@ extends Node2D
 
 var dir := "up"
 
-# the peak should be on beat
 func _ready() -> void:
 	assert (dir == "up" or dir == "down" or dir == "left" or dir == "right")
 	$body.hide()
 	warn_anim_player.play(dir)
-	
-	
 
 	#
 	##align the animatino to peak at the next beat????
@@ -23,5 +20,6 @@ func _ready() -> void:
 	
 
 func _on_warn_anim_finished(anim_name: StringName) -> void:
+	$warn.hide()
 	$body.show()
 	sales_anim_player.play(anim_name)

@@ -22,7 +22,6 @@ var sequence = [
 	{"dir": "up"},
 	null,
 	{"dir": "down"},
-	null,
 ]:
 	set(val):
 		assert(val.length <= measure_count * 4)
@@ -40,8 +39,8 @@ func _level_ready() -> void:
 
 func _on_player_body_area_entered(_area: Area2D) -> void:
 	print("die")
-	#isFail = true
-	#fail.emit()
+	isFail = true
+	fail.emit()
 
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)

@@ -3,8 +3,10 @@
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://cvaus22oshs06" path="res://scenes/salesDodge_player.tscn" id="4_42h2w"]
+[ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/ui_around.png" id="8_eaq61"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/smiley.png" id="8_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
+[ext_resource type="Animation" uid="uid://g4u7t0ymqh8g" path="res://assets/stylePresets/showHintTextOnly.tres" id="9_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://cq86ttxkfdgsn" path="res://assets/sad.png" id="9_lu4ip"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/stylePresets/hintTextStyle.tres" id="10_b8js2"]
 
@@ -37,6 +39,20 @@ background_color = Color(0.5963672, 0.59636724, 0.59636724, 1)
 background_energy_multiplier = 1.14
 sky = SubResource("Sky_42h2w")
 glow_enabled = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_eaq61")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="Animation" id="Animation_42h2w"]
 length = 0.001
@@ -131,6 +147,29 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("arrows:modulate:a")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("arrows:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 253.54381)]
+}
 
 [sub_resource type="Animation" id="Animation_b8js2"]
 resource_name = "showFail"
@@ -158,78 +197,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_eaq61"]
-resource_name = "showHint"
-length = 0.646
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale:x")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
-"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale:y")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
-"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
-"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:modulate:a")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667)
 }
 
 [sub_resource type="Animation" id="Animation_f3fa5"]
@@ -260,11 +227,11 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3fa5"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b8js2"]
 _data = {
 &"RESET": SubResource("Animation_42h2w"),
 &"showFail": SubResource("Animation_b8js2"),
-&"showHint": SubResource("Animation_eaq61"),
+&"showHint": ExtResource("9_f3fa5"),
 &"showWin": SubResource("Animation_f3fa5")
 }
 
@@ -366,7 +333,6 @@ scale = Vector2(3.3714767, 5.6678953)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 use_top_left = true
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="hint" unique_id=1721274264]
 layout_mode = 2
@@ -374,11 +340,18 @@ text = "DODGE!"
 label_settings = ExtResource("10_b8js2")
 metadata/_edit_group_ = true
 
-[node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1795129786]
+[node name="arrows" type="AnimatedSprite2D" parent="hint" unique_id=1669478136]
+modulate = Color(1, 1, 1, 253.54381)
+position = Vector2(-19.178534, -34.467236)
+scale = Vector2(0.7879658, 0.75276816)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+autoplay = "default"
+frame_progress = 0.8935991
+
+[node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1681289377]
 root_node = NodePath("../hint")
-libraries/ = SubResource("AnimationLibrary_f3fa5")
+libraries/ = SubResource("AnimationLibrary_b8js2")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="playerHit" from="gameplay/player" to="." method="_on_player_hit"]
-[connection signal="animation_finished" from="animPlayer" to="." method="_on_anim_finished"]

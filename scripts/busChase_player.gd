@@ -15,7 +15,7 @@ func _physics_process(dt: float) -> void:
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("action1"):
 		velocity.z = 0
 		velocity.z -= pushForce * dt
-	elif position.z <= 50:
+	elif position.z <= -2:
 		velocity.z += DECCEL * dt
 	else:
 		velocity.z = 0

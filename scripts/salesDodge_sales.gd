@@ -8,18 +8,15 @@ var dir := "up"
 func _ready() -> void:
 	assert (dir == "up" or dir == "down" or dir == "left" or dir == "right")
 	$body.hide()
+	var a = sales_anim_player.get_animation(dir)
+	a.length = .343-.133 #i dont wanna change by hand idc
 	warn_anim_player.play(dir)
-
-	#
-	##align the animatino to peak at the next beat????
-	#var b = 60.0/Globals.bpm
-	#var p = animation.track_get_key_time(0,1)
-	#prints(b,p)
-	#await get_tree().create_timer((b-p)*sales_anim_player.speed_scale).timeout
-	#sales_anim_player.play("buttIn")
-	
 
 func _on_warn_anim_finished(anim_name: StringName) -> void:
 	$warn.hide()
 	$body.show()
 	sales_anim_player.play(anim_name)
+
+
+func _on_sales_anim_finished(anim_name: StringName) -> void:
+	queue_free()

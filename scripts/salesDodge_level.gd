@@ -3,17 +3,18 @@ extends Level
 @onready var goal: Marker3D = $gameplay/bg_view/bg_world/goal
 @onready var sales_container: Node = $gameplay/salesContainer
 
-@onready var fail_spr: Node = $fail
-@onready var win_spr: Node = $win
+@onready var anim_player: AnimationPlayer = $animPlayer
 
 const salesObj = preload("uid://bs5rrdfontsb2")
 const Sales = preload("uid://cy2u3tgp0n6fs")
 
 const measure_count = 8
 var isFail = false
+var start = false
 
 #each sales appear at most on each beat
 var sequence = [
+	null,
 	null,
 	{"dir": "right"},
 	null,
@@ -33,10 +34,13 @@ func _init() -> void:
 	# intro + 1 level before
 
 func _level_ready() -> void:
-	win_spr.hide()
-	fail_spr.hide()
 	sequence.resize(measure_count * 4)
+	$animPlayer.play("showHint")
 
+func _on_anim_finished(anim_name: StringName) -> void:
+	if anim_name=="showHint":
+		start = true
+	
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
 	
@@ -58,13 +62,10 @@ func on_beat(local_beat: int) -> void:
 			
 			
 func _on_fail():
-	fail_spr.show()
-	win_spr.hide()
+	anim_player.play("showFail")
 	
 func _on_win() -> void:
-	fail_spr.hide()
-	win_spr.show()
-
+	anim_player.play("showWin")
 
 func _on_player_hit() -> void:
 	print("die")

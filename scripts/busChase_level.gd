@@ -17,9 +17,14 @@ func _level_ready() -> void:
 	fail_spr.hide()
 	win_spr.hide()
 	level.show()
+	timer.wait_time = 9*60/musicNode.bpm
 	progress_bar.max_value = timer.wait_time
+	progress_bar.value = progress_bar.max_value
+	prints(progress_bar.value, timer.wait_time)
+	
 
 func _process(_delta: float) -> void:
+	print(progress_bar.value)
 	if is_instance_valid(timer):
 		progress_bar.value = timer.time_left
 

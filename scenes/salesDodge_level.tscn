@@ -38,6 +38,236 @@ background_energy_multiplier = 1.14
 sky = SubResource("Sky_42h2w")
 glow_enabled = true
 
+[sub_resource type="Animation" id="Animation_42h2w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.1715, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.1715, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.1715, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../win:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../fail:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_b8js2"]
+resource_name = "showFail"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../fail:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_eaq61"]
+resource_name = "showHint"
+length = 0.646
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667)
+}
+
+[sub_resource type="Animation" id="Animation_f3fa5"]
+resource_name = "showWin"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../fail:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3fa5"]
+_data = {
+&"RESET": SubResource("Animation_42h2w"),
+&"showFail": SubResource("Animation_b8js2"),
+&"showHint": SubResource("Animation_eaq61"),
+&"showWin": SubResource("Animation_f3fa5")
+}
+
 [node name="salesDodge_level" type="Sprite2D" unique_id=1501887509]
 texture = SubResource("ViewportTexture_1qa5v")
 centered = false
@@ -98,6 +328,7 @@ offset_bottom = 540.0
 texture = ExtResource("9_6sc7e")
 
 [node name="player" parent="gameplay" unique_id=1565732912 instance=ExtResource("4_42h2w")]
+modulate = Color(0.728822, 0.728822, 0.728822, 1)
 position = Vector2(357, 391)
 
 [node name="salesContainer" type="Node2D" parent="gameplay" unique_id=350079772]
@@ -106,35 +337,48 @@ position = Vector2(357, 391)
 position = Vector2(1214, 345)
 
 [node name="win" type="Sprite2D" parent="." unique_id=1872389548]
+visible = false
 z_index = 99
 position = Vector2(348, 237)
 texture = ExtResource("8_f3fa5")
 
 [node name="fail" type="Sprite2D" parent="." unique_id=1041303028]
+visible = false
 z_index = 99
 position = Vector2(354, 289)
 texture = ExtResource("9_lu4ip")
 
 [node name="hint" type="CenterContainer" parent="." unique_id=1975440411]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -194.5
-offset_top = -65.0
-offset_right = 194.5
-offset_bottom = 65.0
+modulate = Color(1, 1, 1, 0)
+z_index = 99
+anchors_preset = -1
+anchor_left = 0.22986111
+anchor_top = 0.37962964
+anchor_right = 0.77013886
+anchor_bottom = 0.6203704
+offset_left = 199.5
+offset_top = 90.0
+offset_right = -189.5
+offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3.3714767, 5.6678953)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+use_top_left = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="hint" unique_id=1721274264]
 layout_mode = 2
 text = "DODGE!"
 label_settings = ExtResource("10_b8js2")
+metadata/_edit_group_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="hint" unique_id=1795129786]
+[node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1795129786]
+root_node = NodePath("../hint")
+libraries/ = SubResource("AnimationLibrary_f3fa5")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="playerHit" from="gameplay/player" to="." method="_on_player_hit"]
+[connection signal="animation_finished" from="animPlayer" to="." method="_on_anim_finished"]

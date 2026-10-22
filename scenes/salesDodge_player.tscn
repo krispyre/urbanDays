@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cvaus22oshs06"]
+
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="1_esqok"]
+[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_gun4l"]
+
+[sub_resource type="Animation" id="Animation_eaq61"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_f3fa5"]
+resource_name = "dodge"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-120, 0, 0, 0.8, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(120, 0, 0, 0.8, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4213q"]
+_data = {
+&"RESET": SubResource("Animation_eaq61"),
+&"dodge": SubResource("Animation_f3fa5")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
+size = Vector2(318, 208)
+
+[node name="player" type="Node2D" unique_id=1565732912]
+
+[node name="playerBody" type="Area2D" parent="." unique_id=1520240293]
+script = ExtResource("1_esqok")
+
+[node name="anim" type="AnimationPlayer" parent="playerBody" unique_id=1997461177]
+libraries/ = SubResource("AnimationLibrary_4213q")
+
+[node name="Sprite2D" type="Sprite2D" parent="playerBody" unique_id=703802676]
+texture_filter = 1
+scale = Vector2(2.7200003, 2.7200005)
+texture = ExtResource("2_gun4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerBody" unique_id=1599301126]
+position = Vector2(0, -90)
+shape = SubResource("RectangleShape2D_1qa5v")

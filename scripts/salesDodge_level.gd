@@ -15,13 +15,13 @@ var isFail = false
 #each sales appear at most on each beat
 var sequence = [
 	null,
-	{"dir": Sales.direction.right},
+	{"dir": "right"},
 	null,
-	{"dir": Sales.direction.left},
+	{"dir": "left"},
 	null,
-	{"dir": Sales.direction.up},
+	{"dir": "up"},
 	null,
-	{"dir": Sales.direction.down},
+	{"dir": "down"},
 	null,
 ]:
 	set(val):
@@ -40,11 +40,18 @@ func _level_ready() -> void:
 
 func _on_player_body_area_entered(_area: Area2D) -> void:
 	print("die")
-	isFail = true
-	fail.emit()
+	#isFail = true
+	#fail.emit()
 
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
+	
+	if local_beat == 12:
+		print("win?")
+		#win or fail
+		if (!isFail):
+			win.emit()
+			
 	if local_beat >= sequence.size():
 		return
 	var step = sequence[local_beat]
@@ -53,13 +60,7 @@ func on_beat(local_beat: int) -> void:
 	
 	var s = salesObj.instantiate()
 	s.dir = step["dir"]
-	s.position = sales_container.get_node(s.dir_name()).position
 	sales_container.add_child(s)
-	
-	if local_beat == 12:
-		#win or fail
-		if (!isFail):
-			win.emit()
 			
 			
 func _on_fail():

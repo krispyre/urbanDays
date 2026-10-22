@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
-[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_hrdke"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="7_f3fa5"]
+[ext_resource type="PackedScene" uid="uid://cvaus22oshs06" path="res://scenes/salesDodge_player.tscn" id="4_42h2w"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/smiley.png" id="8_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
-[ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="9_b8js2"]
-[ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="9_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://cq86ttxkfdgsn" path="res://assets/sad.png" id="9_lu4ip"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/stylePresets/hintTextStyle.tres" id="10_b8js2"]
 
@@ -40,65 +37,6 @@ background_color = Color(0.5963672, 0.59636724, 0.59636724, 1)
 background_energy_multiplier = 1.14
 sky = SubResource("Sky_42h2w")
 glow_enabled = true
-
-[sub_resource type="Animation" id="Animation_eaq61"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_f3fa5"]
-resource_name = "dodge"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(-120, 0, 0, 0.8, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(2, 2),
-"points": PackedFloat32Array(120, 0, 0, 0.8, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4213q"]
-_data = {
-&"RESET": SubResource("Animation_eaq61"),
-&"dodge": SubResource("Animation_f3fa5")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
-size = Vector2(318, 208)
 
 [node name="salesDodge_level" type="Sprite2D" unique_id=1501887509]
 texture = SubResource("ViewportTexture_1qa5v")
@@ -159,70 +97,13 @@ offset_right = 720.0
 offset_bottom = 540.0
 texture = ExtResource("9_6sc7e")
 
-[node name="warn" type="Control" parent="gameplay" unique_id=1688716495]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 573.0
-offset_top = 329.0
-offset_right = 573.0
-offset_bottom = 329.0
-script = ExtResource("9_b8js2")
-
-[node name="bg" type="ColorRect" parent="gameplay/warn" unique_id=290182502]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.000008
-offset_top = -196.00003
-offset_right = 223.73984
-offset_bottom = 151.49301
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.40371466
-scale = Vector2(1, 0.995)
-pivot_offset = Vector2(149, 244)
-color = Color(0.17211533, 0.1721153, 0.1721153, 0.5058824)
-
-[node name="ExclamationMark" type="Sprite2D" parent="gameplay/warn" unique_id=658076817]
-position = Vector2(29, -36)
-texture = ExtResource("9_f3fa5")
-
-[node name="player" type="Node2D" parent="gameplay" unique_id=1052296223]
+[node name="player" parent="gameplay" unique_id=1565732912 instance=ExtResource("4_42h2w")]
 position = Vector2(357, 391)
-
-[node name="playerBody" type="Area2D" parent="gameplay/player" unique_id=1793518512]
-script = ExtResource("7_f3fa5")
-
-[node name="anim" type="AnimationPlayer" parent="gameplay/player/playerBody" unique_id=887202219]
-libraries/ = SubResource("AnimationLibrary_4213q")
-
-[node name="Sprite2D" type="Sprite2D" parent="gameplay/player/playerBody" unique_id=507733345]
-texture_filter = 1
-scale = Vector2(2.7200003, 2.7200005)
-texture = ExtResource("2_hrdke")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="gameplay/player/playerBody" unique_id=80297843]
-position = Vector2(0, -90)
-shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="salesContainer" type="Node2D" parent="gameplay" unique_id=350079772]
 
-[node name="right" type="Marker2D" parent="gameplay/salesContainer" unique_id=560576861]
-position = Vector2(1220, 349)
-
-[node name="left" type="Marker2D" parent="gameplay/salesContainer" unique_id=1708607458]
-position = Vector2(-500, 349)
-
-[node name="down" type="Marker2D" parent="gameplay/salesContainer" unique_id=1666671657]
-position = Vector2(420, 1040)
-
-[node name="up" type="Marker2D" parent="gameplay/salesContainer" unique_id=304306386]
-position = Vector2(300, -500)
-
 [node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge_sales.tscn"]
+position = Vector2(1214, 345)
 
 [node name="win" type="Sprite2D" parent="." unique_id=1872389548]
 z_index = 99
@@ -256,4 +137,3 @@ label_settings = ExtResource("10_b8js2")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
-[connection signal="area_entered" from="gameplay/player/playerBody" to="." method="_on_player_body_area_entered"]

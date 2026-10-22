@@ -37,11 +37,6 @@ func _level_ready() -> void:
 	fail_spr.hide()
 	sequence.resize(measure_count * 4)
 
-func _on_player_body_area_entered(_area: Area2D) -> void:
-	print("die")
-	isFail = true
-	fail.emit()
-
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
 	
@@ -69,3 +64,9 @@ func _on_fail():
 func _on_win() -> void:
 	fail_spr.hide()
 	win_spr.show()
+
+
+func _on_player_hit() -> void:
+	print("die")
+	isFail = true
+	fail.emit()

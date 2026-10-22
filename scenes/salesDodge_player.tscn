@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="1_esqok"]
 [ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="2_gun4l"]
 
+[sub_resource type="GDScript" id="GDScript_esqok"]
+script/source = "extends Node2D
+
+signal playerHit
+
+
+func _on_player_body_area_entered(area: Area2D) -> void:
+	playerHit.emit()
+"
+
 [sub_resource type="Animation" id="Animation_eaq61"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -63,6 +73,7 @@ _data = {
 size = Vector2(318, 208)
 
 [node name="player" type="Node2D" unique_id=1565732912]
+script = SubResource("GDScript_esqok")
 
 [node name="playerBody" type="Area2D" parent="." unique_id=1520240293]
 script = ExtResource("1_esqok")
@@ -78,3 +89,5 @@ texture = ExtResource("2_gun4l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerBody" unique_id=1599301126]
 position = Vector2(0, -90)
 shape = SubResource("RectangleShape2D_1qa5v")
+
+[connection signal="area_entered" from="playerBody" to="." method="_on_player_body_area_entered"]

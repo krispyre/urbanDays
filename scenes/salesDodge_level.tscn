@@ -137,3 +137,4 @@ label_settings = ExtResource("10_b8js2")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
+[connection signal="playerHit" from="gameplay/player" to="." method="_on_player_hit"]

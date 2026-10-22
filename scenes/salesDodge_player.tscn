@@ -6,14 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/salesDodge_0000.png" id="2_gun4l"]
 [ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/salesDodge_0001.png" id="2_m3g6q"]
 [ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/salesDodge_0002.png" id="4_s2kvf"]
+[ext_resource type="Texture2D" uid="uid://ctnn2xy1qb050" path="res://assets/salesDodge_player_fail.png" id="6_t0ytx"]
 
 [sub_resource type="GDScript" id="GDScript_esqok"]
 script/source = "extends Node2D
 
 signal playerHit
-
+signal playerFall
+@onready var anim: AnimationPlayer = $playerBody/anim
 
 func _on_player_body_area_entered(area: Area2D) -> void:
+	anim.play(\"hit\")
+	area.get_node(\"../sales_animPlayer\").pause()
 	playerHit.emit()
 "
 
@@ -53,6 +57,39 @@ tracks/2/keys = {
 "update": 1,
 "values": [&"dodge_d"]
 }
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("spr:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.10664665, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("spr:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("spr:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_f3fa5"]
 resource_name = "down"
@@ -90,6 +127,66 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"dodge_d"]
+}
+
+[sub_resource type="Animation" id="Animation_trfas"]
+resource_name = "hit"
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spr:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.10664665, -0.25, 0, 0.25, 0, -0.27575088, -0.026203256, 0.02818404, 0, 0),
+"times": PackedFloat32Array(0.1, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("spr:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.20000002, -317.08563, -211.00002, -0.036, -40.312, 0, 0),
+"times": PackedFloat32Array(0.1, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("spr:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-80, -0.25, 0, 0.26666668, -148.56313, 537.61444, -0.099999994, -108.36374, 0, 0),
+"times": PackedFloat32Array(0.1, 0.4)
 }
 
 [sub_resource type="Animation" id="Animation_t0ytx"]
@@ -239,6 +336,7 @@ tracks/2/keys = {
 _data = {
 &"RESET": SubResource("Animation_eaq61"),
 &"down": SubResource("Animation_f3fa5"),
+&"hit": SubResource("Animation_trfas"),
 &"left": SubResource("Animation_t0ytx"),
 &"right": SubResource("Animation_pq0yh"),
 &"run": SubResource("Animation_fbpsp"),
@@ -297,6 +395,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_t0ytx")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_gun4l")
 }, {
 "duration": 1.0,
@@ -328,6 +434,7 @@ libraries/ = SubResource("AnimationLibrary_4213q")
 [node name="spr" type="AnimatedSprite2D" parent="playerBody" unique_id=722246757]
 texture_filter = 1
 position = Vector2(0, -80)
+rotation = -0.10664665
 scale = Vector2(2.7200003, 2.7200005)
 sprite_frames = SubResource("SpriteFrames_274bk")
 animation = &"dodge_d"

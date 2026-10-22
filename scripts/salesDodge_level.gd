@@ -56,9 +56,10 @@ func on_beat(local_beat: int) -> void:
 	if step == null:
 		return
 	
-	var s = salesObj.instantiate()
-	s.dir = step["dir"]
-	sales_container.add_child(s)
+	if !isFail:	
+		var s = salesObj.instantiate()
+		s.dir = step["dir"]
+		sales_container.add_child(s)
 			
 			
 func _on_fail():

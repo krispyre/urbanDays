@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://cvaus22oshs06" path="res://scenes/salesDodge_player.tscn" id="4_42h2w"]
+[ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/salesDodge_fail.png" id="5_b8js2"]
+[ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/salesDodge_win.png" id="5_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/ui_around.png" id="8_eaq61"]
-[ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/smiley.png" id="8_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://dtxwy2mka66nx" path="res://assets/salesDodge_layout.png" id="9_6sc7e"]
 [ext_resource type="Animation" uid="uid://g4u7t0ymqh8g" path="res://assets/stylePresets/showHintTextOnly.tres" id="9_f3fa5"]
-[ext_resource type="Texture2D" uid="uid://cq86ttxkfdgsn" path="res://assets/sad.png" id="9_lu4ip"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/stylePresets/hintTextStyle.tres" id="10_b8js2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
@@ -39,6 +39,47 @@ background_color = Color(0.5963672, 0.59636724, 0.59636724, 1)
 background_energy_multiplier = 1.14
 sky = SubResource("Sky_42h2w")
 glow_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3fa5"]
+atlas = ExtResource("5_b8js2")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu4ip"]
+atlas = ExtResource("5_b8js2")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8js2"]
+atlas = ExtResource("5_f3fa5")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sc7e"]
+atlas = ExtResource("5_f3fa5")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3fa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu4ip")
+}],
+"loop": 1,
+"name": &"fail",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8js2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sc7e")
+}],
+"loop": 1,
+"name": &"win",
+"speed": 4.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
 animations = [{
@@ -126,7 +167,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../win:visible")
+tracks/6/path = NodePath("../results:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -135,68 +176,93 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/7/type = "value"
+tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../fail:visible")
+tracks/7/path = NodePath("arrows:modulate:a")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("arrows:modulate:a")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("arrows:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("arrows:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 253.54381)]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../results:animation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fail"]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../results:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(360, 270)]
+}
 
 [sub_resource type="Animation" id="Animation_b8js2"]
 resource_name = "showFail"
+length = 1.3666667
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../win:visible")
+tracks/0/path = NodePath("../results:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.98333335),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../fail:visible")
+tracks/1/path = NodePath("../results:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [&"fail"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../results:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 1.0645137, 1.1666667, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(360, 270), Vector2(348, 290), Vector2(342, 267), Vector2(360, 270)]
 }
 
 [sub_resource type="Animation" id="Animation_f3fa5"]
@@ -205,7 +271,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../win:visible")
+tracks/0/path = NodePath("../results:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -217,14 +283,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../fail:visible")
+tracks/1/path = NodePath("../results:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [&"win"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b8js2"]
@@ -303,17 +369,12 @@ position = Vector2(357, 391)
 [node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge_sales.tscn"]
 position = Vector2(1214, 345)
 
-[node name="win" type="Sprite2D" parent="." unique_id=1872389548]
+[node name="results" type="AnimatedSprite2D" parent="." unique_id=1941723273]
 visible = false
 z_index = 99
-position = Vector2(348, 237)
-texture = ExtResource("8_f3fa5")
-
-[node name="fail" type="Sprite2D" parent="." unique_id=1041303028]
-visible = false
-z_index = 99
-position = Vector2(354, 289)
-texture = ExtResource("9_lu4ip")
+position = Vector2(360, 270)
+sprite_frames = SubResource("SpriteFrames_qudme")
+animation = &"fail"
 
 [node name="hint" type="CenterContainer" parent="." unique_id=1975440411]
 modulate = Color(1, 1, 1, 0)
@@ -342,7 +403,7 @@ metadata/_edit_group_ = true
 
 [node name="arrows" type="AnimatedSprite2D" parent="hint" unique_id=1669478136]
 modulate = Color(1, 1, 1, 253.54381)
-position = Vector2(-19.178534, -34.467236)
+position = Vector2(-18.982782, -31.75782)
 scale = Vector2(0.7879658, 0.75276816)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 autoplay = "default"

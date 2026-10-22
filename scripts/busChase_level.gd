@@ -25,7 +25,6 @@ func _level_ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	print(progress_bar.value)
 	if is_instance_valid(timer):
 		progress_bar.value = timer.time_left
 
@@ -37,7 +36,7 @@ func _on_level_win():
 	win_spr.show()
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
-	level.hide()
+	level.process_mode = Node.PROCESS_MODE_DISABLED
 	print("win")
 	isWin = true
 
@@ -45,7 +44,7 @@ func _on_level_fail() -> void:
 	fail_spr.show()
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
-	level.hide()
+	level.process_mode = Node.PROCESS_MODE_DISABLED
 	print("fail")
 
 func _on_goal_body_entered(_body: Node3D) -> void:

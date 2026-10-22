@@ -410,6 +410,7 @@ current = true
 fov = 98.9
 
 [node name="debugLabel" type="Label" parent="level/player/Camera3D" unique_id=1025912255]
+visible = false
 offset_right = 717.0
 offset_bottom = 467.0
 text = "SPEED: 123123 m/s"
@@ -427,10 +428,12 @@ area_range = 200.0
 area_size = Vector2(8.635, 8.635)
 
 [node name="Timer" type="Timer" parent="level" unique_id=226844839]
+process_mode = 3
 wait_time = 6.7
 one_shot = true
 
 [node name="Container" type="Control" parent="level" unique_id=866896522]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 

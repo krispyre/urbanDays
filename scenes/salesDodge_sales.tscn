@@ -85,7 +85,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(2, 0, 0, 0),
 "points": PackedFloat32Array(494, 0, 0, 0.022216668, -17.33334, 389.99997, -0.022216668, -16.030737, 5.5556498e-06, 0.004008754, 390.44687, -8.333474e-06, 0, 8.333474e-06, 0, 247, -0.0776624, 23.907812, 0, 0),
-"times": PackedFloat32Array(0, 0.066633336, 0.06666667, 0.5)
+"times": PackedFloat32Array(0, 0.09996667, 0.1, 0.6)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -96,7 +96,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0, 0),
 "points": PackedFloat32Array(663, 0, 0, 0.033333335, -80.54901, 425, -0.0667, 20.69934, 0.0667, -20.69934, 650, -0.0776624, -96.73787, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.5)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -113,7 +113,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_dtcbo"]
 resource_name = "left"
-length = 0.943
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -147,7 +147,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(-138, 0, -1182.6383, 0, 74.54657, 150, -0.0667, -16.268791, 0.0667, 16.268791, -144, -0.07778334, 36.5, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.5)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -158,7 +158,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(413, -0.25, 0, 0.06666667, -20.875824, 317, -0.033300005, 27.54248, 0.033300005, -27.54248, 198, -0.07778334, 19.833334, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.5)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 
 [sub_resource type="Animation" id="Animation_5pfek"]
@@ -197,7 +197,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0, 2),
 "points": PackedFloat32Array(858, -0.22941168, 910.26776, 0.033333335, -132.26117, 629, -0.033325, 0, 0.033325, 0, 917, -0.100000024, -235.33057, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -208,7 +208,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(2, 0, 2),
 "points": PackedFloat32Array(192, -0.23854935, -353.81894, 0.033333335, 49.440353, 288, -0.033325, 0, 0.033325, 0, 365, -0.07778334, -12.833333, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 
 [sub_resource type="Animation" id="Animation_senp7"]
@@ -235,7 +235,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(2, 0, 0),
 "points": PackedFloat32Array(294.2384, 0, 0, 0, 23.896149, 390.44687, -0.040000007, -22.263275, 0.040000007, 22.263275, 446.99997, -0.3, 4.9927673, 0, -20.756012),
-"times": PackedFloat32Array(0, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -246,7 +246,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(1, 0, 0),
 "points": PackedFloat32Array(-157, 0, 0, 0, 0, 110, -0.09333333, -4.847351, 0.09333333, 4.847351, -159, -0.20000002, 228.57281, 0.25, 0),
-"times": PackedFloat32Array(0, 0.06666667, 0.6)
+"times": PackedFloat32Array(0, 0.1, 0.6)
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -576,9 +576,6 @@ _data = {
 
 [node name="sales" type="Node2D" unique_id=1304594477]
 script = ExtResource("1_senp7")
-
-[node name="player" parent="." unique_id=1565732912 instance_placeholder="res://scenes/salesDodge_player.tscn"]
-position = Vector2(357, 391)
 
 [node name="body" type="Area2D" parent="." unique_id=1662837674]
 position = Vector2(-359, -245)

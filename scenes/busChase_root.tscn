@@ -2,17 +2,45 @@
 
 [ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_level.gd" id="1_y7bmi"]
 [ext_resource type="Texture2D" uid="uid://c3uhimvhht3et" path="res://assets/busChase_transition.png" id="2_c2kp2"]
+[ext_resource type="Texture2D" uid="uid://dpcajk7tor1tn" path="res://assets/clouds.png" id="2_o5s6g"]
 [ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="2_pcxmy"]
 [ext_resource type="Texture2D" uid="uid://pgwjlxc34xrd" path="res://assets/busChase_win.png" id="3_c2kp2"]
 [ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="3_k82oq"]
+[ext_resource type="Texture2D" uid="uid://8a16201qc3ky" path="res://assets/busChase_bus_front.png" id="5_oyciy"]
+[ext_resource type="Texture2D" uid="uid://vv8f648sspfj" path="res://assets/people.png" id="5_xa5qf"]
+[ext_resource type="Texture2D" uid="uid://g4hkne4brlro" path="res://assets/busChase_bus_side.png" id="6_b3goj"]
 [ext_resource type="Script" uid="uid://bn5tf1i0mw7ux" path="res://scripts/busChase_player.gd" id="6_crhpa"]
+[ext_resource type="Texture2D" uid="uid://c1qbk1k76vb62" path="res://assets/people_siloutette.png" id="6_jwp1l"]
+[ext_resource type="Texture2D" uid="uid://dfv1m5vx5piy1" path="res://assets/busChase_floor.png" id="6_uy8m6"]
 [ext_resource type="Texture2D" uid="uid://boa2xg6dsfpps" path="res://assets/timer_bg.png" id="7_crhpa"]
+[ext_resource type="Texture2D" uid="uid://ctdgkt62t8xlf" path="res://assets/busChase_sign.png" id="7_cu5ck"]
 [ext_resource type="Texture2D" uid="uid://ce3nmaeg76wq7" path="res://assets/busChase_run.png" id="7_e3pmy"]
 [ext_resource type="Texture2D" uid="uid://ck7itv1x25mrn" path="res://assets/timer_progress.png" id="8_e3pmy"]
-[ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/stylePresets/hintTextStyle.tres" id="10_e3pmy"]
+[ext_resource type="Texture2D" uid="uid://ctk5cyuw77grd" path="res://assets/busChase_pole.png" id="8_k8l30"]
+[ext_resource type="Texture2D" uid="uid://bkvf3v7pl3uyj" path="res://assets/busChase_postersSide.png" id="9_0g6gh"]
+[ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_e3pmy"]
 [ext_resource type="Texture2D" uid="uid://b14srkcm4i35a" path="res://assets/ui_btn_up.png" id="11_1sab8"]
+[ext_resource type="Texture2D" uid="uid://dip5wv8yyrtpt" path="res://assets/busChase_bg.png" id="11_trtnx"]
+[ext_resource type="Texture2D" uid="uid://px00ps4fdqbc" path="res://assets/busChase_bgSide.png" id="12_qbp3n"]
 [ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/ui_btn_z.png" id="12_r0p0t"]
-[ext_resource type="Animation" uid="uid://g4u7t0ymqh8g" path="res://assets/stylePresets/showHintTextOnly.tres" id="13_r0p0t"]
+[ext_resource type="Texture2D" uid="uid://uhraaos1tb5s" path="res://assets/resources/blankTexture.tres" id="18_o5s6g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbp3n"]
+sky_top_color = Color(0.7063331, 0.73568845, 0.7830128, 1)
+sky_horizon_color = Color(0.9297111, 0.93705, 0.94888103, 1)
+ground_bottom_color = Color(0.13151963, 0.13151963, 0.13151963, 1)
+ground_horizon_color = Color(0.9297111, 0.93705, 0.94888103, 1)
+energy_multiplier = 0.65
+
+[sub_resource type="Sky" id="Sky_o5s6g"]
+sky_material = SubResource("ProceduralSkyMaterial_qbp3n")
+
+[sub_resource type="Environment" id="Environment_suxjc"]
+background_mode = 1
+background_color = Color(0.61745477, 0.61745477, 0.6174547, 1)
+sky = SubResource("Sky_o5s6g")
+tonemap_mode = 2
+ssao_enabled = true
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mob72"]
 viewport_path = NodePath("transition")
@@ -30,6 +58,78 @@ resource_local_to_scene = true
 shader = ExtResource("3_k82oq")
 shader_parameter/mask_texture = SubResource("ViewportTexture_c2kp2")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu5ck"]
+atlas = ExtResource("5_xa5qf")
+region = Rect2(0, 0, 144, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8l30"]
+atlas = ExtResource("5_xa5qf")
+region = Rect2(144, 0, 144, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g6gh"]
+atlas = ExtResource("5_xa5qf")
+region = Rect2(0, 187, 144, 187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwp1l"]
+atlas = ExtResource("5_xa5qf")
+region = Rect2(144, 187, 144, 187)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu5ck")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8l30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g6gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwp1l")
+}],
+"loop": 0,
+"name": &"people",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtnx"]
+atlas = ExtResource("6_jwp1l")
+region = Rect2(0, 0, 134, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbp3n"]
+atlas = ExtResource("6_jwp1l")
+region = Rect2(134, 0, 134, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5s6g"]
+atlas = ExtResource("6_jwp1l")
+region = Rect2(0, 210, 134, 210)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suxjc"]
+atlas = ExtResource("6_jwp1l")
+region = Rect2(134, 210, 134, 210)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhhom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbp3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5s6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suxjc")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pd1v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j4etm"]
@@ -37,16 +137,49 @@ albedo_color = Color(0.40146014, 0.40146014, 0.40146014, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_swys0"]
 material = SubResource("StandardMaterial3D_j4etm")
-size = Vector2(50, 200)
+size = Vector2(50, 42.31)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1qa5v"]
 plane = Plane(0, 2.985, 0, 0)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_ka23v"]
+size = Vector2(34, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g6gh"]
+transparency = 1
+shading_mode = 2
+albedo_texture = ExtResource("9_0g6gh")
+uv1_scale = Vector3(5.718, 1, 1)
+texture_filter = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_ka23v"]
+left_to_right = 1.0
+size = Vector3(1, 1, 36)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5s6g"]
+transparency = 1
+albedo_texture = ExtResource("12_qbp3n")
+uv1_scale = Vector3(5.076, 1, 1)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f7n5a"]
+material = SubResource("StandardMaterial3D_o5s6g")
+size = Vector2(32.13, 5.52)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suxjc"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_o5s6g")
+uv1_scale = Vector3(1.12, 1.02, 1)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xhhom"]
+material = SubResource("StandardMaterial3D_suxjc")
+size = Vector2(118.515, 41.41)
+orientation = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_swys0"]
 size = Vector3(6.0268555, 2.7042236, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_muhsh"]
-size = Vector3(5.7, 4.2, 14.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1qa5v"]
 size = Vector3(1, 1.5398681, 0.1)
@@ -318,6 +451,106 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_qbp3n"]
+resource_name = "showHint"
+length = 0.646
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667)
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("up")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"up_mash", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("z")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"z_mash", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_f3fa5"]
 resource_name = "showWin"
 step = 0.016666668
@@ -350,12 +583,15 @@ tracks/1/keys = {
 _data = {
 &"RESET": SubResource("Animation_42h2w"),
 &"showFail": SubResource("Animation_b8js2"),
-&"showHint": ExtResource("13_r0p0t"),
+&"showHint": SubResource("Animation_qbp3n"),
 &"showWin": SubResource("Animation_f3fa5")
 }
 
 [node name="busChase_root" type="Node3D" unique_id=2033061355]
 script = ExtResource("1_y7bmi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=832050024]
+environment = SubResource("Environment_suxjc")
 
 [node name="fail" type="Sprite2D" parent="." unique_id=2107499337]
 visible = false
@@ -373,14 +609,245 @@ centered = false
 [node name="level" type="Node3D" parent="." unique_id=405953474]
 process_mode = 1
 
+[node name="people" type="Node3D" parent="level" unique_id=237544948]
+
+[node name="people" type="AnimatedSprite3D" parent="level/people" unique_id=1490756527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7281446, 0.93205833, -12.692911)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+animation = &"people"
+
+[node name="people2" type="AnimatedSprite3D" parent="level/people" unique_id=289077260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6534472, 0.93205833, -6.158694)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+animation = &"people"
+frame = 1
+
+[node name="people3" type="AnimatedSprite3D" parent="level/people" unique_id=1835248975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2391043, 0.9320586, -8.6342945)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+animation = &"people"
+frame = 2
+
+[node name="people4" type="AnimatedSprite3D" parent="level/people" unique_id=1414606747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3167176, 0.9320588, -19.042084)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+animation = &"people"
+frame = 3
+
+[node name="sil" type="AnimatedSprite3D" parent="level/people" unique_id=1350832269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5876331, 0.9999999, -13.144696)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+
+[node name="sil2" type="AnimatedSprite3D" parent="level/people" unique_id=161870286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.386043, 0.9999999, -11.932525)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 1
+
+[node name="sil7" type="AnimatedSprite3D" parent="level/people" unique_id=968759281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.659542, 0.99999964, -5.220872)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+
+[node name="sil8" type="AnimatedSprite3D" parent="level/people" unique_id=647233393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1864085, 0.99999964, -14.3500805)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 1
+
+[node name="sil3" type="AnimatedSprite3D" parent="level/people" unique_id=1241222756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1188164, 0.9999999, -6.7065964)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 2
+
+[node name="sil4" type="AnimatedSprite3D" parent="level/people" unique_id=429611038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3498793, 0.9999999, -5.4418087)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 3
+
+[node name="sil5" type="AnimatedSprite3D" parent="level/people" unique_id=977738775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0519736, 0.9999999, -7.6889296)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 3
+
+[node name="sil6" type="AnimatedSprite3D" parent="level/people" unique_id=1968425733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3386369, 0.99999964, -8.420833)
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_xhhom")
+frame = 1
+
 [node name="floor" type="StaticBody3D" parent="level" unique_id=165753745]
 physics_material_override = SubResource("PhysicsMaterial_5pd1v")
 
 [node name="mesh" type="MeshInstance3D" parent="level/floor" unique_id=1958026555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.923313)
 mesh = SubResource("PlaneMesh_swys0")
 
 [node name="hb" type="CollisionShape3D" parent="level/floor" unique_id=1828126258]
 shape = SubResource("WorldBoundaryShape3D_1qa5v")
+
+[node name="floor" type="Sprite3D" parent="level/floor" unique_id=1039184819]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.01, -15.777973)
+double_sided = false
+texture_filter = 2
+render_priority = -97
+texture = ExtResource("6_uy8m6")
+
+[node name="sign" type="Sprite3D" parent="level/floor" unique_id=1877569526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7487133, 1.7425408, -14.591426)
+texture_filter = 0
+render_priority = 127
+texture = ExtResource("7_cu5ck")
+
+[node name="poles" type="Node3D" parent="level/floor" unique_id=452046068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16847563, 0, 0)
+
+[node name="pole" type="Sprite3D" parent="level/floor/poles" unique_id=627760461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -15.5)
+billboard = 2
+shaded = true
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole2" type="Sprite3D" parent="level/floor/poles" unique_id=212718875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -17)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole3" type="Sprite3D" parent="level/floor/poles" unique_id=1402080895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -18.5)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole4" type="Sprite3D" parent="level/floor/poles" unique_id=1098860987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -19.932701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole5" type="Sprite3D" parent="level/floor/poles" unique_id=1497034386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -21.432701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole6" type="Sprite3D" parent="level/floor/poles" unique_id=2106637293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -22.932701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole7" type="Sprite3D" parent="level/floor/poles" unique_id=158862034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -24.47572)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole8" type="Sprite3D" parent="level/floor/poles" unique_id=1781482884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -25.90842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole9" type="Sprite3D" parent="level/floor/poles" unique_id=916399489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -27.40842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole10" type="Sprite3D" parent="level/floor/poles" unique_id=1058403916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -28.90842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole11" type="Sprite3D" parent="level/floor/poles" unique_id=935239777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -15.5)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole12" type="Sprite3D" parent="level/floor/poles" unique_id=1740766542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -17)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole13" type="Sprite3D" parent="level/floor/poles" unique_id=1125757513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -18.5)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole14" type="Sprite3D" parent="level/floor/poles" unique_id=664347777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -19.932701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole15" type="Sprite3D" parent="level/floor/poles" unique_id=1861121707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -21.432701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole16" type="Sprite3D" parent="level/floor/poles" unique_id=1963878832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -22.932701)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole17" type="Sprite3D" parent="level/floor/poles" unique_id=1489551229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -24.47572)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole18" type="Sprite3D" parent="level/floor/poles" unique_id=1166208083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -25.90842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole19" type="Sprite3D" parent="level/floor/poles" unique_id=1734354207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -27.40842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="pole20" type="Sprite3D" parent="level/floor/poles" unique_id=243608274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3625851, 0.71693707, -28.90842)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("8_k8l30")
+
+[node name="sidewalkPosters" type="MeshInstance3D" parent="level/floor" unique_id=4483122]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 4.3711385e-08, 0, -4.3711385e-08, -0.99999994, 0.99999994, -4.3711385e-08, 1.9106853e-15, 4.4102607, 2.5028498, -14.954002)
+mesh = SubResource("PlaneMesh_ka23v")
+surface_material_override/0 = SubResource("StandardMaterial3D_0g6gh")
+
+[node name="sidewalkCover" type="MeshInstance3D" parent="level/floor/sidewalkPosters" unique_id=2140330260]
+transform = Transform3D(9.981224e-09, -5.684342e-14, -1, 5.85583e-08, 3.9371371, 0, 0.66982883, -3.441955e-07, 1.4901161e-08, -0.00036525726, 1.9551921, -2.8127155)
+mesh = SubResource("PrismMesh_ka23v")
+
+[node name="bg" type="Sprite3D" parent="level/floor" unique_id=513502636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1599703, 1.5795115, -33.22738)
+texture_filter = 0
+texture = ExtResource("11_trtnx")
+
+[node name="bulidsd" type="MeshInstance3D" parent="level/floor" unique_id=224371406]
+transform = Transform3D(-4.371139e-08, 0.99999994, 0, 4.371139e-08, 1.9106853e-15, -0.99999994, -1, -4.3711385e-08, -4.3711385e-08, -15.7, 2.76, -14.339464)
+mesh = SubResource("PlaneMesh_f7n5a")
+
+[node name="clouds" type="MeshInstance3D" parent="level/floor" unique_id=2076259797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6832986, 15.001572, -34.495255)
+mesh = SubResource("PlaneMesh_xhhom")
 
 [node name="bus" type="Node3D" parent="level" unique_id=1754364475]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -14.064045)
@@ -392,9 +859,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6336796, -1.2846398, 0.0663
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.817627, 0.8521118, 0)
 shape = SubResource("BoxShape3D_swys0")
 
-[node name="mesh" type="MeshInstance3D" parent="level/bus" unique_id=1862531295]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
-mesh = SubResource("BoxMesh_muhsh")
+[node name="Sprite3D" type="Sprite3D" parent="level/bus" unique_id=1599625226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0790906, 0, 0.18554306)
+render_priority = 127
+texture = ExtResource("5_oyciy")
+
+[node name="Sprite3D2" type="Sprite3D" parent="level/bus" unique_id=1580843537]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.8136096, 0, -4.1031685)
+texture_filter = 0
+render_priority = 127
+texture = ExtResource("6_b3goj")
 
 [node name="player" type="CharacterBody3D" parent="level" unique_id=1344844428]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -2)
@@ -418,9 +892,15 @@ label_settings = SubResource("LabelSettings_5pd1v")
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="level/player" unique_id=1531993357]
 texture_filter = 0
+render_priority = 127
 sprite_frames = SubResource("SpriteFrames_ka23v")
 animation = &"run"
 frame_progress = 0.8863619
+
+[node name="darkenworld" type="Sprite3D" parent="level/player" unique_id=936842317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0061985254, 2.8082023, -0.24531794)
+modulate = Color(0, 0, 0, 0.6156863)
+texture = ExtResource("18_o5s6g")
 
 [node name="AreaLight3D" type="AreaLight3D" parent="level" unique_id=1857042169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05735761, 15.834417, 0.22790289)
@@ -489,8 +969,7 @@ metadata/_edit_group_ = true
 [node name="up" type="AnimatedSprite2D" parent="hint" unique_id=1076624819]
 position = Vector2(100, -59)
 sprite_frames = SubResource("SpriteFrames_qudme")
-animation = &"up_mash"
-frame_progress = 0.14927171
+animation = &"z_mash"
 
 [node name="z" type="AnimatedSprite2D" parent="hint" unique_id=1492624619]
 position = Vector2(-127, 46)

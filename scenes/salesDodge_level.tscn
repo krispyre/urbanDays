@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
+[ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/lamp.tscn" id="2_qeu0u"]
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="4_xxdqm"]
 [ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/salesDodge_fail.png" id="5_b8js2"]
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/salesDodge_0003.png" id="5_bnn1c"]
@@ -10,10 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/salesDodge_0000.png" id="7_vmci3"]
 [ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/ui_around.png" id="8_eaq61"]
 [ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/salesDodge_0002.png" id="8_efqh3"]
-[ext_resource type="Animation" uid="uid://g4u7t0ymqh8g" path="res://assets/stylePresets/showHintTextOnly.tres" id="9_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://ctnn2xy1qb050" path="res://assets/salesDodge_player_fail.png" id="9_rw23f"]
 [ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/salesDodge_player.png" id="10_8ymbi"]
-[ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/stylePresets/hintTextStyle.tres" id="10_b8js2"]
+[ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("gameplay/bg_view")
@@ -27,6 +27,7 @@ load_path = "res://.godot/imported/stripes.png-63b61f810b7cb6767162be347a716dc6.
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3fa5"]
 albedo_texture = SubResource("CompressedTexture2D_eaq61")
 uv1_scale = Vector3(17.075, 17.075, 17.075)
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_kph7b"]
 size = Vector3(4.1, 0.4, 63.168945)
@@ -514,7 +515,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Animation" id="Animation_42h2w"]
+[sub_resource type="Animation" id="Animation_xnbjm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -697,6 +698,8 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_qeu0u"]
+
 [sub_resource type="Animation" id="Animation_b8js2"]
 resource_name = "showFail"
 length = 1.3666667
@@ -738,6 +741,90 @@ tracks/2/keys = {
 "args": [&"fail", 1.0, false],
 "method": &"play"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_xxdqm"]
+resource_name = "showHint"
+length = 0.646
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("arrows:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.24587968, 0.6164369),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 253.54381), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_sw685"]
@@ -839,9 +926,10 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b8js2"]
 _data = {
-&"RESET": SubResource("Animation_42h2w"),
+&"RESET": SubResource("Animation_xnbjm"),
+&"levelGlobal": SubResource("Animation_qeu0u"),
 &"showFail": SubResource("Animation_b8js2"),
-&"showHint": ExtResource("9_f3fa5"),
+&"showHint": SubResource("Animation_xxdqm"),
 &"showWin": SubResource("Animation_sw685")
 }
 
@@ -861,6 +949,18 @@ process_mode = 1
 [node name="tunnel" type="Node3D" parent="gameplay/bg_view/bg_world" unique_id=1411071237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045043945, -0.30029297, -2.4360352)
 
+[node name="lamp" parent="gameplay/bg_view/bg_world/tunnel" unique_id=953800924 instance=ExtResource("2_qeu0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.467638)
+
+[node name="lamp2" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1228658056 instance=ExtResource("2_qeu0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.840334)
+
+[node name="lamp3" parent="gameplay/bg_view/bg_world/tunnel" unique_id=621555132 instance=ExtResource("2_qeu0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.1389)
+
+[node name="lamp4" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1594828125 instance=ExtResource("2_qeu0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.935303)
+
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1087225460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2, 0, 0)
 mesh = SubResource("BoxMesh_ch1rl")
@@ -876,12 +976,6 @@ mesh = SubResource("BoxMesh_kph7b")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=756577321]
 mesh = SubResource("BoxMesh_kph7b")
-
-[node name="AreaLight3D" type="AreaLight3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=379349404]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.4769635, 0)
-light_energy = 8.803
-light_bake_mode = 1
-area_range = 7.596
 
 [node name="Camera3D" type="Camera3D" parent="gameplay/bg_view/bg_world" unique_id=215621490]
 transform = Transform3D(1, 0, 0, 0, 0.9732606, -0.22970377, 0, 0.22970377, 0.9732606, 0, 0.95355844, 1.2449286)

@@ -8,7 +8,8 @@ extends Level
 const salesObj = preload("uid://bs5rrdfontsb2")
 const Sales = preload("uid://cy2u3tgp0n6fs")
 
-const measure_count = 8
+const measure_count = bgm.LEVEL_BARS
+const WIN_BEAT := 18
 var isFail = false
 var start = false
 
@@ -25,16 +26,15 @@ var sequence = [
 	{"dir": "down"},
 ]:
 	set(val):
-		assert(val.length <= measure_count * 4)
-		val.resize(measure_count * 4)
+		assert(val.length <= measure_count * bgm.BEATS_PER_BAR)
+		val.resize(measure_count * bgm.BEATS_PER_BAR)
 		sequence = val
 
 func _init() -> void:
-	beat_offset = 8 * 4 - 1 + 8 * 1
-	# intro + 1 level before
+	beat_offset = bgm.level_beat_offset(1)
 
 func _level_ready() -> void:
-	sequence.resize(measure_count * 4)
+	sequence.resize(measure_count * bgm.BEATS_PER_BAR)
 	$animPlayer.play("showHint")
 
 func _on_anim_finished(anim_name: StringName) -> void:
@@ -44,7 +44,7 @@ func _on_anim_finished(anim_name: StringName) -> void:
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
 	
-	if local_beat == 12:
+	if local_beat == WIN_BEAT:
 		print("win?")
 		#win or fail
 		if (!isFail):

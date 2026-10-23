@@ -4,16 +4,17 @@
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/lamp.tscn" id="2_qeu0u"]
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
-[ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/salesDodge_fail.png" id="5_b8js2"]
-[ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/salesDodge_0003.png" id="5_bnn1c"]
-[ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/salesDodge_win.png" id="5_f3fa5"]
-[ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/salesDodge_0001.png" id="6_eveh6"]
-[ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/salesDodge_0000.png" id="7_vmci3"]
-[ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/ui_around.png" id="8_eaq61"]
-[ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/salesDodge_0002.png" id="8_efqh3"]
-[ext_resource type="Texture2D" uid="uid://ctnn2xy1qb050" path="res://assets/salesDodge_player_fail.png" id="9_rw23f"]
-[ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/salesDodge_player.png" id="10_8ymbi"]
+[ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/sprites/salesDodge/salesDodge_fail.png" id="5_b8js2"]
+[ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/sprites/salesDodge/salesDodge_0003.png" id="5_bnn1c"]
+[ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/sprites/salesDodge/salesDodge_win.png" id="5_f3fa5"]
+[ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/sprites/salesDodge/salesDodge_0001.png" id="6_eveh6"]
+[ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/sprites/salesDodge/salesDodge_0000.png" id="7_vmci3"]
+[ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/sprites/ui/ui_around.png" id="8_eaq61"]
+[ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/sprites/salesDodge/salesDodge_0002.png" id="8_efqh3"]
+[ext_resource type="Texture2D" uid="uid://ctnn2xy1qb050" path="res://assets/sprites/salesDodge/salesDodge_player_fail.png" id="9_rw23f"]
+[ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/sprites/salesDodge/salesDodge_player.png" id="10_8ymbi"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
+[ext_resource type="Texture2D" uid="uid://crl7ocgaurl1a" path="res://assets/sprites/salesDodge/salesDodge_run_relieve.png" id="10_xxdqm"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("gameplay/bg_view")
@@ -381,6 +382,22 @@ _data = {
 &"up": SubResource("Animation_agfh5")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnn1c"]
+atlas = ExtResource("10_xxdqm")
+region = Rect2(0, 0, 192, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eveh6"]
+atlas = ExtResource("10_xxdqm")
+region = Rect2(192, 0, 192, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmci3"]
+atlas = ExtResource("10_xxdqm")
+region = Rect2(0, 211, 192, 211)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efqh3"]
+atlas = ExtResource("10_xxdqm")
+region = Rect2(192, 211, 192, 211)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gun4l"]
 atlas = ExtResource("10_8ymbi")
 region = Rect2(0, 0, 192, 211)
@@ -437,6 +454,23 @@ animations = [{
 }],
 "loop": 1,
 "name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnn1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eveh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmci3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efqh3")
+}],
+"loop": 1,
+"name": &"relieve",
 "speed": 5.0
 }, {
 "frames": [{
@@ -745,7 +779,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_xxdqm"]
 resource_name = "showHint"
-length = 0.646
+length = 1.3699999999999999
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -768,7 +802,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
-"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+"times": PackedFloat32Array(0, 0.22500001, 0.37484497)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -779,7 +813,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
-"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+"times": PackedFloat32Array(0, 0.22500001, 0.37484497)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -790,7 +824,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 1.2666667, 1.3791666)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -801,7 +835,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
-"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 1.2666667, 1.3416666)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -812,7 +846,7 @@ tracks/5/loop_wrap = true
 tracks/5/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 0.06666667)
+"times": PackedFloat32Array(0, 0.15)
 }
 tracks/6/type = "value"
 tracks/6/imported = false

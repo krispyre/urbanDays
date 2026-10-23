@@ -9,16 +9,16 @@ extends Level
 @onready var goal: Area3D = $level/bus/goal
 @onready var timer: Timer = $level/Timer
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
+const TIMEOUT_BEAT := 26
 var isWin = false
 
 func _init() -> void:
-	beat_offset = 31+8*2
-	# 3rd level: 31 beats +2 levels before this level
+	beat_offset = bgm.level_beat_offset(2)
 
 func _level_ready() -> void:
 	hint_anim_player.play("showHint")
-	progress_bar.max_value = 9*60/musicNode.bpm
-	timer.wait_time =  progress_bar.max_value +hint_anim_player.get_animation("showHint").length
+	progress_bar.max_value = TIMEOUT_BEAT * 60.0 / musicNode.bpm
+	timer.wait_time = progress_bar.max_value + hint_anim_player.get_animation("showHint").length
 	progress_bar.value = progress_bar.max_value
 	timer.start()
 	prints(progress_bar.value, timer.wait_time)

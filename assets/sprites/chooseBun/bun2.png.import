@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfmmprwq7yjwp"
-path="res://.godot/imported/chooseBun_buns.png-fa0bd5b8cc56be67a5fa04cf04d265be.ctex"
+uid="uid://dhp1gsow313ut"
+path="res://.godot/imported/bun2.png-ed3663b08c84e97a5c25ffede620c019.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/busChase/chooseBun_buns.png"
-dest_files=["res://.godot/imported/chooseBun_buns.png-fa0bd5b8cc56be67a5fa04cf04d265be.ctex"]
+source_file="res://assets/sprites/chooseBun/bun2.png"
+dest_files=["res://.godot/imported/bun2.png-ed3663b08c84e97a5c25ffede620c019.ctex"]
 
 [params]
 

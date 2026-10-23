@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bs5rrdfontsb2"]
 
-[ext_resource type="Script" uid="uid://cy2u3tgp0n6fs" path="res://scripts/salesDodge_sales.gd" id="1_senp7"]
+[ext_resource type="Script" uid="uid://cy2u3tgp0n6fs" path="res://scripts/salesDodge/salesDodge_sales.gd" id="1_senp7"]
 [ext_resource type="Texture2D" uid="uid://biftoc4sontre" path="res://assets/salesDodge_salesL_1.png" id="2_bweku"]
 [ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/salesDodge_salesR_1.png" id="3_dtcbo"]
 [ext_resource type="Texture2D" uid="uid://cxk7j3xo0dg4e" path="res://assets/salesDodge_salesU_1.png" id="4_5pfek"]
 [ext_resource type="Texture2D" uid="uid://d3rgxleeaeprg" path="res://assets/scratchy_square.png" id="4_1521y"]
 [ext_resource type="Texture2D" uid="uid://djfrmrjxjk1il" path="res://assets/salesDodge_salesD_1.png" id="5_amq4i"]
-[ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase_warn.gd" id="6_8131e"]
+[ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase/busChase_warn.gd" id="6_8131e"]
 [ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/exclamationMark.png" id="7_1521y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swys0"]

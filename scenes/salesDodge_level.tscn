@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
-[ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge_level.gd" id="1_4213q"]
-[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge_playerView.gd" id="2_kg4i3"]
+[ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge/salesDodge_level.gd" id="1_4213q"]
+[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/lamp.tscn" id="2_qeu0u"]
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge_playerBody.gd" id="4_xxdqm"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
 [ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/salesDodge_fail.png" id="5_b8js2"]
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/salesDodge_0003.png" id="5_bnn1c"]
 [ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/salesDodge_win.png" id="5_f3fa5"]

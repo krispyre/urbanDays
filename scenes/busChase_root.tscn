@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqf6rylvt4ho7"]
 
-[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase_level.gd" id="1_y7bmi"]
+[ext_resource type="Script" uid="uid://brm8g7xyy7ile" path="res://scripts/busChase/busChase_level.gd" id="1_y7bmi"]
 [ext_resource type="Texture2D" uid="uid://c3uhimvhht3et" path="res://assets/busChase_transition.png" id="2_c2kp2"]
 [ext_resource type="Texture2D" uid="uid://dpcajk7tor1tn" path="res://assets/clouds.png" id="2_o5s6g"]
 [ext_resource type="Texture2D" uid="uid://dfwu23x08nnhs" path="res://assets/busChase_fail.png" id="2_pcxmy"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://8a16201qc3ky" path="res://assets/busChase_bus_front.png" id="5_oyciy"]
 [ext_resource type="Texture2D" uid="uid://vv8f648sspfj" path="res://assets/people.png" id="5_xa5qf"]
 [ext_resource type="Texture2D" uid="uid://g4hkne4brlro" path="res://assets/busChase_bus_side.png" id="6_b3goj"]
-[ext_resource type="Script" uid="uid://bn5tf1i0mw7ux" path="res://scripts/busChase_player.gd" id="6_crhpa"]
+[ext_resource type="Script" uid="uid://bn5tf1i0mw7ux" path="res://scripts/busChase/busChase_player.gd" id="6_crhpa"]
 [ext_resource type="Texture2D" uid="uid://c1qbk1k76vb62" path="res://assets/people_siloutette.png" id="6_jwp1l"]
 [ext_resource type="Texture2D" uid="uid://dfv1m5vx5piy1" path="res://assets/busChase_floor.png" id="6_uy8m6"]
 [ext_resource type="Texture2D" uid="uid://boa2xg6dsfpps" path="res://assets/timer_bg.png" id="7_crhpa"]

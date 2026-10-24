@@ -2,7 +2,8 @@ extends GridContainer
 
 @onready var chooser: Control = $"../chooser"
 
-signal bun_selected(index)
+signal bun_selected(index:int)
+signal bun_focused(index:int)
 
 func _ready() -> void:
 	var children = get_children()
@@ -17,11 +18,12 @@ func _ready() -> void:
 
 #0 indexed
 func _on_bun_selected(bun_index: int):
-	var center := (get_child(bun_index) as Control).get_global_rect().get_center()
-	prints("bun", bun_index, "selected", center)
+	prints("bun", bun_index, "selected")
+	bun_selected.emit(bun_index)
 
 
 func _on_bun_focused(bun_index: int):
 	var center := (get_child(bun_index) as Control).get_global_rect().get_center()
 	chooser.global_position = center
-	prints("bun", bun_index, "focused", center)
+	prints("bun", bun_index, "focused")
+	bun_focused.emit(bun_index)

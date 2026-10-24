@@ -35,4 +35,4 @@ func _on_fail() -> void:
 	lana_anim.play("oops")
 
 func _on_timer_timeout():
-	print()
+	hint_anim_player.play("showWin")

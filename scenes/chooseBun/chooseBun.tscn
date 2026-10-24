@@ -1,38 +1,84 @@
-[gd_scene format=3 uid="uid://cydb5fidruoo"]
+[gd_scene format=3 uid="uid://uy76wrtk3s1q"]
 
-[ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="1_aw5d5"]
-[ext_resource type="Script" uid="uid://bselhtgx4enop" path="res://scripts/Level.gd" id="1_gh64b"]
-[ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="2_x0mpv"]
+[ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_ib6qt"]
+[ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="2_6a0yn"]
+[ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/chooseBun/chooseBun.gd" id="2_kqlbb"]
+[ext_resource type="Texture2D" uid="uid://b8q72tukkr2oq" path="res://assets/sprites/chooseBun/chooseBun_lana.png" id="3_833lt"]
+[ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
+[ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o5tij"]
+viewport_path = NodePath("transition")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bdlh"]
+resource_local_to_scene = true
+shader = ExtResource("2_6a0yn")
+shader_parameter/mask_texture = SubResource("ViewportTexture_o5tij")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxmb7"]
+viewport_path = NodePath("transition")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxvio"]
+resource_local_to_scene = true
+shader = ExtResource("2_6a0yn")
+shader_parameter/mask_texture = SubResource("ViewportTexture_mxmb7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuo5s"]
+atlas = ExtResource("3_833lt")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frb2k"]
+atlas = ExtResource("3_833lt")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuo5s")
+}],
+"loop": 1,
+"name": &"choose",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frb2k")
+}],
+"loop": 1,
+"name": &"think",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(0, 0, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkhgh"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(70, 0, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dlovb"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(140, 0, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sg6fh"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(0, 94, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hu5rw"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(70, 94, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vm8t"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(140, 94, 70, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyivk"]
-atlas = ExtResource("2_x0mpv")
+atlas = ExtResource("5_eqgnx")
 region = Rect2(0, 188, 70, 94)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jr1nr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -61,63 +107,65 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node" unique_id=1605292549]
-script = ExtResource("1_gh64b")
-metadata/_custom_type_script = "uid://bselhtgx4enop"
+[node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
+script = ExtResource("2_kqlbb")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=767039665]
+[node name="fail" parent="." index="0" unique_id=2107499337]
+material = SubResource("ShaderMaterial_0bdlh")
 
-[node name="ChooseBunBg" type="Sprite2D" parent="." unique_id=465124347]
+[node name="win" parent="." index="1" unique_id=472778511]
+material = SubResource("ShaderMaterial_gxvio")
+
+[node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
+position = Vector2(360, 266)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+animation = &"choose"
+
+[node name="ChooseBunBg" type="Sprite2D" parent="." index="5" unique_id=1648074474]
 position = Vector2(360, 270)
-texture = ExtResource("1_aw5d5")
+texture = ExtResource("4_m8th3")
 
-[node name="GridContainer" type="GridContainer" parent="." unique_id=1643057330]
+[node name="GridContainer" type="GridContainer" parent="." index="6" unique_id=1807493398]
 offset_left = 161.0
 offset_top = 57.0
 offset_right = 556.0
 offset_bottom = 287.0
 columns = 4
 
-[node name="bun2" type="AnimatedSprite2D" parent="GridContainer" unique_id=1945558849]
+[node name="bun2" type="AnimatedSprite2D" parent="GridContainer" index="0" unique_id=1046772359]
 position = Vector2(342, 61)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 1
 
-[node name="bun3" type="AnimatedSprite2D" parent="GridContainer" unique_id=944185130]
+[node name="bun3" type="AnimatedSprite2D" parent="GridContainer" index="1" unique_id=465918146]
 position = Vector2(243, 57)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 3
 
-[node name="bun4" type="AnimatedSprite2D" parent="GridContainer" unique_id=1634381876]
+[node name="bun4" type="AnimatedSprite2D" parent="GridContainer" index="2" unique_id=708802450]
 position = Vector2(239, 169)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 5
 
-[node name="bun5" type="AnimatedSprite2D" parent="GridContainer" unique_id=1907128438]
+[node name="bun5" type="AnimatedSprite2D" parent="GridContainer" index="3" unique_id=1848853683]
 position = Vector2(146, 170)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 4
 
-[node name="bun6" type="AnimatedSprite2D" parent="GridContainer" unique_id=694786644]
+[node name="bun6" type="AnimatedSprite2D" parent="GridContainer" index="4" unique_id=1263647534]
 position = Vector2(54, 174)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 6
 
-[node name="bun7" type="AnimatedSprite2D" parent="GridContainer" unique_id=1014317040]
+[node name="bun7" type="AnimatedSprite2D" parent="GridContainer" index="5" unique_id=479373937]
 position = Vector2(146, 56)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 2
 
-[node name="Container" type="TextureButton" parent="GridContainer" unique_id=256000927]
+[node name="Container" type="TextureButton" parent="GridContainer" index="6" unique_id=1825103459]
 layout_mode = 2
 
-[node name="bun" type="AnimatedSprite2D" parent="GridContainer/Container" unique_id=1549192665]
+[node name="bun" type="AnimatedSprite2D" parent="GridContainer/Container" index="0" unique_id=208393280]
 position = Vector2(49, 59)
-sprite_frames = SubResource("SpriteFrames_ka23v")
+sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"

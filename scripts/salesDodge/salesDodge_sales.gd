@@ -9,7 +9,7 @@ func _ready() -> void:
 	assert (dir == "up" or dir == "down" or dir == "left" or dir == "right")
 	$body.hide()
 	var a = sales_anim_player.get_animation(dir)
-	a.length = .6 #i dont wanna change by hand idc
+	a.length = .3 #i dont wanna change by hand idc
 	warn_anim_player.play(dir)
 
 func _on_warn_anim_finished(anim_name: StringName) -> void:

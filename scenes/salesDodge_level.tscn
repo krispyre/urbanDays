@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/sprites/salesDodge/salesDodge_player.png" id="10_8ymbi"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
 [ext_resource type="Texture2D" uid="uid://crl7ocgaurl1a" path="res://assets/sprites/salesDodge/salesDodge_run_relieve.png" id="10_xxdqm"]
+[ext_resource type="Script" path="res://scripts/salesDodge_sales.gd" id="12_bnn1c"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("gameplay/bg_view")
@@ -110,21 +111,10 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("spr:position:x")
+tracks/4/path = NodePath("spr:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("spr:position:y")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
@@ -170,7 +160,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_trfas"]
 resource_name = "hit"
-length = 0.43333334
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -208,24 +198,13 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("spr:position:x")
+tracks/3/path = NodePath("spr:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.20000002, -317.08563, -211.00002, -0.036, -40.312, 0, 0),
-"times": PackedFloat32Array(0.1, 0.4)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("spr:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-80, -0.25, 0, 0.26666668, -148.56313, 537.61444, -0.099999994, -108.36374, 0, 0),
-"times": PackedFloat32Array(0.1, 0.4)
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(-82.296646, -0.25, 0, 0, -73.23901, -163.67172, -0.006231851, -1.1702712, 0.09999999, 18.778868, 526.9731, -0.33333334, -6.2595825, 0, 0),
+"times": PackedFloat32Array(0.033333335, 0.2, 0.6666667)
 }
 
 [sub_resource type="Animation" id="Animation_t0ytx"]
@@ -264,6 +243,35 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"dodge_l"]
+}
+
+[sub_resource type="Animation" id="Animation_eveh6"]
+resource_name = "relieve"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"running"]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("spr")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"relieve", 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_pq0yh"]
@@ -377,6 +385,7 @@ _data = {
 &"down": SubResource("Animation_f3fa5"),
 &"hit": SubResource("Animation_trfas"),
 &"left": SubResource("Animation_t0ytx"),
+&"relieve": SubResource("Animation_eveh6"),
 &"right": SubResource("Animation_pq0yh"),
 &"run": SubResource("Animation_fbpsp"),
 &"up": SubResource("Animation_agfh5")
@@ -732,8 +741,6 @@ tracks/15/keys = {
 "times": PackedFloat32Array(0)
 }
 
-[sub_resource type="Animation" id="Animation_qeu0u"]
-
 [sub_resource type="Animation" id="Animation_b8js2"]
 resource_name = "showFail"
 length = 1.3666667
@@ -779,7 +786,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_xxdqm"]
 resource_name = "showHint"
-length = 1.3699999999999999
+length = 1.37
 step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -824,7 +831,7 @@ tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 1.2666667, 1.3791666)
+"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 0.95, 1.0625)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
@@ -835,7 +842,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
-"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 1.2666667, 1.3416666)
+"times": PackedFloat32Array(0, 0.22500001, 0.3, 0.375, 0.95, 1.0249999)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
@@ -961,7 +968,6 @@ tracks/7/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b8js2"]
 _data = {
 &"RESET": SubResource("Animation_xnbjm"),
-&"levelGlobal": SubResource("Animation_qeu0u"),
 &"showFail": SubResource("Animation_b8js2"),
 &"showHint": SubResource("Animation_xxdqm"),
 &"showWin": SubResource("Animation_sw685")
@@ -1053,6 +1059,7 @@ shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge_sales.tscn"]
 position = Vector2(1214, 345)
+script = ExtResource("12_bnn1c")
 
 [node name="results" type="AnimatedSprite2D" parent="." unique_id=1941723273]
 visible = false
@@ -1103,3 +1110,4 @@ libraries/ = SubResource("AnimationLibrary_b8js2")
 [connection signal="playerHit" from="gameplay/player" to="." method="_on_player_hit"]
 [connection signal="area_entered" from="gameplay/player/playerBody" to="gameplay/player" method="_on_player_body_area_entered"]
 [connection signal="animation_finished" from="gameplay/player/playerBody/anim" to="gameplay/player/playerBody" method="_on_anim_animation_finished"]
+[connection signal="animation_finished" from="animPlayer" to="." method="_on_hint_anim_finished"]

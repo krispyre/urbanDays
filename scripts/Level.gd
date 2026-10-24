@@ -6,6 +6,9 @@ signal win
 signal fail
 signal timeout
 
+var start = false
+var isFail = false
+
 @export var beat_offset: int = 0 # unique to each level, see audacity
 var cur_beat := -1
 var musicNode: bgm
@@ -32,8 +35,13 @@ func _ready() -> void:
 		musicNode.get_node("music_player").seek(beat_offset * 60.0 / musicNode.bpm)
 	
 	musicNode.r.beat.connect(func(globalBeat): on_beat(globalBeat - beat_offset)) # returns the current beat out of the whole music
+	$animPlayer.play("showHint")
 	_level_ready()
 
+func _on_anim_finished(anim_name: StringName) -> void:
+	if anim_name=="showHint":
+		start = true
+		
 #these stuff are for overides
 func _level_ready() -> void:
 	pass

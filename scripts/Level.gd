@@ -36,7 +36,6 @@ func _ready() -> void:
 		musicNode = bgmScene.instantiate() as bgm
 		add_child(musicNode)
 		# add_child during _ready defers t child's _ready/@onready until next idle frame
-		await musicNode.ready
 		musicNode.get_node("music_player").seek(beat_offset * 60.0 / musicNode.bpm)
 	
 	musicNode.r.beat.connect(func(globalBeat): on_beat(globalBeat - beat_offset)) # returns the current beat out of the whole music

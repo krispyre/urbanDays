@@ -4,28 +4,15 @@ extends Level
 @onready var level: Node3D = $level
 @onready var transition: SubViewport = $transition
 @onready var tr_anim: AnimationPlayer = $transition/anim
-@onready var hint_anim_player: AnimationPlayer = $animPlayer
 
 @onready var goal: Area3D = $level/bus/goal
-@onready var timer: Timer = $level/timeLeft/Timer
-@onready var progress_bar: TextureProgressBar = $level/timeLeft/ProgressBar
-const TIMEOUT_BEAT := 26
 
+func _init():
+	LEVEL_DURATION_BEAT = 17
+	
 func _level_ready() -> void:
-	hint_anim_player.play("showHint")
-	progress_bar.max_value = TIMEOUT_BEAT * 60.0 / musicNode.bpm
-	timer.wait_time = progress_bar.max_value + hint_anim_player.get_animation("showHint").length
-	progress_bar.value = progress_bar.max_value
-	timer.start()
-	prints(progress_bar.value, timer.wait_time)
 	isFail = true
 	
-
-func _process(_delta: float) -> void:
-	progress_bar.value = timer.time_left
-	prints(isFail, progress_bar.value, timer.time_left)	
-	
-
 func on_beat(localBeat: int) -> void:
 	pass
 	#print("b owo")

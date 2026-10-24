@@ -16,6 +16,8 @@ func _on_bun_focused(index: int) -> void:
 	else:
 		lana.play("think")
 
+func _level_process(delta: float) -> void:
+	prints(progress_bar.value, timer.time_left)
 
 func _on_bun_selected(index: int) -> void:
 	if index == correct_bun:
@@ -26,7 +28,6 @@ func _on_bun_selected(index: int) -> void:
 func _on_win() -> void:
 	print("correct")
 	lana_anim.play("jump")
-	
 
 func _on_fail() -> void:
 	print("false")

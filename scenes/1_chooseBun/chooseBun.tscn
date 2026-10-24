@@ -19,21 +19,21 @@
 [ext_resource type="Texture2D" uid="uid://5h30cm7aicnv" path="res://assets/sprites/ui/scratchy_choose_blackO.png" id="23_dp676"]
 [ext_resource type="Texture2D" uid="uid://by7cbfjgs25f3" path="res://assets/sprites/chooseBun/chooseBun_bg_screen.png" id="25_psgxf"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_psgxf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_20032"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpsvl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sxxq"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_psgxf")
+shader_parameter/mask_texture = SubResource("ViewportTexture_20032")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_r88la"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_teh4e"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nd1wg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmw4f"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_r88la")
+shader_parameter/mask_texture = SubResource("ViewportTexture_teh4e")
 
 [sub_resource type="Animation" id="Animation_ccfru"]
 resource_name = "showFail"
@@ -396,10 +396,10 @@ animations = [{
 script = ExtResource("2_kqlbb")
 
 [node name="fail" parent="." index="0" unique_id=2107499337]
-material = SubResource("ShaderMaterial_tpsvl")
+material = SubResource("ShaderMaterial_0sxxq")
 
 [node name="win" parent="." index="1" unique_id=472778511]
-material = SubResource("ShaderMaterial_nd1wg")
+material = SubResource("ShaderMaterial_fmw4f")
 
 [node name="animPlayer" parent="." index="2" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")

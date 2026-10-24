@@ -10,7 +10,6 @@ extends Level
 @onready var timer: Timer = $level/Timer
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
 const TIMEOUT_BEAT := 26
-var isWin = false
 
 func _init() -> void:
 	beat_offset = bgm.level_beat_offset(2)
@@ -38,7 +37,7 @@ func _on_level_win():
 	await tr_anim.animation_finished
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	print("win")
-	isWin = true
+	isFail = false
 
 func _on_level_fail() -> void:
 	fail_spr.show()
@@ -51,9 +50,9 @@ func _on_goal_body_entered(_body: Node3D) -> void:
 	win.emit()
 
 func _on_timer_timeout() -> void:
-	if (!isWin):
+	if (isFail):
 		fail.emit()
 
-
 func _on_hint_anim_finished(anim_name: StringName) -> void:
+	start = true
 	$level/player/Sprite3D.play("run")

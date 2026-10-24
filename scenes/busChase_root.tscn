@@ -12,10 +12,8 @@
 [ext_resource type="Script" uid="uid://bn5tf1i0mw7ux" path="res://scripts/3_busChase/busChase_player.gd" id="6_crhpa"]
 [ext_resource type="Texture2D" uid="uid://c1qbk1k76vb62" path="res://assets/sprites/people_siloutette.png" id="6_jwp1l"]
 [ext_resource type="Texture2D" uid="uid://dfv1m5vx5piy1" path="res://assets/sprites/busChase/busChase_floor.png" id="6_uy8m6"]
-[ext_resource type="Texture2D" path="res://assets/sprites/timer_bg.png" id="7_crhpa"]
 [ext_resource type="Texture2D" uid="uid://ctdgkt62t8xlf" path="res://assets/sprites/busChase/busChase_sign.png" id="7_cu5ck"]
 [ext_resource type="Texture2D" uid="uid://ce3nmaeg76wq7" path="res://assets/sprites/busChase/busChase_run.png" id="7_e3pmy"]
-[ext_resource type="Texture2D" path="res://assets/sprites/timer_progress.png" id="8_e3pmy"]
 [ext_resource type="Texture2D" uid="uid://ctk5cyuw77grd" path="res://assets/sprites/busChase/busChase_pole.png" id="8_k8l30"]
 [ext_resource type="Texture2D" uid="uid://bkvf3v7pl3uyj" path="res://assets/sprites/busChase/busChase_postersSide.png" id="9_0g6gh"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_e3pmy"]
@@ -924,8 +922,6 @@ offset_bottom = 17.0
 max_value = 1.0
 step = 0.05
 value = 0.6
-texture_under = ExtResource("7_crhpa")
-texture_progress = ExtResource("8_e3pmy")
 metadata/_edit_use_anchors_ = true
 
 [node name="transition" type="SubViewport" parent="." unique_id=123210361]

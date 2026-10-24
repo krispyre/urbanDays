@@ -60,7 +60,8 @@ func on_beat(local_beat: int) -> void:
 		print("end")
 		player_body.play_relieve()
 			
-	if local_beat >= sequence.size():
+	if local_beat >= sequence.size() or local_beat < 0:
+		
 		return
 	var step = sequence[local_beat]
 	if step == null:

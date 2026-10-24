@@ -21,8 +21,7 @@ func _level_ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if is_instance_valid(timer):
-		progress_bar.value = timer.time_left
+	progress_bar.value = timer.time_left
 
 func on_beat(localBeat: int) -> void:
 	pass

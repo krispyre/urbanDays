@@ -4,12 +4,8 @@
 [ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="4_owcan"]
 [ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="5_2lgfs"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
-[ext_resource type="Texture2D" uid="uid://bvycui2pxemcc" path="res://assets/sprites/panel.png" id="7_d5h3d"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="8_x7hqj"]
 [ext_resource type="Texture2D" uid="uid://cq86ttxkfdgsn" path="res://assets/sprites/sad.png" id="9_owcan"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_d5h3d"]
-viewport_path = NodePath("gameplay/bg_view")
 
 [sub_resource type="Animation" id="Animation_2lgfs"]
 length = 0.001
@@ -90,10 +86,9 @@ process_mode = 1
 
 [node name="levels" type="Node" parent="gameProcess" unique_id=445493719]
 
-[node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance_placeholder="res://scenes/salesDodge/salesDodge_level.tscn"]
-texture = SubResource("ViewportTexture_d5h3d")
+[node name="salesDodge_level" parent="gameProcess/levels" unique_id=1011445636 instance_placeholder="res://scenes/2_salesDodge/salesDodge.tscn"]
 
-[node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance_placeholder="res://scenes/busChase/busChase_root.tscn"]
+[node name="busChase_root" parent="gameProcess/levels" unique_id=1691468826 instance_placeholder="res://scenes/3_busChase/busChase.tscn"]
 
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 unique_name_in_owner = true
@@ -127,7 +122,6 @@ offset_left = -266.0
 offset_top = -169.0
 offset_right = 175.0
 offset_bottom = 220.0
-texture = ExtResource("7_d5h3d")
 region_rect = Rect2(14.400009, 14.400005, 231.19998, 231.19998)
 patch_margin_right = 13
 

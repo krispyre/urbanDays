@@ -5,23 +5,171 @@
 [ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/1_chooseBun/chooseBun.gd" id="2_kqlbb"]
 [ext_resource type="Texture2D" uid="uid://b8q72tukkr2oq" path="res://assets/sprites/chooseBun/chooseBun_lana.png" id="3_833lt"]
 [ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
-[ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
+[ext_resource type="Texture2D" uid="uid://dis6pc3fvusm3" path="res://assets/sprites/chooseBun/bun0000.png" id="7_3v0r6"]
+[ext_resource type="Texture2D" uid="uid://b4nm7gm8lbm5e" path="res://assets/sprites/chooseBun/bun_choose0000.png" id="8_20032"]
+[ext_resource type="Texture2D" uid="uid://mv0ncxm2jqif" path="res://assets/sprites/chooseBun/bun0001.png" id="8_tqxwe"]
+[ext_resource type="Texture2D" uid="uid://b8x2c324rs1df" path="res://assets/sprites/chooseBun/bun0002.png" id="9_uisfn"]
+[ext_resource type="Texture2D" uid="uid://cbshtjf515177" path="res://assets/sprites/chooseBun/bun_choose0001.png" id="10_0sxxq"]
+[ext_resource type="Texture2D" uid="uid://crdpoevhwl0jt" path="res://assets/sprites/chooseBun/bun0003.png" id="10_p1o2h"]
+[ext_resource type="Texture2D" uid="uid://bff6xfhcrcxy2" path="res://assets/sprites/chooseBun/bun0004.png" id="11_0w0xp"]
+[ext_resource type="Texture2D" uid="uid://biiuwgcovwe0n" path="res://assets/sprites/chooseBun/bun0005.png" id="12_g4dxb"]
+[ext_resource type="Texture2D" uid="uid://dea4v3uqv0jhp" path="res://assets/sprites/chooseBun/bun_choose0002.png" id="12_teh4e"]
+[ext_resource type="Texture2D" uid="uid://gosh7nfsrmw4" path="res://assets/sprites/chooseBun/bun0006.png" id="13_20032"]
+[ext_resource type="Texture2D" uid="uid://cjw6yjyrfya85" path="res://assets/sprites/chooseBun/bun_choose0003.png" id="14_fmw4f"]
+[ext_resource type="Texture2D" uid="uid://p4m1n5ykdxnm" path="res://assets/sprites/chooseBun/bun_choose0004.png" id="16_wj38q"]
+[ext_resource type="Texture2D" uid="uid://c1rj2pfrgwvkh" path="res://assets/sprites/chooseBun/bun_choose0005.png" id="18_0sxxq"]
+[ext_resource type="Texture2D" uid="uid://bpg6mrite6fsl" path="res://assets/sprites/chooseBun/bun_choose0006.png" id="20_teh4e"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kqlbb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_soltn"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5tij"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3v0r6"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_kqlbb")
+shader_parameter/mask_texture = SubResource("ViewportTexture_soltn")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0bdlh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_q3rhj"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxmb7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_potx6"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_0bdlh")
+shader_parameter/mask_texture = SubResource("ViewportTexture_q3rhj")
+
+[sub_resource type="Animation" id="Animation_ccfru"]
+resource_name = "showFail"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fail:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_oc3wy"]
+resource_name = "showHint"
+length = 0.646
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("./hint:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("./hint:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("./hint:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("./hint:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("./hint:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("hint:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667)
+}
+
+[sub_resource type="Animation" id="Animation_6s2it"]
+resource_name = "showWin"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("win:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fail:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqxwe"]
+_data = {
+&"showFail": SubResource("Animation_ccfru"),
+&"showHint": SubResource("Animation_oc3wy"),
+&"showWin": SubResource("Animation_6s2it")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuo5s"]
 atlas = ExtResource("3_833lt")
@@ -50,123 +198,121 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(0, 0, 70, 94)
+[sub_resource type="GDScript" id="GDScript_3v0r6"]
+script/source = "extends GridContainer
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkhgh"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(70, 0, 70, 94)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dlovb"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(140, 0, 70, 94)
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	set_focus_mode(FocusMode.FOCUS_ALL)
+	$bun1.grab_focus()
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sg6fh"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(0, 94, 70, 94)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hu5rw"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(70, 94, 70, 94)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vm8t"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(140, 94, 70, 94)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyivk"]
-atlas = ExtResource("5_eqgnx")
-region = Rect2(0, 188, 70, 94)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jr1nr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qgqkm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkhgh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dlovb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sg6fh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hu5rw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1vm8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jyivk")
-}],
-"loop": 1,
-"name": &"buns",
-"speed": 5.0
-}]
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
 
 [node name="fail" parent="." index="0" unique_id=2107499337]
 visible = true
-material = SubResource("ShaderMaterial_o5tij")
+material = SubResource("ShaderMaterial_3v0r6")
 
 [node name="win" parent="." index="1" unique_id=472778511]
-material = SubResource("ShaderMaterial_mxmb7")
+material = SubResource("ShaderMaterial_potx6")
+
+[node name="animPlayer" parent="." index="2" unique_id=167420536]
+libraries/ = SubResource("AnimationLibrary_tqxwe")
+movie_quit_on_finish = true
+
+[node name="hint" parent="." index="3" unique_id=1041035703]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+
+[node name="Label" parent="hint" index="0" unique_id=285491151]
+texture_filter = 1
+text = "CHOOSE!"
 
 [node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
+texture_filter = 1
 position = Vector2(360, 266)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 animation = &"choose"
 
 [node name="ChooseBunBg" type="Sprite2D" parent="." index="5" unique_id=1648074474]
+texture_filter = 1
 position = Vector2(360, 270)
 texture = ExtResource("4_m8th3")
 
-[node name="GridContainer" type="GridContainer" parent="." index="6" unique_id=1807493398]
-offset_left = 161.0
-offset_top = 57.0
-offset_right = 556.0
-offset_bottom = 287.0
+[node name="bunMenu" type="GridContainer" parent="." index="6" unique_id=1807493398]
+texture_filter = 1
+custom_minimum_size = Vector2(81.96, 90)
+offset_left = 180.0
+offset_top = 68.0
+offset_right = 557.0
+offset_bottom = 285.0
+focus_mode = 2
+theme_override_constants/h_separation = 28
+theme_override_constants/v_separation = 29
 columns = 4
+script = SubResource("GDScript_3v0r6")
 
-[node name="bun2" type="AnimatedSprite2D" parent="GridContainer" index="0" unique_id=1046772359]
-position = Vector2(342, 61)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="bun3" type="AnimatedSprite2D" parent="GridContainer" index="1" unique_id=465918146]
-position = Vector2(243, 57)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="bun4" type="AnimatedSprite2D" parent="GridContainer" index="2" unique_id=708802450]
-position = Vector2(239, 169)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="bun5" type="AnimatedSprite2D" parent="GridContainer" index="3" unique_id=1848853683]
-position = Vector2(146, 170)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="bun6" type="AnimatedSprite2D" parent="GridContainer" index="4" unique_id=1263647534]
-position = Vector2(54, 174)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="bun7" type="AnimatedSprite2D" parent="GridContainer" index="5" unique_id=479373937]
-position = Vector2(146, 56)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
-
-[node name="Container" type="TextureButton" parent="GridContainer" index="6" unique_id=1825103459]
+[node name="bun1" type="TextureButton" parent="bunMenu" index="0" unique_id=92759346]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
+texture_normal = ExtResource("7_3v0r6")
+texture_focused = ExtResource("8_20032")
 
-[node name="bun" type="AnimatedSprite2D" parent="GridContainer/Container" index="0" unique_id=208393280]
-position = Vector2(49, 59)
-sprite_frames = SubResource("SpriteFrames_jr1nr")
-animation = &"buns"
+[node name="bun2" type="TextureButton" parent="bunMenu" index="1" unique_id=2141453244]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("8_tqxwe")
+texture_focused = ExtResource("10_0sxxq")
+
+[node name="bun3" type="TextureButton" parent="bunMenu" index="2" unique_id=400739216]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("9_uisfn")
+texture_focused = ExtResource("12_teh4e")
+
+[node name="bun4" type="TextureButton" parent="bunMenu" index="3" unique_id=1374079902]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("10_p1o2h")
+texture_focused = ExtResource("14_fmw4f")
+
+[node name="bun5" type="TextureButton" parent="bunMenu" index="4" unique_id=422845116]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("11_0w0xp")
+texture_focused = ExtResource("16_wj38q")
+
+[node name="bun6" type="TextureButton" parent="bunMenu" index="5" unique_id=642291229]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("12_g4dxb")
+texture_focused = ExtResource("18_0sxxq")
+
+[node name="bun7" type="TextureButton" parent="bunMenu" index="6" unique_id=186237447]
+texture_filter = 1
+custom_minimum_size = Vector2(68, 90)
+layout_mode = 2
+mouse_filter = 2
+texture_normal = ExtResource("13_20032")
+texture_focused = ExtResource("20_teh4e")
+
+[connection signal="button_down" from="bunMenu/bun1" to="." method="_on_bun_1_button_down"]
+[connection signal="focus_entered" from="bunMenu/bun1" to="." method="_on_bun_1_focus_entered"]

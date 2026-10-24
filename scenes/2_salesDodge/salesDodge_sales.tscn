@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://06b34uuism3v" path="res://assets/sprites/ui/scratchy_choose.png" id="3_8131e"]
 [ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/sprites/salesDodge/salesDodge_salesR_1.png" id="3_dtcbo"]
 [ext_resource type="Texture2D" uid="uid://cxk7j3xo0dg4e" path="res://assets/sprites/salesDodge/salesDodge_salesU_1.png" id="4_5pfek"]
+[ext_resource type="Texture2D" uid="uid://xmnctsh7qlwn" path="res://assets/sprites/ui/exclamationMark.png" id="4_kfp8g"]
 [ext_resource type="Texture2D" uid="uid://djfrmrjxjk1il" path="res://assets/sprites/salesDodge/salesDodge_salesD_1.png" id="5_amq4i"]
-[ext_resource type="Texture2D" path="res://assets/sprites/exclamationMark.png" id="7_1521y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swys0"]
 size = Vector2(251, 107)
@@ -640,7 +640,7 @@ axis_stretch_vertical = 2
 [node name="ExclamationMark" type="Sprite2D" parent="warn" unique_id=709103892]
 position = Vector2(47, -21)
 scale = Vector2(2.035, 0.705)
-texture = ExtResource("7_1521y")
+texture = ExtResource("4_kfp8g")
 
 [node name="sales_animPlayer" type="AnimationPlayer" parent="." unique_id=1808536817]
 root_node = NodePath("../body/hb")

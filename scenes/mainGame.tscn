@@ -86,6 +86,8 @@ process_mode = 1
 
 [node name="levels" type="Node" parent="gameProcess" unique_id=445493719]
 
+[node name="chooseBun" parent="gameProcess/levels" unique_id=1975170843 instance_placeholder="res://scenes/1_chooseBun/chooseBun.tscn"]
+
 [node name="salesDodge_level" parent="gameProcess/levels" unique_id=1011445636 instance_placeholder="res://scenes/2_salesDodge/salesDodge.tscn"]
 
 [node name="busChase_root" parent="gameProcess/levels" unique_id=1691468826 instance_placeholder="res://scenes/3_busChase/busChase.tscn"]

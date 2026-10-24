@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhp1gsow313ut"
-path="res://.godot/imported/bun2.png-ed3663b08c84e97a5c25ffede620c019.ctex"
+uid="uid://c1rj2pfrgwvkh"
+path="res://.godot/imported/bun_choose0005.png-d0292f9a5c5c3ca6aafc0eafb6d890b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/chooseBun/bun2.png"
-dest_files=["res://.godot/imported/bun2.png-ed3663b08c84e97a5c25ffede620c019.ctex"]
+source_file="res://assets/sprites/chooseBun/bun_choose0005.png"
+dest_files=["res://.godot/imported/bun_choose0005.png-d0292f9a5c5c3ca6aafc0eafb6d890b0.ctex"]
 
 [params]
 

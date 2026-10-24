@@ -113,7 +113,7 @@ tracks/4/keys = {
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath(".:modulate:a")
+tracks/5/path = NodePath("hint:modulate:a")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -162,7 +162,6 @@ script = ExtResource("1_iw5l3")
 metadata/_custom_type_script = "uid://bselhtgx4enop"
 
 [node name="fail" type="Sprite2D" parent="." unique_id=2107499337]
-visible = false
 top_level = true
 material = SubResource("ShaderMaterial_c2kp2")
 texture = ExtResource("3_770am")

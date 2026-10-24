@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/1_chooseBun/chooseBun.gd" id="2_kqlbb"]
 [ext_resource type="Texture2D" uid="uid://b8q72tukkr2oq" path="res://assets/sprites/chooseBun/chooseBun_lana.png" id="3_833lt"]
 [ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
+[ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="5_ai21c"]
 [ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
 [ext_resource type="Script" uid="uid://pola8teyj62f" path="res://scripts/1_chooseBun/chooseBun_menu.gd" id="6_dp676"]
 [ext_resource type="Texture2D" uid="uid://dis6pc3fvusm3" path="res://assets/sprites/chooseBun/bun0000.png" id="7_3v0r6"]
@@ -23,22 +24,23 @@
 [ext_resource type="Texture2D" uid="uid://cjd665ux51y1u" path="res://assets/sprites/chooseBun/chooseBun_bubble.png" id="20_fmw4f"]
 [ext_resource type="Texture2D" uid="uid://bpg6mrite6fsl" path="res://assets/sprites/chooseBun/bun_choose0006.png" id="20_teh4e"]
 [ext_resource type="Texture2D" uid="uid://5h30cm7aicnv" path="res://assets/sprites/ui/scratchy_choose_blackO.png" id="23_dp676"]
+[ext_resource type="Texture2D" uid="uid://by7cbfjgs25f3" path="res://assets/sprites/chooseBun/chooseBun_bg_screen.png" id="25_psgxf"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_psgxf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ai21c"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj01d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_psgxf"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_psgxf")
+shader_parameter/mask_texture = SubResource("ViewportTexture_ai21c")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_tpsvl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hj01d"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r88la"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tpsvl"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_tpsvl")
+shader_parameter/mask_texture = SubResource("ViewportTexture_hj01d")
 
 [sub_resource type="Animation" id="Animation_ccfru"]
 resource_name = "showFail"
@@ -202,6 +204,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ai21c"]
+shader = ExtResource("5_ai21c")
+shader_parameter/brightness = -0.05000002123439995
+shader_parameter/contrast = 0.6499999854712
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj01d"]
+shader = ExtResource("5_ai21c")
+shader_parameter/brightness = -0.05000002123439995
+shader_parameter/contrast = 1.3299999702718401
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
 atlas = ExtResource("5_eqgnx")
 region = Rect2(0, 0, 70, 94)
@@ -264,10 +276,10 @@ script = ExtResource("2_kqlbb")
 
 [node name="fail" parent="." index="0" unique_id=2107499337]
 visible = true
-material = SubResource("ShaderMaterial_hj01d")
+material = SubResource("ShaderMaterial_psgxf")
 
 [node name="win" parent="." index="1" unique_id=472778511]
-material = SubResource("ShaderMaterial_r88la")
+material = SubResource("ShaderMaterial_tpsvl")
 
 [node name="animPlayer" parent="." index="2" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")
@@ -290,14 +302,16 @@ position = Vector2(360, 266)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 animation = &"think"
 
-[node name="ChooseBunBg" type="Sprite2D" parent="." index="5" unique_id=1648074474]
+[node name="bg" type="Sprite2D" parent="." index="5" unique_id=1648074474]
 texture_filter = 1
+material = SubResource("ShaderMaterial_ai21c")
 position = Vector2(360, 270)
 texture = ExtResource("4_m8th3")
 
 [node name="bunMenu" type="GridContainer" parent="." index="6" unique_id=1807493398]
 z_index = 1
 texture_filter = 1
+material = SubResource("ShaderMaterial_hj01d")
 custom_minimum_size = Vector2(81.96, 90)
 offset_left = 180.0
 offset_top = 68.0
@@ -308,55 +322,62 @@ theme_override_constants/v_separation = 29
 columns = 4
 script = ExtResource("6_dp676")
 
-[node name="bun1" type="TextureButton" parent="bunMenu" index="0" unique_id=92759346]
+[node name="bun0" type="TextureButton" parent="bunMenu" index="0" unique_id=92759346]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 texture_normal = ExtResource("7_3v0r6")
 texture_focused = ExtResource("8_20032")
 
-[node name="bun2" type="TextureButton" parent="bunMenu" index="1" unique_id=2141453244]
+[node name="bun1" type="TextureButton" parent="bunMenu" index="1" unique_id=2141453244]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("8_tqxwe")
 texture_focused = ExtResource("10_0sxxq")
 
-[node name="bun3" type="TextureButton" parent="bunMenu" index="2" unique_id=400739216]
+[node name="bun2" type="TextureButton" parent="bunMenu" index="2" unique_id=400739216]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("9_uisfn")
 texture_focused = ExtResource("12_teh4e")
 
-[node name="bun4" type="TextureButton" parent="bunMenu" index="3" unique_id=1374079902]
+[node name="bun3" type="TextureButton" parent="bunMenu" index="3" unique_id=1374079902]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("10_p1o2h")
 texture_focused = ExtResource("14_fmw4f")
 
-[node name="bun5" type="TextureButton" parent="bunMenu" index="4" unique_id=422845116]
+[node name="bun4" type="TextureButton" parent="bunMenu" index="4" unique_id=422845116]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("11_0w0xp")
 texture_focused = ExtResource("16_wj38q")
 
-[node name="bun6" type="TextureButton" parent="bunMenu" index="5" unique_id=642291229]
+[node name="bun5" type="TextureButton" parent="bunMenu" index="5" unique_id=642291229]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("12_g4dxb")
 texture_focused = ExtResource("18_0sxxq")
 
-[node name="bun7" type="TextureButton" parent="bunMenu" index="6" unique_id=186237447]
+[node name="bun6" type="TextureButton" parent="bunMenu" index="6" unique_id=186237447]
 texture_filter = 1
+use_parent_material = true
 custom_minimum_size = Vector2(68, 90)
 layout_mode = 2
 mouse_filter = 2
@@ -367,17 +388,20 @@ texture_focused = ExtResource("20_teh4e")
 texture_filter = 1
 position = Vector2(117, 336)
 
-[node name="buble" type="Sprite2D" parent="think" index="0" unique_id=1804494361]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="think" index="0" unique_id=284944115]
+root_node = NodePath("../..")
+
+[node name="buble" type="Sprite2D" parent="think" index="1" unique_id=1804494361]
 position = Vector2(-23, -71)
 texture = ExtResource("20_fmw4f")
 
-[node name="bun" type="AnimatedSprite2D" parent="think" index="1" unique_id=2077996386]
+[node name="bun" type="AnimatedSprite2D" parent="think" index="2" unique_id=2077996386]
 position = Vector2(-19, -82)
 rotation = -0.2617994
 scale = Vector2(1.333169, 1.2770805)
 sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame_progress = 0.8346343
+frame = 4
 
 [node name="chooser" type="Control" parent="." index="8" unique_id=1643719871]
 layout_mode = 3
@@ -400,3 +424,8 @@ patch_margin_top = 57
 patch_margin_right = 57
 patch_margin_bottom = 62
 metadata/_edit_group_ = true
+
+[node name="ChooseBunBgScreen" type="Sprite2D" parent="." index="9" unique_id=21647694]
+texture_filter = 1
+position = Vector2(360, 270)
+texture = ExtResource("25_psgxf")

@@ -589,6 +589,7 @@ _data = {
 
 [node name="busChase_root" type="Node3D" unique_id=2033061355]
 script = ExtResource("1_y7bmi")
+level_number = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=832050024]
 environment = SubResource("Environment_suxjc")

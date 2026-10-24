@@ -7,21 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
 [ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o5tij"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kqlbb"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0bdlh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5tij"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_o5tij")
+shader_parameter/mask_texture = SubResource("ViewportTexture_kqlbb")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mxmb7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_0bdlh"]
 viewport_path = NodePath("transition")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxvio"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxmb7"]
 resource_local_to_scene = true
 shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_mxmb7")
+shader_parameter/mask_texture = SubResource("ViewportTexture_0bdlh")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vuo5s"]
 atlas = ExtResource("3_833lt")
@@ -109,12 +109,14 @@ animations = [{
 
 [node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
+level_number = 3
 
 [node name="fail" parent="." index="0" unique_id=2107499337]
-material = SubResource("ShaderMaterial_0bdlh")
+visible = true
+material = SubResource("ShaderMaterial_o5tij")
 
 [node name="win" parent="." index="1" unique_id=472778511]
-material = SubResource("ShaderMaterial_gxvio")
+material = SubResource("ShaderMaterial_mxmb7")
 
 [node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
 position = Vector2(360, 266)

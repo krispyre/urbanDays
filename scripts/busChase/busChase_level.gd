@@ -11,9 +11,6 @@ extends Level
 @onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
 const TIMEOUT_BEAT := 26
 
-func _init() -> void:
-	beat_offset = bgm.level_beat_offset(2)
-
 func _level_ready() -> void:
 	hint_anim_player.play("showHint")
 	progress_bar.max_value = TIMEOUT_BEAT * 60.0 / musicNode.bpm

@@ -42,9 +42,6 @@ null,
 		val.resize(measure_count * bgm.BEATS_PER_BAR)
 		sequence = val
 
-func _init() -> void:
-	beat_offset = bgm.level_beat_offset(1)
-
 func _level_ready() -> void:
 	sequence_len = sequence.size()
 	sequence.resize(measure_count * bgm.BEATS_PER_BAR)

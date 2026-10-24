@@ -1024,6 +1024,7 @@ _data = {
 texture = SubResource("ViewportTexture_1qa5v")
 centered = false
 script = ExtResource("1_4213q")
+level_number = 2
 
 [node name="gameplay" type="Node2D" parent="." unique_id=1000627672]
 

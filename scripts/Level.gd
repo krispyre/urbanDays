@@ -9,7 +9,9 @@ signal timeout
 var start = false
 var isFail = false
 
-@export var beat_offset: int = 0 # unique to each level, see audacity
+## 1-indexed gameplay level (matches bgm.level_beat_offset)
+@export var level_number: int = 1
+var beat_offset: int = 0
 var cur_beat := -1
 var musicNode: bgm
 
@@ -22,6 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		super._unhandled_input(event)
 
 func _ready() -> void:
+	beat_offset = bgm.level_beat_offset(level_number)
 	#only parent has the bgm node, testers no
 	#either reference the bgm node in the parent or load ur own+offset (during testign)
 	var shared := get_tree().current_scene.get_node_or_null("%bgm")

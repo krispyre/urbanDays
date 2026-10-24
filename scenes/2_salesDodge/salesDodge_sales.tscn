@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bs5rrdfontsb2"]
 
-[ext_resource type="Script" uid="uid://cy2u3tgp0n6fs" path="res://scripts/salesDodge/salesDodge_sales.gd" id="1_senp7"]
+[ext_resource type="Script" uid="uid://cy2u3tgp0n6fs" path="res://scripts/2_salesDodge/salesDodge_sales.gd" id="1_senp7"]
 [ext_resource type="Texture2D" uid="uid://biftoc4sontre" path="res://assets/sprites/salesDodge/salesDodge_salesL_1.png" id="2_bweku"]
 [ext_resource type="Texture2D" uid="uid://06b34uuism3v" path="res://assets/sprites/ui/scratchy_choose.png" id="3_8131e"]
 [ext_resource type="Texture2D" uid="uid://ba5l8no403a6k" path="res://assets/sprites/salesDodge/salesDodge_salesR_1.png" id="3_dtcbo"]

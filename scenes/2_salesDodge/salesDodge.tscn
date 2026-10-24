@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bq2aq6b2t66a6"]
 
-[ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge/salesDodge_level.gd" id="1_4213q"]
-[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
-[ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/salesDodge/lamp.tscn" id="2_qeu0u"]
+[ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/2_salesDodge/salesDodge.gd" id="1_4213q"]
+[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/2_salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
+[ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/2_salesDodge/lamp.tscn" id="2_qeu0u"]
 [ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="3_eveh6"]
 [ext_resource type="Texture2D" uid="uid://c184dnvxgo2du" path="res://assets/sprites/salesDodge/salesDodge_wall.png" id="3_vmci3"]
 [ext_resource type="Material" uid="uid://coi8sxmvcfpal" path="res://assets/resources/salesDodge_wall.tres" id="4_efqh3"]
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/2_salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
 [ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/sprites/salesDodge/salesDodge_fail.png" id="5_b8js2"]
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/sprites/salesDodge/salesDodge_0003.png" id="5_bnn1c"]
 [ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/sprites/salesDodge/salesDodge_win.png" id="5_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/sprites/salesDodge/salesDodge_0001.png" id="6_eveh6"]
-[ext_resource type="PackedScene" uid="uid://map0likv87mu" path="res://scenes/salesDodge/salesDodge_tunnelDeco.tscn" id="6_rw23f"]
+[ext_resource type="PackedScene" uid="uid://map0likv87mu" path="res://scenes/2_salesDodge/salesDodge_tunnelDeco.tscn" id="6_rw23f"]
 [ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/sprites/salesDodge/salesDodge_0000.png" id="7_vmci3"]
 [ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/sprites/ui/ui_around.png" id="8_eaq61"]
 [ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/sprites/salesDodge/salesDodge_0002.png" id="8_efqh3"]
@@ -19,10 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/sprites/salesDodge/salesDodge_player.png" id="10_8ymbi"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
 [ext_resource type="Texture2D" uid="uid://crl7ocgaurl1a" path="res://assets/sprites/salesDodge/salesDodge_run_relieve.png" id="10_xxdqm"]
-[ext_resource type="Script" path="res://scripts/salesDodge_sales.gd" id="12_bnn1c"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
-viewport_path = NodePath("gameplay/bg_view")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw23f"]
 transparency = 1
@@ -1020,11 +1016,10 @@ _data = {
 &"showWin": SubResource("Animation_sw685")
 }
 
-[node name="salesDodge_level" type="Sprite2D" unique_id=1501887509]
-texture = SubResource("ViewportTexture_1qa5v")
-centered = false
+[node name="salesDodge_level" type="Node" unique_id=1011445636]
 script = ExtResource("1_4213q")
 level_number = 2
+metadata/_custom_type_script = "uid://bselhtgx4enop"
 
 [node name="gameplay" type="Node2D" parent="." unique_id=1000627672]
 
@@ -1122,9 +1117,7 @@ shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="salesContainer" type="Node2D" parent="gameplay" unique_id=350079772]
 
-[node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge/salesDodge_sales.tscn"]
-position = Vector2(1214, 345)
-script = ExtResource("12_bnn1c")
+[node name="sales2" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/2_salesDodge/salesDodge_sales.tscn"]
 
 [node name="results" type="AnimatedSprite2D" parent="." unique_id=1941723273]
 visible = false

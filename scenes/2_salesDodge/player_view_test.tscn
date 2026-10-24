@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dpd1d6oe3dvnd"]
 
-[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="1_r54hg"]
-[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge/salesDodge_playerBody.gd" id="2_fp4j1"]
-[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/lana_placeholder.png" id="3_n5evy"]
+[ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/2_salesDodge/salesDodge_playerView.gd" id="1_r54hg"]
+[ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/2_salesDodge/salesDodge_playerBody.gd" id="2_fp4j1"]
+[ext_resource type="Texture2D" uid="uid://bkrj6ytldk1fb" path="res://assets/sprites/lana_placeholder.png" id="3_n5evy"]
 
 [sub_resource type="Animation" id="Animation_4213q"]
 length = 0.001

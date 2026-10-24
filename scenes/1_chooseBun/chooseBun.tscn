@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_ib6qt"]
 [ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="2_6a0yn"]
-[ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/chooseBun/chooseBun.gd" id="2_kqlbb"]
+[ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/1_chooseBun/chooseBun.gd" id="2_kqlbb"]
 [ext_resource type="Texture2D" uid="uid://b8q72tukkr2oq" path="res://assets/sprites/chooseBun/chooseBun_lana.png" id="3_833lt"]
 [ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
 [ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
@@ -109,7 +109,6 @@ animations = [{
 
 [node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
-level_number = 3
 
 [node name="fail" parent="." index="0" unique_id=2107499337]
 visible = true

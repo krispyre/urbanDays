@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://px00ps4fdqbc" path="res://assets/sprites/busChase/busChase_bgSide.png" id="12_qbp3n"]
 [ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/sprites/ui/ui_btn_z.png" id="12_r0p0t"]
 [ext_resource type="Texture2D" uid="uid://uhraaos1tb5s" path="res://assets/resources/blankTexture.tres" id="18_o5s6g"]
+[ext_resource type="Texture2D" uid="uid://cssij3ns87nsf" path="res://assets/sprites/ui/timer_bg.png" id="19_u0wja"]
+[ext_resource type="Texture2D" uid="uid://b3p6fk18h7280" path="res://assets/sprites/ui/timer_progress.png" id="20_2lkdi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbp3n"]
 sky_top_color = Color(0.7063331, 0.73568845, 0.7830128, 1)
@@ -141,18 +143,18 @@ size = Vector2(50, 42.31)
 plane = Plane(0, 2.985, 0, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ka23v"]
-size = Vector2(34, 5)
+size = Vector2(60, 5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0g6gh"]
 transparency = 1
 shading_mode = 2
 albedo_texture = ExtResource("9_0g6gh")
-uv1_scale = Vector3(5.718, 1, 1)
+uv1_scale = Vector3(9.468, 1, 1)
 texture_filter = 0
 
 [sub_resource type="PrismMesh" id="PrismMesh_ka23v"]
 left_to_right = 1.0
-size = Vector3(1, 1, 36)
+size = Vector3(1, 1, 57.08)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5s6g"]
 transparency = 1
@@ -610,6 +612,7 @@ centered = false
 process_mode = 1
 
 [node name="people" type="Node3D" parent="level" unique_id=237544948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.059723)
 
 [node name="people" type="AnimatedSprite3D" parent="level/people" unique_id=1490756527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7281446, 0.93205833, -12.692911)
@@ -681,6 +684,7 @@ sprite_frames = SubResource("SpriteFrames_xhhom")
 frame = 1
 
 [node name="floor" type="StaticBody3D" parent="level" unique_id=165753745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.059723)
 physics_material_override = SubResource("PhysicsMaterial_5pd1v")
 
 [node name="mesh" type="MeshInstance3D" parent="level/floor" unique_id=1958026555]
@@ -698,13 +702,13 @@ render_priority = -97
 texture = ExtResource("6_uy8m6")
 
 [node name="sign" type="Sprite3D" parent="level/floor" unique_id=1877569526]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7487133, 1.7425408, -14.591426)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7487133, 1.7425408, -19.14764)
 texture_filter = 0
 render_priority = 127
 texture = ExtResource("7_cu5ck")
 
 [node name="poles" type="Node3D" parent="level/floor" unique_id=452046068]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16847563, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16847563, 0, -4.5562134)
 
 [node name="pole" type="Sprite3D" parent="level/floor/poles" unique_id=627760461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.612, 0.71693707, -15.5)
@@ -837,7 +841,7 @@ transform = Transform3D(9.981224e-09, -5.684342e-14, -1, 5.85583e-08, 3.9371371,
 mesh = SubResource("PrismMesh_ka23v")
 
 [node name="bg" type="Sprite3D" parent="level/floor" unique_id=513502636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1599703, 1.5795115, -33.22738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1599703, 1.5795115, -39.119728)
 texture_filter = 0
 texture = ExtResource("11_trtnx")
 
@@ -846,11 +850,11 @@ transform = Transform3D(-4.371139e-08, 0.99999994, 0, 4.371139e-08, 1.9106853e-1
 mesh = SubResource("PlaneMesh_f7n5a")
 
 [node name="clouds" type="MeshInstance3D" parent="level/floor" unique_id=2076259797]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6832986, 15.001572, -34.495255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6832986, 15.001572, -47.239727)
 mesh = SubResource("PlaneMesh_xhhom")
 
 [node name="bus" type="Node3D" parent="level" unique_id=1754364475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -14.064045)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -29.299265)
 
 [node name="goal" type="Area3D" parent="level/bus" unique_id=1509026711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6336796, -1.2846398, 0.06630325)
@@ -907,24 +911,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05735761, 15.834417, 0.227
 area_range = 200.0
 area_size = Vector2(8.635, 8.635)
 
-[node name="Timer" type="Timer" parent="level" unique_id=226844839]
-process_mode = 3
-wait_time = 6.7
-one_shot = true
-
-[node name="Container" type="Control" parent="level" unique_id=866896522]
+[node name="timeLeft" type="Control" parent="level" unique_id=866896522]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 
-[node name="ProgressBar" type="TextureProgressBar" parent="level/Container" unique_id=1051434737]
+[node name="ProgressBar" type="TextureProgressBar" parent="level/timeLeft" unique_id=1051434737]
 layout_mode = 0
 offset_right = 720.0
 offset_bottom = 17.0
 max_value = 1.0
 step = 0.05
 value = 0.6
+texture_under = ExtResource("19_u0wja")
+texture_progress = ExtResource("20_2lkdi")
 metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="level/timeLeft" unique_id=226844839]
+process_mode = 3
+wait_time = 50.0
+one_shot = true
 
 [node name="transition" type="SubViewport" parent="." unique_id=123210361]
 disable_3d = true
@@ -982,5 +988,5 @@ libraries/ = SubResource("AnimationLibrary_1sab8")
 [connection signal="fail" from="." to="." method="_on_level_fail"]
 [connection signal="win" from="." to="." method="_on_level_win"]
 [connection signal="body_entered" from="level/bus/goal" to="." method="_on_goal_body_entered"]
-[connection signal="timeout" from="level/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="level/timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="animPlayer" to="." method="_on_hint_anim_finished"]

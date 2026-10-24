@@ -7,8 +7,8 @@ extends Level
 @onready var hint_anim_player: AnimationPlayer = $animPlayer
 
 @onready var goal: Area3D = $level/bus/goal
-@onready var timer: Timer = $level/Timer
-@onready var progress_bar: TextureProgressBar = $level/Container/ProgressBar
+@onready var timer: Timer = $level/timeLeft/Timer
+@onready var progress_bar: TextureProgressBar = $level/timeLeft/ProgressBar
 const TIMEOUT_BEAT := 26
 
 func _level_ready() -> void:
@@ -18,10 +18,13 @@ func _level_ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer.start()
 	prints(progress_bar.value, timer.wait_time)
+	isFail = true
 	
 
 func _process(_delta: float) -> void:
 	progress_bar.value = timer.time_left
+	prints(isFail, progress_bar.value, timer.time_left)	
+	
 
 func on_beat(localBeat: int) -> void:
 	pass

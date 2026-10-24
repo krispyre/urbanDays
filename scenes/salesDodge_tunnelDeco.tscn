@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://map0likv87mu"]
+
+[ext_resource type="Material" uid="uid://uxmq3yu2mt16" path="res://assets/resources/salesDodge_deco.tres" id="1_ujjqg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qudme"]
+size = Vector3(0.235, 2.6, 0.423)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ka23v"]
+left_to_right = 0.0
+size = Vector3(0.235, 0.37, 0.423)
+
+[sub_resource type="PrismMesh" id="PrismMesh_8ymbi"]
+left_to_right = 0.0
+size = Vector3(1.61, 1.565, 0.423)
+
+[node name="deco" type="MeshInstance3D" unique_id=1099606421]
+material_override = ExtResource("1_ujjqg")
+mesh = SubResource("BoxMesh_qudme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2048281376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4905293, 0)
+layers = 262145
+material_override = ExtResource("1_ujjqg")
+mesh = SubResource("PrismMesh_ka23v")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1107712163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23426569, -1.4109061, 0)
+layers = 262145
+material_override = ExtResource("1_ujjqg")
+mesh = SubResource("PrismMesh_8ymbi")

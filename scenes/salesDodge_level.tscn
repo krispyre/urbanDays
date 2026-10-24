@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge/salesDodge_level.gd" id="1_4213q"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/lamp.tscn" id="2_qeu0u"]
+[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="3_eveh6"]
+[ext_resource type="Texture2D" uid="uid://c184dnvxgo2du" path="res://assets/sprites/salesDodge/salesDodge_wall.png" id="3_vmci3"]
+[ext_resource type="Material" uid="uid://coi8sxmvcfpal" path="res://assets/resources/salesDodge_wall.tres" id="4_efqh3"]
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
 [ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/sprites/salesDodge/salesDodge_fail.png" id="5_b8js2"]
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/sprites/salesDodge/salesDodge_0003.png" id="5_bnn1c"]
 [ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/sprites/salesDodge/salesDodge_win.png" id="5_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/sprites/salesDodge/salesDodge_0001.png" id="6_eveh6"]
+[ext_resource type="PackedScene" uid="uid://map0likv87mu" path="res://scenes/salesDodge_tunnelDeco.tscn" id="6_rw23f"]
 [ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/sprites/salesDodge/salesDodge_0000.png" id="7_vmci3"]
 [ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/sprites/ui/ui_around.png" id="8_eaq61"]
 [ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/sprites/salesDodge/salesDodge_0002.png" id="8_efqh3"]
@@ -20,8 +24,16 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_1qa5v"]
 viewport_path = NodePath("gameplay/bg_view")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw23f"]
+transparency = 1
+albedo_color = Color(0.3180198, 0.31801978, 0.31801975, 0.6039216)
+albedo_texture = ExtResource("3_vmci3")
+uv1_scale = Vector3(10, 2, 1)
+uv1_offset = Vector3(0, -0.12, 0)
+texture_filter = 2
+
 [sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
-size = Vector3(0.15, 7.6948853, 47.44702)
+size = Vector3(0.15, 3.815, 47)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eaq61"]
 load_path = "res://.godot/imported/stripes.png-63b61f810b7cb6767162be347a716dc6.s3tc.ctex"
@@ -33,6 +45,19 @@ texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_kph7b"]
 size = Vector3(4.1, 0.4, 63.168945)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmci3"]
+transparency = 1
+albedo_texture = ExtResource("3_eveh6")
+detail_enabled = true
+detail_blend_mode = 3
+uv1_scale = Vector3(1, 40.26, 1)
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eveh6"]
+next_pass = SubResource("StandardMaterial3D_vmci3")
+albedo_texture = ExtResource("3_eveh6")
+uv1_scale = Vector3(1, 20, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rb3wp"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -111,12 +136,23 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("spr:position:y")
+tracks/4/path = NodePath("spr:position:x")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("spr:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, 0, 0, 0.033333335, -13.716108),
 "times": PackedFloat32Array(0)
 }
 
@@ -193,7 +229,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(-0.10664665, -0.25, 0, 0.25, 0, -0.27575088, -0.026203256, 0.02818404, 0, 0),
-"times": PackedFloat32Array(0.1, 0.4)
+"times": PackedFloat32Array(0.46666667, 0.6333333)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -202,9 +238,20 @@ tracks/3/path = NodePath("spr:position:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 0),
-"points": PackedFloat32Array(-82.296646, -0.25, 0, 0, -73.23901, -163.67172, -0.006231851, -1.1702712, 0.09999999, 18.778868, 526.9731, -0.33333334, -6.2595825, 0, 0),
-"times": PackedFloat32Array(0.033333335, 0.2, 0.6666667)
+"handle_modes": PackedInt32Array(2, 0, 0, 0, 2, 0, 2, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0.0001066831, 5.165736e-07, 3.0994415e-06, -0.0001066831, 0, 0.027671097, 0, -7.6293945e-06, -0.012908655, 4.6095247, 0.0020269789, -0.72380966, -27.89079, 0, 46.329082, 0.012735462, -2.3775002e-07, -2.1771374, -0.004784671, 1.0174925, 0.006187619, -1.3158389, -59.148014, -0.0070410846, -2.948653, 0.11819103, -9.379963, -37.074238, -0.0046462496, 1.6616285e-08, 0.06666666, -2.3841858e-07, -74.22024, 0, 81.0132, 0, -73.23901, -136.39316, -0.006231851, -1.1702712, 0.09999999, 18.778868, 526.9731, -0.33333334, -6.2595825, 0, 0),
+"times": PackedFloat32Array(0, 0.0006400986, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.4, 0.5666667, 0.9)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("spr:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.013015339, 7.6666665, 25.633245, -0.013015339, 0, 0.0020269789, 0, 25.373205, -0.25, 0, 0.25, 0, -29.003563, -0.004784671, -1.9623085, 0.006187619, 2.5376914, 0, -0.0070410846, -4.5, 0, 0),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334)
 }
 
 [sub_resource type="Animation" id="Animation_t0ytx"]
@@ -480,7 +527,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"relieve",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1001,12 +1048,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.1389)
 [node name="lamp4" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1594828125 instance=ExtResource("2_qeu0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17.935303)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1087225460]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2, 0, 0)
+[node name="wallL" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1087225460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.3484101, -2.21388, 1.9676194, 0)
+material_overlay = SubResource("StandardMaterial3D_rw23f")
 mesh = SubResource("BoxMesh_ch1rl")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1929117151]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.34841, 2, 0, 0)
+[node name="wallR" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1929117151]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1.34841, 1.8696933, 1.9961934, -0.05265808)
+material_overlay = ExtResource("4_efqh3")
 mesh = SubResource("BoxMesh_ch1rl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=191126020]
@@ -1016,6 +1065,22 @@ mesh = SubResource("BoxMesh_kph7b")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="gameplay/bg_view/bg_world/tunnel" unique_id=756577321]
 mesh = SubResource("BoxMesh_kph7b")
+surface_material_override/0 = SubResource("StandardMaterial3D_eveh6")
+
+[node name="deco" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1099606421 instance=ExtResource("6_rw23f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.7022623, 2.1879487, 13.909833)
+
+[node name="deco2" parent="gameplay/bg_view/bg_world/tunnel" unique_id=624954786 instance=ExtResource("6_rw23f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.700092, 2.1879487, 26.311462)
+
+[node name="deco3" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1268372562 instance=ExtResource("6_rw23f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.700092, 2.1879487, 6.8256235)
+
+[node name="deco4" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1154510404 instance=ExtResource("6_rw23f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.7022623, 2.1879487, -14.962433)
+
+[node name="deco5" parent="gameplay/bg_view/bg_world/tunnel" unique_id=1080708846 instance=ExtResource("6_rw23f")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.700092, 2.1879487, -2.5608015)
 
 [node name="Camera3D" type="Camera3D" parent="gameplay/bg_view/bg_world" unique_id=215621490]
 transform = Transform3D(1, 0, 0, 0, 0.9732606, -0.22970377, 0, 0.22970377, 0.9732606, 0, 0.95355844, 1.2449286)
@@ -1045,7 +1110,6 @@ libraries/ = SubResource("AnimationLibrary_4213q")
 
 [node name="spr" type="AnimatedSprite2D" parent="gameplay/player/playerBody" unique_id=722246757]
 texture_filter = 1
-position = Vector2(0, -80)
 rotation = -0.10664665
 scale = Vector2(2.7200003, 2.7200005)
 sprite_frames = SubResource("SpriteFrames_274bk")
@@ -1069,6 +1133,7 @@ sprite_frames = SubResource("SpriteFrames_qudme")
 animation = &"win"
 
 [node name="hint" type="CenterContainer" parent="." unique_id=1975440411]
+visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 99
 anchors_preset = -1
@@ -1086,6 +1151,7 @@ scale = Vector2(3.3714767, 5.6678953)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 use_top_left = true
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="hint" unique_id=1721274264]
 layout_mode = 2
@@ -1100,6 +1166,7 @@ scale = Vector2(0.7879658, 0.75276816)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 autoplay = "default"
 frame_progress = 0.8935991
+metadata/_edit_group_ = true
 
 [node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1681289377]
 root_node = NodePath("../hint")

@@ -28,9 +28,12 @@ null,
 null,
 {"dir": "right"},
 null,
-{"dir": "right"},
+{"dir": "down"},
 null,
 {"dir": "right"},
+null,
+null,
+{"dir": "up"},
 
 ]:
 	set(val):

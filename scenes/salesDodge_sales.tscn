@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cxk7j3xo0dg4e" path="res://assets/sprites/salesDodge/salesDodge_salesU_1.png" id="4_5pfek"]
 [ext_resource type="Texture2D" uid="uid://d3rgxleeaeprg" path="res://assets/sprites/scratchy_square.png" id="4_1521y"]
 [ext_resource type="Texture2D" uid="uid://djfrmrjxjk1il" path="res://assets/sprites/salesDodge/salesDodge_salesD_1.png" id="5_amq4i"]
-[ext_resource type="Script" uid="uid://dx3hadndydsno" path="res://scripts/busChase/busChase_warn.gd" id="6_8131e"]
 [ext_resource type="Texture2D" uid="uid://6dcf34wc57yn" path="res://assets/sprites/exclamationMark.png" id="7_1521y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swys0"]
@@ -336,6 +335,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_1521y"]
 resource_name = "down"
 length = 0.33299999999999996
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -343,10 +343,10 @@ tracks/0/path = NodePath("../warn/bg:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.04698813, 0.076956935, 0.104335845, 0.333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [-1.3369222]
+"values": [-1.3369222, -1.3369222, -1.3369222, -1.3369222, -1.3369222]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -357,7 +357,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [Vector2(307, 495)]
 }
 tracks/2/type = "value"
@@ -384,10 +384,23 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(2.035, 0.705)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../warn/bg:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.04698813, 0.076956935, 0.104335845, 0.13356468, 0.333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-35.000008, -197.00003), Vector2(-23.000008, -214.00003), Vector2(1.5258789e-05, -200), Vector2(-36, -219.99997), Vector2(-35.000008, -197.00003), Vector2(-35.000008, -197.00003)]
+}
 
 [sub_resource type="Animation" id="Animation_x81bp"]
 resource_name = "left"
 length = 0.33299999999999996
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -419,10 +432,10 @@ tracks/2/path = NodePath("../warn:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-89, 344)]
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-89, 344), Vector2(-70, 360), Vector2(-57, 335), Vector2(-43, 341), Vector2(-76, 370)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -452,6 +465,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_nokty"]
 resource_name = "up"
 length = 0.34299999999999997
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -483,10 +497,10 @@ tracks/2/path = NodePath("../warn:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(573, 329)]
+"times": PackedFloat32Array(0, 0.064377435, 0.125, 0.1875, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(573, 329), Vector2(557, 344), Vector2(549, 331), Vector2(554, 294), Vector2(573, 329)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -516,6 +530,7 @@ tracks/4/keys = {
 [sub_resource type="Animation" id="Animation_6iqa6"]
 resource_name = "up"
 length = 0.34299999999999997
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -535,10 +550,10 @@ tracks/1/path = NodePath("../warn:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(289, -46)]
+"times": PackedFloat32Array(0, 0.059197642, 0.12542501, 0.18795252, 0.24974006),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(289, -46), Vector2(305, -23), Vector2(280, -28), Vector2(285, -49), Vector2(289, -46)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -575,6 +590,7 @@ _data = {
 }
 
 [node name="sales" type="Node2D" unique_id=1304594477]
+texture_filter = 1
 script = ExtResource("1_senp7")
 
 [node name="body" type="Area2D" parent="." unique_id=1662837674]
@@ -596,7 +612,7 @@ offset_left = 573.0
 offset_top = 329.0
 offset_right = 573.0
 offset_bottom = 329.0
-script = ExtResource("6_8131e")
+metadata/_edit_group_ = true
 
 [node name="bg" type="NinePatchRect" parent="warn" unique_id=764385432]
 layout_mode = 1

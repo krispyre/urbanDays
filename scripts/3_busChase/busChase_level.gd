@@ -5,13 +5,44 @@ extends Level
 @onready var transition: SubViewport = $transition
 @onready var tr_anim: AnimationPlayer = $transition/anim
 
+
 @onready var goal: Area3D = $level/bus/goal
 
 func _init():
 	LEVEL_DURATION_BEAT = 17
 	
-func _level_ready() -> void:
+#overriden from Level.gd _ready() dear god.....
+func _ready() -> void:
+	hint_anim_player = $animPlayer
+	timer = $level/timeLeft/Timer
+	progress_bar = $level/timeLeft/ProgressBar
+	
+	beat_offset = bgm.level_beat_offset(level_number)
+	#only parent has the bgm node, testers no
+	#either reference the bgm node in the parent or load ur own+offset (during testign)
+	var shared := get_tree().current_scene.get_node_or_null("%bgm")
+	if shared:
+		print("globally playing")
+		musicNode = shared
+	else:
+		print("testing one level")
+		musicNode = bgmScene.instantiate() as bgm
+		add_child(musicNode)
+		# add_child during _ready defers t child's _ready/@onready until next idle frame
+		musicNode.get_node("music_player").seek(beat_offset * 60.0 / musicNode.bpm)
+	
+	musicNode.r.beat.connect(func(globalBeat): on_beat(globalBeat - beat_offset)) # returns the current beat out of the whole music
+	$animPlayer.play("showHint")
+	
+	progress_bar.max_value = LEVEL_DURATION_BEAT * 60.0 / musicNode.bpm
+	timer.wait_time = progress_bar.max_value + hint_anim_player.get_animation("showHint").length
+	progress_bar.value = progress_bar.max_value
+	timer.start()
+	prints(progress_bar.value, timer.wait_time)
+	
 	isFail = true
+	
+	_level_ready()
 	
 func on_beat(localBeat: int) -> void:
 	pass

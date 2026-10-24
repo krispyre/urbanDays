@@ -9,7 +9,7 @@ signal win
 signal fail
 
 var start = false
-var isFail = false
+var isFail = true
 
 ## 1-indexed gameplay level (matches bgm.level_beat_offset)
 @export var level_number: int = 1
@@ -73,4 +73,5 @@ func on_beat(localBeat: int) -> void:
 	pass
 	
 func _on_timer_timeout() -> void:
-	fail.emit()
+	if (isFail):
+		fail.emit()

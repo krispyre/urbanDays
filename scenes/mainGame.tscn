@@ -90,10 +90,10 @@ process_mode = 1
 
 [node name="levels" type="Node" parent="gameProcess" unique_id=445493719]
 
-[node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance_placeholder="res://scenes/salesDodge_level.tscn"]
+[node name="salesDodge" parent="gameProcess/levels" unique_id=1501887509 instance_placeholder="res://scenes/salesDodge/salesDodge_level.tscn"]
 texture = SubResource("ViewportTexture_d5h3d")
 
-[node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance_placeholder="res://scenes/busChase_root.tscn"]
+[node name="busChase" parent="gameProcess/levels" unique_id=2033061355 instance_placeholder="res://scenes/busChase/busChase_root.tscn"]
 
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 unique_name_in_owner = true

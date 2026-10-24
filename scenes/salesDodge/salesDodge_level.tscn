@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ey7avlxiu4o3" path="res://scripts/salesDodge/salesDodge_level.gd" id="1_4213q"]
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
-[ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/lamp.tscn" id="2_qeu0u"]
+[ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/salesDodge/lamp.tscn" id="2_qeu0u"]
 [ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="3_eveh6"]
 [ext_resource type="Texture2D" uid="uid://c184dnvxgo2du" path="res://assets/sprites/salesDodge/salesDodge_wall.png" id="3_vmci3"]
 [ext_resource type="Material" uid="uid://coi8sxmvcfpal" path="res://assets/resources/salesDodge_wall.tres" id="4_efqh3"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/sprites/salesDodge/salesDodge_0003.png" id="5_bnn1c"]
 [ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/sprites/salesDodge/salesDodge_win.png" id="5_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/sprites/salesDodge/salesDodge_0001.png" id="6_eveh6"]
-[ext_resource type="PackedScene" uid="uid://map0likv87mu" path="res://scenes/salesDodge_tunnelDeco.tscn" id="6_rw23f"]
+[ext_resource type="PackedScene" uid="uid://map0likv87mu" path="res://scenes/salesDodge/salesDodge_tunnelDeco.tscn" id="6_rw23f"]
 [ext_resource type="Texture2D" uid="uid://b0vyxbciivii4" path="res://assets/sprites/salesDodge/salesDodge_0000.png" id="7_vmci3"]
 [ext_resource type="Texture2D" uid="uid://cxdeb1loykwd" path="res://assets/sprites/ui/ui_around.png" id="8_eaq61"]
 [ext_resource type="Texture2D" uid="uid://cpjvkv2rapev4" path="res://assets/sprites/salesDodge/salesDodge_0002.png" id="8_efqh3"]
@@ -1121,7 +1121,7 @@ shape = SubResource("RectangleShape2D_1qa5v")
 
 [node name="salesContainer" type="Node2D" parent="gameplay" unique_id=350079772]
 
-[node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge_sales.tscn"]
+[node name="sales" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/salesDodge/salesDodge_sales.tscn"]
 position = Vector2(1214, 345)
 script = ExtResource("12_bnn1c")
 

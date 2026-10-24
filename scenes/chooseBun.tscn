@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://cydb5fidruoo"]
+[gd_scene format=3 uid="uid://b27o8lrxmx0i5"]
 
-[ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/chooseBun_bg.png" id="1_aw5d5"]
-[ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/chooseBun_buns.png" id="2_x0mpv"]
+[ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="1_aw5d5"]
+[ext_resource type="Script" uid="uid://bselhtgx4enop" path="res://scripts/Level.gd" id="1_gh64b"]
+[ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="2_x0mpv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
 atlas = ExtResource("2_x0mpv")
@@ -60,8 +61,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" unique_id=992939417]
-texture_filter = 1
+[node name="Node2D" type="Node" unique_id=1605292549]
+script = ExtResource("1_gh64b")
+metadata/_custom_type_script = "uid://bselhtgx4enop"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=767039665]
 

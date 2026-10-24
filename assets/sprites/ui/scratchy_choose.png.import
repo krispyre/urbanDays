@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6dcf34wc57yn"
-path="res://.godot/imported/exclamationMark.png-68b7d29e3eb4a82f28645763253bc75a.ctex"
+uid="uid://06b34uuism3v"
+path="res://.godot/imported/scratchy_choose.png-862a7981a64e19adbf34fb20d07c7d8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/exclamationMark.png"
-dest_files=["res://.godot/imported/exclamationMark.png-68b7d29e3eb4a82f28645763253bc75a.ctex"]
+source_file="res://assets/sprites/ui/scratchy_choose.png"
+dest_files=["res://.godot/imported/scratchy_choose.png-862a7981a64e19adbf34fb20d07c7d8b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3rgxleeaeprg"
-path="res://.godot/imported/scratchy_square.png-55287d92a034f7473ca49cb102df021f.ctex"
+uid="uid://k4ewnprgsybi"
+path="res://.godot/imported/scratchy_square.png-7620624c57106136bfc12cba2afd6bf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/scratchy_square.png"
-dest_files=["res://.godot/imported/scratchy_square.png-55287d92a034f7473ca49cb102df021f.ctex"]
+source_file="res://assets/sprites/ui/scratchy_square.png"
+dest_files=["res://.godot/imported/scratchy_square.png-7620624c57106136bfc12cba2afd6bf8.ctex"]
 
 [params]
 

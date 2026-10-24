@@ -17,7 +17,8 @@ func _on_bun_focused(index: int) -> void:
 		lana_anim.play("think")
 
 func _level_process(delta: float) -> void:
-	prints(progress_bar.value, timer.time_left)
+	#prints(progress_bar.value, timer.time_left)
+	pass
 
 func _on_bun_selected(index: int) -> void:
 	if index == correct_bun:
@@ -35,4 +36,7 @@ func _on_fail() -> void:
 	lana_anim.play("oops")
 
 func _on_timer_timeout():
-	hint_anim_player.play("showWin")
+	if (isFail):
+		hint_anim_player.play("showFail")
+	else:
+		hint_anim_player.play("showWin")

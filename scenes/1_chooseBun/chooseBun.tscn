@@ -706,6 +706,94 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_psgxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chooser/spr:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(168, 194)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("chooser/spr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51.000004, -59)]
+}
+
+[sub_resource type="Animation" id="Animation_hj01d"]
+resource_name = "focus"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chooser/spr:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(208.25275, 231.87228)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("chooser/spr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-63.1961, -70.56074)]
+}
+
+[sub_resource type="Animation" id="Animation_tpsvl"]
+resource_name = "select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chooser/spr:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(168, 194)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("chooser/spr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51.000004, -59)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r88la"]
+_data = {
+&"RESET": SubResource("Animation_psgxf"),
+&"focus": SubResource("Animation_hj01d"),
+&"select": SubResource("Animation_tpsvl")
+}
+
 [node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
 
@@ -857,14 +945,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-metadata/_edit_group_ = true
 
 [node name="spr" type="NinePatchRect" parent="chooser" index="0" unique_id=1650168194]
 z_index = 5
 layout_mode = 0
-offset_left = -50.999985
+offset_left = -51.000004
 offset_top = -59.0
-offset_right = 117.000015
+offset_right = 117.0
 offset_bottom = 135.0
 scale = Vector2(0.6059757, 0.61051166)
 texture = ExtResource("23_dp676")
@@ -872,7 +959,10 @@ patch_margin_left = 62
 patch_margin_top = 57
 patch_margin_right = 57
 patch_margin_bottom = 62
-metadata/_edit_group_ = true
+
+[node name="animPlayer" type="AnimationPlayer" parent="chooser" index="1" unique_id=1621506930]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_r88la")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="bun_focused" from="bunMenu" to="." method="_on_bun_focused"]

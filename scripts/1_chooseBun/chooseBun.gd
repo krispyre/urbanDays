@@ -35,8 +35,10 @@ func _on_fail() -> void:
 	print("false")
 	lana_anim.play("oops")
 
+
 func _on_timer_timeout():
-	if (isFail):
+	# can't set this
+	if isFail:
 		hint_anim_player.play("showFail")
 	else:
 		hint_anim_player.play("showWin")

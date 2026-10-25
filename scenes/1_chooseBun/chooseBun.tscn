@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://uy76wrtk3s1q"]
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_ib6qt"]
-[ext_resource type="Shader" uid="uid://b3onlcpddcwhy" path="res://assets/shader/mask.gdshader" id="2_6a0yn"]
 [ext_resource type="Script" uid="uid://bab18ftw84h4s" path="res://scripts/1_chooseBun/chooseBun.gd" id="2_kqlbb"]
 [ext_resource type="Texture2D" uid="uid://b8q72tukkr2oq" path="res://assets/sprites/chooseBun/chooseBun_lana.png" id="3_833lt"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="3_fmw4f"]
@@ -24,10 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://5h30cm7aicnv" path="res://assets/sprites/ui/scratchy_choose_blackO.png" id="23_dp676"]
 [ext_resource type="Texture2D" uid="uid://by7cbfjgs25f3" path="res://assets/sprites/chooseBun/chooseBun_bg_screen.png" id="25_psgxf"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_wj38q"]
+viewport_path = NodePath("failViewport")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmw4f"]
+resource_local_to_scene = true
 shader = ExtResource("3_fmw4f")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
-shader_parameter/destTexture = ExtResource("6_wj38q")
+shader_parameter/destTexture = SubResource("ViewportTexture_wj38q")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmw4f"]
 atlas = ExtResource("3_teh4e")
@@ -57,6 +60,10 @@ region = Rect2(1440, 540, 720, 540)
 atlas = ExtResource("3_teh4e")
 region = Rect2(0, 1080, 720, 540)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r88la"]
+atlas = ExtResource("3_teh4e")
+region = Rect2(720, 1080, 720, 540)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
 animations = [{
 "frames": [{
@@ -82,31 +89,21 @@ animations = [{
 "texture": SubResource("AtlasTexture_tpsvl")
 }, {
 "duration": 1.0,
-"texture": null
+"texture": SubResource("AtlasTexture_r88la")
 }],
 "loop": 0,
 "name": &"default",
 "speed": 8.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fmw4f"]
-viewport_path = NodePath("transition")
+[sub_resource type="GDScript" id="GDScript_wj38q"]
+script/source = "extends AnimatedSprite2D
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj38q"]
-resource_local_to_scene = true
-shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_fmw4f")
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dp676"]
-load_path = "res://.godot/imported/fail.png-3009c83926c5b4dc3f51bef3bec6bc2a.ctex"
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ai21c"]
-viewport_path = NodePath("transition")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_psgxf"]
-resource_local_to_scene = true
-shader = ExtResource("2_6a0yn")
-shader_parameter/mask_texture = SubResource("ViewportTexture_ai21c")
+#this is so cursed Im crin
+func _set_transition_destTexture(path: NodePath):
+	var v := get_node(path) as SubViewport
+	material.set_shader_parameter(\"destTexture\", v.get_texture())
+"
 
 [sub_resource type="Animation" id="Animation_ai21c"]
 tracks/0/type = "value"
@@ -121,75 +118,41 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("win:position:x")
+tracks/1/path = NodePath("transition:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
-tracks/2/type = "bezier"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("win:position:y")
+tracks/2/path = NodePath("winViewport/win:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("transition:frame")
+tracks/3/path = NodePath("%fail:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("win:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("fail:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("transition:material:shader_parameter/destTexture")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_wj38q")]
 }
 
 [sub_resource type="Animation" id="Animation_ccfru"]
@@ -199,7 +162,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("win:visible")
+tracks/0/path = NodePath("winViewport/win:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -211,14 +174,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("fail:visible")
+tracks/1/path = NodePath("%fail:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -235,14 +198,28 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("transition:material:shader_parameter/destTexture")
+tracks/3/path = NodePath("transition:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("7_dp676")]
+"values": [true, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("transition")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.016666668),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [NodePath("../failViewport")],
+"method": &"_set_transition_destTexture"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_oc3wy"]
@@ -324,19 +301,19 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("win:visible")
+tracks/0/path = NodePath("winViewport/win:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("fail:visible")
+tracks/1/path = NodePath("%fail:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -357,51 +334,31 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("win:position:x")
+tracks/3/path = NodePath("transition:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.8666667)
+"times": PackedFloat32Array(0.016666668, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
 }
-tracks/4/type = "bezier"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("win:position:y")
+tracks/4/path = NodePath("transition")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.8666667)
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("transition:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.016666668, 0.8833333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 6]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("transition:material:shader_parameter/destTexture")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_wj38q")]
+"values": [{
+"args": [NodePath("../winViewport")],
+"method": &"_set_transition_destTexture"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqxwe"]
@@ -794,6 +751,28 @@ _data = {
 &"select": SubResource("Animation_tpsvl")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_iw5l3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wj38q")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wj38q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_dp676")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
 
@@ -804,32 +783,24 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_fmw4f")
 position = Vector2(360, 270)
 sprite_frames = SubResource("SpriteFrames_qudme")
+script = SubResource("GDScript_wj38q")
 
-[node name="fail" parent="." index="1" unique_id=2107499337]
-visible = false
-z_index = 999
-texture_filter = 1
-material = SubResource("ShaderMaterial_wj38q")
-texture = SubResource("CompressedTexture2D_dp676")
-
-[node name="win" parent="." index="2" unique_id=472778511]
-z_index = 999
-material = SubResource("ShaderMaterial_psgxf")
-texture = ExtResource("6_wj38q")
-
-[node name="animPlayer" parent="." index="3" unique_id=167420536]
+[node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")
 movie_quit_on_finish = true
 
-[node name="hint" parent="." index="4" unique_id=1041035703]
-modulate = Color(1, 1, 1, 0)
+[node name="hint" parent="." index="2" unique_id=1041035703]
 texture_filter = 1
 
 [node name="Label" parent="hint" index="0" unique_id=285491151]
 texture_filter = 1
 text = "CHOOSE!"
 
-[node name="lana" type="AnimatedSprite2D" parent="." index="5" unique_id=1719397037]
+[node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1668634677) index="0" unique_id=1968305547]
+z_index = 999
+value = 0.0
+
+[node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
 z_index = 2
 texture_filter = 1
 position = Vector2(360, 270)
@@ -839,7 +810,7 @@ animation = &"think"
 [node name="lana_anim" type="AnimationPlayer" parent="lana" index="0" unique_id=1434692303]
 libraries/ = SubResource("AnimationLibrary_dp676")
 
-[node name="bg" type="Sprite2D" parent="." index="6" unique_id=1648074474]
+[node name="bg" type="Sprite2D" parent="." index="5" unique_id=1648074474]
 texture_filter = 1
 material = SubResource("ShaderMaterial_ai21c")
 position = Vector2(361, 270)
@@ -849,7 +820,7 @@ texture = ExtResource("4_m8th3")
 texture_filter = 1
 texture = ExtResource("25_psgxf")
 
-[node name="bunMenu" type="GridContainer" parent="." index="7" unique_id=1807493398]
+[node name="bunMenu" type="GridContainer" parent="." index="6" unique_id=1807493398]
 z_index = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_hj01d")
@@ -918,7 +889,7 @@ layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("13_20032")
 
-[node name="think" type="Node2D" parent="." index="8" unique_id=841014002]
+[node name="think" type="Node2D" parent="." index="7" unique_id=841014002]
 texture_filter = 1
 position = Vector2(117, 336)
 
@@ -940,7 +911,7 @@ sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
 frame = 4
 
-[node name="chooser" type="Control" parent="." index="9" unique_id=1643719871]
+[node name="chooser" type="Control" parent="." index="8" unique_id=1643719871]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -963,6 +934,25 @@ patch_margin_bottom = 62
 [node name="animPlayer" type="AnimationPlayer" parent="chooser" index="1" unique_id=1621506930]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_r88la")
+
+[node name="winViewport" type="SubViewport" parent="." index="9" unique_id=1497020949]
+size = Vector2i(720, 540)
+
+[node name="win" type="AnimatedSprite2D" parent="winViewport" index="0" unique_id=1095204457]
+unique_name_in_owner = true
+visible = false
+position = Vector2(360, 270)
+sprite_frames = SubResource("SpriteFrames_iw5l3")
+
+[node name="failViewport" type="SubViewport" parent="." index="10" unique_id=281205487]
+size = Vector2i(720, 540)
+render_target_update_mode = 4
+
+[node name="fail" type="AnimatedSprite2D" parent="failViewport" index="0" unique_id=762702247]
+unique_name_in_owner = true
+visible = false
+position = Vector2(360, 270)
+sprite_frames = SubResource("SpriteFrames_wj38q")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="bun_focused" from="bunMenu" to="." method="_on_bun_focused"]

@@ -21,6 +21,8 @@ script/source = "extends Level
 var fail_shown := false
 var win_shown := false
 
+func _init():
+	LEVEL_DURATION_BEAT = 17 #timeout AFTER nth beat
 func _level_ready() -> void:
 	isFail = true
 	print(beat_offset)

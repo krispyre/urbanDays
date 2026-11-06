@@ -31,7 +31,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		super._unhandled_input(event)
 
 func _ready() -> void:
-	assert(win_spr != null and fail_spr != null)
 	beat_offset = bgm.level_beat_offset(level_number)
 	#only parent has the bgm node, testers no
 	#either reference the bgm node in the parent or load ur own+offset (during testign)
@@ -59,7 +58,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	progress_bar.value = timer.time_left
-	prints(isFail)	
+	#prints(isFail)	
 	_level_process(delta)
 
 func _on_anim_finished(anim_name: StringName) -> void:

@@ -145,7 +145,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%fail:visible")
+tracks/3/path = NodePath("failViewport/fail:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -174,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%fail:visible")
+tracks/1/path = NodePath("failViewport/fail:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -229,7 +229,7 @@ step = 0.016666668
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("./hint:position:y")
+tracks/0/path = NodePath("hint:position:y")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -240,7 +240,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("./hint:position:x")
+tracks/1/path = NodePath("hint:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -251,7 +251,7 @@ tracks/1/keys = {
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("./hint:scale:y")
+tracks/2/path = NodePath("hint:scale:y")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -262,7 +262,7 @@ tracks/2/keys = {
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("./hint:scale:x")
+tracks/3/path = NodePath("hint:scale:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -273,7 +273,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("./hint:visible")
+tracks/4/path = NodePath("hint:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -313,7 +313,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%fail:visible")
+tracks/1/path = NodePath("failViewport/fail:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -606,6 +606,11 @@ _data = {
 &"floatRotate": SubResource("Animation_20032")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj38q"]
+shader = ExtResource("5_ai21c")
+shader_parameter/brightness = -0.05000002123439995
+shader_parameter/contrast = 1.3299999702718401
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
 atlas = ExtResource("5_eqgnx")
 region = Rect2(0, 0, 70, 94)
@@ -773,7 +778,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="root" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
+[node name="chooseBun" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
 
 [node name="transition" type="AnimatedSprite2D" parent="." index="0" unique_id=1476529601]
@@ -787,7 +792,6 @@ script = SubResource("GDScript_wj38q")
 
 [node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")
-movie_quit_on_finish = true
 
 [node name="hint" parent="." index="2" unique_id=1041035703]
 texture_filter = 1
@@ -904,12 +908,13 @@ scale = Vector2(1, 0.99999994)
 texture = ExtResource("20_fmw4f")
 
 [node name="bun" type="AnimatedSprite2D" parent="think" index="2" unique_id=2077996386]
+material = SubResource("ShaderMaterial_wj38q")
 position = Vector2(-19, -82)
 rotation = -0.2617994
 scale = Vector2(1.333169, 1.2770805)
 sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
-frame = 4
+frame = 2
 
 [node name="chooser" type="Control" parent="." index="8" unique_id=1643719871]
 layout_mode = 3

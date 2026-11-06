@@ -4,6 +4,8 @@ extends Level
 @onready var lana_anim: AnimationPlayer = $lana/lana_anim
 
 var correct_bun = 0
+var fail_shown := false
+
 func _level_ready() -> void:
 	isFail = true
 	print(beat_offset)
@@ -32,13 +34,15 @@ func _on_win() -> void:
 	isFail = false
 
 func _on_fail() -> void:
+	if fail_shown:
+		return
+	fail_shown = true
 	print("false")
 	lana_anim.play("oops")
-
+	hint_anim_player.play("showFail")
 
 func _on_timer_timeout():
-	# can't set this
 	if isFail:
-		hint_anim_player.play("showFail")
+		fail.emit() # showFail via _on_fail if not already shown
 	else:
 		hint_anim_player.play("showWin")

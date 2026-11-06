@@ -1,6 +1,4 @@
 extends Level
-@onready var fail_spr: Node = $fail
-@onready var win_spr: Node = $win
 @onready var level: Node3D = $level
 @onready var transition: SubViewport = $transition
 @onready var tr_anim: AnimationPlayer = $transition/anim
@@ -13,6 +11,8 @@ func _init():
 	
 #overriden from Level.gd _ready() dear god.....
 func _ready() -> void:
+	fail_spr = $fail
+	win_spr = $win
 	hint_anim_player = $animPlayer
 	timer = $level/timeLeft/Timer
 	progress_bar = $level/timeLeft/ProgressBar

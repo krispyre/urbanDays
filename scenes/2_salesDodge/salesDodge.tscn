@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://6xykkfblsypl" path="res://assets/sprites/salesDodge/salesDodge_player.png" id="10_8ymbi"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
 [ext_resource type="Texture2D" uid="uid://crl7ocgaurl1a" path="res://assets/sprites/salesDodge/salesDodge_run_relieve.png" id="10_xxdqm"]
+[ext_resource type="PackedScene" uid="uid://cca6tj3tn3qt2" path="res://scenes/time_left.tscn" id="20_44l3w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw23f"]
 transparency = 1
@@ -68,6 +69,9 @@ background_color = Color(0.5963672, 0.59636724, 0.59636724, 1)
 background_energy_multiplier = 1.14
 sky = SubResource("Sky_42h2w")
 glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ka23v"]
+viewport_path = NodePath("gameplay/bg_view")
 
 [sub_resource type="GDScript" id="GDScript_esqok"]
 script/source = "extends Node2D
@@ -1093,6 +1097,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49574763, 30.803387)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="gameplay/bg_view/bg_world" unique_id=11882944]
 environment = SubResource("Environment_eaq61")
 
+[node name="bg" type="Sprite2D" parent="gameplay" unique_id=1257161058]
+position = Vector2(360, 270)
+texture = SubResource("ViewportTexture_ka23v")
+
 [node name="player" type="Node2D" parent="gameplay" unique_id=1565732912]
 modulate = Color(0.728822, 0.728822, 0.728822, 1)
 position = Vector2(357, 391)
@@ -1124,7 +1132,7 @@ visible = false
 z_index = 99
 position = Vector2(360, 270)
 sprite_frames = SubResource("SpriteFrames_qudme")
-animation = &"win"
+animation = &"fail"
 
 [node name="hint" type="CenterContainer" parent="." unique_id=1975440411]
 visible = false
@@ -1165,6 +1173,8 @@ metadata/_edit_group_ = true
 [node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1681289377]
 root_node = NodePath("../hint")
 libraries/ = SubResource("AnimationLibrary_b8js2")
+
+[node name="timeLeft" parent="." unique_id=1236679750 instance=ExtResource("20_44l3w")]
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]

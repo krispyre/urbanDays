@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://bclbjr4fbj8tu"]
+
+[ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_1a27n"]
+[ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="2_ykw20"]
+[ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="3_h5qrl"]
+[ext_resource type="Texture2D" uid="uid://bitrwrpb4p45t" path="res://assets/sprites/badminton/bg.png" id="4_h5qrl"]
+[ext_resource type="Texture2D" uid="uid://cp6coxpaka2i8" path="res://assets/sprites/badminton/lana.png" id="5_lwq3e"]
+[ext_resource type="Texture2D" uid="uid://bd7gk8kk30elg" path="res://assets/sprites/badminton/ivan.png" id="6_clhof"]
+[ext_resource type="Texture2D" uid="uid://s4lp5kmecx8h" path="res://assets/sprites/badminton/ball.png" id="7_5b86h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwq3e"]
+resource_local_to_scene = true
+shader = ExtResource("3_h5qrl")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_1a27n"]
+resource_name = "showHint"
+length = 0.646
+step = 0.016666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("./hint:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(295, -0.1715, 0, 0.1715, 0, 295, -0.01301937, 0, 0, 0, 313, -0.0037444346, -3, 0, 0, 293, -0.0054699033, 3.3333333, 0, 0, 303, -0.008422325, -1.6666667, 0, 0, 641, -0.013931034, -56.333336, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.6333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("./hint:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(365, -0.1715, 0, 0.1715, 0, 365, -0.01301937, 0, 0, 0, 365, -0.0037444346, 0, 0, 0, 365, -0.0054699033, 0, 0, 0, 365, -0.008422325, 0, 0, 0, 365, -0.013931034, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.26666668, 0.6, 0.65)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("./hint:scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(5.6678953, -0.1715, 0, 0.06666667, 0.050065517, 1.2188686, -0.011449546, 0.41681433, 0, 0, 1, -0.029541064, 0.16053407, 0.009449184, -0.0513494),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("./hint:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(3.3714767, -0.1715, 0, 0.06666667, 0.5107429, 0.9540194, 0, 0, 0, 0, 1, -0.0040154313, 0.30549315, 0.009449184, -0.71889186),
+"times": PackedFloat32Array(0, 0.13333334, 0.26652887)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("./hint:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("hint:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.1715, 0, 0.033333335, 0.29439, 1, -0.009831375, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 0.06666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spkm5"]
+_data = {
+&"showHint": SubResource("Animation_1a27n")
+}
+
+[sub_resource type="GDScript" id="GDScript_hk12w"]
+script/source = "extends CharacterBody2D
+
+@export var SPEED := 300
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+func _physics_process(dt: float) -> void:
+	var input_dir = Input.get_axis(\"left\", \"right\")
+	velocity.x = input_dir * SPEED
+	move_and_slide()
+	
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clhof"]
+atlas = ExtResource("5_lwq3e")
+region = Rect2(0, 0, 388, 376)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b86h"]
+atlas = ExtResource("5_lwq3e")
+region = Rect2(0, 0, 388, 376)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqvqw"]
+atlas = ExtResource("5_lwq3e")
+region = Rect2(388, 0, 388, 376)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk12w"]
+atlas = ExtResource("5_lwq3e")
+region = Rect2(0, 376, 388, 376)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5qrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clhof")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b86h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqvqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk12w")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka23v"]
+size = Vector2(81, 46.942673)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
+size = Vector2(118, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnj87"]
+atlas = ExtResource("6_clhof")
+region = Rect2(0, 0, 303, 310)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkl1g"]
+atlas = ExtResource("6_clhof")
+region = Rect2(0, 0, 303, 310)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttl11"]
+atlas = ExtResource("6_clhof")
+region = Rect2(303, 0, 303, 310)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1q5t"]
+atlas = ExtResource("6_clhof")
+region = Rect2(0, 310, 303, 310)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwq3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnj87")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkl1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttl11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1q5t")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_5b86h"]
+resource_name = "badminton_ball"
+script/source = "## https://www.reddit.com/r/godot/comments/qzsj45/parabolic_trajectory/
+extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5a"]
+size = Vector2(20, 134)
+
+[node name="badminton" unique_id=1975170843 instance=ExtResource("1_1a27n")]
+
+[node name="ResultsTransition" parent="." index="0" unique_id=1814402132 instance=ExtResource("2_ykw20")]
+
+[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
+material = SubResource("ShaderMaterial_lwq3e")
+
+[node name="animPlayer" parent="." index="1" unique_id=167420536]
+libraries/ = SubResource("AnimationLibrary_spkm5")
+
+[node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
+text = "CATCH!"
+
+[node name="timeLeft" parent="." index="3" unique_id=1236679750]
+z_index = 9
+
+[node name="Bg" type="Sprite2D" parent="." index="4" unique_id=1262924417]
+z_index = -1
+texture = ExtResource("4_h5qrl")
+centered = false
+
+[node name="lana" type="CharacterBody2D" parent="." index="5" unique_id=209604848]
+platform_wall_layers = 1
+script = SubResource("GDScript_hk12w")
+
+[node name="spr" type="AnimatedSprite2D" parent="lana" index="0" unique_id=1591522810]
+position = Vector2(601.00006, 444)
+scale = Vector2(0.785, 0.785)
+sprite_frames = SubResource("SpriteFrames_h5qrl")
+centered = false
+offset = Vector2(-300, -366)
+
+[node name="Area2D" type="Area2D" parent="lana/spr" index="0" unique_id=2040377403]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lana/spr/Area2D" index="0" unique_id=99330855]
+position = Vector2(0, -262)
+shape = SubResource("RectangleShape2D_ka23v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lana" index="1" unique_id=826322145]
+position = Vector2(601, 385)
+shape = SubResource("RectangleShape2D_qudme")
+
+[node name="friend" type="AnimatedSprite2D" parent="." index="6" unique_id=245304956]
+position = Vector2(97.00001, 436)
+scale = Vector2(0.785, 0.785)
+sprite_frames = SubResource("SpriteFrames_lwq3e")
+animation = &"hit"
+frame_progress = 0.1428729
+offset = Vector2(72.165, -137.73)
+
+[node name="Area2D2" type="Area2D" parent="friend" index="0" unique_id=1009043005]
+position = Vector2(610.19104, 0)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="friend/Area2D2" index="0" unique_id=1307652986]
+position = Vector2(-554.14014, -262.4204)
+shape = SubResource("RectangleShape2D_ka23v")
+
+[node name="Ball" type="Sprite2D" parent="." index="7" unique_id=548503793]
+position = Vector2(141, 230)
+texture = ExtResource("7_5b86h")
+script = SubResource("GDScript_5b86h")
+
+[node name="constraints" type="StaticBody2D" parent="." index="8" unique_id=1851540331]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="constraints" index="0" unique_id=365484660]
+position = Vector2(697, 351)
+shape = SubResource("RectangleShape2D_f7n5a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="constraints" index="1" unique_id=892777448]
+position = Vector2(450, 351)
+shape = SubResource("RectangleShape2D_f7n5a")
+
+[editable path="ResultsTransition"]
+[editable path="timeLeft"]

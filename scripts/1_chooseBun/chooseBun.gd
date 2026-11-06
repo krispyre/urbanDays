@@ -2,6 +2,7 @@ extends Level
 
 @onready var bun: AnimatedSprite2D = $think/bun
 @onready var lana_anim: AnimationPlayer = $lana/lana_anim
+@onready var results: ResultsTransition = $ResultsTransition
 
 var correct_bun = 0
 var fail_shown := false
@@ -33,7 +34,7 @@ func _on_win() -> void:
 	lana_anim.play("jump")
 	isFail = false
 	await get_tree().create_timer(.5).timeout
-	hint_anim_player.play("showWin")
+	results.play_win()
 
 func _on_fail() -> void:
 	if fail_shown:
@@ -42,10 +43,10 @@ func _on_fail() -> void:
 	print("false")
 	lana_anim.play("oops")
 	await get_tree().create_timer(.5).timeout
-	hint_anim_player.play("showFail")
+	results.play_fail()
 
 func _on_timer_timeout():
 	if isFail:
 		fail.emit() # showFail via _on_fail if not already shown
 	else:
-		hint_anim_player.play("showWin")
+		results.play_win()

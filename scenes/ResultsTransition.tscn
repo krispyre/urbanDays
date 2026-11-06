@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bhpjfp0m8gkgo"]
+
+[ext_resource type="Script" uid="uid://of7fii081cc5" path="res://scripts/ResultsTransition.gd" id="1_script"]
+[ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_key"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[node name="ResultsTransition" type="Node2D" unique_id=1814402132]
+script = ExtResource("1_script")
+
+[node name="transition" type="AnimatedSprite2D" parent="." unique_id=1131207661]
+visible = false
+z_index = 6
+texture_filter = 1
+material = SubResource("ShaderMaterial_key")
+centered = false
+
+[node name="resultViewport" type="SubViewport" parent="." unique_id=1230506109]
+size = Vector2i(720, 540)
+render_target_update_mode = 4
+
+[node name="win" type="AnimatedSprite2D" parent="resultViewport" unique_id=1290060690]
+unique_name_in_owner = true
+visible = false
+centered = false
+
+[node name="fail" type="AnimatedSprite2D" parent="resultViewport" unique_id=584044491]
+unique_name_in_owner = true
+visible = false
+centered = false

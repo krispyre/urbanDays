@@ -130,7 +130,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-0.10664665, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/4/type = "bezier"
@@ -154,6 +154,18 @@ tracks/5/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, 0, 0, 0.033333335, -13.716108),
 "times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("spr:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_f3fa5"]
@@ -319,6 +331,18 @@ tracks/1/keys = {
 "args": [&"relieve", 1.0, false],
 "method": &"play"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("spr:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pq0yh"]
@@ -1114,7 +1138,6 @@ libraries/ = SubResource("AnimationLibrary_4213q")
 
 [node name="spr" type="AnimatedSprite2D" parent="gameplay/player/playerBody" unique_id=722246757]
 texture_filter = 1
-rotation = -0.10664665
 scale = Vector2(2.7200003, 2.7200005)
 sprite_frames = SubResource("SpriteFrames_274bk")
 animation = &"dodge_d"
@@ -1126,6 +1149,7 @@ shape = SubResource("RectangleShape2D_1qa5v")
 [node name="salesContainer" type="Node2D" parent="gameplay" unique_id=350079772]
 
 [node name="sales2" parent="gameplay/salesContainer" unique_id=1304594477 instance_placeholder="res://scenes/2_salesDodge/salesDodge_sales.tscn"]
+z_index = 280
 
 [node name="results" type="AnimatedSprite2D" parent="." unique_id=1941723273]
 visible = false
@@ -1135,7 +1159,6 @@ sprite_frames = SubResource("SpriteFrames_qudme")
 animation = &"fail"
 
 [node name="hint" type="CenterContainer" parent="." unique_id=1975440411]
-visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 99
 anchors_preset = -1

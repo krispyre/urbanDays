@@ -16,6 +16,7 @@
 resource_name = "findSeat"
 script/source = "extends Level
 @onready var anim_player: AnimationPlayer = $animPlayer
+#findSeat
 
 var fail_shown := false
 var win_shown := false

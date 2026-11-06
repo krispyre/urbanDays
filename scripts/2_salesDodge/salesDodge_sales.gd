@@ -11,6 +11,8 @@ func _ready() -> void:
 	var a = sales_anim_player.get_animation(dir)
 	a.length = .3 #i dont wanna change by hand idc
 	warn_anim_player.play(dir)
+	sales_anim_player.speed_scale = .6
+	warn_anim_player.speed_scale = .5
 
 func _on_warn_anim_finished(anim_name: StringName) -> void:
 	$warn.hide()

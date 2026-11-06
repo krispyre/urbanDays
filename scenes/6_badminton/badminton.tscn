@@ -94,6 +94,7 @@ _data = {
 script/source = "extends CharacterBody2D
 
 @export var SPEED := 300
+@onready var anim_spr: AnimatedSprite2D = $anim_spr
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -102,8 +103,12 @@ func _ready() -> void:
 func _physics_process(dt: float) -> void:
 	var input_dir = Input.get_axis(\"left\", \"right\")
 	velocity.x = input_dir * SPEED
-	move_and_slide()
 	
+	if Input.is_action_just_pressed(\"action1\"):
+		anim_spr.play(\"hit\")
+		await anim_spr.animation_finished
+		anim_spr.play(\"default\")
+	move_and_slide()
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clhof"]
@@ -128,7 +133,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_clhof")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -142,13 +147,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hk12w")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit",
-"speed": 5.0
+"speed": 16.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka23v"]
-size = Vector2(81, 46.942673)
+size = Vector2(110.56369, 74.426735)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
 size = Vector2(118, 20)
@@ -175,7 +180,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vnj87")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -189,9 +194,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m1q5t")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"hit",
-"speed": 5.0
+"speed": 16.0
 }]
 
 [sub_resource type="GDScript" id="GDScript_5b86h"]
@@ -238,17 +243,18 @@ centered = false
 platform_wall_layers = 1
 script = SubResource("GDScript_hk12w")
 
-[node name="spr" type="AnimatedSprite2D" parent="lana" index="0" unique_id=1591522810]
+[node name="anim_spr" type="AnimatedSprite2D" parent="lana" index="0" unique_id=1591522810]
 position = Vector2(601.00006, 444)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_h5qrl")
+animation = &"hit"
 centered = false
 offset = Vector2(-300, -366)
 
-[node name="Area2D" type="Area2D" parent="lana/spr" index="0" unique_id=2040377403]
+[node name="Area2D" type="Area2D" parent="lana/anim_spr" index="0" unique_id=2040377403]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lana/spr/Area2D" index="0" unique_id=99330855]
-position = Vector2(0, -262)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="lana/anim_spr/Area2D" index="0" unique_id=99330855]
+position = Vector2(-31.84721, -286.62418)
 shape = SubResource("RectangleShape2D_ka23v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lana" index="1" unique_id=826322145]
@@ -260,7 +266,6 @@ position = Vector2(97.00001, 436)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_lwq3e")
 animation = &"hit"
-frame_progress = 0.1428729
 offset = Vector2(72.165, -137.73)
 
 [node name="Area2D2" type="Area2D" parent="friend" index="0" unique_id=1009043005]
@@ -268,7 +273,7 @@ position = Vector2(610.19104, 0)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="friend/Area2D2" index="0" unique_id=1307652986]
-position = Vector2(-554.14014, -262.4204)
+position = Vector2(-538.8535, -276.43314)
 shape = SubResource("RectangleShape2D_ka23v")
 
 [node name="Ball" type="Sprite2D" parent="." index="7" unique_id=548503793]
@@ -283,8 +288,10 @@ position = Vector2(697, 351)
 shape = SubResource("RectangleShape2D_f7n5a")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="constraints" index="1" unique_id=892777448]
-position = Vector2(450, 351)
+position = Vector2(443, 351)
 shape = SubResource("RectangleShape2D_f7n5a")
+
+[connection signal="animation_finished" from="lana/anim_spr" to="lana" method="_on_anim_spr_animation_finished"]
 
 [editable path="ResultsTransition"]
 [editable path="timeLeft"]

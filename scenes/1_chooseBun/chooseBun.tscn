@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cqcpka60ur2u4" path="res://assets/sprites/chooseBun/chooseBun_lana_choose.png" id="4_0sxxq"]
 [ext_resource type="Texture2D" uid="uid://duarc0nntcyup" path="res://assets/sprites/chooseBun/chooseBun_bg.png" id="4_m8th3"]
 [ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="5_ai21c"]
+[ext_resource type="Script" uid="uid://b06nnpkrfrvdi" path="res://scripts/transitionMask.gd" id="5_dp676"]
 [ext_resource type="Texture2D" uid="uid://bfmmprwq7yjwp" path="res://assets/sprites/chooseBun/chooseBun_buns.png" id="5_eqgnx"]
 [ext_resource type="Script" uid="uid://pola8teyj62f" path="res://scripts/1_chooseBun/chooseBun_menu.gd" id="6_dp676"]
 [ext_resource type="Texture2D" uid="uid://br3xjdshottd3" path="res://assets/sprites/chooseBun/win.png" id="6_wj38q"]
@@ -95,15 +96,6 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
-
-[sub_resource type="GDScript" id="GDScript_wj38q"]
-script/source = "extends AnimatedSprite2D
-
-#this is so cursed Im crin
-func _set_transition_destTexture(path: NodePath):
-	var v := get_node(path) as SubViewport
-	material.set_shader_parameter(\"destTexture\", v.get_texture())
-"
 
 [sub_resource type="Animation" id="Animation_ai21c"]
 tracks/0/type = "value"
@@ -609,7 +601,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wj38q"]
 shader = ExtResource("5_ai21c")
 shader_parameter/brightness = -0.05000002123439995
-shader_parameter/contrast = 1.3299999702718401
+shader_parameter/contrast = 1.32999997027184
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgqkm"]
 atlas = ExtResource("5_eqgnx")
@@ -788,7 +780,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_fmw4f")
 position = Vector2(360, 270)
 sprite_frames = SubResource("SpriteFrames_qudme")
-script = SubResource("GDScript_wj38q")
+script = ExtResource("5_dp676")
 
 [node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")
@@ -800,9 +792,8 @@ texture_filter = 1
 texture_filter = 1
 text = "CHOOSE!"
 
-[node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1668634677) index="0" unique_id=1968305547]
-z_index = 999
-value = 0.0
+[node name="timeLeft" parent="." index="3" unique_id=1236679750]
+z_index = 99
 
 [node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
 z_index = 2
@@ -962,3 +953,5 @@ sprite_frames = SubResource("SpriteFrames_wj38q")
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="bun_focused" from="bunMenu" to="." method="_on_bun_focused"]
 [connection signal="bun_selected" from="bunMenu" to="." method="_on_bun_selected"]
+
+[editable path="timeLeft"]

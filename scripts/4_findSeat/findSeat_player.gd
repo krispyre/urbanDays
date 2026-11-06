@@ -15,7 +15,6 @@ func _process(dt):
 	anim_spr.position = lerp(anim_spr.position, Vector2(0,0), t)	
 
 func _physics_process(delta: float) -> void:
-	
 	var step := Vector2(
 		float(Input.is_action_just_pressed("right")) - float(Input.is_action_just_pressed("left")),
 		float(Input.is_action_just_pressed("down")) - float(Input.is_action_just_pressed("up"))
@@ -29,10 +28,11 @@ func _physics_process(delta: float) -> void:
 	for r in col_checks.get_children():
 		if r.is_colliding():
 			var dir = r.target_position.normalized()
-			prints("next to me, ", dir)
+			#prints("next to me, ", dir)
 			
 			if dir == step:
 				print("blocked")
+				anim_spr.position = 5 * step
 				return
 	position += step * tile
 	anim_spr.position = -step * tile

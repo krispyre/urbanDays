@@ -92,6 +92,8 @@ process_mode = 1
 
 [node name="busChase_root" parent="gameProcess/levels" unique_id=1691468826 instance_placeholder="res://scenes/3_busChase/busChase.tscn"]
 
+[node name="findScene" parent="gameProcess/levels" unique_id=1925177797 instance_placeholder="res://scenes/4_findSeat/findSeat.tscn"]
+
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 unique_name_in_owner = true
 script = ExtResource("4_owcan")

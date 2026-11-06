@@ -32,6 +32,8 @@ func _on_win() -> void:
 	print("correct")
 	lana_anim.play("jump")
 	isFail = false
+	await get_tree().create_timer(.5).timeout
+	hint_anim_player.play("showWin")
 
 func _on_fail() -> void:
 	if fail_shown:
@@ -39,6 +41,7 @@ func _on_fail() -> void:
 	fail_shown = true
 	print("false")
 	lana_anim.play("oops")
+	await get_tree().create_timer(.5).timeout
 	hint_anim_player.play("showFail")
 
 func _on_timer_timeout():

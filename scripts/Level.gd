@@ -20,7 +20,7 @@ var beat_offset: int = 0
 var cur_beat := -1
 var musicNode: bgm
 
-var LEVEL_DURATION_BEAT := 8 #timeout AFTER 8th beat
+var LEVEL_DURATION_BEAT := 23 #timeout AFTER nth beat
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("autoWin")):

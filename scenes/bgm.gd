@@ -2,7 +2,7 @@ class_name bgm extends Node
 signal nextLevel
 signal outro
 @onready var r: RhythmNotifier = $RhythmNotifier
-var bpm = 175 # todo this is temp but salesdodge rely on that...
+static var bpm = 175 # todo this is temp but salesdodge rely on that...
 var is_over = false
 
 const BEATS_PER_BAR := 4

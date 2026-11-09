@@ -4,9 +4,9 @@ extends Camera3D
 var level_time
 var z_speed
 func _ready() -> void:
-	level_time = 4.0 * owner.measure_count * 60.0 / Globals.bpm
+	level_time = 4.0 * owner.measure_count * 60.0 / owner.bpm
 	position.z = 0
-	z_speed = goal.global_position.z/level_time
+	z_speed = goal.global_position.z / level_time
 	
 func _physics_process(delta: float) -> void:
-	position.z += z_speed*delta
+	position.z += z_speed * delta

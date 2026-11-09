@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
-[ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scenes/bgm.gd" id="4_owcan"]
+[ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scripts/bgm.gd" id="4_owcan"]
 [ext_resource type="AudioStream" uid="uid://cu6g1e07yxc3n" path="res://assets/quiz.ogg" id="5_2lgfs"]
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="8_x7hqj"]
@@ -91,6 +91,8 @@ process_mode = 1
 [node name="salesDodge_level" parent="gameProcess/levels" unique_id=1011445636 instance_placeholder="res://scenes/2_salesDodge/salesDodge.tscn"]
 
 [node name="busChase_root" parent="gameProcess/levels" unique_id=1691468826 instance_placeholder="res://scenes/3_busChase/busChase.tscn"]
+
+[node name="findScene" parent="gameProcess/levels" unique_id=1925177797 instance_placeholder="res://scenes/4_findSeat/findSeat.tscn"]
 
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 unique_name_in_owner = true

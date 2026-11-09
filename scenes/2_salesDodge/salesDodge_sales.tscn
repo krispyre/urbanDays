@@ -145,7 +145,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(-138, 0, -1182.6383, 0, 74.54657, 150, -0.0667, -16.268791, 0.0667, 16.268791, -144, -0.07778334, 36.5, 0, 0),
+"points": PackedFloat32Array(-138, 0, -1182.6383, 0, 74.54657, 150, -0.06666666, -231.62914, 0.06666667, -139.4569, -144, -0.07778334, 36.5, 0, 0),
 "times": PackedFloat32Array(0, 0.1, 0.4)
 }
 tracks/3/type = "bezier"
@@ -195,7 +195,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(2, 0, 0),
-"points": PackedFloat32Array(858, -0.22941168, 910.26776, 0.033333335, -132.26117, 629, -0.033325, 0, 0.033325, 0, 917, -0.100000024, -235.33057, 0, 0),
+"points": PackedFloat32Array(858, -0.22941168, 910.26776, 0.033333335, -132.26117, 661.8937, -0.03333333, 104.46185, 0.03333334, 122.8963, 917, -0.099999994, -156.7893, 0, 0),
 "times": PackedFloat32Array(0, 0.1, 0.4)
 }
 tracks/3/type = "bezier"
@@ -331,6 +331,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(47, -21)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../warn:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1521y"]
 resource_name = "down"
@@ -386,7 +398,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("../warn/bg:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -395,6 +407,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(-35.000008, -197.00003), Vector2(-23.000008, -214.00003), Vector2(1.5258789e-05, -200), Vector2(-36, -219.99997), Vector2(-35.000008, -197.00003), Vector2(-35.000008, -197.00003)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../warn:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1665, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824), Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824)]
 }
 
 [sub_resource type="Animation" id="Animation_x81bp"]
@@ -432,10 +456,10 @@ tracks/2/path = NodePath("../warn:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(-89, 344), Vector2(-70, 360), Vector2(-57, 335), Vector2(-43, 341), Vector2(-76, 370)]
+"values": [Vector2(-89, 344)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -460,6 +484,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(152, -49)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../warn:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1665, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824), Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824)]
 }
 
 [sub_resource type="Animation" id="Animation_nokty"]
@@ -492,15 +528,15 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("../warn:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.064377435, 0.125, 0.1875, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(573, 329), Vector2(557, 344), Vector2(549, 331), Vector2(554, 294), Vector2(573, 329)]
+"values": [Vector2(573, 329)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -526,6 +562,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(41, -28)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../warn:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1665, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824), Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824)]
+}
 
 [sub_resource type="Animation" id="Animation_6iqa6"]
 resource_name = "up"
@@ -550,10 +598,10 @@ tracks/1/path = NodePath("../warn:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.059197642, 0.12542501, 0.18795252, 0.24974006),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(289, -46), Vector2(305, -23), Vector2(280, -28), Vector2(285, -49), Vector2(289, -46)]
+"values": [Vector2(289, -46)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -578,6 +626,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1.5, 0.9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../warn:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0833, 0.1665, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824), Color(1, 1, 1, 1), Color(1, 1, 1, 0.047058824)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1521y"]

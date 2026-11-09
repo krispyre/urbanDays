@@ -5,8 +5,8 @@ const bgmScene = preload("res://scenes/bgm.tscn")
 @onready var timer: Timer = $timeLeft/Timer
 @onready var hint_anim_player: AnimationPlayer = $animPlayer
 
-@onready var win_spr: Node2D = %win #add these to ur code!
-@onready var fail_spr: Node2D = %fail
+var win_spr: Node2D
+var fail_spr: Node2D
 
 signal win
 signal fail
@@ -20,7 +20,7 @@ var beat_offset: int = 0
 var cur_beat := -1
 var musicNode: bgm
 
-var LEVEL_DURATION_BEAT := 8 #timeout AFTER 8th beat
+var LEVEL_DURATION_BEAT := 23 #timeout AFTER nth beat
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("autoWin")):
@@ -31,6 +31,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		super._unhandled_input(event)
 
 func _ready() -> void:
+	var results := get_node_or_null("ResultsTransition") as ResultsTransition
+	if results:
+		win_spr = results.win
+		fail_spr = results.fail
+	else:
+		win_spr = get_node_or_null("%win") as Node2D
+		fail_spr = get_node_or_null("%fail") as Node2D
+
 	beat_offset = bgm.level_beat_offset(level_number)
 	#only parent has the bgm node, testers no
 	#either reference the bgm node in the parent or load ur own+offset (during testign)
@@ -58,7 +66,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	progress_bar.value = timer.time_left
-	prints(isFail)	
+	#prints(isFail)	
 	_level_process(delta)
 
 func _on_anim_finished(anim_name: StringName) -> void:

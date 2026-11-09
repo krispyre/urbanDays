@@ -1,0 +1,44 @@
+[gd_resource type="TileSet" format=3 uid="uid://cl72flgm8rr7e"]
+
+[ext_resource type="Texture2D" uid="uid://bxy3rh7sbn1j3" path="res://assets/sprites/findSeat/findSeat_tiles.png" id="1_ij3qt"]
+[ext_resource type="Texture2D" uid="uid://bs1dj7ao3vuux" path="res://assets/sprites/findSeat/findSeat_humans.png" id="2_vgqxd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hm73w"]
+texture = ExtResource("1_ij3qt")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-14.111847, -20.32106, 17.498688, -21.450008, 32, 32, -32, 32)
+3:0/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5vn0"]
+texture = ExtResource("2_vgqxd")
+texture_region_size = Vector2i(64, 80)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+0:0/0/probability = 0.4
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, 8)
+1:0/0/probability = 0.2
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, 8)
+0:1/0/probability = 0.4
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 2
+physics_layer_1/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_hm73w")
+sources/1 = SubResource("TileSetAtlasSource_d5vn0")

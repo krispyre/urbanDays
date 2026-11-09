@@ -8,6 +8,7 @@ var can_move := true
 func _ready() -> void:
 	anim.play("run")
 	spr.play("running")
+	anim.speed_scale = 0.8
 
 func _process(_delta: float) -> void:
 	if not can_move or not owner.start:

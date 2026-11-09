@@ -20,21 +20,23 @@ var sequence = [null,
 null,
 null,
 null,
-null,
-null,
-null,
-null,
-null,
-null,
+
 {"dir": "right"},
+null,
+null,
 null,
 {"dir": "down"},
 null,
+null,
+null,
 {"dir": "right"},
 null,
 null,
+null,
 {"dir": "up"},
-
+null,
+null,
+null
 ]:
 	set(val):
 		sequence_len = val.size()
@@ -43,6 +45,7 @@ null,
 		sequence = val
 
 func _level_ready() -> void:
+	isFail = false
 	sequence_len = sequence.size()
 	sequence.resize(measure_count * bgm.BEATS_PER_BAR)
 	#$animPlayer.play("showHint")
@@ -50,7 +53,6 @@ func _level_ready() -> void:
 	
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
-	
 	if local_beat == WIN_BEAT:
 		#win or fail
 		if (!isFail):
@@ -61,7 +63,6 @@ func on_beat(local_beat: int) -> void:
 		player_body.play_relieve()
 			
 	if local_beat >= sequence.size() or local_beat < 0:
-		
 		return
 	var step = sequence[local_beat]
 	if step == null:
@@ -71,7 +72,6 @@ func on_beat(local_beat: int) -> void:
 		var s = salesObj.instantiate()
 		s.dir = step["dir"]
 		sales_container.add_child(s)
-			
 			
 func _on_fail():
 	anim_player.play("showFail")
@@ -84,5 +84,4 @@ func _on_player_hit() -> void:
 	fail.emit()
 
 func _on_hint_anim_finished(anim_name: StringName) -> void:
-	print(928)
 	start = true

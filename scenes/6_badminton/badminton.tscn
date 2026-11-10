@@ -74,11 +74,32 @@ animations = [{
 atlas = ExtResource("6_ttl11")
 region = Rect2(0, 0, 720, 540)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0calk"]
+atlas = ExtResource("6_ttl11")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w5jn"]
+atlas = ExtResource("6_ttl11")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xnv2"]
+atlas = ExtResource("6_ttl11")
+region = Rect2(0, 540, 720, 540)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6g6a0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6g6a0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0calk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w5jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xnv2")
 }],
 "loop": 1,
 "name": &"default",
@@ -269,10 +290,6 @@ _data = {
 &"fadeOut": SubResource("Animation_rkl1g")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vnj87"]
-atlas = ExtResource("6_clhof")
-region = Rect2(0, 0, 303, 310)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkl1g"]
 atlas = ExtResource("6_clhof")
 region = Rect2(0, 0, 303, 310)
@@ -285,16 +302,16 @@ region = Rect2(303, 0, 303, 310)
 atlas = ExtResource("6_clhof")
 region = Rect2(0, 310, 303, 310)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a80v"]
+atlas = ExtResource("6_clhof")
+region = Rect2(0, 310, 303, 310)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnj87"]
+atlas = ExtResource("6_clhof")
+region = Rect2(0, 0, 303, 310)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lwq3e"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vnj87")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rkl1g")
@@ -308,16 +325,35 @@ animations = [{
 "loop": 0,
 "name": &"hit",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a80v")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnj87")
+}],
+"loop": 0,
+"name": &"start",
+"speed": 5.0
 }]
 
 [sub_resource type="GDScript" id="GDScript_hk12w"]
 resource_name = "badmintonFriend"
 script/source = "extends AnimatedSprite2D
 
+func _ready() -> void:
+	play(\"start\")
 func _on_racket_body_entered(body: Node2D) -> void:
+	print(\"klsjlksdkfj\")
 	play(\"hit\")
 	await animation_finished
-	play(\"default\")
+	play(\"idle\")
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ka23v"]
@@ -331,7 +367,7 @@ extends CharacterBody2D
 @export var player: CharacterBody2D
 @onready var spr: Sprite2D = $spr
 
-var hangTime = .686 #60/r.bpm #reah in 1sec, turn to be in beat
+var hangTime = .343*3 #reah in 1sec, turn to be in beat
 var target_x
 var target_height
 
@@ -421,9 +457,9 @@ frame_progress = 0.15668736
 [node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1290060690]
 visible = true
 sprite_frames = SubResource("SpriteFrames_6g6a0")
+frame_progress = 0.4778875
 
 [node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=584044491]
-visible = true
 sprite_frames = SubResource("SpriteFrames_g6c6o")
 
 [node name="animPlayer" parent="." index="1" unique_id=167420536]
@@ -485,7 +521,8 @@ libraries/ = SubResource("AnimationLibrary_ttl11")
 position = Vector2(97.00001, 436)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_lwq3e")
-autoplay = "default"
+animation = &"idle"
+autoplay = "start"
 offset = Vector2(72.165, -137.73)
 script = SubResource("GDScript_hk12w")
 

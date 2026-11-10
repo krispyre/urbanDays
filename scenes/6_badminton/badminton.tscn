@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://nfsouxut3umo" path="res://assets/sprites/badminton/racketRange.png" id="8_vnj87"]
 [ext_resource type="Texture2D" uid="uid://ckijto0m3hcf5" path="res://assets/sprites/badminton/lana_miss.png" id="11_d5kf6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnj87"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5kf6"]
 resource_local_to_scene = true
 shader = ExtResource("3_h5qrl")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -214,7 +214,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_d5kf6")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"miss",
 "speed": 5.0
 }]
@@ -401,13 +401,16 @@ size = Vector2(20, 134)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
 size = Vector2(474, 48)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swys0"]
+size = Vector2(351, 103)
+
 [node name="badminton" unique_id=1975170843 instance=ExtResource("1_1a27n")]
 script = ExtResource("2_aqvqw")
 
 [node name="ResultsTransition" parent="." index="0" unique_id=1814402132 instance=ExtResource("2_ykw20")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_vnj87")
+material = SubResource("ShaderMaterial_d5kf6")
 position = Vector2(718.2422, 7.834925e-06)
 rotation = 1.5707964
 scale = Vector2(0.7454384, 1.3319299)
@@ -446,7 +449,6 @@ script = ExtResource("6_hk12w")
 position = Vector2(6.1035156e-05, 2)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_h5qrl")
-animation = &"miss"
 autoplay = "default"
 centered = false
 offset = Vector2(-300, -366)
@@ -529,6 +531,15 @@ collision_mask = 2
 position = Vector2(62, 3)
 shape = SubResource("RectangleShape2D_1qa5v")
 
+[node name="missNotice" type="Area2D" parent="." index="10" unique_id=1782578771]
+position = Vector2(619, 369)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="missNotice" index="0" unique_id=1041915506]
+position = Vector2(-39.5, 19.5)
+shape = SubResource("RectangleShape2D_swys0")
+
 [connection signal="gameStart" from="." to="ball" method="_on_badminton_game_start"]
 [connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="swing" from="lana" to="ball" method="_on_lana_swing"]
@@ -539,8 +550,8 @@ shape = SubResource("RectangleShape2D_1qa5v")
 [connection signal="body_entered" from="friend/racket" to="ball" method="_on_friend_racket_body_entered"]
 [connection signal="body_exited" from="friend/racket" to="friend" method="_on_racket_body_exited"]
 [connection signal="body_entered" from="floor" to="." method="_on_floor_body_entered"]
-[connection signal="body_entered" from="floor" to="lana" method="_on_floor_body_entered"]
 [connection signal="body_entered" from="floor" to="ball" method="_on_floor_body_entered"]
+[connection signal="body_entered" from="missNotice" to="lana" method="_on_miss_notice_body_entered"]
 
 [editable path="ResultsTransition"]
 [editable path="timeLeft"]

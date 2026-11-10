@@ -1,7 +1,25 @@
 [gd_scene format=3 uid="uid://dp5sypv1r741c"]
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_1l2bw"]
+[ext_resource type="Script" uid="uid://dn8e60j42pkda" path="res://scripts/5_scrollReels/scroll_reels.gd" id="2_6q81w"]
+[ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="3_xev44"]
+[ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02few"]
+resource_local_to_scene = true
+shader = ExtResource("4_rdfhy")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
 
 [node name="root" unique_id=1975170843 instance=ExtResource("1_1l2bw")]
+script = ExtResource("2_6q81w")
+
+[node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
+text = "LIKE!"
+
+[node name="ResultsTransition" parent="." index="3" unique_id=1814402132 instance=ExtResource("3_xev44")]
+
+[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
+material = SubResource("ShaderMaterial_02few")
 
 [editable path="timeLeft"]
+[editable path="ResultsTransition"]

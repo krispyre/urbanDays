@@ -20,6 +20,7 @@
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_b8js2"]
 [ext_resource type="Texture2D" uid="uid://crl7ocgaurl1a" path="res://assets/sprites/salesDodge/salesDodge_run_relieve.png" id="10_xxdqm"]
 [ext_resource type="PackedScene" uid="uid://cca6tj3tn3qt2" path="res://scenes/time_left.tscn" id="20_44l3w"]
+[ext_resource type="Shader" uid="uid://doq84wbfuxhe4" path="res://assets/shader/blendingModes.gdshader" id="21_hmwyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw23f"]
 transparency = 1
@@ -1044,6 +1045,10 @@ _data = {
 &"showWin": SubResource("Animation_sw685")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5kf6"]
+shader = ExtResource("21_hmwyd")
+shader_parameter/blend_mode = 6
+
 [node name="salesDodge_level" type="Node" unique_id=1011445636]
 script = ExtResource("1_4213q")
 level_number = 2
@@ -1199,6 +1204,9 @@ libraries/ = SubResource("AnimationLibrary_b8js2")
 
 [node name="timeLeft" parent="." unique_id=1236679750 instance=ExtResource("20_44l3w")]
 z_index = 99
+
+[node name="ProgressBar" parent="timeLeft" index="0" unique_id=1032405580]
+material = SubResource("ShaderMaterial_d5kf6")
 
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]

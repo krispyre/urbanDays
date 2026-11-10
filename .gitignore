@@ -4,3 +4,4 @@
 *.tmp
 assets/quiz.aup4-shm
 assets/quiz.aup4-wal
+addons/terminal/bin/~libgodot_terminal.windows.template_debug.x86_64.dll

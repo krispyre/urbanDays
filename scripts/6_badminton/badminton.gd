@@ -3,6 +3,7 @@ extends Level
 #todo change transition and miss anim and winfail graphic
 func _level_ready():
 	isResultsShown = false
+	print(beat_offset)
 
 func _on_timer_timeout():
 	win.emit()

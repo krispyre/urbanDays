@@ -47,7 +47,7 @@ null
 func _level_ready() -> void:
 	isFail = false
 	sequence_len = sequence.size()
-	sequence.resize(measure_count * bgm.BEATS_PER_BAR)
+	sequence.resize(measure_count *bgm.BEATS_PER_BAR)
 	#$animPlayer.play("showHint")
 
 	

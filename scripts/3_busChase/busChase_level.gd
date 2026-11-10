@@ -34,6 +34,7 @@ func _ready() -> void:
 	musicNode.r.beat.connect(func(globalBeat): on_beat(globalBeat - beat_offset)) # returns the current beat out of the whole music
 	$animPlayer.play("showHint")
 	
+	#todo always null
 	progress_bar.max_value = LEVEL_DURATION_BEAT * 60.0 / musicNode.bpm
 	timer.wait_time = progress_bar.max_value + hint_anim_player.get_animation("showHint").length
 	progress_bar.value = progress_bar.max_value

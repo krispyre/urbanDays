@@ -11,7 +11,8 @@ var fail_spr: Node2D
 signal win
 signal fail
 
-var start = false
+signal gameStart
+var game_start = false
 var isFail = true
 
 ## 1-indexed gameplay level (matches bgm.level_beat_offset)
@@ -71,7 +72,8 @@ func _process(delta: float) -> void:
 
 func _on_anim_finished(anim_name: StringName) -> void:
 	if anim_name=="showHint":
-		start = true
+		game_start = true
+		gameStart.emit()
 		
 #these stuff are for overides
 func _level_ready() -> void:

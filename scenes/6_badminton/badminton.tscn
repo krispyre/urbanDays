@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://bclbjr4fbj8tu"]
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_1a27n"]
+[ext_resource type="Script" uid="uid://hd7one3itumc" path="res://scripts/6_badminton/badminton.gd" id="2_aqvqw"]
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="2_ykw20"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="3_h5qrl"]
 [ext_resource type="Texture2D" uid="uid://bitrwrpb4p45t" path="res://assets/sprites/badminton/bg.png" id="4_h5qrl"]
 [ext_resource type="Texture2D" uid="uid://cp6coxpaka2i8" path="res://assets/sprites/badminton/lana.png" id="5_lwq3e"]
 [ext_resource type="Texture2D" uid="uid://bd7gk8kk30elg" path="res://assets/sprites/badminton/ivan.png" id="6_clhof"]
+[ext_resource type="Script" uid="uid://dhxcd5yjf4qfh" path="res://scripts/6_badminton/lana.gd" id="6_hk12w"]
 [ext_resource type="Texture2D" uid="uid://s4lp5kmecx8h" path="res://assets/sprites/badminton/ball.png" id="7_5b86h"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwq3e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hk12w"]
 resource_local_to_scene = true
 shader = ExtResource("3_h5qrl")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -90,32 +92,7 @@ _data = {
 &"showHint": SubResource("Animation_1a27n")
 }
 
-[sub_resource type="GDScript" id="GDScript_hk12w"]
-script/source = "extends CharacterBody2D
-
-@export var SPEED := 300
-@onready var anim_spr: AnimatedSprite2D = $anim_spr
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-func _physics_process(dt: float) -> void:
-	var input_dir = Input.get_axis(\"left\", \"right\")
-	velocity.x = input_dir * SPEED
-	
-	if Input.is_action_just_pressed(\"action1\"):
-		anim_spr.play(\"hit\")
-		await anim_spr.animation_finished
-		anim_spr.play(\"default\")
-	move_and_slide()
-"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_clhof"]
-atlas = ExtResource("5_lwq3e")
-region = Rect2(0, 0, 388, 376)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b86h"]
 atlas = ExtResource("5_lwq3e")
 region = Rect2(0, 0, 388, 376)
 
@@ -139,21 +116,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5b86h")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_aqvqw")
 }, {
-"duration": 1.0,
+"duration": 9.0,
 "texture": SubResource("AtlasTexture_hk12w")
 }],
 "loop": 0,
 "name": &"hit",
-"speed": 16.0
+"speed": 20.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka23v"]
-size = Vector2(110.56369, 74.426735)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
 size = Vector2(118, 20)
@@ -199,31 +170,93 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_5b86h"]
-resource_name = "badminton_ball"
-script/source = "## https://www.reddit.com/r/godot/comments/qzsj45/parabolic_trajectory/
-extends Sprite2D
+[sub_resource type="GDScript" id="GDScript_hk12w"]
+resource_name = "badmintonFriend"
+script/source = "extends AnimatedSprite2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_racket_body_entered(body: Node2D) -> void:
+	play(\"hit\")
+	await animation_finished
+	play(\"default\")
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka23v"]
+size = Vector2(48.40764, 74.426735)
+
+[sub_resource type="GDScript" id="GDScript_aqvqw"]
+resource_name = "ball"
+script/source = "## https://www.reddit.com/r/godot/comments/qzsj45/parabolic_trajectory/
+extends CharacterBody2D
+
+@export var player: CharacterBody2D
+
+var xtime = .686 #60/r.bpm #reah in 1sec, turn to be in beat
+var target_x
+var target_height
+
+const gravity = 981
+var in_range = false
+
+#temp todo ignore bounce if its the first serve from friend
+var is_first_serve = true
+
+func _ready():
+	velocity = Vector2(0,0)
+	#hide()
+	
+func _physics_process(dt):
+	if owner.game_start:
+		velocity.y += gravity*dt
+		move_and_collide(velocity*dt)
+
+func _on_lana_swing() -> void:
+	if in_range:
+		bounce()
+
+func _on_racket_body_entered(body: Node2D) -> void:
+	in_range = true
+
+func _on_racket_body_exited(body: Node2D) -> void:
+	in_range = false
+
+func _on_friend_racket_body_entered(body: Node2D) -> void:
+	if is_first_serve:
+		is_first_serve = false
+		return
+	bounce()
+
+func bounce():
+	velocity.x *= -1
+	velocity.y *= -1
+	
+func set_init_vel(tx, ty):
+	target_x = tx
+	target_height = ty
+	velocity.x = (target_x - position.x)/xtime
+	velocity.y = -sqrt(2*gravity*target_height)
+	
+func _on_badminton_game_start() -> void:
+	show()
+	set_init_vel(595,100)
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqvqw"]
+size = Vector2(40, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f7n5a"]
 size = Vector2(20, 134)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qa5v"]
+size = Vector2(312, 48)
+
 [node name="badminton" unique_id=1975170843 instance=ExtResource("1_1a27n")]
+script = ExtResource("2_aqvqw")
 
 [node name="ResultsTransition" parent="." index="0" unique_id=1814402132 instance=ExtResource("2_ykw20")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_lwq3e")
+material = SubResource("ShaderMaterial_hk12w")
 
 [node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_spkm5")
@@ -241,45 +274,59 @@ centered = false
 
 [node name="lana" type="CharacterBody2D" parent="." index="5" unique_id=209604848]
 platform_wall_layers = 1
-script = SubResource("GDScript_hk12w")
+script = ExtResource("6_hk12w")
 
 [node name="anim_spr" type="AnimatedSprite2D" parent="lana" index="0" unique_id=1591522810]
 position = Vector2(601.00006, 444)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_h5qrl")
 animation = &"hit"
+autoplay = "default"
 centered = false
 offset = Vector2(-300, -366)
-
-[node name="Area2D" type="Area2D" parent="lana/anim_spr" index="0" unique_id=2040377403]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="lana/anim_spr/Area2D" index="0" unique_id=99330855]
-position = Vector2(-31.84721, -286.62418)
-shape = SubResource("RectangleShape2D_ka23v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="lana" index="1" unique_id=826322145]
 position = Vector2(601, 385)
 shape = SubResource("RectangleShape2D_qudme")
 
+[node name="hitCd" type="Timer" parent="lana" index="2" unique_id=151101187]
+wait_time = 0.5
+one_shot = true
+
+[node name="racket" type="Area2D" parent="lana" index="3" unique_id=2040377403]
+position = Vector2(601.00006, 444)
+scale = Vector2(0.785, 0.785)
+
+[node name="hb" type="CollisionPolygon2D" parent="lana/racket" index="0" unique_id=457713471]
+position = Vector2(-4, -174)
+polygon = PackedVector2Array(84.2547, -104.980865, 10.369385, -159.75792, -60.9682, -159.75792, -133.57965, -120.26749, -92.81537, -59.121002, -11.286682, -92.242004, 48.585938, -68.03818)
+
 [node name="friend" type="AnimatedSprite2D" parent="." index="6" unique_id=245304956]
 position = Vector2(97.00001, 436)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_lwq3e")
-animation = &"hit"
+autoplay = "default"
 offset = Vector2(72.165, -137.73)
+script = SubResource("GDScript_hk12w")
 
-[node name="Area2D2" type="Area2D" parent="friend" index="0" unique_id=1009043005]
+[node name="racket" type="Area2D" parent="friend" index="0" unique_id=1009043005]
 position = Vector2(610.19104, 0)
 scale = Vector2(0.99999994, 0.99999994)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="friend/Area2D2" index="0" unique_id=1307652986]
-position = Vector2(-538.8535, -276.43314)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="friend/racket" index="0" unique_id=1307652986]
+position = Vector2(-589.80896, -276.433)
 shape = SubResource("RectangleShape2D_ka23v")
 
-[node name="Ball" type="Sprite2D" parent="." index="7" unique_id=548503793]
-position = Vector2(141, 230)
+[node name="ball" type="CharacterBody2D" parent="." index="7" unique_id=1213758174 node_paths=PackedStringArray("player")]
+position = Vector2(149, 219)
+script = SubResource("GDScript_aqvqw")
+player = NodePath("../lana")
+
+[node name="spr" type="Sprite2D" parent="ball" index="0" unique_id=548503793]
 texture = ExtResource("7_5b86h")
-script = SubResource("GDScript_5b86h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball" index="1" unique_id=1159436418]
+shape = SubResource("RectangleShape2D_aqvqw")
 
 [node name="constraints" type="StaticBody2D" parent="." index="8" unique_id=1851540331]
 
@@ -291,7 +338,23 @@ shape = SubResource("RectangleShape2D_f7n5a")
 position = Vector2(443, 351)
 shape = SubResource("RectangleShape2D_f7n5a")
 
+[node name="floor" type="Area2D" parent="." index="9" unique_id=691212299]
+position = Vector2(558, 463)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" index="0" unique_id=524519431]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_1qa5v")
+
+[connection signal="gameStart" from="." to="ball" method="_on_badminton_game_start"]
+[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
+[connection signal="swing" from="lana" to="ball" method="_on_lana_swing"]
 [connection signal="animation_finished" from="lana/anim_spr" to="lana" method="_on_anim_spr_animation_finished"]
+[connection signal="body_entered" from="lana/racket" to="ball" method="_on_racket_body_entered"]
+[connection signal="body_exited" from="lana/racket" to="ball" method="_on_racket_body_exited"]
+[connection signal="body_entered" from="friend/racket" to="friend" method="_on_racket_body_entered"]
+[connection signal="body_entered" from="friend/racket" to="ball" method="_on_friend_racket_body_entered"]
+[connection signal="body_exited" from="friend/racket" to="friend" method="_on_racket_body_exited"]
+[connection signal="body_entered" from="floor" to="." method="_on_floor_body_entered"]
 
 [editable path="ResultsTransition"]
 [editable path="timeLeft"]

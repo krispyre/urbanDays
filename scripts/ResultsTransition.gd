@@ -16,7 +16,6 @@ func _ready() -> void:
 
 
 func play_win() -> void:
-	print("win rt?")
 	_play(win, fail)
 
 

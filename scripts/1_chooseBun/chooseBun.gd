@@ -5,10 +5,9 @@ extends Level
 @onready var results: ResultsTransition = $ResultsTransition
 
 var correct_bun = 0
-var fail_shown := false
 
 func _level_ready() -> void:
-	isFail = true
+	isResultsShown = false
 	print(beat_offset)
 	correct_bun = randi_range(0, bun.sprite_frames.get_frame_count("buns") - 1)
 	bun.frame = correct_bun
@@ -30,23 +29,20 @@ func _on_bun_selected(index: int) -> void:
 		fail.emit()
 
 func _on_win() -> void:
+	if not mark_results_shown():
+		return
 	print("correct")
 	lana_anim.play("jump")
-	isFail = false
 	await get_tree().create_timer(.5).timeout
 	results.play_win()
 
 func _on_fail() -> void:
-	if fail_shown:
+	if not mark_results_shown():
 		return
-	fail_shown = true
-	print("false")
+	print("fail")
 	lana_anim.play("oops")
 	await get_tree().create_timer(.5).timeout
 	results.play_fail()
 
-func _on_timer_timeout():
-	if isFail:
-		fail.emit() # showFail via _on_fail if not already shown
-	else:
-		results.play_win()
+func _on_timer_timeout() -> void:
+	fail.emit()

@@ -40,8 +40,7 @@ func _ready() -> void:
 	progress_bar.value = progress_bar.max_value
 	timer.start()
 	prints(progress_bar.value, timer.wait_time)
-	
-	isFail = true
+	isResultsShown = false
 	
 	_level_ready()
 	
@@ -50,14 +49,17 @@ func on_beat(localBeat: int) -> void:
 	#print("b owo")
 
 func _on_level_win():
+	if not mark_results_shown():
+		return
 	win_spr.show()
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	print("win")
-	isFail = false
 
 func _on_level_fail() -> void:
+	if not mark_results_shown():
+		return
 	fail_spr.show()
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
@@ -68,9 +70,8 @@ func _on_goal_body_entered(_body: Node3D) -> void:
 	win.emit()
 
 func _on_timer_timeout() -> void:
-	if (isFail):
-		fail.emit()
+	fail.emit()
 
 func _on_hint_anim_finished(anim_name: StringName) -> void:
-	start = true
+	game_start = true
 	$level/player/Sprite3D.play("run")

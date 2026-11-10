@@ -20,3 +20,7 @@ func _physics_process(dt: float) -> void:
 		await anim_spr.animation_finished
 		anim_spr.play("default")
 	move_and_slide()
+
+
+func _on_floor_body_entered(body: Node2D) -> void:
+	anim_spr.play("miss")

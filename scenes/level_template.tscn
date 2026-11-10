@@ -175,6 +175,7 @@ metadata/_edit_group_ = true
 
 [node name="timeLeft" parent="." unique_id=1236679750 instance=ExtResource("3_6lum8")]
 
+[connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="animation_finished" from="animPlayer" to="." method="_on_anim_finished"]
 

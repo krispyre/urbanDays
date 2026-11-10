@@ -12,7 +12,7 @@ func _ready() -> void:
 	pushForce = PUSH_FORCE_MIN
 	
 func _physics_process(dt: float) -> void:
-	if !owner.start: return
+	if !owner.game_start: return
 	if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("action1"):
 		velocity.z = 0
 		velocity.z -= pushForce * dt

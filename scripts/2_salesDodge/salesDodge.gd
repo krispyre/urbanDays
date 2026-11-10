@@ -45,20 +45,18 @@ null
 		sequence = val
 
 func _level_ready() -> void:
-	isFail = false
+	isResultsShown = false
 	sequence_len = sequence.size()
-	sequence.resize(measure_count *bgm.BEATS_PER_BAR)
+	sequence.resize(measure_count * bgm.BEATS_PER_BAR)
 	#$animPlayer.play("showHint")
 
 	
 func on_beat(local_beat: int) -> void:
 	prints("beat:", local_beat)
-	if local_beat == WIN_BEAT:
-		#win or fail
-		if (!isFail):
-			win.emit()
+	if local_beat == WIN_BEAT and not isResultsShown:
+		win.emit()
 
-	if !isFail and local_beat > sequence_len:
+	if not isResultsShown and local_beat > sequence_len:
 		print("end")
 		player_body.play_relieve()
 			
@@ -68,20 +66,26 @@ func on_beat(local_beat: int) -> void:
 	if step == null:
 		return
 	
-	if !isFail:	
+	if not isResultsShown:
 		var s = salesObj.instantiate()
 		s.dir = step["dir"]
 		sales_container.add_child(s)
 			
 func _on_fail():
+	if not mark_results_shown():
+		return
 	anim_player.play("showFail")
-	
+
 func _on_win() -> void:
+	if not mark_results_shown():
+		return
 	anim_player.play("showWin")
 
+func _on_timer_timeout() -> void:
+	win.emit()
+
 func _on_player_hit() -> void:
-	isFail = true
 	fail.emit()
 
 func _on_hint_anim_finished(anim_name: StringName) -> void:
-	start = true
+	game_start = true

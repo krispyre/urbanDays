@@ -11,7 +11,7 @@ func _ready() -> void:
 	anim.speed_scale = 0.8
 
 func _process(_delta: float) -> void:
-	if not can_move or not owner.start:
+	if not can_move or not owner.game_start:
 		return
 	for dir in ["left", "right", "up", "down"]:
 		if Input.is_action_just_pressed("ui_" + dir):

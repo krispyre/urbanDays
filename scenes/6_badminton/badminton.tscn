@@ -6,14 +6,99 @@
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="3_h5qrl"]
 [ext_resource type="Texture2D" uid="uid://bitrwrpb4p45t" path="res://assets/sprites/badminton/bg.png" id="4_h5qrl"]
 [ext_resource type="Texture2D" uid="uid://cp6coxpaka2i8" path="res://assets/sprites/badminton/lana.png" id="5_lwq3e"]
+[ext_resource type="Texture2D" uid="uid://d2d50j8islupu" path="res://assets/sprites/ui/transition_swipe.png" id="5_rkl1g"]
 [ext_resource type="Texture2D" uid="uid://bd7gk8kk30elg" path="res://assets/sprites/badminton/ivan.png" id="6_clhof"]
 [ext_resource type="Script" uid="uid://dhxcd5yjf4qfh" path="res://scripts/6_badminton/lana.gd" id="6_hk12w"]
+[ext_resource type="Texture2D" uid="uid://bdoljayrbgj51" path="res://assets/sprites/badminton/win.png" id="6_ttl11"]
 [ext_resource type="Texture2D" uid="uid://s4lp5kmecx8h" path="res://assets/sprites/badminton/ball.png" id="7_5b86h"]
+[ext_resource type="Texture2D" uid="uid://dhbgtjwgu71gp" path="res://assets/sprites/badminton/fail.png" id="7_m1q5t"]
+[ext_resource type="Texture2D" uid="uid://nfsouxut3umo" path="res://assets/sprites/badminton/racketRange.png" id="8_vnj87"]
+[ext_resource type="Texture2D" uid="uid://ckijto0m3hcf5" path="res://assets/sprites/badminton/lana_miss.png" id="11_d5kf6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hk12w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnj87"]
 resource_local_to_scene = true
 shader = ExtResource("3_h5qrl")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5kf6"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ixxn"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrbel"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(1440, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8o080"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odmox"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(720, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlbjb"]
+atlas = ExtResource("5_rkl1g")
+region = Rect2(1440, 540, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44l3w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5kf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ixxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrbel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8o080")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odmox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlbjb")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g6a0"]
+atlas = ExtResource("6_ttl11")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6g6a0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6g6a0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6c6o"]
+atlas = ExtResource("7_m1q5t")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6c6o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6c6o")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_1a27n"]
 resource_name = "showHint"
@@ -124,10 +209,65 @@ animations = [{
 "loop": 0,
 "name": &"hit",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_d5kf6")
+}],
+"loop": 1,
+"name": &"miss",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
 size = Vector2(118, 20)
+
+[sub_resource type="GDScript" id="GDScript_vnj87"]
+resource_name = "rangeIndicator"
+script/source = "extends Sprite2D
+@onready var anim_player: AnimationPlayer = $animPlayer
+
+func _ready() -> void:
+	anim_player.play(\"fadeOut\")
+	
+"
+
+[sub_resource type="Animation" id="Animation_vnj87"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lana/RacketRange:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rkl1g"]
+resource_name = "fadeOut"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lana/RacketRange:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6666667, 3.8666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.67058825), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ttl11"]
+_data = {
+&"RESET": SubResource("Animation_vnj87"),
+&"fadeOut": SubResource("Animation_rkl1g")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnj87"]
 atlas = ExtResource("6_clhof")
@@ -206,8 +346,7 @@ func _ready():
 	#hide()
 	
 func _physics_process(dt):
-	prints(owner.game_start, owner.isFail)
-	if owner.game_start && !owner.isFail:
+	if owner.game_start && !owner.isResultsShown:
 		velocity.y += gravity*dt
 		spr.rotation = velocity.angle()
 		move_and_collide(velocity*dt)
@@ -268,14 +407,21 @@ script = ExtResource("2_aqvqw")
 [node name="ResultsTransition" parent="." index="0" unique_id=1814402132 instance=ExtResource("2_ykw20")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-visible = true
-material = SubResource("ShaderMaterial_hk12w")
+material = SubResource("ShaderMaterial_vnj87")
+position = Vector2(718.2422, 7.834925e-06)
+rotation = 1.5707964
+scale = Vector2(0.7454384, 1.3319299)
+sprite_frames = SubResource("SpriteFrames_44l3w")
+frame = 5
+frame_progress = 0.15668736
 
 [node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1290060690]
 visible = true
+sprite_frames = SubResource("SpriteFrames_6g6a0")
 
 [node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=584044491]
 visible = true
+sprite_frames = SubResource("SpriteFrames_g6c6o")
 
 [node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_spkm5")
@@ -300,7 +446,7 @@ script = ExtResource("6_hk12w")
 position = Vector2(6.1035156e-05, 2)
 scale = Vector2(0.785, 0.785)
 sprite_frames = SubResource("SpriteFrames_h5qrl")
-animation = &"hit"
+animation = &"miss"
 autoplay = "default"
 centered = false
 offset = Vector2(-300, -366)
@@ -322,6 +468,16 @@ collision_mask = 2
 [node name="hb" type="CollisionPolygon2D" parent="lana/racket" index="0" unique_id=457713471]
 position = Vector2(-4, -174)
 polygon = PackedVector2Array(96.99353, -121.54138, 21.83435, -168.67513, -57.146545, -169.949, -143.77075, -129.1847, -86.44592, -38.73883, -7.465027, -68.03818, 61.324768, -46.38214)
+
+[node name="RacketRange" type="Sprite2D" parent="lana" index="4" unique_id=85879029]
+position = Vector2(-64, -155)
+scale = Vector2(0.76, 0.76)
+texture = ExtResource("8_vnj87")
+script = SubResource("GDScript_vnj87")
+
+[node name="animPlayer" type="AnimationPlayer" parent="lana/RacketRange" index="0" unique_id=1606826518]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_ttl11")
 
 [node name="friend" type="AnimatedSprite2D" parent="." index="6" unique_id=245304956]
 position = Vector2(97.00001, 436)
@@ -373,7 +529,6 @@ collision_mask = 2
 position = Vector2(62, 3)
 shape = SubResource("RectangleShape2D_1qa5v")
 
-[connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="gameStart" from="." to="ball" method="_on_badminton_game_start"]
 [connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="swing" from="lana" to="ball" method="_on_lana_swing"]
@@ -384,6 +539,7 @@ shape = SubResource("RectangleShape2D_1qa5v")
 [connection signal="body_entered" from="friend/racket" to="ball" method="_on_friend_racket_body_entered"]
 [connection signal="body_exited" from="friend/racket" to="friend" method="_on_racket_body_exited"]
 [connection signal="body_entered" from="floor" to="." method="_on_floor_body_entered"]
+[connection signal="body_entered" from="floor" to="lana" method="_on_floor_body_entered"]
 [connection signal="body_entered" from="floor" to="ball" method="_on_floor_body_entered"]
 
 [editable path="ResultsTransition"]

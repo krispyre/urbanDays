@@ -1,7 +1,6 @@
 extends GridContainer
 
-@onready var chooser: Control = $"../chooser"
-@onready var chooser_anim_player: AnimationPlayer = $"../chooser/animPlayer"
+@export var select_frame: Control
 
 signal bun_selected(index:int)
 signal bun_focused(index:int)
@@ -15,18 +14,18 @@ func _ready() -> void:
 
 	# Wait a frame so button sizes are laid out before first focus/move
 	await get_tree().process_frame
-	children[randi_range(0,6)].grab_focus()
+	children[randi_range(0,children.size()-1)].grab_focus()
 
 #0 indexed
 func _on_bun_selected(bun_index: int):
 	prints("bun", bun_index, "selected")
-	chooser_anim_player.play("select")
+	select_frame.get_node("animPlayer").play("select")
 	bun_selected.emit(bun_index)
 
 
 func _on_bun_focused(bun_index: int):
 	var center := (get_child(bun_index) as Control).get_global_rect().get_center()
-	chooser_anim_player.play("focus")
-	chooser.global_position = center
+	select_frame.get_node("animPlayer").play("focus")
+	select_frame.global_position = center
 	prints("bun", bun_index, "focused")
 	bun_focused.emit(bun_index)

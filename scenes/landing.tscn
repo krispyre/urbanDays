@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://26oersj7h16g"]
+
+[ext_resource type="Script" uid="uid://dyu7vq6ejs5gp" path="res://scripts/Scene.gd" id="1_mfct4"]
+[ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="2_b236o"]
+[ext_resource type="Texture2D" uid="uid://xmnctsh7qlwn" path="res://assets/sprites/ui/exclamationMark.png" id="3_usvfl"]
+
+[sub_resource type="GDScript" id="GDScript_usvfl"]
+resource_name = "startMenu"
+script/source = "extends Control
+
+signal item_selected(index:int)
+signal item_focused(index:int)
+
+func _ready() -> void:
+	var children = get_children()
+	for i in range(children.size()):
+		children[i].set_focus_mode(FocusMode.FOCUS_ALL)
+		children[i].button_down.connect(func(): _on_item_selected(i))
+		children[i].focus_entered.connect(func(): _on_item_focused(i))
+		children[i].mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
+
+	# Wait a frame so button sizes are laid out before first focus/move
+	await get_tree().process_frame
+	children[randi_range(0,children.size()-1)].grab_focus()
+
+#0 indexed
+func _on_item_selected(bun_index: int):
+	prints(\"bun\", bun_index, \"selected\")
+	item_selected.emit(bun_index)
+
+func _on_item_focused(bun_index: int):
+	prints(\"bun\", bun_index, \"focused\")
+	item_focused.emit(bun_index)
+"
+
+[sub_resource type="Theme" id="Theme_mfct4"]
+default_font = ExtResource("2_b236o")
+default_font_size = 34
+
+[node name="Landing" type="Node" unique_id=1507338433]
+script = ExtResource("1_mfct4")
+metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
+
+[node name="Control" type="Control" parent="." unique_id=2107179078]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 720.0
+offset_bottom = 540.0
+script = SubResource("GDScript_usvfl")
+
+[node name="start" type="Button" parent="Control" unique_id=759477574]
+layout_mode = 0
+offset_left = 409.00003
+offset_top = 293.0
+offset_right = 622.33386
+offset_bottom = 372.1663
+rotation = -0.2617994
+focus_neighbor_left = NodePath("../ttorial")
+focus_neighbor_bottom = NodePath("../ttorial")
+focus_previous = NodePath("../ttorial")
+theme = SubResource("Theme_mfct4")
+text = "start"
+icon = ExtResource("3_usvfl")
+expand_icon = true
+
+[node name="ttorial" type="Button" parent="Control" unique_id=280347909]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 380.0
+offset_right = 316.0
+offset_bottom = 452.0
+rotation = -0.2617994
+focus_neighbor_top = NodePath("../start")
+focus_neighbor_right = NodePath("../start")
+focus_next = NodePath("../start")
+text = "extremely simple tutorial"

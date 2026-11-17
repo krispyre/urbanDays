@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="3_xev44"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
 [ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="5_rdfhy"]
-[ext_resource type="Texture2D" uid="uid://d8p5bb5hqeb3" path="res://assets/sprites/scrollReels/phoneMask.png" id="6_rmii1"]
 [ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
 [ext_resource type="Texture2D" uid="uid://byd7blem8ems3" path="res://assets/sprites/scrollReels/msgBubble.png" id="8_w1qyk"]
@@ -93,15 +92,6 @@ resource_local_to_scene = true
 shader = ExtResource("4_rdfhy")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xhhom"]
-viewport_path = NodePath("Phone/contentVp")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1qyk"]
-resource_local_to_scene = true
-shader = ExtResource("4_rdfhy")
-shader_parameter/keyColor = Color(0, 1, 0, 1)
-shader_parameter/destTexture = SubResource("ViewportTexture_xhhom")
-
 [sub_resource type="GDScript" id="GDScript_w1qyk"]
 resource_name = "scrollContainer"
 script/source = "extends ScrollContainer
@@ -173,7 +163,7 @@ animations = [{
 
 [node name="root" unique_id=1975170843 node_paths=PackedStringArray("reelList") instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
-reelList = NodePath("Phone/ScrollContainer/content")
+reelList = NodePath("Phone/SubViewportContainer/contentVp/ScrollContainer/content")
 reelScene = ExtResource("7_rmii1")
 
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
@@ -192,30 +182,37 @@ material = SubResource("ShaderMaterial_rmii1")
 
 [node name="Phone" type="Sprite2D" parent="." index="4" unique_id=1549461285]
 texture_filter = 1
-position = Vector2(399, 319)
+position = Vector2(467.00003, 276)
+rotation = 0.3367173
 texture = ExtResource("5_rdfhy")
 
-[node name="mask" type="Sprite2D" parent="Phone" index="0" unique_id=519072798]
-self_modulate = Color(0.79893494, 0.51734966, 0.65763533, 1)
-material = SubResource("ShaderMaterial_w1qyk")
-texture = ExtResource("6_rmii1")
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Phone" index="0" unique_id=1652991148]
+offset_left = -181.8433
+offset_top = -210.75584
+offset_right = 184.74452
+offset_bottom = 247.2441
 
-[node name="contentVp" type="SubViewport" parent="Phone" index="1" unique_id=423848089]
-size = Vector2i(659, 858)
+[node name="contentVp" type="SubViewport" parent="Phone/SubViewportContainer" index="0" unique_id=423848089]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(365, 445)
+render_target_update_mode = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Phone" index="2" unique_id=515235246 node_paths=PackedStringArray("list")]
-offset_left = -180.0
-offset_top = -214.0
-offset_right = 190.0
-offset_bottom = 244.0
+[node name="ScrollContainer" type="ScrollContainer" parent="Phone/SubViewportContainer/contentVp" index="0" unique_id=515235246 node_paths=PackedStringArray("list")]
+custom_maximum_size = Vector2(485.77, -1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = SubResource("GDScript_w1qyk")
 list = NodePath("content")
 
-[node name="content" type="VBoxContainer" parent="Phone/ScrollContainer" index="0" unique_id=847572825]
+[node name="content" type="VBoxContainer" parent="Phone/SubViewportContainer/contentVp/ScrollContainer" index="0" unique_id=847572825]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="start" type="NinePatchRect" parent="Phone/ScrollContainer/content" index="0" unique_id=1732581021]
+[node name="start" type="NinePatchRect" parent="Phone/SubViewportContainer/contentVp/ScrollContainer/content" index="0" unique_id=1732581021]
 custom_minimum_size = Vector2(204.125, 60)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -226,7 +223,7 @@ patch_margin_top = 15
 patch_margin_right = 30
 patch_margin_bottom = 15
 
-[node name="Label" type="Label" parent="Phone/ScrollContainer/content/start" index="0" unique_id=1711611803]
+[node name="Label" type="Label" parent="Phone/SubViewportContainer/contentVp/ScrollContainer/content/start" index="0" unique_id=1711611803]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 4.0
@@ -236,10 +233,10 @@ text = "u better see ALL of them NOW"
 label_settings = SubResource("LabelSettings_la7lc")
 autowrap_mode = 2
 
-[node name="scrollCd" type="Timer" parent="Phone/ScrollContainer" index="1" unique_id=338021355]
+[node name="scrollCd" type="Timer" parent="Phone/SubViewportContainer/contentVp/ScrollContainer" index="1" unique_id=338021355]
 wait_time = 0.5
 
-[node name="username" type="AnimatedSprite2D" parent="Phone" index="3" unique_id=1087020386]
+[node name="username" type="AnimatedSprite2D" parent="Phone" index="1" unique_id=1087020386]
 position = Vector2(-164, -275)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 centered = false

@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://biiuwgcovwe0n" path="res://assets/sprites/chooseBun/bun0005.png" id="12_g4dxb"]
 [ext_resource type="Texture2D" uid="uid://gosh7nfsrmw4" path="res://assets/sprites/chooseBun/bun0006.png" id="13_20032"]
 [ext_resource type="Texture2D" uid="uid://cjd665ux51y1u" path="res://assets/sprites/chooseBun/chooseBun_bubble.png" id="20_fmw4f"]
-[ext_resource type="Texture2D" uid="uid://5h30cm7aicnv" path="res://assets/sprites/ui/scratchy_choose_blackO.png" id="23_dp676"]
+[ext_resource type="PackedScene" uid="uid://6ifs6cqafa1o" path="res://scenes/chooseFrame.tscn" id="23_dp676"]
 [ext_resource type="Texture2D" uid="uid://by7cbfjgs25f3" path="res://assets/sprites/chooseBun/chooseBun_bg_screen.png" id="25_psgxf"]
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="26_results"]
 
@@ -491,94 +491,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_psgxf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("chooser/spr:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(168, 194)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("chooser/spr:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-51.000004, -59)]
-}
-
-[sub_resource type="Animation" id="Animation_hj01d"]
-resource_name = "focus"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("chooser/spr:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(208.25275, 231.87228)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("chooser/spr:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-63.1961, -70.56074)]
-}
-
-[sub_resource type="Animation" id="Animation_tpsvl"]
-resource_name = "select"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("chooser/spr:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(168, 194)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("chooser/spr:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-51.000004, -59)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r88la"]
-_data = {
-&"RESET": SubResource("Animation_psgxf"),
-&"focus": SubResource("Animation_hj01d"),
-&"select": SubResource("Animation_tpsvl")
-}
-
 [node name="chooseBun" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
 
@@ -636,7 +548,7 @@ texture = ExtResource("4_m8th3")
 texture_filter = 1
 texture = ExtResource("25_psgxf")
 
-[node name="bunMenu" type="GridContainer" parent="." index="6" unique_id=1807493398]
+[node name="bunMenu" type="GridContainer" parent="." index="6" unique_id=1807493398 node_paths=PackedStringArray("select_frame")]
 z_index = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_hj01d")
@@ -649,6 +561,7 @@ theme_override_constants/h_separation = 28
 theme_override_constants/v_separation = 29
 columns = 4
 script = ExtResource("6_dp676")
+select_frame = NodePath("../chooser")
 
 [node name="bun0" type="TextureButton" parent="bunMenu" index="0" unique_id=92759346]
 texture_filter = 1
@@ -728,29 +641,7 @@ sprite_frames = SubResource("SpriteFrames_jr1nr")
 animation = &"buns"
 frame = 2
 
-[node name="chooser" type="Control" parent="." index="8" unique_id=1643719871]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="spr" type="NinePatchRect" parent="chooser" index="0" unique_id=1650168194]
-z_index = 5
-layout_mode = 0
-offset_left = -51.000004
-offset_top = -59.0
-offset_right = 117.0
-offset_bottom = 135.0
-scale = Vector2(0.6059757, 0.61051166)
-texture = ExtResource("23_dp676")
-patch_margin_left = 62
-patch_margin_top = 57
-patch_margin_right = 57
-patch_margin_bottom = 62
-
-[node name="animPlayer" type="AnimationPlayer" parent="chooser" index="1" unique_id=1621506930]
-root_node = NodePath("../..")
-libraries/ = SubResource("AnimationLibrary_r88la")
+[node name="chooser" parent="." index="8" unique_id=836570877 instance=ExtResource("23_dp676")]
 
 [connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="bun_focused" from="bunMenu" to="." method="_on_bun_focused"]
@@ -758,3 +649,4 @@ libraries/ = SubResource("AnimationLibrary_r88la")
 
 [editable path="ResultsTransition"]
 [editable path="timeLeft"]
+[editable path="chooser"]

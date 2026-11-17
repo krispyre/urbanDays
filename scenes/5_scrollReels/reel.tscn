@@ -212,7 +212,7 @@ frame_progress = 1.0
 position = Vector2(53, 22)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 
-[node name="Label" type="Label" parent="mask" unique_id=1053978155]
+[node name="length" type="Label" parent="mask" unique_id=1053978155]
 offset_left = 158.0
 offset_top = 9.0
 offset_right = 260.0

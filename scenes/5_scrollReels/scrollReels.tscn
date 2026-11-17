@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
 [ext_resource type="Texture2D" uid="uid://byd7blem8ems3" path="res://assets/sprites/scrollReels/msgBubble.png" id="8_w1qyk"]
+[ext_resource type="Texture2D" uid="uid://cheuie5tkm6ig" path="res://assets/sprites/scrollReels/username.png" id="10_obe8b"]
 
 [sub_resource type="Animation" id="Animation_xev44"]
 resource_name = "showHint"
@@ -107,13 +108,13 @@ script/source = "extends ScrollContainer
 
 var curReel = 1
 @export var list: VBoxContainer
-@export var card: TextureRect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	grab_focus()
 
 func _process(dt):
-	
+	#todo make this event based
+	var card = list.get_child(1)
 	if Input.is_action_just_pressed(\"down\"):
 		if curReel < list.get_child_count()-1:
 			curReel+= 1
@@ -128,7 +129,6 @@ func _process(dt):
 	if Input.is_action_just_pressed(\"action1\"):
 		like()
 func like():
-	
 	list.get_child(curReel).play_like_anims()
 
 func animate_scroll(target_pos: int, duration: float = .5) -> void:
@@ -142,8 +142,39 @@ func animate_scroll(target_pos: int, duration: float = .5) -> void:
 font = ExtResource("8_la7lc")
 font_size = 23
 
-[node name="root" unique_id=1975170843 instance=ExtResource("1_1l2bw")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwa23"]
+atlas = ExtResource("10_obe8b")
+region = Rect2(0, 0, 153, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj6mo"]
+atlas = ExtResource("10_obe8b")
+region = Rect2(153, 0, 153, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2o04"]
+atlas = ExtResource("10_obe8b")
+region = Rect2(0, 60, 153, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwa23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj6mo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2o04")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="root" unique_id=1975170843 node_paths=PackedStringArray("reelList") instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
+reelList = NodePath("Phone/ScrollContainer/content")
+reelScene = ExtResource("7_rmii1")
 
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_rdfhy")
@@ -172,14 +203,13 @@ texture = ExtResource("6_rmii1")
 [node name="contentVp" type="SubViewport" parent="Phone" index="1" unique_id=423848089]
 size = Vector2i(659, 858)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Phone" index="2" unique_id=515235246 node_paths=PackedStringArray("list", "card")]
+[node name="ScrollContainer" type="ScrollContainer" parent="Phone" index="2" unique_id=515235246 node_paths=PackedStringArray("list")]
 offset_left = -180.0
 offset_top = -214.0
 offset_right = 190.0
 offset_bottom = 244.0
 script = SubResource("GDScript_w1qyk")
 list = NodePath("content")
-card = NodePath("content/ReelCard")
 
 [node name="content" type="VBoxContainer" parent="Phone/ScrollContainer" index="0" unique_id=847572825]
 layout_mode = 2
@@ -206,23 +236,13 @@ text = "u better see ALL of them NOW"
 label_settings = SubResource("LabelSettings_la7lc")
 autowrap_mode = 2
 
-[node name="ReelCard" parent="Phone/ScrollContainer/content" index="1" unique_id=987678320 instance=ExtResource("7_rmii1")]
-layout_mode = 2
-
-[node name="ReelCard2" parent="Phone/ScrollContainer/content" index="2" unique_id=183240585 instance=ExtResource("7_rmii1")]
-layout_mode = 2
-
-[node name="ReelCard3" parent="Phone/ScrollContainer/content" index="3" unique_id=599195555 instance=ExtResource("7_rmii1")]
-layout_mode = 2
-
-[node name="ReelCard4" parent="Phone/ScrollContainer/content" index="4" unique_id=1328400468 instance=ExtResource("7_rmii1")]
-layout_mode = 2
-
-[node name="ReelCard5" parent="Phone/ScrollContainer/content" index="5" unique_id=1294338776 instance=ExtResource("7_rmii1")]
-layout_mode = 2
-
 [node name="scrollCd" type="Timer" parent="Phone/ScrollContainer" index="1" unique_id=338021355]
 wait_time = 0.5
+
+[node name="username" type="AnimatedSprite2D" parent="Phone" index="3" unique_id=1087020386]
+position = Vector2(-164, -275)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+centered = false
 
 [node name="ColorRect" type="ColorRect" parent="." index="5" unique_id=633669705]
 visible = false

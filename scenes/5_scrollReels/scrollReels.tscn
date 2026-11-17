@@ -87,7 +87,7 @@ _data = {
 &"showHint": SubResource("Animation_xev44")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmii1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la7lc"]
 resource_local_to_scene = true
 shader = ExtResource("4_rdfhy")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -165,6 +165,7 @@ animations = [{
 script = ExtResource("2_6q81w")
 reelList = NodePath("Phone/SubViewportContainer/contentVp/ScrollContainer/content")
 reelScene = ExtResource("7_rmii1")
+level_number = 5
 
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_rdfhy")
@@ -178,7 +179,7 @@ z_index = 999
 [node name="ResultsTransition" parent="." index="3" unique_id=1814402132 instance=ExtResource("3_xev44")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_rmii1")
+material = SubResource("ShaderMaterial_la7lc")
 
 [node name="Phone" type="Sprite2D" parent="." index="4" unique_id=1549461285]
 texture_filter = 1

@@ -3,6 +3,9 @@ extends Level
 
 @export var reelList: VBoxContainer
 @export var reelScene: PackedScene
+
+func _init():
+	LEVEL_DURATION_BEAT = 15
 func _on_win():
 	if not mark_results_shown():
 		return
@@ -13,7 +16,7 @@ func _on_fail() -> void:
 		return
 	results_transition.play_fail()
 
-func _ready() -> void:
+func _level_ready() -> void:
 	#init reel cards
 	for i in range(5):
 		var card = reelScene.instantiate()

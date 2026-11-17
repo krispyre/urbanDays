@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_1l2bw"]
 [ext_resource type="Script" uid="uid://dn8e60j42pkda" path="res://scripts/5_scrollReels/scroll_reels.gd" id="2_6q81w"]
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="3_xev44"]
+[ext_resource type="Texture2D" uid="uid://b14srkcm4i35a" path="res://assets/sprites/ui/ui_btn_up.png" id="4_fwa23"]
+[ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/sprites/ui/ui_btn_z.png" id="4_obe8b"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
 [ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="5_rdfhy"]
 [ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
@@ -87,6 +89,47 @@ _data = {
 &"showHint": SubResource("Animation_xev44")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6mkl"]
+atlas = ExtResource("4_fwa23")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d640n"]
+atlas = ExtResource("4_fwa23")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dii4x"]
+atlas = ExtResource("4_obe8b")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki1qj"]
+atlas = ExtResource("4_obe8b")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_la7lc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6mkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d640n")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dii4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki1qj")
+}],
+"loop": 1,
+"name": &"z",
+"speed": 2.0
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_la7lc"]
 resource_local_to_scene = true
 shader = ExtResource("4_rdfhy")
@@ -108,12 +151,12 @@ func _process(dt):
 	if Input.is_action_just_pressed(\"down\"):
 		if curReel < list.get_child_count()-1:
 			curReel+= 1
-		animate_scroll(scroll_vertical+card.size.y)
+		animate_scroll(scroll_vertical+card.size.y+list.get_theme_constant(\"separation\"))
 		print(curReel)
 	elif Input.is_action_just_pressed(\"up\"):
 		if curReel >1:
 			curReel-= 1
-		animate_scroll(scroll_vertical-card.size.y)
+		animate_scroll(scroll_vertical-card.size.y+list.get_theme_constant(\"separation\"))
 		print(curReel)
 		
 	if Input.is_action_just_pressed(\"action1\"):
@@ -170,8 +213,31 @@ level_number = 5
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_rdfhy")
 
-[node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
+[node name="hint" parent="." index="1" unique_id=1041035703]
+modulate = Color(1, 1, 1, 1)
+offset_top = 88.56906
+offset_bottom = 88.56906
+scale = Vector2(1, 1)
+
+[node name="Label" parent="hint" index="0" unique_id=285491151]
 text = "SCROLL & LIKE!"
+
+[node name="up" type="AnimatedSprite2D" parent="hint" index="1" unique_id=350775366]
+position = Vector2(221.99997, 39.430946)
+sprite_frames = SubResource("SpriteFrames_la7lc")
+animation = &"up"
+
+[node name="up2" type="AnimatedSprite2D" parent="hint" index="2" unique_id=1986635672]
+position = Vector2(188.99997, 82.02058)
+sprite_frames = SubResource("SpriteFrames_la7lc")
+animation = &"z"
+autoplay = "up"
+
+[node name="z" type="AnimatedSprite2D" parent="hint" index="3" unique_id=1756456075]
+position = Vector2(-219.00003, 61.020576)
+sprite_frames = SubResource("SpriteFrames_la7lc")
+animation = &"z"
+autoplay = "up"
 
 [node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
 z_index = 999

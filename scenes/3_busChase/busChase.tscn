@@ -973,7 +973,7 @@ metadata/_edit_group_ = true
 [node name="up" type="AnimatedSprite2D" parent="hint" unique_id=1076624819]
 position = Vector2(100, -59)
 sprite_frames = SubResource("SpriteFrames_qudme")
-animation = &"z_mash"
+animation = &"up_mash"
 
 [node name="z" type="AnimatedSprite2D" parent="hint" unique_id=1492624619]
 position = Vector2(-127, 46)

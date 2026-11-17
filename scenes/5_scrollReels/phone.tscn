@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bb8efg0i0mxxt"]
+
+[ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="1_vfq53"]
+[ext_resource type="Texture2D" uid="uid://d8p5bb5hqeb3" path="res://assets/sprites/scrollReels/phoneMask.png" id="2_0gjme"]
+[ext_resource type="Texture2D" uid="uid://cd0jhrcfqd53h" path="res://assets/sprites/scrollReels/reelCard_bg.png" id="3_4evql"]
+
+[node name="Phone" type="Sprite2D" unique_id=1549461285]
+texture = ExtResource("1_vfq53")
+
+[node name="mask" type="Sprite2D" parent="." unique_id=519072798]
+clip_children = 1
+texture = ExtResource("2_0gjme")
+
+[node name="ReelCardBg" type="Sprite2D" parent="." unique_id=508211377]
+position = Vector2(-63, -16)
+texture = ExtResource("3_4evql")

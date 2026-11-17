@@ -4,6 +4,11 @@
 [ext_resource type="Script" uid="uid://dn8e60j42pkda" path="res://scripts/5_scrollReels/scroll_reels.gd" id="2_6q81w"]
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="3_xev44"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
+[ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="5_rdfhy"]
+[ext_resource type="Texture2D" uid="uid://d8p5bb5hqeb3" path="res://assets/sprites/scrollReels/phoneMask.png" id="6_rmii1"]
+[ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
+[ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
+[ext_resource type="Texture2D" uid="uid://byd7blem8ems3" path="res://assets/sprites/scrollReels/msgBubble.png" id="8_w1qyk"]
 
 [sub_resource type="Animation" id="Animation_xev44"]
 resource_name = "showHint"
@@ -82,10 +87,60 @@ _data = {
 &"showHint": SubResource("Animation_xev44")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xev44"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmii1"]
 resource_local_to_scene = true
 shader = ExtResource("4_rdfhy")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xhhom"]
+viewport_path = NodePath("Phone/contentVp")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1qyk"]
+resource_local_to_scene = true
+shader = ExtResource("4_rdfhy")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+shader_parameter/destTexture = SubResource("ViewportTexture_xhhom")
+
+[sub_resource type="GDScript" id="GDScript_w1qyk"]
+resource_name = "scrollContainer"
+script/source = "extends ScrollContainer
+
+var curReel = 1
+@export var list: VBoxContainer
+@export var card: TextureRect
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	grab_focus()
+
+func _process(dt):
+	
+	if Input.is_action_just_pressed(\"down\"):
+		if curReel < list.get_child_count()-1:
+			curReel+= 1
+		animate_scroll(scroll_vertical+card.size.y)
+		print(curReel)
+	elif Input.is_action_just_pressed(\"up\"):
+		if curReel >1:
+			curReel-= 1
+		animate_scroll(scroll_vertical-card.size.y)
+		print(curReel)
+		
+	if Input.is_action_just_pressed(\"action1\"):
+		like()
+func like():
+	
+	list.get_child(curReel).play_like_anims()
+
+func animate_scroll(target_pos: int, duration: float = .5) -> void:
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, \"scroll_vertical\", target_pos, duration)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_la7lc"]
+font = ExtResource("8_la7lc")
+font_size = 23
 
 [node name="root" unique_id=1975170843 instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
@@ -93,19 +148,90 @@ script = ExtResource("2_6q81w")
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_rdfhy")
 
-[node name="hint" parent="." index="1" unique_id=1041035703]
-modulate = Color(1, 1, 1, 1)
-offset_top = 436.0
-offset_bottom = 436.00006
-scale = Vector2(1, 1)
-
-[node name="Label" parent="hint" index="0" unique_id=285491151]
+[node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "SCROLL & LIKE!"
+
+[node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
+z_index = 999
 
 [node name="ResultsTransition" parent="." index="3" unique_id=1814402132 instance=ExtResource("3_xev44")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_xev44")
+material = SubResource("ShaderMaterial_rmii1")
+
+[node name="Phone" type="Sprite2D" parent="." index="4" unique_id=1549461285]
+texture_filter = 1
+position = Vector2(399, 319)
+texture = ExtResource("5_rdfhy")
+
+[node name="mask" type="Sprite2D" parent="Phone" index="0" unique_id=519072798]
+self_modulate = Color(0.79893494, 0.51734966, 0.65763533, 1)
+material = SubResource("ShaderMaterial_w1qyk")
+texture = ExtResource("6_rmii1")
+
+[node name="contentVp" type="SubViewport" parent="Phone" index="1" unique_id=423848089]
+size = Vector2i(659, 858)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Phone" index="2" unique_id=515235246 node_paths=PackedStringArray("list", "card")]
+offset_left = -180.0
+offset_top = -214.0
+offset_right = 190.0
+offset_bottom = 244.0
+script = SubResource("GDScript_w1qyk")
+list = NodePath("content")
+card = NodePath("content/ReelCard")
+
+[node name="content" type="VBoxContainer" parent="Phone/ScrollContainer" index="0" unique_id=847572825]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="start" type="NinePatchRect" parent="Phone/ScrollContainer/content" index="0" unique_id=1732581021]
+custom_minimum_size = Vector2(204.125, 60)
+custom_maximum_size = Vector2(300, -1)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("8_w1qyk")
+patch_margin_left = 30
+patch_margin_top = 15
+patch_margin_right = 30
+patch_margin_bottom = 15
+
+[node name="Label" type="Label" parent="Phone/ScrollContainer/content/start" index="0" unique_id=1711611803]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 203.0
+offset_bottom = 69.0
+text = "u better see ALL of them NOW"
+label_settings = SubResource("LabelSettings_la7lc")
+autowrap_mode = 2
+
+[node name="ReelCard" parent="Phone/ScrollContainer/content" index="1" unique_id=987678320 instance=ExtResource("7_rmii1")]
+layout_mode = 2
+
+[node name="ReelCard2" parent="Phone/ScrollContainer/content" index="2" unique_id=183240585 instance=ExtResource("7_rmii1")]
+layout_mode = 2
+
+[node name="ReelCard3" parent="Phone/ScrollContainer/content" index="3" unique_id=599195555 instance=ExtResource("7_rmii1")]
+layout_mode = 2
+
+[node name="ReelCard4" parent="Phone/ScrollContainer/content" index="4" unique_id=1328400468 instance=ExtResource("7_rmii1")]
+layout_mode = 2
+
+[node name="ReelCard5" parent="Phone/ScrollContainer/content" index="5" unique_id=1294338776 instance=ExtResource("7_rmii1")]
+layout_mode = 2
+
+[node name="scrollCd" type="Timer" parent="Phone/ScrollContainer" index="1" unique_id=338021355]
+wait_time = 0.5
+
+[node name="ColorRect" type="ColorRect" parent="." index="5" unique_id=633669705]
+visible = false
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [editable path="timeLeft"]
 [editable path="ResultsTransition"]

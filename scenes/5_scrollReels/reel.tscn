@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://bsdaaahpyhw0l"]
+
+[ext_resource type="Texture2D" uid="uid://cd0jhrcfqd53h" path="res://assets/sprites/scrollReels/reelCard_bg.png" id="1_cpck6"]
+[ext_resource type="Texture2D" uid="uid://cfc68g53mjoct" path="res://assets/sprites/scrollReels/reelCard_content.png" id="2_u3uw0"]
+[ext_resource type="Texture2D" uid="uid://bldvu8ris647k" path="res://assets/sprites/scrollReels/reelCard_title.png" id="3_aw18b"]
+[ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="4_nh375"]
+[ext_resource type="Texture2D" uid="uid://tp5o6wy4nf68" path="res://assets/sprites/scrollReels/reelBtn.png" id="5_d6a6i"]
+[ext_resource type="Texture2D" uid="uid://baqr0i38yjn5u" path="res://assets/sprites/scrollReels/likeBubble.png" id="5_q6igq"]
+
+[sub_resource type="GDScript" id="GDScript_d6a6i"]
+resource_name = "reelCard"
+script/source = "extends TextureRect
+
+@onready var like_bubble: AnimatedSprite2D = $likeBubble
+@onready var play_btn: AnimatedSprite2D = $mask/playBtn
+
+
+func _ready() -> void:
+	like_bubble.hide()
+	#await get_tree().create_timer(1).timeout
+	#play_like_anims()
+	
+func play_like_anims():
+	# its so simple that i dont want an anim player to do that
+	like_bubble.show()
+	like_bubble.play(\"like\")
+	play_btn.play(\"like\")
+	await play_btn.animation_finished
+	play_btn.play_backwards(\"like\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw18b"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(0, 0, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh375"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(220, 0, 220, 265)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3uw0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw18b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh375")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6igq"]
+atlas = ExtResource("3_aw18b")
+region = Rect2(0, 0, 87, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6a6i"]
+atlas = ExtResource("3_aw18b")
+region = Rect2(87, 0, 87, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odw6u"]
+atlas = ExtResource("3_aw18b")
+region = Rect2(174, 0, 87, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5miu"]
+atlas = ExtResource("3_aw18b")
+region = Rect2(0, 23, 87, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0mjt"]
+atlas = ExtResource("3_aw18b")
+region = Rect2(87, 23, 87, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6igq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6a6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odw6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5miu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0mjt")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ka23v"]
+font = ExtResource("4_nh375")
+font_size = 25
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk7j0"]
+atlas = ExtResource("5_d6a6i")
+region = Rect2(0, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqify"]
+atlas = ExtResource("5_d6a6i")
+region = Rect2(842, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enav1"]
+atlas = ExtResource("5_d6a6i")
+region = Rect2(1684, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al3an"]
+atlas = ExtResource("5_d6a6i")
+region = Rect2(0, 658, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rya30"]
+atlas = ExtResource("5_d6a6i")
+region = Rect2(842, 658, 842, 658)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk7j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqify")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enav1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al3an")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_rya30")
+}],
+"loop": 0,
+"name": &"like",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o21d0"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(0, 329, 842, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjgsr"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(842, 329, 842, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6i3y"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(1684, 329, 842, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_su7xp"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(0, 987, 842, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo2c1"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(842, 987, 842, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ele2y"]
+atlas = ExtResource("5_q6igq")
+region = Rect2(1684, 987, 842, 329)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o21d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjgsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6i3y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_su7xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo2c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ele2y")
+}],
+"loop": 0,
+"name": &"like",
+"speed": 12.0
+}]
+
+[node name="ReelCard" type="TextureRect" unique_id=1328400468]
+texture_filter = 1
+texture = ExtResource("1_cpck6")
+script = SubResource("GDScript_d6a6i")
+
+[node name="mask" type="Sprite2D" parent="." unique_id=203186006]
+self_modulate = Color(0.8850234, 0.5259011, 0.62719333, 1)
+clip_children = 1
+texture = ExtResource("1_cpck6")
+centered = false
+
+[node name="content" type="AnimatedSprite2D" parent="mask" unique_id=66476220]
+position = Vector2(97, 175)
+sprite_frames = SubResource("SpriteFrames_u3uw0")
+frame = 1
+frame_progress = 1.0
+
+[node name="title" type="AnimatedSprite2D" parent="mask" unique_id=26132206]
+position = Vector2(53, 22)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+
+[node name="Label" type="Label" parent="mask" unique_id=1053978155]
+offset_left = 158.0
+offset_top = 9.0
+offset_right = 260.0
+offset_bottom = 62.0
+text = "0:67
+"
+label_settings = SubResource("LabelSettings_ka23v")
+
+[node name="playBtn" type="AnimatedSprite2D" parent="mask" unique_id=471966700]
+position = Vector2(87, 121)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+animation = &"like"
+
+[node name="likeBubble" type="AnimatedSprite2D" parent="." unique_id=1082819269]
+visible = false
+position = Vector2(82, 285)
+sprite_frames = SubResource("SpriteFrames_qudme")
+animation = &"like"

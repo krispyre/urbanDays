@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
-[ext_resource type="AudioStream" uid="uid://1dmlwjgdsgn1" path="res://assets/quiz_edited.ogg" id="4_aadn1"]
+[ext_resource type="AudioStream" uid="uid://1dmlwjgdsgn1" path="res://assets/sound/quiz_edited.ogg" id="4_aadn1"]
 [ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scripts/bgm.gd" id="4_owcan"]
 [ext_resource type="Texture2D" uid="uid://b7xauquuku5s1" path="res://assets/sprites/intro/frame0000.png" id="5_aadn1"]
 [ext_resource type="AudioStream" uid="uid://cm324033m0g7v" path="res://assets/quizFragments/quiz.intro.ogg" id="5_umfan"]

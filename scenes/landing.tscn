@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dyu7vq6ejs5gp" path="res://scripts/Scene.gd" id="1_mfct4"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="2_b236o"]
 [ext_resource type="Texture2D" uid="uid://xmnctsh7qlwn" path="res://assets/sprites/ui/exclamationMark.png" id="3_usvfl"]
+[ext_resource type="AudioStream" uid="uid://c3j07vty5ckaa" path="res://assets/sound/snd_nes_nocontroller.wav" id="4_8ljda"]
+[ext_resource type="Texture2D" uid="uid://dhe3swuq8bo0w" path="res://assets/sprites/landing/landingDraft.png" id="5_j5py0"]
 
 [sub_resource type="GDScript" id="GDScript_usvfl"]
 resource_name = "startMenu"
@@ -41,6 +43,14 @@ default_font_size = 34
 script = ExtResource("1_mfct4")
 metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 
+[node name="bg2" type="ColorRect" parent="." unique_id=681111362]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.67570114, 0.5775306, 0.6624778, 1)
+
 [node name="Control" type="Control" parent="." unique_id=2107179078]
 texture_filter = 1
 layout_mode = 3
@@ -51,10 +61,10 @@ script = SubResource("GDScript_usvfl")
 
 [node name="start" type="Button" parent="Control" unique_id=759477574]
 layout_mode = 0
-offset_left = 409.00003
-offset_top = 293.0
-offset_right = 622.33386
-offset_bottom = 372.1663
+offset_left = 468.99997
+offset_top = 261.99997
+offset_right = 682.3338
+offset_bottom = 341.16626
 rotation = -0.2617994
 focus_neighbor_left = NodePath("../ttorial")
 focus_neighbor_bottom = NodePath("../ttorial")
@@ -66,12 +76,20 @@ expand_icon = true
 
 [node name="ttorial" type="Button" parent="Control" unique_id=280347909]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 380.0
-offset_right = 316.0
-offset_bottom = 452.0
-rotation = -0.2617994
+offset_left = 38.999992
+offset_top = 412.0
+offset_right = 243.0
+offset_bottom = 484.0
+rotation = -0.19681683
 focus_neighbor_top = NodePath("../start")
 focus_neighbor_right = NodePath("../start")
 focus_next = NodePath("../start")
 text = "extremely simple tutorial"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=385678757]
+editor_description = "source: https://sounds.spriters-resource.com/pc_computer/deltarune/asset/455868/"
+stream = ExtResource("4_8ljda")
+
+[node name="bg" type="Sprite2D" parent="." unique_id=47684183]
+texture = ExtResource("5_j5py0")
+centered = false

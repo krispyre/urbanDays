@@ -10,3 +10,13 @@ func _unhandled_input(event: InputEvent):
 		else:
 			Engine.time_scale = 1
 	
+
+# where do you put helper methdods
+func random_n_numbers(min:int, max:int, n:int)-> Array[int]:
+	## Max is exclusive. Make sure n is less than (max-min).
+	var res = []
+	for i in range(min,max):
+		res.append(i)
+	res.shuffle()
+	return res.slice(0,n)
+		

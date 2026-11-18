@@ -17,13 +17,12 @@
 [ext_resource type="Texture2D" uid="uid://ctk5cyuw77grd" path="res://assets/sprites/busChase/busChase_pole.png" id="8_k8l30"]
 [ext_resource type="Texture2D" uid="uid://bkvf3v7pl3uyj" path="res://assets/sprites/busChase/busChase_postersSide.png" id="9_0g6gh"]
 [ext_resource type="LabelSettings" uid="uid://b2vdknglqw7k5" path="res://assets/resources/hintTextStyle.tres" id="10_e3pmy"]
-[ext_resource type="Texture2D" uid="uid://b14srkcm4i35a" path="res://assets/sprites/ui/ui_btn_up.png" id="11_1sab8"]
 [ext_resource type="Texture2D" uid="uid://dip5wv8yyrtpt" path="res://assets/sprites/busChase/busChase_bg.png" id="11_trtnx"]
 [ext_resource type="Texture2D" uid="uid://px00ps4fdqbc" path="res://assets/sprites/busChase/busChase_bgSide.png" id="12_qbp3n"]
-[ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/sprites/ui/ui_btn_z.png" id="12_r0p0t"]
 [ext_resource type="Texture2D" uid="uid://uhraaos1tb5s" path="res://assets/resources/blankTexture.tres" id="18_o5s6g"]
 [ext_resource type="Texture2D" uid="uid://cssij3ns87nsf" path="res://assets/sprites/ui/timer_bg.png" id="19_u0wja"]
 [ext_resource type="Texture2D" uid="uid://b3p6fk18h7280" path="res://assets/sprites/ui/timer_progress.png" id="20_2lkdi"]
+[ext_resource type="SpriteFrames" uid="uid://hkg0nxsrfomy" path="res://assets/resources/uiBtn_frames.tres" id="23_wbkbv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qbp3n"]
 sky_top_color = Color(0.7063331, 0.73568845, 0.7830128, 1)
@@ -287,47 +286,6 @@ _data = {
 &"RESET": SubResource("Animation_pcxmy"),
 &"zoom": SubResource("Animation_c2kp2")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oyciy"]
-atlas = ExtResource("11_1sab8")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3goj"]
-atlas = ExtResource("11_1sab8")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xa5qf"]
-atlas = ExtResource("12_r0p0t")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uy8m6"]
-atlas = ExtResource("12_r0p0t")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oyciy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b3goj")
-}],
-"loop": 1,
-"name": &"up_mash",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xa5qf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uy8m6")
-}],
-"loop": 1,
-"name": &"z_mash",
-"speed": 8.0
-}]
 
 [sub_resource type="Animation" id="Animation_42h2w"]
 length = 0.001
@@ -972,12 +930,12 @@ metadata/_edit_group_ = true
 
 [node name="up" type="AnimatedSprite2D" parent="hint" unique_id=1076624819]
 position = Vector2(100, -59)
-sprite_frames = SubResource("SpriteFrames_qudme")
+sprite_frames = ExtResource("23_wbkbv")
 animation = &"up_mash"
 
 [node name="z" type="AnimatedSprite2D" parent="hint" unique_id=1492624619]
 position = Vector2(-127, 46)
-sprite_frames = SubResource("SpriteFrames_qudme")
+sprite_frames = ExtResource("23_wbkbv")
 animation = &"z_mash"
 frame_progress = 0.43597963
 

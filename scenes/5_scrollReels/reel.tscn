@@ -37,6 +37,42 @@ region = Rect2(0, 0, 220, 265)
 atlas = ExtResource("2_u3uw0")
 region = Rect2(220, 0, 220, 265)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsjp5"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(0, 0, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enff4"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(220, 0, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fembq"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(440, 0, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8x8c"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(0, 265, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2grd"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(220, 265, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2vwe"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(440, 265, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyi3x"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(0, 530, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbqo4"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(220, 530, 220, 265)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqqa4"]
+atlas = ExtResource("2_u3uw0")
+region = Rect2(440, 530, 220, 265)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_u3uw0"]
 animations = [{
 "frames": [{
@@ -45,6 +81,33 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nh375")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsjp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enff4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fembq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8x8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2grd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2vwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyi3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbqo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqqa4")
 }],
 "loop": 0,
 "name": &"default",
@@ -205,8 +268,7 @@ centered = false
 [node name="content" type="AnimatedSprite2D" parent="mask" unique_id=66476220]
 position = Vector2(97, 175)
 sprite_frames = SubResource("SpriteFrames_u3uw0")
-frame = 1
-frame_progress = 1.0
+frame = 7
 
 [node name="title" type="AnimatedSprite2D" parent="mask" unique_id=26132206]
 position = Vector2(53, 22)

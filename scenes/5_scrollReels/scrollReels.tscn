@@ -3,14 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_1l2bw"]
 [ext_resource type="Script" uid="uid://dn8e60j42pkda" path="res://scripts/5_scrollReels/scroll_reels.gd" id="2_6q81w"]
 [ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="3_xev44"]
-[ext_resource type="Texture2D" uid="uid://b14srkcm4i35a" path="res://assets/sprites/ui/ui_btn_up.png" id="4_fwa23"]
-[ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/sprites/ui/ui_btn_z.png" id="4_obe8b"]
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
+[ext_resource type="SpriteFrames" uid="uid://hkg0nxsrfomy" path="res://assets/resources/uiBtn_frames.tres" id="4_sj6mo"]
 [ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="5_rdfhy"]
 [ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
+[ext_resource type="Texture2D" uid="uid://cp4pkvetng0hr" path="res://assets/sprites/scrollReels/palm.png" id="7_sj6mo"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
 [ext_resource type="Texture2D" uid="uid://byd7blem8ems3" path="res://assets/sprites/scrollReels/msgBubble.png" id="8_w1qyk"]
 [ext_resource type="Texture2D" uid="uid://cheuie5tkm6ig" path="res://assets/sprites/scrollReels/username.png" id="10_obe8b"]
+[ext_resource type="Texture2D" uid="uid://bep7vtu7gc842" path="res://assets/sprites/scrollReels/fingerLike.png" id="11_a2o04"]
+[ext_resource type="Texture2D" uid="uid://dvka0t58kjaxh" path="res://assets/sprites/scrollReels/finger.png" id="12_a2o04"]
+[ext_resource type="Shader" uid="uid://cxa07854rbkdc" path="res://assets/shader/outline.gdshader" id="14_d640n"]
+[ext_resource type="SpriteFrames" uid="uid://brvishm068j77" path="res://assets/resources/symbol_frames.tres" id="14_w6mkl"]
+[ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="16_dii4x"]
+[ext_resource type="Texture2D" uid="uid://cjuwx0bxlsqpn" path="res://assets/sprites/scrollReels/lana_view.png" id="17_ki1qj"]
+[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="18_ugsbr"]
+[ext_resource type="Shader" uid="uid://doq84wbfuxhe4" path="res://assets/shader/blendingModes.gdshader" id="19_2u55a"]
 
 [sub_resource type="Animation" id="Animation_xev44"]
 resource_name = "showHint"
@@ -89,86 +97,120 @@ _data = {
 &"showHint": SubResource("Animation_xev44")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6mkl"]
-atlas = ExtResource("4_fwa23")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u55a"]
+shader = ExtResource("16_dii4x")
+shader_parameter/brightness = -0.22000001743456
+shader_parameter/contrast = 0.62999998591824
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d640n"]
-atlas = ExtResource("4_fwa23")
-region = Rect2(128, 0, 128, 128)
+[sub_resource type="ViewportTexture" id="ViewportTexture_2u55a"]
+viewport_path = NodePath("bglol/parts")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dii4x"]
-atlas = ExtResource("4_obe8b")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="GDScript" id="GDScript_2u55a"]
+resource_name = "bgScroll"
+script/source = "extends Sprite2D
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ki1qj"]
-atlas = ExtResource("4_obe8b")
-region = Rect2(128, 0, 128, 128)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	region_rect.position.y += 10*delta
+"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_la7lc"]
+[sub_resource type="Gradient" id="Gradient_ugsbr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.45452422, 0.45452428, 0.45452422, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ka23v"]
+gradient = SubResource("Gradient_ugsbr")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugsbr"]
+shader = ExtResource("19_2u55a")
+shader_parameter/blend_mode = 9
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swmok"]
+atlas = ExtResource("17_ki1qj")
+region = Rect2(0, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkrjj"]
+atlas = ExtResource("17_ki1qj")
+region = Rect2(842, 0, 842, 658)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xhhom"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w6mkl")
+"texture": SubResource("AtlasTexture_swmok")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d640n")
+"texture": SubResource("AtlasTexture_jkrjj")
 }],
 "loop": 1,
-"name": &"up",
-"speed": 2.0
-}, {
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dii4x"]
+atlas = ExtResource("7_sj6mo")
+region = Rect2(0, 658, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d640n"]
+atlas = ExtResource("7_sj6mo")
+region = Rect2(842, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6mkl"]
+atlas = ExtResource("7_sj6mo")
+region = Rect2(0, 0, 842, 658)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
+animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dii4x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ki1qj")
+"texture": SubResource("AtlasTexture_d640n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6mkl")
 }],
 "loop": 1,
-"name": &"z",
-"speed": 2.0
+"name": &"default",
+"speed": 4.0
 }]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_la7lc"]
-resource_local_to_scene = true
-shader = ExtResource("4_rdfhy")
-shader_parameter/keyColor = Color(0, 1, 0, 1)
 
 [sub_resource type="GDScript" id="GDScript_w1qyk"]
 resource_name = "scrollContainer"
 script/source = "extends ScrollContainer
 
-var curReel = 1
+var scrolling = false
 @export var list: VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	grab_focus()
-
-func _process(dt):
-	#todo make this event based
+	
+func _on_root_scroll_down():
 	var card = list.get_child(1)
-	if Input.is_action_just_pressed(\"down\"):
-		if curReel < list.get_child_count()-1:
-			curReel+= 1
-		animate_scroll(scroll_vertical+card.size.y+list.get_theme_constant(\"separation\"))
-		print(curReel)
-	elif Input.is_action_just_pressed(\"up\"):
-		if curReel >1:
-			curReel-= 1
-		animate_scroll(scroll_vertical-card.size.y+list.get_theme_constant(\"separation\"))
-		print(curReel)
-		
-	if Input.is_action_just_pressed(\"action1\"):
-		like()
-func like():
-	list.get_child(curReel).play_like_anims()
+	animate_scroll(scroll_vertical+card.size.y+list.get_theme_constant(\"separation\"))
+	print(owner.curReel)
 
-func animate_scroll(target_pos: int, duration: float = .5) -> void:
+func animate_scroll(target_pos: int) -> void:
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, \"scroll_vertical\", target_pos, duration)
+	scrolling = true
+	tween.tween_property(self, \"scroll_vertical\", target_pos, 0.3)
+	await tween.finished
+	scrolling = false
+
+
+func _on_root_scroll_up() -> void:
+	var card = list.get_child(1)
+	animate_scroll(scroll_vertical-card.size.y+list.get_theme_constant(\"separation\"))
+	print(owner.curReel)
+
+
+func _on_root_like() -> void:
+	list.get_child(owner.curReel).play_like_anims()
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_la7lc"]
@@ -204,10 +246,166 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="root" unique_id=1975170843 node_paths=PackedStringArray("reelList") instance=ExtResource("1_1l2bw")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ki1qj"]
+atlas = ExtResource("12_a2o04")
+region = Rect2(0, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugsbr"]
+atlas = ExtResource("12_a2o04")
+region = Rect2(842, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u55a"]
+atlas = ExtResource("12_a2o04")
+region = Rect2(0, 658, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlc7k"]
+atlas = ExtResource("11_a2o04")
+region = Rect2(0, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wmj"]
+atlas = ExtResource("11_a2o04")
+region = Rect2(842, 0, 842, 658)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bloy"]
+atlas = ExtResource("11_a2o04")
+region = Rect2(0, 658, 842, 658)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ki1qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugsbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u55a")
+}],
+"loop": 0,
+"name": &"scrollUp",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlc7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bloy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7wmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bloy")
+}],
+"loop": 0,
+"name": &"tapLike",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlc7k"]
+resource_local_to_scene = true
+shader = ExtResource("4_rdfhy")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d640n"]
+shader = ExtResource("14_d640n")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/width = 4.38400020824
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dii4x"]
+shader = ExtResource("16_dii4x")
+shader_parameter/brightness = -0.36000001430527995
+shader_parameter/contrast = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ka23v"]
+viewport_path = NodePath("counter/slash/SubViewport")
+
+[sub_resource type="Animation" id="Animation_dii4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.17453292]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ugsbr"]
+resource_name = "blinkCorrect"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.37520003, 0.8, 0.32800004, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ki1qj"]
+resource_name = "rotate"
+length = 0.9
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.01745329251994329, 0.01745329251994329]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugsbr"]
+_data = {
+&"RESET": SubResource("Animation_dii4x"),
+&"blinkCorrect": SubResource("Animation_ugsbr"),
+&"rotate": SubResource("Animation_ki1qj")
+}
+
+[node name="root" unique_id=1975170843 node_paths=PackedStringArray("scrollContainer", "reelList", "fingerAnim", "likeCount", "likeTotal", "likeCounterWhole") instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
-reelList = NodePath("Phone/SubViewportContainer/contentVp/ScrollContainer/content")
+scrollContainer = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer")
+reelList = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer/content")
 reelScene = ExtResource("7_rmii1")
+fingerAnim = NodePath("gp/finger")
+likeCount = NodePath("counter/numer")
+likeTotal = NodePath("counter/denom")
+likeCounterWhole = NodePath("counter")
 level_number = 5
 
 [node name="animPlayer" parent="." index="0" unique_id=167420536]
@@ -224,48 +422,94 @@ text = "SCROLL & LIKE!"
 
 [node name="up" type="AnimatedSprite2D" parent="hint" index="1" unique_id=350775366]
 position = Vector2(221.99997, 39.430946)
-sprite_frames = SubResource("SpriteFrames_la7lc")
+sprite_frames = ExtResource("4_sj6mo")
 animation = &"up"
-
-[node name="up2" type="AnimatedSprite2D" parent="hint" index="2" unique_id=1986635672]
-position = Vector2(188.99997, 82.02058)
-sprite_frames = SubResource("SpriteFrames_la7lc")
-animation = &"z"
 autoplay = "up"
+
+[node name="down" type="AnimatedSprite2D" parent="hint" index="2" unique_id=1986635672]
+position = Vector2(188.99997, 82.02058)
+sprite_frames = ExtResource("4_sj6mo")
+animation = &"down"
+autoplay = "down"
 
 [node name="z" type="AnimatedSprite2D" parent="hint" index="3" unique_id=1756456075]
 position = Vector2(-219.00003, 61.020576)
-sprite_frames = SubResource("SpriteFrames_la7lc")
+sprite_frames = ExtResource("4_sj6mo")
 animation = &"z"
-autoplay = "up"
+autoplay = "z"
 
 [node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
 z_index = 999
 
-[node name="ResultsTransition" parent="." index="3" unique_id=1814402132 instance=ExtResource("3_xev44")]
+[node name="bglol" type="Sprite2D" parent="." index="3" unique_id=380668337]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_2u55a")
+position = Vector2(358, 360)
+rotation = 0.1307657
+texture = SubResource("ViewportTexture_2u55a")
+region_enabled = true
+region_rect = Rect2(0, 1.5, 828.458, 827.11)
+script = SubResource("GDScript_2u55a")
 
-[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_la7lc")
+[node name="parts" type="SubViewport" parent="bglol" index="0" unique_id=1839941825]
 
-[node name="Phone" type="Sprite2D" parent="." index="4" unique_id=1549461285]
+[node name="bg" type="Sprite2D" parent="bglol/parts" index="0" unique_id=17857067]
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_ka23v")
+centered = false
+
+[node name="Stripes" type="Sprite2D" parent="bglol/parts" index="1" unique_id=1685581436]
+texture_repeat = 2
+texture = ExtResource("18_ugsbr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="Stripes2" type="Sprite2D" parent="bglol/parts" index="2" unique_id=393562505]
+modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ugsbr")
+position = Vector2(512, 0)
+rotation = 1.5707964
+texture = ExtResource("18_ugsbr")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="lanaView" type="AnimatedSprite2D" parent="." index="4" unique_id=697841059]
+sprite_frames = SubResource("SpriteFrames_xhhom")
+autoplay = "default"
+frame_progress = 0.68970203
+centered = false
+
+[node name="gp" type="Node2D" parent="." index="5" unique_id=1147271376]
+position = Vector2(0, 65)
+
+[node name="hand" type="AnimatedSprite2D" parent="gp" index="0" unique_id=1258717697]
+position = Vector2(449, 279)
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+autoplay = "default"
+frame_progress = 0.118393496
+
+[node name="Phone" type="Sprite2D" parent="gp" index="1" unique_id=1549461285]
 texture_filter = 1
 position = Vector2(467.00003, 276)
 rotation = 0.3367173
 texture = ExtResource("5_rdfhy")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Phone" index="0" unique_id=1652991148]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="gp/Phone" index="0" unique_id=1652991148]
 offset_left = -181.8433
 offset_top = -210.75584
 offset_right = 184.74452
 offset_bottom = 247.2441
 
-[node name="contentVp" type="SubViewport" parent="Phone/SubViewportContainer" index="0" unique_id=423848089]
+[node name="contentVp" type="SubViewport" parent="gp/Phone/SubViewportContainer" index="0" unique_id=423848089]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(365, 445)
 render_target_update_mode = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Phone/SubViewportContainer/contentVp" index="0" unique_id=515235246 node_paths=PackedStringArray("list")]
+[node name="ScrollContainer" type="ScrollContainer" parent="gp/Phone/SubViewportContainer/contentVp" index="0" unique_id=515235246 node_paths=PackedStringArray("list")]
 custom_maximum_size = Vector2(485.77, -1)
 anchors_preset = 15
 anchor_right = 1.0
@@ -275,11 +519,11 @@ grow_vertical = 2
 script = SubResource("GDScript_w1qyk")
 list = NodePath("content")
 
-[node name="content" type="VBoxContainer" parent="Phone/SubViewportContainer/contentVp/ScrollContainer" index="0" unique_id=847572825]
+[node name="content" type="VBoxContainer" parent="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" index="0" unique_id=847572825]
 layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="start" type="NinePatchRect" parent="Phone/SubViewportContainer/contentVp/ScrollContainer/content" index="0" unique_id=1732581021]
+[node name="start" type="NinePatchRect" parent="gp/Phone/SubViewportContainer/contentVp/ScrollContainer/content" index="0" unique_id=1732581021]
 custom_minimum_size = Vector2(204.125, 60)
 custom_maximum_size = Vector2(300, -1)
 layout_mode = 2
@@ -290,32 +534,87 @@ patch_margin_top = 15
 patch_margin_right = 30
 patch_margin_bottom = 15
 
-[node name="Label" type="Label" parent="Phone/SubViewportContainer/contentVp/ScrollContainer/content/start" index="0" unique_id=1711611803]
+[node name="Label" type="Label" parent="gp/Phone/SubViewportContainer/contentVp/ScrollContainer/content/start" index="0" unique_id=1711611803]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 4.0
 offset_right = 203.0
 offset_bottom = 69.0
-text = "u better see ALL of them NOW"
+text = "u betters ee ALL of them NOW"
 label_settings = SubResource("LabelSettings_la7lc")
 autowrap_mode = 2
 
-[node name="scrollCd" type="Timer" parent="Phone/SubViewportContainer/contentVp/ScrollContainer" index="1" unique_id=338021355]
+[node name="scrollCd" type="Timer" parent="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" index="1" unique_id=338021355]
 wait_time = 0.5
 
-[node name="username" type="AnimatedSprite2D" parent="Phone" index="1" unique_id=1087020386]
+[node name="username" type="AnimatedSprite2D" parent="gp/Phone" index="1" unique_id=1087020386]
 position = Vector2(-164, -275)
 sprite_frames = SubResource("SpriteFrames_ka23v")
+autoplay = "default"
 centered = false
 
-[node name="ColorRect" type="ColorRect" parent="." index="5" unique_id=633669705]
-visible = false
-z_index = -99
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="finger" type="AnimatedSprite2D" parent="gp" index="2" unique_id=1633117673]
+position = Vector2(662.00006, 540)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_qudme")
+animation = &"scrollUp"
+frame = 2
+frame_progress = 1.0
+offset = Vector2(-173, -285)
+
+[node name="ResultsTransition" parent="." index="6" unique_id=1814402132 instance=ExtResource("3_xev44")]
+position = Vector2(-6.1035156e-05, 0)
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
+material = SubResource("ShaderMaterial_mlc7k")
+
+[node name="counter" type="Node2D" parent="." index="7" unique_id=1062798415]
+texture_filter = 1
+position = Vector2(-16, 540.00006)
+rotation = -0.17453292
+
+[node name="denom" type="AnimatedSprite2D" parent="counter" index="0" unique_id=403381549]
+material = SubResource("ShaderMaterial_d640n")
+position = Vector2(186.8105, -70.18964)
+rotation = 0.2617994
+scale = Vector2(0.8550512, 0.8550512)
+sprite_frames = ExtResource("14_w6mkl")
+frame = 5
+
+[node name="numer" type="AnimatedSprite2D" parent="counter" index="1" unique_id=778491015]
+material = SubResource("ShaderMaterial_d640n")
+position = Vector2(85.81049, -170.18951)
+rotation = 0.058137238
+scale = Vector2(0.8550512, 0.8550512)
+sprite_frames = ExtResource("14_w6mkl")
+frame = 5
+
+[node name="slash" type="Sprite2D" parent="counter" index="2" unique_id=588452863]
+material = SubResource("ShaderMaterial_dii4x")
+position = Vector2(131.81049, -117.189606)
+rotation = 0.36307648
+texture = SubResource("ViewportTexture_ka23v")
+
+[node name="SubViewport" type="SubViewport" parent="counter/slash" index="0" unique_id=1014065026]
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="sprite" type="AnimatedSprite2D" parent="counter/slash/SubViewport" index="0" unique_id=331625524]
+material = SubResource("ShaderMaterial_d640n")
+sprite_frames = ExtResource("14_w6mkl")
+frame = 15
+centered = false
+
+[node name="animPlayer" type="AnimationPlayer" parent="counter" index="3" unique_id=220487157]
+libraries/ = SubResource("AnimationLibrary_ugsbr")
+autoplay = &"rotate"
+
+[connection signal="like" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_like"]
+[connection signal="scrollDown" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_scroll_down"]
+[connection signal="scrollUp" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_scroll_up"]
+[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="timeLeft"]
 [editable path="ResultsTransition"]

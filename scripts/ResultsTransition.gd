@@ -16,18 +16,24 @@ func _ready() -> void:
 
 
 func play_win() -> void:
-	_play(win, fail)
+	_play(win, fail, &"default")
 
 
+## make sure fail variant name is fail
 func play_fail() -> void:
-	_play(fail, win)
+	#try to get the fail in transition node, if theres none jus use default
+	var trans_variant := &"default"
+	var frames := transition.sprite_frames
+	if frames and frames.has_animation(&"fail"):
+		trans_variant = &"fail"
+	_play(fail, win, trans_variant)
 
-
-func _play(show_spr: AnimatedSprite2D, hide_spr: AnimatedSprite2D) -> void:
+func _play(show_spr: AnimatedSprite2D, hide_spr: AnimatedSprite2D, trans_variant: StringName) -> void:
 	hide_spr.visible = false
 	hide_spr.stop()
 	show_spr.visible = true
 	_restart(show_spr)
+	transition.animation = trans_variant
 	transition.visible = true
 	_restart(transition)
 

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d0f3rio1v1c36"]
+
+[ext_resource type="Texture2D" uid="uid://bk81d6xxswiyj" path="res://assets/sprites/focusHw/pointer.png" id="1_ag24i"]
+
+[node name="range" type="Sprite2D" unique_id=251252326]
+modulate = Color(0.3403393, 0.34033933, 0.3403393, 1)
+texture = ExtResource("1_ag24i")
+centered = false
+offset = Vector2(-10, -18)

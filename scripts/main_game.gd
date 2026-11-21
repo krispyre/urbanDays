@@ -11,11 +11,12 @@ var levels: Array[InstancePlaceholder] = []
 func _unhandled_input(event: InputEvent):
 	if (event.is_action_pressed("pause")):
 		$gameProcess.get_tree().paused = !($gameProcess.get_tree().paused)
+		set_music_vol(Globals.volume) # where is better idk
 		if ($gameProcess.get_tree().paused):
-			#uhh update the vol display????? very bad
-			$pause/settings/MarginContainer/HBoxContainer/volSlider.value = db_to_linear(%bgm.find_child("music_player").volume_db)
 			pauseScreen.show()
 		else:
+			print(Globals.volume)
+			
 			pauseScreen.hide()
 
 func _ready() -> void:
@@ -46,7 +47,4 @@ func _on_bgm_next_level() -> void:
 	
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):
-	%bgm.find_child("music_player").volume_db = linear_to_db(volume)
-
-func _on_vol_slider_value_changed(value: float) -> void:
-	set_music_vol(value/100)
+	%bgm.find_child("music_player").volume_db = linear_to_db(volume)+1

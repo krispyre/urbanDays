@@ -154,6 +154,3 @@ centered = false
 
 [connection signal="nextLevel" from="gameProcess/bgm" to="." method="_on_bgm_next_level"]
 [connection signal="outro" from="gameProcess/bgm" to="." method="_on_bgm_outro"]
-[connection signal="value_changed" from="pause/settings/MarginContainer/HBoxContainer/volSlider" to="." method="_on_vol_slider_value_changed"]
-
-[editable path="pause"]

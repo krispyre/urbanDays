@@ -8,3 +8,7 @@ extends Node
 		#var actual_node = building_placeholder.create_instance() 
 const quiz := preload("res://assets/sound/quiz_edited.ogg");
 var bpm = quiz.bpm
+
+## 0 to 1 for linear_to_db
+var volume = 1.0
+#idk how to use a configFile bro

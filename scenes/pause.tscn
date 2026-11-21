@@ -9,8 +9,13 @@ script/source = "extends Control
 @export var volumeValue:Label
 @export var volSlider:HSlider
 
+
 func _process(dt):
 	volumeValue.text = str(volSlider.value)
+
+func _on_vol_slider_drag_ended(value_changed: bool) -> void:
+	if (value_changed):
+		Globals.volume = volSlider.value/100
 "
 
 [sub_resource type="LabelSettings" id="LabelSettings_r8yp4"]
@@ -124,3 +129,5 @@ horizontal_alignment = 2
 [node name="volSlider" type="HSlider" parent="settings/MarginContainer/HBoxContainer" unique_id=1838657737]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[connection signal="drag_ended" from="settings/MarginContainer/HBoxContainer/volSlider" to="." method="_on_vol_slider_drag_ended"]

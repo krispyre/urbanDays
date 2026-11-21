@@ -19,8 +19,8 @@ script/source = "extends TextureProgressBar
 
 var focus_thres = 25
 var push_force = 100
-var velocity := 0
-var gravity:=0
+var velocity := 0.0 #make sure its a float BRUH
+var gravity:=0.0
 @export var rangeStart: Node2D
 @export var rangeEnd: Node2D
 # Called when the node enters the scene tree for the first time.
@@ -32,17 +32,17 @@ func _ready() -> void:
 	rangeEnd.position = Vector2(center+focus_thres*unit,0)
 
 func _process(dt: float) -> void:
-	gravity = 50*sign(value-1)
-	if Input.is_action_just_pressed(\"left\"):
+	gravity = randi_range(4,9)*sign(value-1) #todo randomize every interval
+	if Input.is_action_just_pressed(\"right\"):
 		velocity = 0
-		velocity += -push_force*dt
-	elif Input.is_action_just_pressed(\"right\"):
+		velocity += push_force * dt
+	elif Input.is_action_just_pressed(\"left\"):
 		velocity = 0
-		velocity += push_force*dt
+		velocity -= push_force * dt
 	else:
-		velocity += gravity*dt
-	value += velocity
+		velocity += gravity *dt
 	
+	value += velocity
 	value = clamp(value, min_value, max_value)
 	
 	prints(value,velocity, gravity)
@@ -91,7 +91,10 @@ metadata/_edit_use_anchors_ = true
 [node name="range_end" parent="focus" index="1" unique_id=678022418 instance=ExtResource("3_dbfos")]
 
 [node name="curFocus" parent="focus" index="2" unique_id=2146910601 instance=ExtResource("3_dbfos")]
+visible = false
 modulate = Color(1, 1, 1, 1)
 position = Vector2(267, 0)
+
+[node name="dozeOff" type="Timer" parent="focus" index="3" unique_id=1906940747]
 
 [editable path="timeLeft"]

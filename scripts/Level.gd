@@ -107,7 +107,7 @@ func set_timer_bar_recharge():
 	var seconds_left := next_beat * musicNode.r.beat_length - musicNode.r.current_position
 	progress_bar.max_value = seconds_left
 
-## Returns true for the first caller, which should play the results.
+## Returns true for the first caller, which should play the results. this is stupdi
 func mark_results_shown() -> bool:
 	if isResultsShown:
 		return false

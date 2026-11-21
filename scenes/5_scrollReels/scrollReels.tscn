@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cp4pkvetng0hr" path="res://assets/sprites/scrollReels/palm.png" id="7_sj6mo"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
 [ext_resource type="Texture2D" uid="uid://byd7blem8ems3" path="res://assets/sprites/scrollReels/msgBubble.png" id="8_w1qyk"]
+[ext_resource type="Texture2D" uid="uid://b57k7vvfc3e2m" path="res://assets/sprites/scrollReels/lana_view_finish.png" id="9_mlc7k"]
 [ext_resource type="Texture2D" uid="uid://cheuie5tkm6ig" path="res://assets/sprites/scrollReels/username.png" id="10_obe8b"]
 [ext_resource type="Texture2D" uid="uid://bep7vtu7gc842" path="res://assets/sprites/scrollReels/fingerLike.png" id="11_a2o04"]
 [ext_resource type="Texture2D" uid="uid://dvka0t58kjaxh" path="res://assets/sprites/scrollReels/finger.png" id="12_a2o04"]
@@ -129,11 +130,19 @@ shader_parameter/blend_mode = 9
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swmok"]
 atlas = ExtResource("17_ki1qj")
-region = Rect2(0, 0, 842, 658)
+region = Rect2(0, 0, 362, 401)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkrjj"]
 atlas = ExtResource("17_ki1qj")
-region = Rect2(842, 0, 842, 658)
+region = Rect2(362, 0, 362, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufgmx"]
+atlas = ExtResource("9_mlc7k")
+region = Rect2(0, 0, 362, 401)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1rff"]
+atlas = ExtResource("9_mlc7k")
+region = Rect2(362, 0, 362, 401)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhhom"]
 animations = [{
@@ -147,6 +156,17 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufgmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1rff")
+}],
+"loop": 1,
+"name": &"finish",
+"speed": 8.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dii4x"]
@@ -477,9 +497,11 @@ region_enabled = true
 region_rect = Rect2(0, 0, 512, 512)
 
 [node name="lanaView" type="AnimatedSprite2D" parent="." index="4" unique_id=697841059]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xhhom")
+animation = &"finish"
 autoplay = "default"
-frame_progress = 0.68970203
+frame_progress = 0.13581555
 centered = false
 
 [node name="gp" type="Node2D" parent="." index="5" unique_id=1147271376]

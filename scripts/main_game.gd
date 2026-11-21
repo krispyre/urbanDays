@@ -1,7 +1,7 @@
 extends Scene
 @onready var intro: Node2D = $gameProcess/intro
 @onready var level_nodes: Node = $gameProcess/levels
-
+@export var pauseScreen: Control
 var lives = 3
 var curLevel := -1
 var cur_level_node: Node
@@ -11,6 +11,12 @@ var levels: Array[InstancePlaceholder] = []
 func _unhandled_input(event: InputEvent):
 	if (event.is_action_pressed("pause")):
 		$gameProcess.get_tree().paused = !($gameProcess.get_tree().paused)
+		if ($gameProcess.get_tree().paused):
+			#uhh update the vol display????? very bad
+			$pause/settings/MarginContainer/HBoxContainer/volSlider.value = db_to_linear(%bgm.find_child("music_player").volume_db)
+			pauseScreen.show()
+		else:
+			pauseScreen.hide()
 
 func _ready() -> void:
 	for child in level_nodes.get_children():
@@ -37,3 +43,10 @@ func _on_bgm_next_level() -> void:
 	if cur_level_node:
 		unload_level(cur_level_node)
 	cur_level_node = load_level(curLevel)
+	
+## volume is 0 to 1 (float).
+func set_music_vol(volume:float):
+	%bgm.find_child("music_player").volume_db = linear_to_db(volume)
+
+func _on_vol_slider_value_changed(value: float) -> void:
+	set_music_vol(value/100)

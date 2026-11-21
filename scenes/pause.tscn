@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://dhwhdkrbpdksf"]
+
+[ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="1_f1d2v"]
+
+[sub_resource type="GDScript" id="GDScript_umfan"]
+resource_name = "pauseMenu"
+script/source = "extends Control
+
+@export var volumeValue:Label
+@export var volSlider:HSlider
+
+func _process(dt):
+	volumeValue.text = str(volSlider.value)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_r8yp4"]
+resource_name = "hintStyle"
+font = ExtResource("1_f1d2v")
+font_size = 49
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m0klm"]
+resource_name = "hintStyle"
+font = ExtResource("1_f1d2v")
+font_size = 26
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1d2v"]
+resource_name = "hintStyle"
+font = ExtResource("1_f1d2v")
+font_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="pause" type="Control" unique_id=832389343 node_paths=PackedStringArray("volumeValue", "volSlider")]
+process_mode = 2
+visible = false
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_umfan")
+volumeValue = NodePath("settings/MarginContainer/HBoxContainer/volVal")
+volSlider = NodePath("settings/MarginContainer/HBoxContainer/volSlider")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=194172512]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="bg" type="ColorRect" parent="MarginContainer" unique_id=1709210175]
+layout_mode = 2
+color = Color(0, 0, 0, 0.47843137)
+
+[node name="hinttext" type="CenterContainer" parent="MarginContainer" unique_id=954919780]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/hinttext" unique_id=2126575542]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/hinttext/VBoxContainer" unique_id=507485226]
+layout_mode = 2
+text = "paused"
+label_settings = SubResource("LabelSettings_r8yp4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/hinttext/VBoxContainer" unique_id=1129356077]
+layout_mode = 2
+text = "press esc to continue"
+label_settings = SubResource("LabelSettings_m0klm")
+horizontal_alignment = 1
+
+[node name="settings" type="ItemList" parent="." unique_id=1653172654]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 457.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="settings" unique_id=101822548]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="settings/MarginContainer" unique_id=82882597]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="vol]" type="Label" parent="settings/MarginContainer/HBoxContainer" unique_id=1552948883]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+text = "volume"
+label_settings = SubResource("LabelSettings_f1d2v")
+
+[node name="volVal" type="Label" parent="settings/MarginContainer/HBoxContainer" unique_id=328571084]
+layout_mode = 2
+text = "volume"
+label_settings = SubResource("LabelSettings_f1d2v")
+horizontal_alignment = 2
+
+[node name="volSlider" type="HSlider" parent="settings/MarginContainer/HBoxContainer" unique_id=1838657737]
+layout_mode = 2
+size_flags_horizontal = 3

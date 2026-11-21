@@ -8,6 +8,7 @@ extends Level
 @export var likeCount: AnimatedSprite2D
 @export var likeTotal: AnimatedSprite2D
 @export var likeCounterWhole:Node2D
+@onready var lana_view: AnimatedSprite2D = $lanaView
 
 signal scrollDown
 signal scrollUp
@@ -22,7 +23,9 @@ func _init():
 func _on_win():
 	if not mark_results_shown():
 		return
+	lana_view.play("finish")
 	results_transition.play_win()
+	print("wins")
 
 func _on_fail() -> void:
 	if not mark_results_shown():
@@ -74,9 +77,10 @@ func _input(e: InputEvent):
 		if count == reel_count:
 			likeCounterWhole.find_child("animPlayer").play("blinkCorrect")
 			win.emit()
-			print("wins")
 			
 func _on_timer_timeout() -> void:
+	lana_view.play("finish")
+	
 	if !isResultsShown:
 		fail.emit()
 		print("fail")

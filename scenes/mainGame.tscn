@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b8aad6fgqftpx" path="res://assets/sprites/intro/frame0022.png" id="10_fpgdv"]
 [ext_resource type="Texture2D" uid="uid://bfyldxyyg165m" path="res://assets/sprites/intro/frame0028.png" id="11_pkqdw"]
 [ext_resource type="Texture2D" uid="uid://bu7lkqxkm6rim" path="res://assets/sprites/intro/frame0033.png" id="12_1sewj"]
+[ext_resource type="PackedScene" uid="uid://dhwhdkrbpdksf" path="res://scenes/pause.tscn" id="14_1lxpl"]
 
 [sub_resource type="Animation" id="Animation_2lgfs"]
 length = 0.001
@@ -98,9 +99,10 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="mainGame" type="Node" unique_id=255430358]
+[node name="mainGame" type="Node" unique_id=255430358 node_paths=PackedStringArray("pauseScreen")]
 process_mode = 3
 script = ExtResource("1_mwwrp")
+pauseScreen = NodePath("pause")
 metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 
 [node name="gameProcess" type="Node" parent="." unique_id=979234764]
@@ -126,6 +128,7 @@ script = ExtResource("4_owcan")
 
 [node name="music_player" type="AudioStreamPlayer" parent="gameProcess/bgm" unique_id=1616172852]
 stream = ExtResource("4_aadn1")
+volume_db = 10.198
 autoplay = true
 
 [node name="RhythmNotifier" type="Node" parent="gameProcess/bgm" unique_id=1809508973 node_paths=PackedStringArray("audio_stream_player")]
@@ -134,26 +137,6 @@ bpm = 175.0
 beat_length = 0.34285714285714286
 audio_stream_player = NodePath("../music_player")
 metadata/_custom_type_script = "uid://dos3qhffr4v0a"
-
-[node name="pauseMenu" type="Control" parent="gameProcess" unique_id=497962982]
-process_mode = 2
-layout_mode = 3
-anchors_preset = 0
-offset_left = 367.0
-offset_top = 276.0
-offset_right = 367.0
-offset_bottom = 276.0
-
-[node name="NinePatchRect" type="NinePatchRect" parent="gameProcess/pauseMenu" unique_id=1147199761]
-visible = false
-z_index = 13
-layout_mode = 0
-offset_left = -266.0
-offset_top = -169.0
-offset_right = 175.0
-offset_bottom = 220.0
-region_rect = Rect2(14.400009, 14.400005, 231.19998, 231.19998)
-patch_margin_right = 13
 
 [node name="intro" type="Node2D" parent="gameProcess" unique_id=387021789]
 
@@ -167,5 +150,10 @@ centered = false
 
 [node name="failScreen" type="Node" parent="." unique_id=1316311000]
 
+[node name="pause" parent="." unique_id=832389343 instance=ExtResource("14_1lxpl")]
+
 [connection signal="nextLevel" from="gameProcess/bgm" to="." method="_on_bgm_next_level"]
 [connection signal="outro" from="gameProcess/bgm" to="." method="_on_bgm_outro"]
+[connection signal="value_changed" from="pause/settings/MarginContainer/HBoxContainer/volSlider" to="." method="_on_vol_slider_value_changed"]
+
+[editable path="pause"]

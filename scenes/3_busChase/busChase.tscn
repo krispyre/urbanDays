@@ -570,7 +570,7 @@ centered = false
 process_mode = 1
 
 [node name="people" type="Node3D" parent="level" unique_id=237544948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.059723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3391533)
 
 [node name="people" type="AnimatedSprite3D" parent="level/people" unique_id=1490756527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7281446, 0.93205833, -12.692911)
@@ -642,7 +642,7 @@ sprite_frames = SubResource("SpriteFrames_xhhom")
 frame = 1
 
 [node name="floor" type="StaticBody3D" parent="level" unique_id=165753745]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.059723)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6224174)
 physics_material_override = SubResource("PhysicsMaterial_5pd1v")
 
 [node name="mesh" type="MeshInstance3D" parent="level/floor" unique_id=1958026555]
@@ -812,13 +812,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6832986, 15.001572, -47.23
 mesh = SubResource("PlaneMesh_xhhom")
 
 [node name="bus" type="Node3D" parent="level" unique_id=1754364475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -29.299265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.786379, 2.1500006, -19.978567)
 
 [node name="goal" type="Area3D" parent="level/bus" unique_id=1509026711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6336796, -1.2846398, 0.06630325)
 
 [node name="hb" type="CollisionShape3D" parent="level/bus/goal" unique_id=805149997]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.817627, 0.8521118, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.817627, 0.8521118, -0.6923847)
 shape = SubResource("BoxShape3D_swys0")
 
 [node name="Sprite3D" type="Sprite3D" parent="level/bus" unique_id=1599625226]

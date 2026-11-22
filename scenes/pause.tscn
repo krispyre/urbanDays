@@ -9,6 +9,9 @@ script/source = "extends Control
 @export var volumeValue:Label
 @export var volSlider:HSlider
 
+# EVERYONE FOLLOW THE SLIDER AND THE SLIDR FOLLOW THE GLOBALS
+func _ready() -> void:
+	volSlider.value = Globals.volume*100
 
 func _process(dt):
 	volumeValue.text = str(volSlider.value)

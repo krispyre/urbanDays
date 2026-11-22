@@ -1,17 +1,23 @@
 [gd_scene format=3 uid="uid://cdyv706jue768"]
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_d5ys2"]
-[ext_resource type="Texture2D" uid="uid://8qf1usb6uv34" path="res://assets/sprites/focusHw/balanceRange.png" id="2_3ph1c"]
 [ext_resource type="PackedScene" uid="uid://d0f3rio1v1c36" path="res://scenes/8_focus/focus_thres.tscn" id="3_dbfos"]
+[ext_resource type="Texture2D" uid="uid://iaa657h3saji" path="res://assets/sprites/roundRect.png" id="4_vajo7"]
 
-[sub_resource type="Gradient" id="Gradient_dbfos"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.5647059)
+[sub_resource type="GDScript" id="GDScript_dbfos"]
+resource_name = "focusHw"
+script/source = "extends Level
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f7n5a"]
-gradient = SubResource("Gradient_dbfos")
-width = 600
-height = 37
+@export var focus_bar: TextureProgressBar
+
+
+func _on_timer_timeout() -> void:
+	game_start = false
+	if abs(focus_bar.value) < focus_bar.focus_thres:
+		print(\"owo\")
+	else:
+		print(\"umu\")
+"
 
 [sub_resource type="GDScript" id="GDScript_vajo7"]
 resource_name = "focusBar"
@@ -21,17 +27,35 @@ var focus_thres = 25
 var push_force = 100
 var velocity := 0.0 #make sure its a float BRUH
 var gravity:=0.0
-@export var rangeStart: Node2D
-@export var rangeEnd: Node2D
+var rand_drag:=0.0
+
+var normalized_pos
+
+@export var range: NinePatchRect
+@onready var doze_timer: Timer = $dozeOff
+@export var focus_pointer: Sprite2D
+@export var bg: NinePatchRect
+@export var thres_range: NinePatchRect
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var center = size.x /2
-	var unit = size.x/(max_value-min_value)
-	#todo the thres should scale
-	rangeStart.position = Vector2(center-focus_thres*unit,0)
-	rangeEnd.position = Vector2(center+focus_thres*unit,0)
+	#these are all scaled down by .3
+	var center = bg.size.x /2
+	var unit = bg.size.x/(max_value-min_value)
+	
+	var start_x = center-focus_thres*unit
+	var end_x = center+focus_thres*unit
+	thres_range.position.x = start_x
+	thres_range.size.x = end_x-start_x
+	
+	prints(start_x, end_x, \"sldkjklsd\")
+	#positioning the pointer, no scaling
+	normalized_pos = ((value-min_value)/(max_value-min_value))
+	focus_pointer.position.x = normalized_pos * size.x
 
 func _process(dt: float) -> void:
+	if !owner.game_start:
+		return
 	gravity = randi_range(4,9)*sign(value-1) #todo randomize every interval
 	if Input.is_action_just_pressed(\"right\"):
 		velocity = 0
@@ -41,36 +65,76 @@ func _process(dt: float) -> void:
 		velocity -= push_force * dt
 	else:
 		velocity += gravity *dt
+		velocity += rand_drag * dt
 	
 	value += velocity
 	value = clamp(value, min_value, max_value)
 	
-	prints(value,velocity, gravity)
+	normalized_pos = ((value-min_value)/(max_value-min_value))
+	focus_pointer.position.x = normalized_pos * size.x
 	
-	#if Input.is_action_just_pressed(\"ui_up\") or Input.is_action_just_pressed(\"action1\"):
-		#velocity.z = 0
-		#velocity.z -= pushForce * dt
-	#elif position.z <= -2:
-		#velocity.z += DECCEL * dt
-	#else:
-		#velocity.z = 0
-		#
-	#speed_label.text = \"SPEED: \"+str(velocity.z)+\"m/s\\n\"+\"Z: \"+str(position.z)
-	#var t = position.z/(bus.position.z-0)#stronger push when closer?
-	#pushForce =  lerp(PUSH_FORCE_MAX, PUSH_FORCE_MIN, t)
-	#
-	##print(pushForce)
-#
-	#move_and_slide()
+	#prints(normalized_pos)
+
+func _on_focus_hw_game_start() -> void:
+	doze_timer.start()
+	
+func _on_doze_off_timeout() -> void:
+	rand_drag = randi_range(1,10)
+	doze_timer.wait_time = snappedf(randfn(1.5,.4), .05)
+	#prints(doze_timer.wait_time, rand_drag)
+
+func _on_timer_timeout() -> void:
+	focus_pointer.find_child(\"ap\").play(\"blink\")#idc names atp
+	doze_timer.stop()
 "
 
-[node name="focusHw" unique_id=1975170843 instance=ExtResource("1_d5ys2")]
+[sub_resource type="Animation" id="Animation_dbfos"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vajo7"]
+resource_name = "blink"
+length = 0.19999999999999998
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_80uy1"]
+_data = {
+&"RESET": SubResource("Animation_dbfos"),
+&"blink": SubResource("Animation_vajo7")
+}
+
+[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("focus_bar") instance=ExtResource("1_d5ys2")]
+script = SubResource("GDScript_dbfos")
+focus_bar = NodePath("focus")
 level_number = 8
 
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "FOCUS"
 
-[node name="focus" type="TextureProgressBar" parent="." index="3" unique_id=1284644675 node_paths=PackedStringArray("rangeStart", "rangeEnd")]
+[node name="focus" type="TextureProgressBar" parent="." index="3" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
 anchors_preset = -1
 anchor_left = 0.083333336
 anchor_top = 0.84444445
@@ -78,23 +142,64 @@ anchor_right = 0.9166667
 anchor_bottom = 0.912963
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(300, 19)
 min_value = -100.0
-texture_under = ExtResource("2_3ph1c")
-texture_progress = SubResource("GradientTexture2D_f7n5a")
 script = SubResource("GDScript_vajo7")
-rangeStart = NodePath("range_start")
-rangeEnd = NodePath("range_end")
-metadata/_edit_use_anchors_ = true
+range = NodePath("bg/thres_range")
+focus_pointer = NodePath("focusPointer")
+bg = NodePath("bg")
+thres_range = NodePath("bg/thres_range")
 
-[node name="range_start" parent="focus" index="0" unique_id=251252326 instance=ExtResource("3_dbfos")]
+[node name="bg" type="NinePatchRect" parent="focus" index="0" unique_id=2021895298]
+self_modulate = Color(0.21230483, 0.21230483, 0.21230483, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1400.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_vajo7")
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
 
-[node name="range_end" parent="focus" index="1" unique_id=678022418 instance=ExtResource("3_dbfos")]
+[node name="thres_range" type="NinePatchRect" parent="focus/bg" index="0" unique_id=2044146861]
+modulate = Color(0.5409905, 0.5409905, 0.5409905, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -50.0
+offset_right = 236.66663
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vajo7")
+region_rect = Rect2(0, 0, 256, 256)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
 
-[node name="curFocus" parent="focus" index="2" unique_id=2146910601 instance=ExtResource("3_dbfos")]
-visible = false
+[node name="focusPointer" parent="focus" index="1" unique_id=2146910601 instance=ExtResource("3_dbfos")]
 modulate = Color(1, 1, 1, 1)
 position = Vector2(267, 0)
 
-[node name="dozeOff" type="Timer" parent="focus" index="3" unique_id=1906940747]
+[node name="ap" type="AnimationPlayer" parent="focus/focusPointer" index="0" unique_id=1236770916]
+libraries/ = SubResource("AnimationLibrary_80uy1")
+
+[node name="dozeOff" type="Timer" parent="focus" index="2" unique_id=1906940747]
+
+[connection signal="gameStart" from="." to="focus" method="_on_focus_hw_game_start"]
+[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timeLeft/Timer" to="focus" method="_on_timer_timeout"]
+[connection signal="timeout" from="focus/dozeOff" to="focus" method="_on_doze_off_timeout"]
 
 [editable path="timeLeft"]

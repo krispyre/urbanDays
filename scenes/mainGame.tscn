@@ -122,6 +122,8 @@ process_mode = 1
 
 [node name="badminton" parent="gameProcess/levels" unique_id=665764630 instance_placeholder="res://scenes/6_badminton/badminton.tscn"]
 
+[node name="focusHw" parent="gameProcess/levels" unique_id=102307885 instance_placeholder="res://scenes/8_focus/focus_hw.tscn"]
+
 [node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
 unique_name_in_owner = true
 script = ExtResource("4_owcan")

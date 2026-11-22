@@ -111,6 +111,7 @@ func _on_doze_off_timeout() -> void:
 func _on_timer_timeout() -> void:
 	focus_pointer.find_child(\"ap\").play(\"blink\")#idc names atp
 	doze_timer.stop()
+	hide()
 "
 
 [sub_resource type="Animation" id="Animation_dbfos"]
@@ -309,7 +310,7 @@ func _on_timer_timeout() -> void:
 	play(\"end\")
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjh48"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gl0n"]
 resource_local_to_scene = true
 shader = ExtResource("13_v5qur")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -378,7 +379,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2gl0n"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ji6ob"]
 viewport_path = NodePath("parts")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibcb0"]
@@ -578,7 +579,7 @@ texture = ExtResource("8_5x3yj")
 z_index = 999
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_mjh48")
+material = SubResource("ShaderMaterial_2gl0n")
 sprite_frames = SubResource("SpriteFrames_dfqkm")
 frame = 7
 frame_progress = 1.0
@@ -586,7 +587,7 @@ frame_progress = 1.0
 [node name="bglol" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1429237668 instance=ExtResource("16_po3i2")]
 position = Vector2(0, -100)
 rotation = 0.08726646
-texture = SubResource("ViewportTexture_2gl0n")
+texture = SubResource("ViewportTexture_ji6ob")
 centered = false
 
 [node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=1290060690]

@@ -2,6 +2,9 @@ extends Scene
 @onready var intro: Node2D = $gameProcess/intro
 @onready var level_nodes: Node = $gameProcess/levels
 @export var pauseScreen: Control
+
+@export var outro: Node2D
+
 var lives = 3
 var curLevel := -1
 var cur_level_node: Node
@@ -10,7 +13,6 @@ var levels: Array[InstancePlaceholder] = []
 
 func _unhandled_input(event: InputEvent):
 	
-		
 	if (event.is_action_pressed("pause")):
 		$gameProcess.get_tree().paused = !($gameProcess.get_tree().paused)
 		set_music_vol(Globals.volume) # where is better idk
@@ -35,6 +37,7 @@ func unload_level(level: Node) -> void:
 
 func _on_bgm_outro() -> void:
 	print("play outro")
+	outro.find_child("animPlayer").play("outro")
 
 func _on_bgm_next_level() -> void:
 	if curLevel == -1:
@@ -45,7 +48,10 @@ func _on_bgm_next_level() -> void:
 	prints("next level ", curLevel)
 	if cur_level_node:
 		unload_level(cur_level_node)
-	cur_level_node = load_level(curLevel)
+		
+	if curLevel < bgm.LEVEL_COUNT:
+		#load until the last one
+		cur_level_node = load_level(curLevel)
 	
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):

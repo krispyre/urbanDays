@@ -12,10 +12,10 @@ const BEATS_PER_BAR := 4
 const INTRO_BARS := 8
 const LEVEL_BARS := 8
 const LEVEL_COUNT := 8
+const EARLY_OFFSET := 2
 const INTRO_BEATS := INTRO_BARS * BEATS_PER_BAR # 32
 const LEVEL_BEATS := LEVEL_BARS * BEATS_PER_BAR # 32
 ## start this many beats early so the hint can play before the level section
-const EARLY_OFFSET := 2
 
 ## lv is 1-indexed (first gameplay level = 1)
 static func level_beat_offset(lv: int) -> int:
@@ -36,9 +36,14 @@ func _ready():
 	r.beats(LEVEL_BEATS, true, INTRO_BEATS).connect(emitNextLevel)
 	#outro
 	r.beats(0, false, INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT).connect(emitOutro)
-
+	prints(INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT, (INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT)*60/bpm)
+	
+func _process(dt):
+	print(round(music_player.get_playback_position()))
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (event.is_action_pressed("action2")):
-		print("extremely hacky, todo remove")
-		music_player.seek(10)
+	if (event.is_action_pressed("skip")):
+		music_player.seek(music_player.get_playback_position()+60/bpm)
+	if (event.is_action_pressed("outro")):
+		music_player.seek((INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT)*60/bpm)
+		emitOutro(67)

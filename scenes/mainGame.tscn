@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://bfyldxyyg165m" path="res://assets/sprites/intro/frame0028.png" id="11_pkqdw"]
 [ext_resource type="Texture2D" uid="uid://bu7lkqxkm6rim" path="res://assets/sprites/intro/frame0033.png" id="12_1sewj"]
 [ext_resource type="PackedScene" uid="uid://dhwhdkrbpdksf" path="res://scenes/pause.tscn" id="14_1lxpl"]
+[ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="14_e1yew"]
+[ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="15_j74od"]
 
 [sub_resource type="Animation" id="Animation_2lgfs"]
 length = 0.001
@@ -99,10 +101,285 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="mainGame" type="Node" unique_id=255430358 node_paths=PackedStringArray("pauseScreen")]
+[sub_resource type="Animation" id="Animation_e1yew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("results:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("results:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("musicCredits:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("musicCredits:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("t4p:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("t4p:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_j74od"]
+resource_name = "outro"
+length = 11.314
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.55, 1.5666667, 2.47),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("results:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 4.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("results:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.19159962, 3.856785, 4.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("musicCredits:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.133333, 7.1323338),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("musicCredits:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.133333, 4.3239326, 6.8557854, 7.1323338),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("t4p:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(8.101, 11.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("t4p:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(8.101, 8.291599, 10.823452, 11.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpgdv"]
+_data = {
+&"RESET": SubResource("Animation_e1yew"),
+&"outro": SubResource("Animation_j74od")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j74od"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpgdv"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkqdw"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1sewj"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jcoq"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf5yp"]
+atlas = ExtResource("14_e1yew")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j74od")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpgdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkqdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1sewj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jcoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf5yp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_j74od"]
+offsets = PackedFloat32Array(0.05483871, 0.30967742, 0.7967742, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.9529412, 0, 0, 0, 0.5019608, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ka23v"]
+gradient = SubResource("Gradient_j74od")
+
+[sub_resource type="LabelSettings" id="LabelSettings_fpgdv"]
+font = ExtResource("15_j74od")
+font_size = 29
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1yew"]
+font = ExtResource("15_j74od")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_j74od"]
+font = ExtResource("15_j74od")
+font_size = 26
+
+[node name="mainGame" type="Node" unique_id=255430358 node_paths=PackedStringArray("pauseScreen", "outro")]
 process_mode = 3
 script = ExtResource("1_mwwrp")
 pauseScreen = NodePath("pause")
+outro = NodePath("gameProcess/outro")
 metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 
 [node name="gameProcess" type="Node" parent="." unique_id=979234764]
@@ -121,6 +398,9 @@ process_mode = 1
 [node name="scrollreels" parent="gameProcess/levels" unique_id=961308686 instance_placeholder="res://scenes/5_scrollReels/scrollReels.tscn"]
 
 [node name="badminton" parent="gameProcess/levels" unique_id=665764630 instance_placeholder="res://scenes/6_badminton/badminton.tscn"]
+
+[node name="idk" parent="gameProcess/levels" unique_id=821350888 instance_placeholder="res://scenes/7_idk/idk.tscn"]
+level_number = 7
 
 [node name="focusHw" parent="gameProcess/levels" unique_id=102307885 instance_placeholder="res://scenes/8_focus/focus_hw.tscn"]
 
@@ -149,6 +429,68 @@ autoplay = &"intro"
 [node name="slidesPlaceholder" type="AnimatedSprite2D" parent="gameProcess/intro" unique_id=1253009659]
 sprite_frames = SubResource("SpriteFrames_1qa5v")
 centered = false
+
+[node name="outro" type="Node2D" parent="gameProcess" unique_id=1192411763]
+z_index = 99
+
+[node name="animPlayer" type="AnimationPlayer" parent="gameProcess/outro" unique_id=1046655987]
+libraries/ = SubResource("AnimationLibrary_fpgdv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="gameProcess/outro" unique_id=415487314]
+position = Vector2(64, 160)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+autoplay = "default"
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="gameProcess/outro" unique_id=69595001]
+visible = false
+self_modulate = Color(1, 1, 1, 0.7058824)
+offset_top = 413.0
+offset_right = 720.0
+offset_bottom = 540.0
+texture = SubResource("GradientTexture2D_ka23v")
+
+[node name="results" type="VBoxContainer" parent="gameProcess/outro" unique_id=1508683316]
+visible = false
+offset_left = 20.0
+offset_top = 430.0
+offset_right = 328.0
+offset_bottom = 490.0
+
+[node name="title" type="Label" parent="gameProcess/outro/results" unique_id=195939223]
+layout_mode = 2
+text = "Results:"
+label_settings = SubResource("LabelSettings_fpgdv")
+
+[node name="successful" type="Label" parent="gameProcess/outro/results" unique_id=232551199]
+layout_mode = 2
+text = "Successful microgames:"
+label_settings = SubResource("LabelSettings_e1yew")
+
+[node name="fail" type="Label" parent="gameProcess/outro/results" unique_id=1890121358]
+layout_mode = 2
+text = "Failed microgames:"
+label_settings = SubResource("LabelSettings_e1yew")
+
+[node name="musicCredits" type="Label" parent="gameProcess/outro" unique_id=768499075]
+visible = false
+offset_left = 20.0
+offset_top = 430.0
+offset_right = 426.0
+offset_bottom = 520.0
+text = "Music: 
+Quiz! by Toby Fox (Medley 1)
+Query? by Toby Fox (Tutorial)"
+label_settings = SubResource("LabelSettings_e1yew")
+
+[node name="t4p" type="Label" parent="gameProcess/outro" unique_id=192505734]
+visible = false
+offset_left = 20.0
+offset_top = 430.0
+offset_right = 426.0
+offset_bottom = 520.0
+text = "Thanks for playing! (or watching)"
+label_settings = SubResource("LabelSettings_j74od")
 
 [node name="failScreen" type="Node" parent="." unique_id=1316311000]
 

@@ -196,6 +196,11 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufgmx"]
+shader = ExtResource("16_dii4x")
+shader_parameter/brightness = 0.26999997161295997
+shader_parameter/contrast = 1.96999995596656
+
 [sub_resource type="GDScript" id="GDScript_w1qyk"]
 resource_name = "scrollContainer"
 script/source = "extends ScrollContainer
@@ -604,11 +609,8 @@ _data = {
 &"rotate": SubResource("Animation_ki1qj")
 }
 
-[node name="root" unique_id=1975170843 node_paths=PackedStringArray("scrollContainer", "reelList", "fingerAnim", "likeCount", "likeTotal", "likeCounterWhole", "progress_bar", "timer", "hint_anim_player") instance=ExtResource("1_1l2bw")]
+[node name="root" unique_id=1975170843 node_paths=PackedStringArray("scrollContainer", "reelList", "fingerAnim", "likeCount", "likeTotal", "likeCounterWhole") instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
-progress_bar = NodePath("CanvasLayer/timeLeft/ProgressBar")
-timer = NodePath("CanvasLayer/timeLeft/Timer")
-hint_anim_player = NodePath("animPlayer")
 scrollContainer = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer")
 reelList = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer/content")
 reelScene = ExtResource("7_rmii1")
@@ -618,7 +620,10 @@ likeTotal = NodePath("counter/denom")
 likeCounterWhole = NodePath("counter")
 level_number = 5
 
-[node name="animPlayer" parent="." index="0" unique_id=167420536]
+[node name="ProgressBar" parent="CanvasLayer/timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
+z_index = 999
+
+[node name="animPlayer" parent="." index="1" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_rdfhy")
 
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
@@ -641,9 +646,6 @@ position = Vector2(-219.00003, 61.020576)
 sprite_frames = ExtResource("4_sj6mo")
 animation = &"z"
 autoplay = "z"
-
-[node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
-z_index = 999
 
 [node name="bglol" parent="." index="3" unique_id=1429237668 instance=ExtResource("5_swmok")]
 position = Vector2(358, 360)
@@ -681,6 +683,7 @@ frame_progress = 0.118393496
 
 [node name="Phone" type="Sprite2D" parent="gp" index="1" unique_id=1549461285]
 texture_filter = 1
+material = SubResource("ShaderMaterial_ufgmx")
 position = Vector2(467.00003, 276)
 rotation = 0.3367173
 texture = ExtResource("5_rdfhy")
@@ -813,8 +816,7 @@ autoplay = &"rotate"
 [connection signal="like" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_like"]
 [connection signal="scrollDown" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_scroll_down"]
 [connection signal="scrollUp" from="." to="gp/Phone/SubViewportContainer/contentVp/ScrollContainer" method="_on_root_scroll_up"]
-[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 
-[editable path="timeLeft"]
+[editable path="CanvasLayer/timeLeft"]
 [editable path="bglol"]
 [editable path="ResultsTransition"]

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cdyv706jue768"]
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_d5ys2"]
+[ext_resource type="Texture2D" uid="uid://ba0aexbat1xhv" path="res://assets/sprites/focusHw/focus-1.png" id="2_34hsf"]
+[ext_resource type="Texture2D" uid="uid://bxwvgtj1aon2a" path="res://assets/sprites/focusHw/focus0.png" id="3_cyp5f"]
 [ext_resource type="PackedScene" uid="uid://d0f3rio1v1c36" path="res://scenes/8_focus/focus_thres.tscn" id="3_dbfos"]
+[ext_resource type="Texture2D" uid="uid://bwhk7gfpdrtt2" path="res://assets/sprites/focusHw/focus1.png" id="4_5x3yj"]
 [ext_resource type="Texture2D" uid="uid://iaa657h3saji" path="res://assets/sprites/roundRect.png" id="4_vajo7"]
 
 [sub_resource type="GDScript" id="GDScript_dbfos"]
@@ -10,20 +13,110 @@ script/source = "extends Level
 
 @export var focus_bar: TextureProgressBar
 
-
+func _init() -> void:
+	LEVEL_DURATION_BEAT=32
 func _on_timer_timeout() -> void:
 	game_start = false
 	if abs(focus_bar.value) < focus_bar.focus_thres:
 		print(\"owo\")
 	else:
 		print(\"umu\")
+		
+#func _level_process(delta: float) -> void:
+	#print(focus_bar.value)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teajs"]
+atlas = ExtResource("2_34hsf")
+region = Rect2(594, 0, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydt5k"]
+atlas = ExtResource("2_34hsf")
+region = Rect2(0, 350, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo8fa"]
+atlas = ExtResource("3_cyp5f")
+region = Rect2(0, 0, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65c1t"]
+atlas = ExtResource("3_cyp5f")
+region = Rect2(594, 0, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5qur"]
+atlas = ExtResource("4_5x3yj")
+region = Rect2(594, 0, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y162f"]
+atlas = ExtResource("4_5x3yj")
+region = Rect2(0, 350, 594, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teajs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydt5k")
+}],
+"loop": 0,
+"name": &"-1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo8fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65c1t")
+}],
+"loop": 1,
+"name": &"0",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5qur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y162f")
+}],
+"loop": 0,
+"name": &"1",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_cyp5f"]
+resource_name = "focusView"
+script/source = "extends AnimatedSprite2D
+
+@export var focus: TextureProgressBar
+
+
+func _process(delta: float) -> void:
+	if focus.value < -focus.focus_thres:
+		animation = &\"-1\"
+		stop()
+		# display steps
+		var worse_progress = inverse_lerp(-focus.focus_thres, focus.min_value, focus.value)
+		var steps = sprite_frames.get_frame_count(&\"-1\")
+		frame = snappedf(worse_progress, 1/steps)*steps
+		prints(focus.value, worse_progress, snappedf(worse_progress, .5))
+	elif focus.value > focus.focus_thres:
+		animation = &\"1\"
+		stop()
+		var worse_progress = inverse_lerp(focus.focus_thres, focus.max_value, focus.value)
+		var steps = sprite_frames.get_frame_count(&\"1\")
+		frame = snappedf(worse_progress, 1/steps)*steps
+	else:
+		play(\"0\")
 "
 
 [sub_resource type="GDScript" id="GDScript_vajo7"]
 resource_name = "focusBar"
 script/source = "extends TextureProgressBar
 
-var focus_thres = 25
+var focus_thres = 50
 var push_force = 100
 var velocity := 0.0 #make sure its a float BRUH
 var gravity:=0.0
@@ -48,7 +141,6 @@ func _ready() -> void:
 	thres_range.position.x = start_x
 	thres_range.size.x = end_x-start_x
 	
-	prints(start_x, end_x, \"sldkjklsd\")
 	#positioning the pointer, no scaling
 	normalized_pos = ((value-min_value)/(max_value-min_value))
 	focus_pointer.position.x = normalized_pos * size.x
@@ -63,6 +155,8 @@ func _process(dt: float) -> void:
 	elif Input.is_action_just_pressed(\"left\"):
 		velocity = 0
 		velocity -= push_force * dt
+	elif Input.is_action_pressed(\"action2\"):
+		velocity = 0 #todo debug
 	else:
 		velocity += gravity *dt
 		velocity += rand_drag * dt
@@ -134,7 +228,15 @@ level_number = 8
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "FOCUS"
 
-[node name="focus" type="TextureProgressBar" parent="." index="3" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
+[node name="lana" type="AnimatedSprite2D" parent="." index="3" unique_id=1617589581 node_paths=PackedStringArray("focus")]
+position = Vector2(365, 364)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+animation = &"0"
+autoplay = "0"
+script = SubResource("GDScript_cyp5f")
+focus = NodePath("../focus")
+
+[node name="focus" type="TextureProgressBar" parent="." index="4" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
 anchors_preset = -1
 anchor_left = 0.083333336
 anchor_top = 0.84444445

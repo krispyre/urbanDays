@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_d5ys2"]
 [ext_resource type="Texture2D" uid="uid://ba0aexbat1xhv" path="res://assets/sprites/focusHw/focus-1.png" id="2_34hsf"]
-[ext_resource type="Texture2D" uid="uid://cbm7wa1cr8hx6" path="res://assets/sprites/focusHw/bg.png" id="2_cyp5f"]
+[ext_resource type="Texture2D" uid="uid://bxv3poojjcw2w" path="res://assets/sprites/focusHw/bg.png" id="2_cyp5f"]
 [ext_resource type="Texture2D" uid="uid://bxwvgtj1aon2a" path="res://assets/sprites/focusHw/focus0.png" id="3_cyp5f"]
 [ext_resource type="PackedScene" uid="uid://d0f3rio1v1c36" path="res://scenes/8_focus/focus_thres.tscn" id="3_dbfos"]
 [ext_resource type="Texture2D" uid="uid://bwhk7gfpdrtt2" path="res://assets/sprites/focusHw/focus1.png" id="4_5x3yj"]
@@ -30,6 +30,7 @@ func _init() -> void:
 	
 func _on_timer_timeout() -> void:
 	game_start = false
+	await get_tree().create_timer(.2).timeout
 	if abs(focus_bar.value) < focus_bar.focus_thres:
 		win.emit()
 	else:
@@ -311,7 +312,7 @@ _data = {
 &"blink": SubResource("Animation_vajo7")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gl0n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjh48"]
 resource_local_to_scene = true
 shader = ExtResource("13_v5qur")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -380,7 +381,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ji6ob"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2gl0n"]
 viewport_path = NodePath("parts")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibcb0"]
@@ -434,20 +435,35 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("results_transition", "focus_bar") instance=ExtResource("1_d5ys2")]
+[sub_resource type="GDScript" id="GDScript_mjh48"]
+resource_name = "focusCam"
+script/source = "extends Camera2D
+
+@export var focus: TextureProgressBar
+
+func _process(dt):
+	position.x = remap(focus.value, focus.min_value, focus.max_value, -16,16)
+"
+
+[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("results_transition", "focus_bar", "progress_bar", "timer", "hint_anim_player") instance=ExtResource("1_d5ys2")]
 script = SubResource("GDScript_dbfos")
 results_transition = NodePath("ResultsTransition")
 focus_bar = NodePath("focus")
+progress_bar = NodePath("CanvasLayer/timeLeft/ProgressBar")
+timer = NodePath("CanvasLayer/timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 level_number = 8
+
+[node name="timeLeft" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="0" unique_id=1236679750]
+z_index = 99
 
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "FOCUS"
 
-[node name="timeLeft" parent="." index="2" unique_id=1236679750]
-z_index = 99
-
 [node name="Bg" type="Sprite2D" parent="." index="3" unique_id=2035723371]
 texture_filter = 1
+position = Vector2(-15, 0)
+scale = Vector2(1.030303, 1)
 texture = ExtResource("2_cyp5f")
 centered = false
 
@@ -465,16 +481,22 @@ texture_filter = 1
 position = Vector2(580, 343)
 texture = ExtResource("4_ydt5k")
 
-[node name="lana" type="AnimatedSprite2D" parent="." index="6" unique_id=1617589581 node_paths=PackedStringArray("focus")]
+[node name="Parallax2D2" type="Parallax2D" parent="." index="6" unique_id=276818976]
+scroll_scale = Vector2(1.5, 1.5)
+
+[node name="lana" type="AnimatedSprite2D" parent="Parallax2D2" index="0" unique_id=1617589581 node_paths=PackedStringArray("focus")]
 texture_filter = 1
 position = Vector2(365, 295)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 animation = &"end"
 autoplay = "0"
 script = SubResource("GDScript_cyp5f")
-focus = NodePath("../focus")
+focus = NodePath("../../focus")
 
-[node name="Chair" type="Sprite2D" parent="." index="7" unique_id=16045359]
+[node name="Parallax2D" type="Parallax2D" parent="." index="7" unique_id=1750766438]
+scroll_scale = Vector2(2, 2)
+
+[node name="Chair" type="Sprite2D" parent="Parallax2D" index="0" unique_id=16045359]
 texture_filter = 1
 position = Vector2(365, 478)
 texture = ExtResource("8_5x3yj")
@@ -545,7 +567,7 @@ libraries/ = SubResource("AnimationLibrary_80uy1")
 [node name="ResultsTransition" parent="." index="9" unique_id=1814402132 instance=ExtResource("12_65c1t")]
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_2gl0n")
+material = SubResource("ShaderMaterial_mjh48")
 sprite_frames = SubResource("SpriteFrames_dfqkm")
 frame = 7
 frame_progress = 1.0
@@ -553,7 +575,7 @@ frame_progress = 1.0
 [node name="bglol" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1429237668 instance=ExtResource("16_po3i2")]
 position = Vector2(0, -100)
 rotation = 0.08726646
-texture = SubResource("ViewportTexture_ji6ob")
+texture = SubResource("ViewportTexture_2gl0n")
 centered = false
 
 [node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=1290060690]
@@ -562,12 +584,16 @@ sprite_frames = SubResource("SpriteFrames_ibcb0")
 [node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="2" unique_id=584044491]
 sprite_frames = SubResource("SpriteFrames_f7n5a")
 
+[node name="Camera2D" type="Camera2D" parent="." index="10" unique_id=1934564731 node_paths=PackedStringArray("focus")]
+anchor_mode = 0
+limit_left = -16
+limit_right = 13
+script = SubResource("GDScript_mjh48")
+focus = NodePath("../focus")
+
 [connection signal="gameStart" from="." to="focus" method="_on_focus_hw_game_start"]
-[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="timeLeft/Timer" to="lana" method="_on_timer_timeout"]
-[connection signal="timeout" from="timeLeft/Timer" to="focus" method="_on_timer_timeout"]
 [connection signal="timeout" from="focus/dozeOff" to="focus" method="_on_doze_off_timeout"]
 
-[editable path="timeLeft"]
+[editable path="CanvasLayer/timeLeft"]
 [editable path="ResultsTransition"]
 [editable path="ResultsTransition/resultViewport/bglol"]

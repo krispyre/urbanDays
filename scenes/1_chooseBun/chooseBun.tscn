@@ -491,8 +491,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="chooseBun" unique_id=1975170843 instance=ExtResource("1_ib6qt")]
+[node name="chooseBun" unique_id=1975170843 node_paths=PackedStringArray("progress_bar", "timer", "hint_anim_player") instance=ExtResource("1_ib6qt")]
 script = ExtResource("2_kqlbb")
+progress_bar = NodePath("CanvasLayer/timeLeft/ProgressBar")
+timer = NodePath("CanvasLayer/timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 
 [node name="ResultsTransition" parent="." index="0" unique_id=480332354 instance=ExtResource("26_results")]
 
@@ -515,18 +518,18 @@ position = Vector2(360, 270)
 sprite_frames = SubResource("SpriteFrames_wj38q")
 centered = true
 
-[node name="animPlayer" parent="." index="1" unique_id=167420536]
+[node name="timeLeft" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="0" unique_id=1236679750]
+z_index = 99
+
+[node name="animPlayer" parent="." index="2" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_tqxwe")
 
-[node name="hint" parent="." index="2" unique_id=1041035703]
+[node name="hint" parent="." index="3" unique_id=1041035703]
 texture_filter = 1
 
 [node name="Label" parent="hint" index="0" unique_id=285491151]
 texture_filter = 1
 text = "CHOOSE!"
-
-[node name="timeLeft" parent="." index="3" unique_id=1236679750]
-z_index = 99
 
 [node name="lana" type="AnimatedSprite2D" parent="." index="4" unique_id=1719397037]
 z_index = 2
@@ -643,10 +646,9 @@ frame = 2
 
 [node name="chooser" parent="." index="8" unique_id=836570877 instance=ExtResource("23_dp676")]
 
-[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="bun_focused" from="bunMenu" to="." method="_on_bun_focused"]
 [connection signal="bun_selected" from="bunMenu" to="." method="_on_bun_selected"]
 
 [editable path="ResultsTransition"]
-[editable path="timeLeft"]
+[editable path="CanvasLayer/timeLeft"]
 [editable path="chooser"]

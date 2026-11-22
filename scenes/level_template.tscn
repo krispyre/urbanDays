@@ -143,6 +143,10 @@ _data = {
 script = ExtResource("1_6lum8")
 metadata/_custom_type_script = "uid://bselhtgx4enop"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1213350474]
+
+[node name="timeLeft" parent="CanvasLayer" unique_id=1236679750 instance=ExtResource("3_6lum8")]
+
 [node name="animPlayer" type="AnimationPlayer" parent="." unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_un07w")
 
@@ -173,10 +177,8 @@ label_settings = ExtResource("5_amll8")
 horizontal_alignment = 1
 metadata/_edit_group_ = true
 
-[node name="timeLeft" parent="." unique_id=1236679750 instance=ExtResource("3_6lum8")]
-
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="animation_finished" from="animPlayer" to="." method="_on_anim_finished"]
 
-[editable path="timeLeft"]
+[editable path="CanvasLayer/timeLeft"]

@@ -1,9 +1,9 @@
 class_name Level extends Scene
 
 const bgmScene = preload("res://scenes/bgm.tscn")
-@onready var progress_bar: TextureProgressBar = $timeLeft/ProgressBar
-@onready var timer: Timer = $timeLeft/Timer
-@onready var hint_anim_player: AnimationPlayer = $animPlayer
+@export var progress_bar: TextureProgressBar
+@export var timer: Timer
+@export var hint_anim_player: AnimationPlayer
 
 var win_spr: Node2D
 var fail_spr: Node2D

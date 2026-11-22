@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://bt50x40kl0odh"]
+
+[ext_resource type="FontFile" uid="uid://dt6sselium7cp" path="res://assets/fonts/3270NerdFont-SemiCondensed.ttf" id="1_aiqyk"]
+
+[resource]
+default_font = ExtResource("1_aiqyk")
+default_font_size = 25

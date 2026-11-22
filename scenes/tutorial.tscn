@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://cg6b8tunecg1w" path="res://assets/sound/query_half.ogg" id="1_c13y7"]
 [ext_resource type="FontFile" uid="uid://k8edr20qhh0g" path="res://assets/fonts/3270NerdFontPropo-Condensed.ttf" id="2_ph3nu"]
 [ext_resource type="FontVariation" uid="uid://dbwcm0iuopdtr" path="res://assets/resources/font_packed3270Var.tres" id="3_4kmhl"]
+[ext_resource type="Theme" uid="uid://bt50x40kl0odh" path="res://assets/resources/font_tutText.tres" id="3_gbqnl"]
 [ext_resource type="FontFile" uid="uid://dt6sselium7cp" path="res://assets/fonts/3270NerdFont-SemiCondensed.ttf" id="4_4kmhl"]
 [ext_resource type="Texture2D" uid="uid://cknxvdlo4qrhh" path="res://assets/sprites/ui/panel.png" id="5_cq4me"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="6_6yjpi"]
@@ -31,11 +32,12 @@ func _on_audio_stream_player_finished() -> void:
 
 [sub_resource type="LabelSettings" id="LabelSettings_ka23v"]
 font = ExtResource("2_ph3nu")
-font_size = 54
+font_size = 59
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kmhl"]
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cq4me"]
@@ -74,7 +76,7 @@ var push_force = 300
 var pull_strength = 20
 
 func _process(dt: float) -> void:
-	bedPull = (bed.position-position).normalized()* (pull_strength)# * inverse_lerp(bed.position, position, position)
+	bedPull = (bed.position-position).normalized()* (pull_strength)
 	#var inputH = Input.get_axis(\"left\",\"right\")
 	#var inputV = Input.get_axis(\"up\",\"down\")
 	#go copyupaster
@@ -144,8 +146,9 @@ label_settings = SubResource("LabelSettings_ka23v")
 layout_mode = 0
 offset_left = 44.0
 offset_top = 108.0
-offset_right = 503.0
-offset_bottom = 153.0
+offset_right = 538.0
+offset_bottom = 165.0
+theme = ExtResource("3_gbqnl")
 theme_override_fonts/font = ExtResource("3_4kmhl")
 text = "How did it go? Was it smooth? Was it awkward?
 I'm going to need some time to recall..."
@@ -153,10 +156,10 @@ label_settings = SubResource("LabelSettings_4kmhl")
 
 [node name="Label2" type="Label" parent="tutorial" unique_id=1477549948]
 layout_mode = 0
-offset_left = 60.000008
-offset_top = 297.0
-offset_right = 284.0
-offset_bottom = 357.0
+offset_left = 98.0
+offset_top = 316.00003
+offset_right = 322.0
+offset_bottom = 376.00003
 rotation = 0.10875523
 theme_override_fonts/font = ExtResource("3_4kmhl")
 text = "These controls are quite versatile. I wonder what exactly they control."
@@ -166,9 +169,10 @@ autowrap_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="tutorial" unique_id=737416479]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 153.0
+offset_top = 165.0
 offset_right = 591.0
-offset_bottom = 282.0
+offset_bottom = 294.0
+theme = ExtResource("3_gbqnl")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_4kmhl")
 theme_override_fonts/bold_font = SubResource("FontVariation_cq4me")
@@ -185,15 +189,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -191.0
-offset_top = -57.0
-offset_right = 164.0
-offset_bottom = -18.5
+offset_left = -144.0
+offset_top = -41.0
+offset_right = 153.0
+offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("3_4kmhl")
 theme_override_fonts/bold_font = SubResource("FontVariation_cq4me")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "...Like moving myself around with [b][color=#f2bf33][arrow keys][/color][/b] and interacting with the world with [b][color=#f2bf33][z][/color][/b]."
 fit_content = true
@@ -203,9 +208,9 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="tutorial" unique_id=1895573513]
 layout_mode = 0
 offset_left = 29.0
-offset_top = 234.0
+offset_top = 278.0
 offset_right = 703.0
-offset_bottom = 299.0
+offset_bottom = 343.0
 theme_override_styles/separator = SubResource("StyleBoxLine_4kmhl")
 
 [node name="HSeparator2" type="HSeparator" parent="tutorial" unique_id=580221401]
@@ -214,6 +219,7 @@ offset_left = 29.0
 offset_top = 68.0
 offset_right = 703.0
 offset_bottom = 133.0
+theme = ExtResource("3_gbqnl")
 theme_override_styles/separator = SubResource("StyleBoxLine_ka23v")
 
 [node name="goback" type="Area2D" parent="." unique_id=1419970872]

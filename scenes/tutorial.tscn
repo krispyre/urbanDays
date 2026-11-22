@@ -5,6 +5,7 @@
 [ext_resource type="FontVariation" uid="uid://dbwcm0iuopdtr" path="res://assets/resources/font_packed3270Var.tres" id="3_4kmhl"]
 [ext_resource type="FontFile" uid="uid://dt6sselium7cp" path="res://assets/fonts/3270NerdFont-SemiCondensed.ttf" id="4_4kmhl"]
 [ext_resource type="Texture2D" uid="uid://cknxvdlo4qrhh" path="res://assets/sprites/ui/panel.png" id="5_cq4me"]
+[ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="6_6yjpi"]
 
 [sub_resource type="GDScript" id="GDScript_ph3nu"]
 resource_name = "tutorial"
@@ -58,6 +59,51 @@ size = Vector2(94, 96)
 [sub_resource type="LabelSettings" id="LabelSettings_f7n5a"]
 font = ExtResource("3_4kmhl")
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_gbqnl"]
+resource_name = "tutorialControl"
+script/source = "extends Area2D
+
+@export var bed: Marker2D
+@export var hb: CollisionShape2D
+@export var goback: Area2D
+
+var velocity : Vector2
+var bedPull: Vector2
+var push_force = 300
+var pull_strength = 20
+
+func _process(dt: float) -> void:
+	bedPull = (bed.position-position).normalized()* (pull_strength)# * inverse_lerp(bed.position, position, position)
+	#var inputH = Input.get_axis(\"left\",\"right\")
+	#var inputV = Input.get_axis(\"up\",\"down\")
+	#go copyupaster
+	if Input.is_action_just_pressed(\"right\"):
+		velocity = Vector2.ZERO
+		velocity.x += push_force * dt
+	elif Input.is_action_just_pressed(\"left\"):
+		velocity = Vector2.ZERO
+		velocity.x -= push_force * dt
+	elif Input.is_action_just_pressed(\"up\"):
+		velocity = Vector2.ZERO
+		velocity.y -= push_force * dt
+	elif Input.is_action_just_pressed(\"down\"):
+		velocity = Vector2.ZERO
+		velocity.y += push_force * dt
+	else:
+		if false:#position.distance_to(bed.position)<10:
+			velocity = Vector2.ZERO
+		else:
+			velocity += bedPull *dt
+	
+	position += velocity
+	
+	if goback in get_overlapping_areas() and Input.is_action_just_pressed(\"action1\"):
+		get_tree().change_scene_to_file(\"res://scenes/landing.tscn\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
+size = Vector2(56, 58)
 
 [node name="Tutorial" type="Node" unique_id=1513749202 node_paths=PackedStringArray("bgm_player")]
 script = SubResource("GDScript_ph3nu")
@@ -113,7 +159,7 @@ offset_right = 284.0
 offset_bottom = 357.0
 rotation = 0.10875523
 theme_override_fonts/font = ExtResource("3_4kmhl")
-text = "These controls are quite versatile. I wonder what exactly do they control."
+text = "These controls are quite versatile. I wonder what exactly they control."
 label_settings = SubResource("LabelSettings_cq4me")
 autowrap_mode = 2
 
@@ -196,5 +242,23 @@ text = "go back to menu"
 label_settings = SubResource("LabelSettings_f7n5a")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="playuh" type="Area2D" parent="." unique_id=1345528476 node_paths=PackedStringArray("bed", "hb", "goback")]
+position = Vector2(499.5, 306.5)
+script = SubResource("GDScript_gbqnl")
+bed = NodePath("../bed")
+hb = NodePath("hb")
+goback = NodePath("../goback")
+
+[node name="playuh" type="Sprite2D" parent="playuh" unique_id=21183106]
+scale = Vector2(0.2265625, 0.2265625)
+texture = ExtResource("6_6yjpi")
+
+[node name="hb" type="CollisionShape2D" parent="playuh" unique_id=714530110]
+shape = SubResource("RectangleShape2D_qudme")
+
+[node name="bed" type="Marker2D" parent="." unique_id=962997829]
+position = Vector2(499.5, 306.5)
+gizmo_extents = 54.5
 
 [connection signal="finished" from="bgmPlayer" to="." method="_on_audio_stream_player_finished"]

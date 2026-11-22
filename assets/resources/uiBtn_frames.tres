@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://0lv8dc4cd72d" path="res://assets/sprites/ui/ui_btn_down.png" id="1_2y1lq"]
 [ext_resource type="Texture2D" uid="uid://b14srkcm4i35a" path="res://assets/sprites/ui/ui_btn_up.png" id="2_lgta3"]
+[ext_resource type="Texture2D" uid="uid://ddoy1lb0ox6u2" path="res://assets/sprites/ui/ui_btn_left.png" id="2_ni3if"]
+[ext_resource type="Texture2D" uid="uid://drr4fg4v5330k" path="res://assets/sprites/ui/ui_btn_right.png" id="3_ba7kh"]
 [ext_resource type="Texture2D" uid="uid://bv58awhf6if5e" path="res://assets/sprites/ui/ui_btn_z.png" id="3_ni3if"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ba7kh"]
@@ -10,6 +12,22 @@ region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hel5i"]
 atlas = ExtResource("1_2y1lq")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cuaw"]
+atlas = ExtResource("2_ni3if")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nddj"]
+atlas = ExtResource("2_ni3if")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etwg4"]
+atlas = ExtResource("3_ba7kh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3ohh"]
+atlas = ExtResource("3_ba7kh")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyciy"]
@@ -39,6 +57,28 @@ animations = [{
 }],
 "loop": 1,
 "name": &"down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cuaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nddj")
+}],
+"loop": 1,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etwg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3ohh")
+}],
+"loop": 1,
+"name": &"right",
 "speed": 2.0
 }, {
 "frames": [{

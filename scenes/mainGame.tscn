@@ -124,9 +124,10 @@ process_mode = 1
 
 [node name="focusHw" parent="gameProcess/levels" unique_id=102307885 instance_placeholder="res://scenes/8_focus/focus_hw.tscn"]
 
-[node name="bgm" type="Node" parent="gameProcess" unique_id=993576825]
+[node name="bgm" type="Node" parent="gameProcess" unique_id=993576825 node_paths=PackedStringArray("music_player")]
 unique_name_in_owner = true
 script = ExtResource("4_owcan")
+music_player = NodePath("music_player")
 
 [node name="music_player" type="AudioStreamPlayer" parent="gameProcess/bgm" unique_id=1616172852]
 stream = ExtResource("4_aadn1")

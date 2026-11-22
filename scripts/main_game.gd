@@ -9,6 +9,8 @@ var levels: Array[InstancePlaceholder] = []
 @onready var levels_node: Node = $gameProcess/levels
 
 func _unhandled_input(event: InputEvent):
+	
+		
 	if (event.is_action_pressed("pause")):
 		$gameProcess.get_tree().paused = !($gameProcess.get_tree().paused)
 		set_music_vol(Globals.volume) # where is better idk

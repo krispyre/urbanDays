@@ -1,6 +1,9 @@
 class_name bgm extends Node
 signal nextLevel
 signal outro
+
+@export var music_player: AudioStreamPlayer
+
 @onready var r: RhythmNotifier = $RhythmNotifier
 static var bpm = 175 # todo this is temp but salesdodge rely on that...
 var is_over = false
@@ -33,3 +36,9 @@ func _ready():
 	r.beats(LEVEL_BEATS, true, INTRO_BEATS).connect(emitNextLevel)
 	#outro
 	r.beats(0, false, INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT).connect(emitOutro)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if (event.is_action_pressed("action2")):
+		print("extremely hacky, todo remove")
+		music_player.seek(10)

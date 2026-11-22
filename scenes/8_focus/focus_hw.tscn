@@ -90,8 +90,6 @@ func _process(dt: float) -> void:
 	elif Input.is_action_just_pressed(\"left\"):
 		velocity = 0
 		velocity -= push_force * dt
-	elif Input.is_action_pressed(\"action2\"):
-		velocity = 0 #todo debug
 	else:
 		velocity += gravity *dt
 		velocity += rand_drag * dt # randomize every 

@@ -431,6 +431,7 @@ sprite_frames = SubResource("SpriteFrames_1qa5v")
 centered = false
 
 [node name="outro" type="Node2D" parent="gameProcess" unique_id=1192411763]
+visible = false
 z_index = 99
 
 [node name="animPlayer" type="AnimationPlayer" parent="gameProcess/outro" unique_id=1046655987]

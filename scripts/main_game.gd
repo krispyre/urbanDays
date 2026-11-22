@@ -24,6 +24,7 @@ func _unhandled_input(event: InputEvent):
 			pauseScreen.hide()
 
 func _ready() -> void:
+	outro.hide()
 	for child in level_nodes.get_children():
 		levels.append(child as InstancePlaceholder)
 
@@ -37,6 +38,7 @@ func unload_level(level: Node) -> void:
 
 func _on_bgm_outro() -> void:
 	print("play outro")
+	outro.show()
 	outro.find_child("animPlayer").play("outro")
 
 func _on_bgm_next_level() -> void:

@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" format=3 uid="uid://dbwcm0iuopdtr"]
+
+[ext_resource type="FontFile" uid="uid://dt6sselium7cp" path="res://assets/fonts/3270NerdFont-SemiCondensed.ttf" id="1_08xdg"]
+
+[resource]
+base_font = ExtResource("1_08xdg")
+variation_embolden = 0.6
+spacing_glyph = -1

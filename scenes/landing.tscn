@@ -13,6 +13,7 @@ script/source = "extends Control
 signal item_selected(index:int)
 signal item_focused(index:int)
 
+@export var tut_scene: PackedScene
 func _ready() -> void:
 	var children = get_children()
 	for i in range(children.size()):
@@ -33,6 +34,10 @@ func _on_item_selected(bun_index: int):
 func _on_item_focused(bun_index: int):
 	prints(\"bun\", bun_index, \"focused\")
 	item_focused.emit(bun_index)
+
+
+func _on_tutorial_pressed() -> void:
+	get_tree().change_scene_to_packed(tut_scene)
 "
 
 [sub_resource type="Theme" id="Theme_mfct4"]
@@ -66,15 +71,15 @@ offset_top = 261.99997
 offset_right = 682.3338
 offset_bottom = 341.16626
 rotation = -0.2617994
-focus_neighbor_left = NodePath("../ttorial")
-focus_neighbor_bottom = NodePath("../ttorial")
-focus_previous = NodePath("../ttorial")
+focus_neighbor_left = NodePath("../tutorial")
+focus_neighbor_bottom = NodePath("../tutorial")
+focus_previous = NodePath("../tutorial")
 theme = SubResource("Theme_mfct4")
 text = "start"
 icon = ExtResource("3_usvfl")
 expand_icon = true
 
-[node name="ttorial" type="Button" parent="Control" unique_id=280347909]
+[node name="tutorial" type="Button" parent="Control" unique_id=280347909]
 layout_mode = 0
 offset_left = 38.999992
 offset_top = 412.0
@@ -93,3 +98,5 @@ stream = ExtResource("4_8ljda")
 [node name="bg" type="Sprite2D" parent="." unique_id=47684183]
 texture = ExtResource("5_j5py0")
 centered = false
+
+[connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]

@@ -1049,8 +1049,11 @@ _data = {
 shader = ExtResource("21_hmwyd")
 shader_parameter/blend_mode = 6
 
-[node name="salesDodge_level" type="Node" unique_id=1011445636]
+[node name="salesDodge_level" type="Node" unique_id=1011445636 node_paths=PackedStringArray("progress_bar", "timer", "hint_anim_player")]
 script = ExtResource("1_4213q")
+progress_bar = NodePath("timeLeft/ProgressBar")
+timer = NodePath("timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 level_number = 2
 metadata/_custom_type_script = "uid://bselhtgx4enop"
 

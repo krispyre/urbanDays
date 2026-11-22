@@ -604,8 +604,11 @@ _data = {
 &"rotate": SubResource("Animation_ki1qj")
 }
 
-[node name="root" unique_id=1975170843 node_paths=PackedStringArray("scrollContainer", "reelList", "fingerAnim", "likeCount", "likeTotal", "likeCounterWhole") instance=ExtResource("1_1l2bw")]
+[node name="root" unique_id=1975170843 node_paths=PackedStringArray("scrollContainer", "reelList", "fingerAnim", "likeCount", "likeTotal", "likeCounterWhole", "progress_bar", "timer", "hint_anim_player") instance=ExtResource("1_1l2bw")]
 script = ExtResource("2_6q81w")
+progress_bar = NodePath("CanvasLayer/timeLeft/ProgressBar")
+timer = NodePath("CanvasLayer/timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 scrollContainer = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer")
 reelList = NodePath("gp/Phone/SubViewportContainer/contentVp/ScrollContainer/content")
 reelScene = ExtResource("7_rmii1")

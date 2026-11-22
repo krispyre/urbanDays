@@ -545,8 +545,11 @@ _data = {
 &"showWin": SubResource("Animation_f3fa5")
 }
 
-[node name="busChase_root" type="Node" unique_id=1691468826]
+[node name="busChase_root" type="Node" unique_id=1691468826 node_paths=PackedStringArray("progress_bar", "timer", "hint_anim_player")]
 script = ExtResource("1_y7bmi")
+progress_bar = NodePath("level/timeLeft/ProgressBar")
+timer = NodePath("level/timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 level_number = 3
 metadata/_custom_type_script = "uid://bselhtgx4enop"
 

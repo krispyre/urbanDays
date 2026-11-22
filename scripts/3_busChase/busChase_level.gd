@@ -13,10 +13,7 @@ func _init():
 func _ready() -> void:
 	fail_spr = $fail
 	win_spr = $win
-	hint_anim_player = $animPlayer
-	timer = $level/timeLeft/Timer
-	progress_bar = $level/timeLeft/ProgressBar
-	
+
 	beat_offset = bgm.level_beat_offset(level_number)
 	#only parent has the bgm node, testers no
 	#either reference the bgm node in the parent or load ur own+offset (during testign)

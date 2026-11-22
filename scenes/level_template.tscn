@@ -139,8 +139,11 @@ _data = {
 &"showWin": SubResource("Animation_cdatj")
 }
 
-[node name="root" type="Node" unique_id=1975170843]
+[node name="root" type="Node" unique_id=1975170843 node_paths=PackedStringArray("progress_bar", "timer", "hint_anim_player")]
 script = ExtResource("1_6lum8")
+progress_bar = NodePath("CanvasLayer/timeLeft/ProgressBar")
+timer = NodePath("CanvasLayer/timeLeft/Timer")
+hint_anim_player = NodePath("animPlayer")
 metadata/_custom_type_script = "uid://bselhtgx4enop"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1213350474]

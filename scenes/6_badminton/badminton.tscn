@@ -455,7 +455,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1ixxn"]
 resource_name = "blink"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -508,14 +508,14 @@ frame_progress = 0.4778875
 [node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=584044491]
 sprite_frames = SubResource("SpriteFrames_g6c6o")
 
-[node name="animPlayer" parent="." index="1" unique_id=167420536]
+[node name="timeLeft" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="0" unique_id=1236679750]
+z_index = 9
+
+[node name="animPlayer" parent="." index="2" unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_spkm5")
 
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "CATCH!"
-
-[node name="timeLeft" parent="." index="3" unique_id=1236679750]
-z_index = 9
 
 [node name="Bg" type="Sprite2D" parent="." index="4" unique_id=1262924417]
 z_index = -1
@@ -627,7 +627,6 @@ position = Vector2(-39.5, 19.5)
 shape = SubResource("RectangleShape2D_swys0")
 
 [connection signal="gameStart" from="." to="ball" method="_on_badminton_game_start"]
-[connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 [connection signal="swing" from="lana" to="ball" method="_on_lana_swing"]
 [connection signal="animation_finished" from="lana/anim_spr" to="lana" method="_on_anim_spr_animation_finished"]
 [connection signal="body_entered" from="lana/racket" to="ball" method="_on_racket_body_entered"]
@@ -640,4 +639,4 @@ shape = SubResource("RectangleShape2D_swys0")
 [connection signal="body_entered" from="missNotice" to="lana" method="_on_miss_notice_body_entered"]
 
 [editable path="ResultsTransition"]
-[editable path="timeLeft"]
+[editable path="CanvasLayer/timeLeft"]

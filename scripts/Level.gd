@@ -117,9 +117,3 @@ func mark_results_shown() -> bool:
 
 func _on_timer_timeout() -> void:
 	pass
-
-func _on_win() -> void:
-	pass
-
-func _on_fail() -> void:
-	pass

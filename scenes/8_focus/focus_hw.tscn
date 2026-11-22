@@ -2,28 +2,96 @@
 
 [ext_resource type="PackedScene" uid="uid://mgke3jpvccdu" path="res://scenes/level_template.tscn" id="1_d5ys2"]
 [ext_resource type="Texture2D" uid="uid://ba0aexbat1xhv" path="res://assets/sprites/focusHw/focus-1.png" id="2_34hsf"]
+[ext_resource type="Texture2D" uid="uid://cbm7wa1cr8hx6" path="res://assets/sprites/focusHw/bg.png" id="2_cyp5f"]
 [ext_resource type="Texture2D" uid="uid://bxwvgtj1aon2a" path="res://assets/sprites/focusHw/focus0.png" id="3_cyp5f"]
 [ext_resource type="PackedScene" uid="uid://d0f3rio1v1c36" path="res://scenes/8_focus/focus_thres.tscn" id="3_dbfos"]
 [ext_resource type="Texture2D" uid="uid://bwhk7gfpdrtt2" path="res://assets/sprites/focusHw/focus1.png" id="4_5x3yj"]
 [ext_resource type="Texture2D" uid="uid://iaa657h3saji" path="res://assets/sprites/roundRect.png" id="4_vajo7"]
+[ext_resource type="Texture2D" uid="uid://bx2g3u0p1u4u" path="res://assets/sprites/focusHw/sketchbook.png" id="4_ydt5k"]
+[ext_resource type="Texture2D" uid="uid://d5onhfx2plth" path="res://assets/sprites/focusHw/chair.png" id="8_5x3yj"]
+[ext_resource type="Texture2D" uid="uid://c8yxrckpctgex" path="res://assets/sprites/focusHw/focus_end.png" id="8_oo8fa"]
+[ext_resource type="Texture2D" uid="uid://tk6rid0lvr43" path="res://assets/sprites/focusHw/phone.png" id="9_teajs"]
+[ext_resource type="PackedScene" uid="uid://bhpjfp0m8gkgo" path="res://scenes/ResultsTransition.tscn" id="12_65c1t"]
+[ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="13_v5qur"]
+[ext_resource type="Texture2D" uid="uid://br2imn7bcjj0h" path="res://assets/sprites/ui/transition_blink.png" id="14_y162f"]
+[ext_resource type="Texture2D" uid="uid://hdyab2iptp8q" path="res://assets/sprites/focusHw/win.png" id="15_dfqkm"]
+[ext_resource type="PackedScene" uid="uid://b0os7vlnocjq6" path="res://scenes/scrollingBgGrids.tscn" id="16_po3i2"]
+[ext_resource type="Texture2D" uid="uid://byh4xbnuhjgr2" path="res://assets/sprites/focusHw/fail.png" id="17_mjh48"]
 
 [sub_resource type="GDScript" id="GDScript_dbfos"]
 resource_name = "focusHw"
 script/source = "extends Level
+@export var results_transition: ResultsTransition
 
 @export var focus_bar: TextureProgressBar
 
 func _init() -> void:
-	LEVEL_DURATION_BEAT=32
+	LEVEL_DURATION_BEAT=26
+	
 func _on_timer_timeout() -> void:
 	game_start = false
 	if abs(focus_bar.value) < focus_bar.focus_thres:
-		print(\"owo\")
+		win.emit()
 	else:
-		print(\"umu\")
+		fail.emit()
 		
 #func _level_process(delta: float) -> void:
 	#print(focus_bar.value)
+
+func _on_win():
+	results_transition.play_win()
+
+func _on_fail():
+	results_transition.play_fail()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfqkm"]
+atlas = ExtResource("9_teajs")
+region = Rect2(0, 0, 124, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po3i2"]
+atlas = ExtResource("9_teajs")
+region = Rect2(124, 0, 124, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjh48"]
+atlas = ExtResource("9_teajs")
+region = Rect2(0, 0, 124, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfqkm")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po3i2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjh48")
+}],
+"loop": 0,
+"name": &"ring",
+"speed": 2.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_teajs"]
+resource_name = "focus_phone"
+script/source = "extends AnimatedSprite2D
+
+@export var focus: TextureProgressBar
+
+func _process(delta: float) -> void:
+	#smal touch
+	if focus.rand_drag < 0:
+		play(\"ring\")
+	else:
+		play(\"default\")
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_teajs"]
@@ -49,6 +117,14 @@ region = Rect2(594, 0, 594, 350)
 [sub_resource type="AtlasTexture" id="AtlasTexture_y162f"]
 atlas = ExtResource("4_5x3yj")
 region = Rect2(0, 350, 594, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gl0n"]
+atlas = ExtResource("8_oo8fa")
+region = Rect2(0, 0, 594, 436)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji6ob"]
+atlas = ExtResource("8_oo8fa")
+region = Rect2(594, 0, 594, 436)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
 animations = [{
@@ -84,6 +160,17 @@ animations = [{
 "loop": 0,
 "name": &"1",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gl0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji6ob")
+}],
+"loop": 1,
+"name": &"end",
+"speed": 5.0
 }]
 
 [sub_resource type="GDScript" id="GDScript_cyp5f"]
@@ -92,24 +179,30 @@ script/source = "extends AnimatedSprite2D
 
 @export var focus: TextureProgressBar
 
-
 func _process(delta: float) -> void:
-	if focus.value < -focus.focus_thres:
-		animation = &\"-1\"
-		stop()
-		# display steps
-		var worse_progress = inverse_lerp(-focus.focus_thres, focus.min_value, focus.value)
-		var steps = sprite_frames.get_frame_count(&\"-1\")
-		frame = snappedf(worse_progress, 1/steps)*steps
-		prints(focus.value, worse_progress, snappedf(worse_progress, .5))
-	elif focus.value > focus.focus_thres:
-		animation = &\"1\"
-		stop()
-		var worse_progress = inverse_lerp(focus.focus_thres, focus.max_value, focus.value)
-		var steps = sprite_frames.get_frame_count(&\"1\")
-		frame = snappedf(worse_progress, 1/steps)*steps
-	else:
+	if !owner.game_start:
+		return
+	if abs(focus.value) < focus.focus_thres:
 		play(\"0\")
+	else:
+		# play the distracted progress in chopped steps depending on the frame counte
+		stop()
+		var worse_progress
+		var steps
+		if focus.value < 0:
+			animation = &\"-1\"
+			worse_progress = inverse_lerp(-focus.focus_thres, focus.min_value, focus.value)
+			steps = sprite_frames.get_frame_count(&\"-1\")
+		else:
+			animation = &\"1\"
+			worse_progress = inverse_lerp(focus.focus_thres, focus.max_value, focus.value)
+			steps = sprite_frames.get_frame_count(&\"1\")
+		frame = snappedf(worse_progress, 1/steps)*steps
+
+
+
+func _on_timer_timeout() -> void:
+	play(\"end\")
 "
 
 [sub_resource type="GDScript" id="GDScript_vajo7"]
@@ -119,8 +212,8 @@ script/source = "extends TextureProgressBar
 var focus_thres = 50
 var push_force = 100
 var velocity := 0.0 #make sure its a float BRUH
-var gravity:=0.0
-var rand_drag:=0.0
+var gravity := 0.0
+var rand_drag := 0.0
 
 var normalized_pos
 
@@ -159,21 +252,19 @@ func _process(dt: float) -> void:
 		velocity = 0 #todo debug
 	else:
 		velocity += gravity *dt
-		velocity += rand_drag * dt
+		velocity += rand_drag * dt # randomize every 
 	
 	value += velocity
 	value = clamp(value, min_value, max_value)
 	
 	normalized_pos = ((value-min_value)/(max_value-min_value))
 	focus_pointer.position.x = normalized_pos * size.x
-	
-	#prints(normalized_pos)
 
 func _on_focus_hw_game_start() -> void:
 	doze_timer.start()
 	
 func _on_doze_off_timeout() -> void:
-	rand_drag = randi_range(1,10)
+	rand_drag = randi_range(1,10) * [-1,1].pick_random()
 	doze_timer.wait_time = snappedf(randfn(1.5,.4), .05)
 	#prints(doze_timer.wait_time, rand_drag)
 
@@ -199,7 +290,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vajo7"]
 resource_name = "blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -220,23 +311,175 @@ _data = {
 &"blink": SubResource("Animation_vajo7")
 }
 
-[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("focus_bar") instance=ExtResource("1_d5ys2")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gl0n"]
+resource_local_to_scene = true
+shader = ExtResource("13_v5qur")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudwp"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ax1"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvsqv"]
+atlas = ExtResource("14_y162f")
+region = Rect2(1440, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knapw"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw3l0"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bgnx"]
+atlas = ExtResource("14_y162f")
+region = Rect2(1440, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b78ic"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 1080, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fhg7"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 1080, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dfqkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ax1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvsqv")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_knapw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw3l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bgnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b78ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fhg7")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ji6ob"]
+viewport_path = NodePath("parts")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibcb0"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el1jh"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mns7c"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibcb0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibcb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el1jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mns7c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqth1"]
+atlas = ExtResource("17_mjh48")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iohg0"]
+atlas = ExtResource("17_mjh48")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqth1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iohg0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("results_transition", "focus_bar") instance=ExtResource("1_d5ys2")]
 script = SubResource("GDScript_dbfos")
+results_transition = NodePath("ResultsTransition")
 focus_bar = NodePath("focus")
 level_number = 8
 
 [node name="Label" parent="hint" parent_id_path=PackedInt32Array(1041035703) index="0" unique_id=285491151]
 text = "FOCUS"
 
-[node name="lana" type="AnimatedSprite2D" parent="." index="3" unique_id=1617589581 node_paths=PackedStringArray("focus")]
-position = Vector2(365, 364)
+[node name="timeLeft" parent="." index="2" unique_id=1236679750]
+z_index = 99
+
+[node name="Bg" type="Sprite2D" parent="." index="3" unique_id=2035723371]
+texture_filter = 1
+texture = ExtResource("2_cyp5f")
+centered = false
+
+[node name="phone" type="AnimatedSprite2D" parent="." index="4" unique_id=1079938251 node_paths=PackedStringArray("focus")]
+texture_filter = 1
+position = Vector2(130, 308)
+sprite_frames = SubResource("SpriteFrames_qudme")
+animation = &"ring"
+autoplay = "default"
+script = SubResource("GDScript_teajs")
+focus = NodePath("../focus")
+
+[node name="Sketchbook" type="Sprite2D" parent="." index="5" unique_id=1104869579]
+texture_filter = 1
+position = Vector2(580, 343)
+texture = ExtResource("4_ydt5k")
+
+[node name="lana" type="AnimatedSprite2D" parent="." index="6" unique_id=1617589581 node_paths=PackedStringArray("focus")]
+texture_filter = 1
+position = Vector2(365, 295)
 sprite_frames = SubResource("SpriteFrames_ka23v")
-animation = &"0"
+animation = &"end"
 autoplay = "0"
 script = SubResource("GDScript_cyp5f")
 focus = NodePath("../focus")
 
-[node name="focus" type="TextureProgressBar" parent="." index="4" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
+[node name="Chair" type="Sprite2D" parent="." index="7" unique_id=16045359]
+texture_filter = 1
+position = Vector2(365, 478)
+texture = ExtResource("8_5x3yj")
+
+[node name="focus" type="TextureProgressBar" parent="." index="8" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
 anchors_preset = -1
 anchor_left = 0.083333336
 anchor_top = 0.84444445
@@ -253,7 +496,7 @@ bg = NodePath("bg")
 thres_range = NodePath("bg/thres_range")
 
 [node name="bg" type="NinePatchRect" parent="focus" index="0" unique_id=2021895298]
-self_modulate = Color(0.21230483, 0.21230483, 0.21230483, 1)
+self_modulate = Color(0, 0, 0, 0.49803922)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -299,9 +542,32 @@ libraries/ = SubResource("AnimationLibrary_80uy1")
 
 [node name="dozeOff" type="Timer" parent="focus" index="2" unique_id=1906940747]
 
+[node name="ResultsTransition" parent="." index="9" unique_id=1814402132 instance=ExtResource("12_65c1t")]
+
+[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
+material = SubResource("ShaderMaterial_2gl0n")
+sprite_frames = SubResource("SpriteFrames_dfqkm")
+frame = 7
+frame_progress = 1.0
+
+[node name="bglol" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1429237668 instance=ExtResource("16_po3i2")]
+position = Vector2(0, -100)
+rotation = 0.08726646
+texture = SubResource("ViewportTexture_ji6ob")
+centered = false
+
+[node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=1290060690]
+sprite_frames = SubResource("SpriteFrames_ibcb0")
+
+[node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="2" unique_id=584044491]
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+
 [connection signal="gameStart" from="." to="focus" method="_on_focus_hw_game_start"]
 [connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="timeLeft/Timer" to="lana" method="_on_timer_timeout"]
 [connection signal="timeout" from="timeLeft/Timer" to="focus" method="_on_timer_timeout"]
 [connection signal="timeout" from="focus/dozeOff" to="focus" method="_on_doze_off_timeout"]
 
 [editable path="timeLeft"]
+[editable path="ResultsTransition"]
+[editable path="ResultsTransition/resultViewport/bglol"]

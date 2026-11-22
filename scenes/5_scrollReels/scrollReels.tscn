@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://boysf3khksy8b" path="res://assets/shader/chromaKey.gdshader" id="4_rdfhy"]
 [ext_resource type="SpriteFrames" uid="uid://hkg0nxsrfomy" path="res://assets/resources/uiBtn_frames.tres" id="4_sj6mo"]
 [ext_resource type="Texture2D" uid="uid://b7cgcoivg6ewd" path="res://assets/sprites/scrollReels/phone.png" id="5_rdfhy"]
+[ext_resource type="PackedScene" uid="uid://b0os7vlnocjq6" path="res://scenes/scrollingBgGrids.tscn" id="5_swmok"]
 [ext_resource type="PackedScene" uid="uid://bsdaaahpyhw0l" path="res://scenes/5_scrollReels/reel.tscn" id="7_rmii1"]
 [ext_resource type="Texture2D" uid="uid://cp4pkvetng0hr" path="res://assets/sprites/scrollReels/palm.png" id="7_sj6mo"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="8_la7lc"]
@@ -19,8 +20,6 @@
 [ext_resource type="SpriteFrames" uid="uid://brvishm068j77" path="res://assets/resources/symbol_frames.tres" id="14_w6mkl"]
 [ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="16_dii4x"]
 [ext_resource type="Texture2D" uid="uid://cjuwx0bxlsqpn" path="res://assets/sprites/scrollReels/lana_view.png" id="17_ki1qj"]
-[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="18_ugsbr"]
-[ext_resource type="Shader" uid="uid://doq84wbfuxhe4" path="res://assets/shader/blendingModes.gdshader" id="19_2u55a"]
 [ext_resource type="Texture2D" uid="uid://drsvl14tcps2k" path="res://assets/sprites/scrollReels/win.png" id="20_3bloy"]
 [ext_resource type="Texture2D" uid="uid://cip5ko14wi6i6" path="res://assets/sprites/greenscreen.png" id="21_swmok"]
 [ext_resource type="Texture2D" uid="uid://d1rs5l22mpcyb" path="res://assets/sprites/scrollReels/fail.png" id="22_jkrjj"]
@@ -102,35 +101,8 @@ _data = {
 &"showHint": SubResource("Animation_xev44")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u55a"]
-shader = ExtResource("16_dii4x")
-shader_parameter/brightness = -0.22000001743456
-shader_parameter/contrast = 0.62999998591824
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2u55a"]
-viewport_path = NodePath("bglol/parts")
-
-[sub_resource type="GDScript" id="GDScript_2u55a"]
-resource_name = "bgScroll"
-script/source = "extends Sprite2D
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	region_rect.position.y += 10*delta
-"
-
-[sub_resource type="Gradient" id="Gradient_ugsbr"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.45452422, 0.45452428, 0.45452422, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ka23v"]
-gradient = SubResource("Gradient_ugsbr")
-fill_from = Vector2(1, 0)
-fill_to = Vector2(0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugsbr"]
-shader = ExtResource("19_2u55a")
-shader_parameter/blend_mode = 9
+[sub_resource type="ViewportTexture" id="ViewportTexture_swmok"]
+viewport_path = NodePath("parts")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swmok"]
 atlas = ExtResource("17_ki1qj")
@@ -353,7 +325,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlc7k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkrjj"]
 resource_local_to_scene = true
 shader = ExtResource("4_rdfhy")
 shader_parameter/keyColor = Color(0, 1, 0, 1)
@@ -670,40 +642,10 @@ autoplay = "z"
 [node name="ProgressBar" parent="timeLeft" parent_id_path=PackedInt32Array(1236679750) index="0" unique_id=1032405580]
 z_index = 999
 
-[node name="bglol" type="Sprite2D" parent="." index="3" unique_id=380668337]
-texture_repeat = 2
-material = SubResource("ShaderMaterial_2u55a")
+[node name="bglol" parent="." index="3" unique_id=1429237668 instance=ExtResource("5_swmok")]
 position = Vector2(358, 360)
-rotation = 0.1307657
-texture = SubResource("ViewportTexture_2u55a")
-region_enabled = true
-region_rect = Rect2(0, 1.5, 828.458, 827.11)
-script = SubResource("GDScript_2u55a")
-
-[node name="parts" type="SubViewport" parent="bglol" index="0" unique_id=1839941825]
-
-[node name="bg" type="Sprite2D" parent="bglol/parts" index="0" unique_id=17857067]
-scale = Vector2(8, 8)
-texture = SubResource("GradientTexture2D_ka23v")
-centered = false
-
-[node name="Stripes" type="Sprite2D" parent="bglol/parts" index="1" unique_id=1685581436]
-texture_repeat = 2
-texture = ExtResource("18_ugsbr")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 512, 512)
-
-[node name="Stripes2" type="Sprite2D" parent="bglol/parts" index="2" unique_id=393562505]
-modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
-texture_repeat = 2
-material = SubResource("ShaderMaterial_ugsbr")
-position = Vector2(512, 0)
-rotation = 1.5707964
-texture = ExtResource("18_ugsbr")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 512, 512)
+rotation = 0.1308997
+texture = SubResource("ViewportTexture_swmok")
 
 [node name="lanaView" type="AnimatedSprite2D" parent="." index="4" unique_id=697841059]
 texture_filter = 1
@@ -811,7 +753,7 @@ position = Vector2(-6.1035156e-05, 0)
 scale = Vector2(1.0000001, 1.0000001)
 
 [node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_mlc7k")
+material = SubResource("ShaderMaterial_jkrjj")
 sprite_frames = SubResource("SpriteFrames_g7wmj")
 animation = &"fail"
 frame = 9
@@ -871,4 +813,5 @@ autoplay = &"rotate"
 [connection signal="timeout" from="timeLeft/Timer" to="." method="_on_timer_timeout"]
 
 [editable path="timeLeft"]
+[editable path="bglol"]
 [editable path="ResultsTransition"]

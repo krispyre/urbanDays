@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b0os7vlnocjq6"]
+
+[ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="1_lilhq"]
+[ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="2_eu1sk"]
+[ext_resource type="Shader" uid="uid://doq84wbfuxhe4" path="res://assets/shader/blendingModes.gdshader" id="3_14e6a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u55a"]
+shader = ExtResource("1_lilhq")
+shader_parameter/brightness = -0.22000001743456
+shader_parameter/contrast = 0.62999998591824
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2u55a"]
+viewport_path = NodePath("bglol/parts")
+
+[sub_resource type="GDScript" id="GDScript_2u55a"]
+resource_name = "bgScroll"
+script/source = "extends Sprite2D
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	region_rect.position.y += 10*delta
+"
+
+[sub_resource type="Gradient" id="Gradient_ugsbr"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.45452422, 0.45452428, 0.45452422, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ka23v"]
+gradient = SubResource("Gradient_ugsbr")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugsbr"]
+shader = ExtResource("3_14e6a")
+shader_parameter/blend_mode = 9
+
+[node name="bglol" type="Sprite2D" unique_id=1429237668]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_2u55a")
+texture = SubResource("ViewportTexture_2u55a")
+region_enabled = true
+region_rect = Rect2(0, 1.5, 828.458, 827.11)
+script = SubResource("GDScript_2u55a")
+
+[node name="parts" type="SubViewport" parent="." unique_id=1145487771]
+
+[node name="bg" type="Sprite2D" parent="parts" unique_id=266345375]
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_ka23v")
+centered = false
+
+[node name="Stripes" type="Sprite2D" parent="parts" unique_id=1532688081]
+texture_repeat = 2
+texture = ExtResource("2_eu1sk")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="Stripes2" type="Sprite2D" parent="parts" unique_id=129711276]
+modulate = Color(0.46229059, 0.46229059, 0.46229059, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ugsbr")
+position = Vector2(512, 0)
+rotation = 1.5707964
+texture = ExtResource("2_eu1sk")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)

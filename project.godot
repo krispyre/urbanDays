@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="urbanDays"
+config/name="unidays"
 config/name_localized={
 "zh": "fm日常"
 }

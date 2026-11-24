@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 			#prints("next to me, ", dir)
 			
 			if dir == step:
-				print("blocked")
 				anim_spr.position = 5 * step
 				return
 	position += step * tile

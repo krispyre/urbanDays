@@ -24,18 +24,26 @@ resource_name = "focusHw"
 script/source = "extends Level
 @export var results_transition: ResultsTransition
 @export var focus_bar: TextureProgressBar
+@export var camera_2d: Camera2D
 
 func _init() -> void:
-	LEVEL_DURATION_BEAT=26
+	LEVEL_DURATION_BEAT=19
 	
+func _level_process(delta) -> void:
+	print(progress_bar.modulate.a)
 func _on_timer_timeout() -> void:
 	game_start = false
 	await get_tree().create_timer(.2).timeout
 	focus_bar.hide()
+	camera_2d.position = Vector2.ZERO
 	if abs(focus_bar.value) < focus_bar.focus_thres:
 		win.emit()
 	else:
 		fail.emit()
+		
+	await $CanvasLayer/ResultsTransition/transition.animation_finished
+	var tween = create_tween()
+	tween.tween_property(progress_bar, \"modulate\",Color(0,0,0,0),2.5)
 		
 #func _level_process(delta: float) -> void:
 	#print(focus_bar.value)
@@ -151,6 +159,129 @@ _data = {
 &"RESET": SubResource("Animation_dbfos"),
 &"blink": SubResource("Animation_vajo7")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gl0n"]
+resource_local_to_scene = true
+shader = ExtResource("13_v5qur")
+shader_parameter/keyColor = Color(0, 1, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iudwp"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40ax1"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvsqv"]
+atlas = ExtResource("14_y162f")
+region = Rect2(1440, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knapw"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw3l0"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bgnx"]
+atlas = ExtResource("14_y162f")
+region = Rect2(1440, 540, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b78ic"]
+atlas = ExtResource("14_y162f")
+region = Rect2(0, 1080, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fhg7"]
+atlas = ExtResource("14_y162f")
+region = Rect2(720, 1080, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dfqkm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iudwp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40ax1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvsqv")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_knapw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw3l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bgnx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b78ic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fhg7")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ji6ob"]
+viewport_path = NodePath("parts")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibcb0"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el1jh"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mns7c"]
+atlas = ExtResource("15_dfqkm")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibcb0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibcb0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el1jh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mns7c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqth1"]
+atlas = ExtResource("17_mjh48")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iohg0"]
+atlas = ExtResource("17_mjh48")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqth1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iohg0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dfqkm"]
 atlas = ExtResource("9_teajs")
@@ -310,129 +441,6 @@ func _on_timer_timeout() -> void:
 	play(\"end\")
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gl0n"]
-resource_local_to_scene = true
-shader = ExtResource("13_v5qur")
-shader_parameter/keyColor = Color(0, 1, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iudwp"]
-atlas = ExtResource("14_y162f")
-region = Rect2(0, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_40ax1"]
-atlas = ExtResource("14_y162f")
-region = Rect2(720, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvsqv"]
-atlas = ExtResource("14_y162f")
-region = Rect2(1440, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_knapw"]
-atlas = ExtResource("14_y162f")
-region = Rect2(0, 540, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iw3l0"]
-atlas = ExtResource("14_y162f")
-region = Rect2(720, 540, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5bgnx"]
-atlas = ExtResource("14_y162f")
-region = Rect2(1440, 540, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b78ic"]
-atlas = ExtResource("14_y162f")
-region = Rect2(0, 1080, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3fhg7"]
-atlas = ExtResource("14_y162f")
-region = Rect2(720, 1080, 720, 540)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dfqkm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iudwp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_40ax1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hvsqv")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_knapw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iw3l0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5bgnx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b78ic")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3fhg7")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 8.0
-}]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ji6ob"]
-viewport_path = NodePath("parts")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ibcb0"]
-atlas = ExtResource("15_dfqkm")
-region = Rect2(0, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_el1jh"]
-atlas = ExtResource("15_dfqkm")
-region = Rect2(720, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mns7c"]
-atlas = ExtResource("15_dfqkm")
-region = Rect2(0, 540, 720, 540)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ibcb0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ibcb0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_el1jh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mns7c")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 8.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fqth1"]
-atlas = ExtResource("17_mjh48")
-region = Rect2(0, 0, 720, 540)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iohg0"]
-atlas = ExtResource("17_mjh48")
-region = Rect2(720, 0, 720, 540)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fqth1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iohg0")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="GDScript" id="GDScript_mjh48"]
 resource_name = "focusCam"
 script/source = "extends Camera2D
@@ -443,10 +451,11 @@ func _process(dt):
 	position.x = remap(focus.value, focus.min_value, focus.max_value, -16,16)
 "
 
-[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("results_transition", "focus_bar") instance=ExtResource("1_d5ys2")]
+[node name="focusHw" unique_id=1975170843 node_paths=PackedStringArray("results_transition", "focus_bar", "camera_2d") instance=ExtResource("1_d5ys2")]
 script = SubResource("GDScript_dbfos")
-results_transition = NodePath("ResultsTransition")
+results_transition = NodePath("CanvasLayer/ResultsTransition")
 focus_bar = NodePath("CanvasLayer/focus")
+camera_2d = NodePath("Camera2D")
 level_number = 8
 
 [node name="focus" type="TextureProgressBar" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="0" unique_id=1284644675 node_paths=PackedStringArray("range", "focus_pointer", "bg", "thres_range")]
@@ -513,8 +522,29 @@ libraries/ = SubResource("AnimationLibrary_80uy1")
 
 [node name="dozeOff" type="Timer" parent="CanvasLayer/focus" index="2" unique_id=1906940747]
 
-[node name="timeLeft" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="1" unique_id=1236679750]
+[node name="ResultsTransition" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="1" unique_id=1814402132 instance=ExtResource("12_65c1t")]
 z_index = 99
+
+[node name="transition" parent="CanvasLayer/ResultsTransition" index="0" unique_id=1131207661]
+material = SubResource("ShaderMaterial_2gl0n")
+sprite_frames = SubResource("SpriteFrames_dfqkm")
+frame = 7
+frame_progress = 1.0
+
+[node name="bglol" parent="CanvasLayer/ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1429237668 instance=ExtResource("16_po3i2")]
+position = Vector2(0, -100)
+rotation = 0.08726646
+texture = SubResource("ViewportTexture_ji6ob")
+centered = false
+
+[node name="win" parent="CanvasLayer/ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=1290060690]
+sprite_frames = SubResource("SpriteFrames_ibcb0")
+
+[node name="fail" parent="CanvasLayer/ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="2" unique_id=584044491]
+sprite_frames = SubResource("SpriteFrames_f7n5a")
+
+[node name="timeLeft" parent="CanvasLayer" parent_id_path=PackedInt32Array(1213350474) index="2" unique_id=1236679750]
+z_index = 999
 
 [node name="hint" parent="." index="2" unique_id=1041035703]
 modulate = Color(1, 1, 1, 1)
@@ -577,28 +607,7 @@ texture_filter = 1
 position = Vector2(365, 478)
 texture = ExtResource("8_5x3yj")
 
-[node name="ResultsTransition" parent="." index="8" unique_id=1814402132 instance=ExtResource("12_65c1t")]
-z_index = 999
-
-[node name="transition" parent="ResultsTransition" index="0" unique_id=1131207661]
-material = SubResource("ShaderMaterial_2gl0n")
-sprite_frames = SubResource("SpriteFrames_dfqkm")
-frame = 7
-frame_progress = 1.0
-
-[node name="bglol" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="0" unique_id=1429237668 instance=ExtResource("16_po3i2")]
-position = Vector2(0, -100)
-rotation = 0.08726646
-texture = SubResource("ViewportTexture_ji6ob")
-centered = false
-
-[node name="win" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="1" unique_id=1290060690]
-sprite_frames = SubResource("SpriteFrames_ibcb0")
-
-[node name="fail" parent="ResultsTransition/resultViewport" parent_id_path=PackedInt32Array(1814402132, 1230506109) index="2" unique_id=584044491]
-sprite_frames = SubResource("SpriteFrames_f7n5a")
-
-[node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=1934564731 node_paths=PackedStringArray("focus")]
+[node name="Camera2D" type="Camera2D" parent="." index="8" unique_id=1934564731 node_paths=PackedStringArray("focus")]
 anchor_mode = 0
 limit_left = -16
 limit_right = 13
@@ -611,6 +620,6 @@ focus = NodePath("../CanvasLayer/focus")
 [connection signal="timeout" from="CanvasLayer/timeLeft/Timer" to="CanvasLayer/focus" method="_on_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/timeLeft/Timer" to="phone" method="_on_timer_timeout"]
 
+[editable path="CanvasLayer/ResultsTransition"]
+[editable path="CanvasLayer/ResultsTransition/resultViewport/bglol"]
 [editable path="CanvasLayer/timeLeft"]
-[editable path="ResultsTransition"]
-[editable path="ResultsTransition/resultViewport/bglol"]

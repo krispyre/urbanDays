@@ -8,7 +8,6 @@ var correct_bun = 0
 
 func _level_ready() -> void:
 	isResultsShown = false
-	print(beat_offset)
 	correct_bun = randi_range(0, bun.sprite_frames.get_frame_count("buns") - 1)
 	bun.frame = correct_bun
 

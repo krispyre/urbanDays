@@ -10,7 +10,6 @@ var inputDisabled = false
 func _physics_process(dt: float) -> void:
 	if inputDisabled:
 		return
-	#print(hit_cooldown.time_left)
 	var input_dir = Input.get_axis("left", "right")
 	velocity.x = input_dir * SPEED
 	

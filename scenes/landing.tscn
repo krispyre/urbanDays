@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhe3swuq8bo0w" path="res://assets/sprites/landing/landingDraft.png" id="5_j5py0"]
 [ext_resource type="Texture2D" uid="uid://br2imn7bcjj0h" path="res://assets/sprites/ui/transition_blink.png" id="5_yp7d7"]
 [ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="6_yp7d7"]
+[ext_resource type="FontFile" uid="uid://dhey0aoq4u0xo" path="res://assets/fonts/Jersey10-Regular.ttf" id="7_x4ofr"]
 
 [sub_resource type="GDScript" id="GDScript_usvfl"]
 resource_name = "startMenu"
@@ -199,10 +200,22 @@ tracks/7/keys = {
 "points": PackedFloat32Array(257, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("dots:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x4ofr"]
 resource_name = "introTransition"
-length = 4.1
+length = 6.133333
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -210,9 +223,9 @@ tracks/0/path = NodePath("hand:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(887, -0.25, 0, 0.25, 0, 793, -0.021666666, 15.666667, 0, 0, 656.00006, -0.028333336, 22.833323, 0, 0),
-"times": PackedFloat32Array(0, 0.13, 0.3)
+"times": PackedFloat32Array(0.5366667, 0.6666667, 0.83666664)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -221,9 +234,9 @@ tracks/1/path = NodePath("hand:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
+"handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(95, -0.25, 0, 0.25, 0, 78, -0.021666666, 2.8333335, 0, 0, 215, -0.028333336, -22.833334, 0, 0),
-"times": PackedFloat32Array(0, 0.13, 0.3)
+"times": PackedFloat32Array(0.5366667, 0.6666667, 0.83666664)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -232,7 +245,7 @@ tracks/2/path = NodePath("close:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(1.0366666, 1.9999999),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -244,7 +257,7 @@ tracks/3/path = NodePath("close")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(1.9999999),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"default", 1.0, false],
@@ -258,7 +271,7 @@ tracks/4/path = NodePath("prompttext:visible")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.6333334),
+"times": PackedFloat32Array(1.0366666, 4.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [false, true]
@@ -275,7 +288,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("4_8ljda")
 }],
-"times": PackedFloat32Array(2.7333333)
+"times": PackedFloat32Array(4.133333)
 }
 tracks/5/use_blend = true
 tracks/6/type = "value"
@@ -285,7 +298,7 @@ tracks/6/path = NodePath("prompttext:scale:x")
 tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(2.6666667, 2.8000002, 2.9333334, 3),
+"times": PackedFloat32Array(4.0666666, 4.2, 4.3333335, 4.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [1.1, 0.89, 1.2, 1.0]
@@ -297,7 +310,7 @@ tracks/7/path = NodePath("prompttext:scale:y")
 tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(2.6666667, 2.8000002, 2.9333334, 3),
+"times": PackedFloat32Array(4.0666666, 4.2, 4.3333335, 4.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0.75, 1.6, 0.865, 1.0]
@@ -309,9 +322,9 @@ tracks/8/path = NodePath("prompttext:position:x")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 32, -0.013395986, 0, 0, 0, 32, -0.0060890913, 0, 0, 0, 32.000004, -0.0109603405, -6.3578284e-07, 0, 0, 32, -0.040187996, 6.357829e-07, 0, 0, 32, -0.0060890913, 0, 0, 0, 32, -0.013395986, 0, 0, 0),
-"times": PackedFloat32Array(2.6231785, 2.7035544, 2.740089, 2.805851, 3.8497562, 3.8862908, 3.9666667)
+"times": PackedFloat32Array(4.023178, 4.1035542, 4.1400886, 4.2058506, 5.2497563, 5.2862906, 5.3666663)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
@@ -320,9 +333,21 @@ tracks/9/path = NodePath("prompttext:position:y")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0, 0),
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(257, -0.25, 0, 0.25, 0, 238, -0.013395986, 3.1666667, 0, 0, 247.99998, -0.0060890913, -1.6666641, 0, 0, 246.00002, -0.0109603405, 0.33332825, 0, 0, 250, -0.01583163, 0.5433142, 0.11043744, -3.790022, 220, -0.040187996, -0.9999975, 0, 0, 237, -0.0060890913, 2.5, 0, 0, 550, -0.013395986, -44.500004, 0, 0),
-"times": PackedFloat32Array(2.6231785, 2.7035544, 2.740089, 2.805851, 3, 3.8497562, 3.8862908, 3.9666667)
+"times": PackedFloat32Array(4.023178, 4.1035542, 4.1400886, 4.2058506, 4.4, 5.2497563, 5.2862906, 5.3666663)
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("dots:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(1.0366666, 3.0666666, 4.023178),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahygv"]
@@ -414,7 +439,7 @@ anchor_bottom = 0.5
 offset_left = 32.0
 offset_top = 257.0
 offset_right = 702.0
-offset_bottom = 336.0
+offset_bottom = 335.99988
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.9049994, 1.7900006)
@@ -429,5 +454,23 @@ vertical_alignment = 1
 
 [node name="animPlayer" type="AnimationPlayer" parent="startAnim" unique_id=1776013601]
 libraries/ = SubResource("AnimationLibrary_ahygv")
+
+[node name="dots" type="Label" parent="startAnim" unique_id=862529584]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 329.0
+offset_top = 172.0
+offset_right = 414.0
+offset_bottom = 557.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.54509807, 0.54509807, 0.54509807, 0.8666667)
+theme_override_fonts/font = ExtResource("7_x4ofr")
+theme_override_font_sizes/font_size = 177
+text = "...
+"
 
 [connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]

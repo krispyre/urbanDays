@@ -29,7 +29,7 @@ func emitOutro(_count):
 	outro.emit()
 	
 func _ready():
-	bpm = $music_player.stream.bpm
+	bpm = music_player.stream.bpm
 	r.bpm = bpm
 	# r.beat is already a signal jus reuse it
 	#nextLevel, stop when isOver is true
@@ -38,8 +38,8 @@ func _ready():
 	r.beats(0, false, INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT).connect(emitOutro)
 	prints(INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT, (INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT)*60/bpm)
 	
-func _process(dt):
-	print(round(music_player.get_playback_position()))
+#func _process(dt):
+	#print(round(music_player.get_playback_position()))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("skip")):

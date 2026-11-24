@@ -29,8 +29,6 @@ script/source = "extends Level
 func _init() -> void:
 	LEVEL_DURATION_BEAT=19
 	
-func _level_process(delta) -> void:
-	print(progress_bar.modulate.a)
 func _on_timer_timeout() -> void:
 	game_start = false
 	await get_tree().create_timer(.2).timeout

@@ -470,9 +470,6 @@ libraries/ = SubResource("AnimationLibrary_pkqdw")
 
 [node name="badminton" parent="gameProcess/levels" unique_id=665764630 instance_placeholder="res://scenes/6_badminton/badminton.tscn"]
 
-[node name="idk" parent="gameProcess/levels" unique_id=821350888 instance_placeholder="res://scenes/7_idk/idk.tscn"]
-level_number = 7
-
 [node name="focusHw" parent="gameProcess/levels" unique_id=102307885 instance_placeholder="res://scenes/8_focus/focus_hw.tscn"]
 
 [node name="intro" type="Node2D" parent="gameProcess" unique_id=387021789]
@@ -551,5 +548,6 @@ label_settings = SubResource("LabelSettings_j74od")
 
 [connection signal="nextLevel" from="gameProcess/bgm" to="." method="_on_bgm_next_level"]
 [connection signal="outro" from="gameProcess/bgm" to="." method="_on_bgm_outro"]
+[connection signal="skip" from="gameProcess/bgm" to="." method="_on_bgm_skip"]
 
 [editable path="gameProcess/bgm"]

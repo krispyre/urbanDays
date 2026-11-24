@@ -5,8 +5,8 @@ extends Scene
 
 @export var outro: Node2D
 
-var lives = 3
-var curLevel := -1
+var wins = 0
+var curLevel := -1 #zero index
 var cur_level_node: Node
 var levels: Array[InstancePlaceholder] = []
 @onready var levels_node: Node = $gameProcess/levels
@@ -47,6 +47,8 @@ func unload_level(level: Node) -> void:
 
 func _on_bgm_outro() -> void:
 	print("play outro")
+	$gameProcess/outro/results/successful.text = "Successful microgames: "+str(wins)
+	$gameProcess/outro/results/fail.text = "Failed microgames: "+str(bgm.LEVEL_COUNT-wins)
 	outro.show()
 	outro.find_child("animPlayer").play("outro")
 
@@ -63,7 +65,17 @@ func _on_bgm_next_level() -> void:
 	if curLevel < bgm.LEVEL_COUNT:
 		#load until the last one
 		cur_level_node = load_level(curLevel)
+		
+	cur_level_node.win.connect(_on_level_win)
 	
+	
+func _on_level_win():
+	wins += 1
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):
 	music_player.volume_db = linear_to_db(volume)+1
+
+
+func _on_bgm_skip() -> void:
+	if intro_ap != null and intro_ap.is_playing():
+		intro_ap.seek(music_player.get_playback_position())

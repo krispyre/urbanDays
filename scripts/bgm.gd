@@ -1,6 +1,7 @@
 class_name bgm extends Node
 signal nextLevel
 signal outro
+signal skip
 
 @export var music_player: AudioStreamPlayer
 
@@ -40,8 +41,8 @@ func _ready():
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("skip")):
-		prints(music_player.get_playback_position())
 		music_player.seek(music_player.get_playback_position()+60/bpm)
+		skip.emit()
 	if (event.is_action_pressed("outro")):
 		music_player.seek((INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT)*60/bpm)
 		emitOutro(67)

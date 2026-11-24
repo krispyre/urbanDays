@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
-[ext_resource type="AudioStream" uid="uid://1dmlwjgdsgn1" path="res://assets/sound/quiz_edited.ogg" id="4_aadn1"]
-[ext_resource type="Script" uid="uid://yv1bkxc64voc" path="res://scripts/bgm.gd" id="4_owcan"]
 [ext_resource type="Texture2D" uid="uid://b7xauquuku5s1" path="res://assets/sprites/intro/frame0000.png" id="5_aadn1"]
 [ext_resource type="AudioStream" uid="uid://cm324033m0g7v" path="res://assets/quizFragments/quiz.intro.ogg" id="5_umfan"]
-[ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier/addons/rhythm_notifier/rhythm_notifier.gd" id="6_42wf4"]
 [ext_resource type="Texture2D" uid="uid://bp3lxlpls5aes" path="res://assets/sprites/intro/frame0004.png" id="6_umfan"]
 [ext_resource type="Texture2D" uid="uid://c1dhruula0pwj" path="res://assets/sprites/intro/frame0006.png" id="7_1lxpl"]
 [ext_resource type="Texture2D" uid="uid://b4cnrvcghyqeg" path="res://assets/sprites/intro/frame0008.png" id="8_e1yew"]
@@ -13,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b8aad6fgqftpx" path="res://assets/sprites/intro/frame0022.png" id="10_fpgdv"]
 [ext_resource type="Texture2D" uid="uid://bfyldxyyg165m" path="res://assets/sprites/intro/frame0028.png" id="11_pkqdw"]
 [ext_resource type="Texture2D" uid="uid://bu7lkqxkm6rim" path="res://assets/sprites/intro/frame0033.png" id="12_1sewj"]
+[ext_resource type="PackedScene" uid="uid://dj6vheaj2m1eo" path="res://scenes/bgm.tscn" id="13_1lxpl"]
 [ext_resource type="PackedScene" uid="uid://dhwhdkrbpdksf" path="res://scenes/pause.tscn" id="14_1lxpl"]
 [ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="14_e1yew"]
 [ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="15_j74od"]
@@ -437,6 +435,12 @@ metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 [node name="gameProcess" type="Node" parent="." unique_id=979234764]
 process_mode = 1
 
+[node name="bgm" parent="gameProcess" unique_id=993576825 instance=ExtResource("13_1lxpl")]
+unique_name_in_owner = true
+
+[node name="music_player" parent="gameProcess/bgm" index="0" unique_id=1616172852]
+autoplay = false
+
 [node name="introTransition" type="CanvasLayer" parent="gameProcess" unique_id=652699440]
 layer = 2
 
@@ -470,21 +474,6 @@ libraries/ = SubResource("AnimationLibrary_pkqdw")
 level_number = 7
 
 [node name="focusHw" parent="gameProcess/levels" unique_id=102307885 instance_placeholder="res://scenes/8_focus/focus_hw.tscn"]
-
-[node name="bgm" type="Node" parent="gameProcess" unique_id=993576825 node_paths=PackedStringArray("music_player")]
-unique_name_in_owner = true
-script = ExtResource("4_owcan")
-music_player = NodePath("music_player")
-
-[node name="music_player" type="AudioStreamPlayer" parent="gameProcess/bgm" unique_id=1616172852]
-stream = ExtResource("4_aadn1")
-
-[node name="RhythmNotifier" type="Node" parent="gameProcess/bgm" unique_id=1809508973 node_paths=PackedStringArray("audio_stream_player")]
-script = ExtResource("6_42wf4")
-bpm = 175.0
-beat_length = 0.34285714285714286
-audio_stream_player = NodePath("../music_player")
-metadata/_custom_type_script = "uid://dos3qhffr4v0a"
 
 [node name="intro" type="Node2D" parent="gameProcess" unique_id=387021789]
 
@@ -562,3 +551,5 @@ label_settings = SubResource("LabelSettings_j74od")
 
 [connection signal="nextLevel" from="gameProcess/bgm" to="." method="_on_bgm_next_level"]
 [connection signal="outro" from="gameProcess/bgm" to="." method="_on_bgm_outro"]
+
+[editable path="gameProcess/bgm"]

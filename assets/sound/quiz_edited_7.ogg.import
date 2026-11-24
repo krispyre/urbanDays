@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/quiz_edited_7.ogg-1282de21b201b62b13ac4469ca3
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
-beat_count=0
+loop_offset=0.0
+bpm=175.0
+beat_count=288
 bar_beats=4

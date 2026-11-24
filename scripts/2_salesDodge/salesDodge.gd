@@ -71,7 +71,6 @@ func on_beat(local_beat: int) -> void:
 		sales_container.add_child(s)
 			
 func _on_fail():
-	print("umm")
 	if not mark_results_shown():
 		return
 	anim_player.play("showFail")
@@ -82,9 +81,11 @@ func _on_win() -> void:
 	anim_player.play("showWin")
 
 func _on_timer_timeout() -> void:
+	game_start = false
 	win.emit()
 
 func _on_player_hit() -> void:
+	game_start = false
 	fail.emit()
 
 func _on_hint_anim_finished(anim_name: StringName) -> void:

@@ -109,6 +109,7 @@ func set_timer_bar_recharge():
 
 ## Returns true for the first caller, which should play the results. this is stupdi
 func mark_results_shown() -> bool:
+	print(isResultsShown)
 	if isResultsShown:
 		return false
 	isResultsShown = true

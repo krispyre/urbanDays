@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="2_b236o"]
 [ext_resource type="AudioStream" uid="uid://c3j07vty5ckaa" path="res://assets/sound/snd_nes_nocontroller.wav" id="4_8ljda"]
 [ext_resource type="Texture2D" uid="uid://dhe3swuq8bo0w" path="res://assets/sprites/landing/landingDraft.png" id="5_j5py0"]
+[ext_resource type="Texture2D" uid="uid://br2imn7bcjj0h" path="res://assets/sprites/ui/transition_blink.png" id="5_yp7d7"]
+[ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="6_yp7d7"]
 
 [sub_resource type="GDScript" id="GDScript_usvfl"]
 resource_name = "startMenu"
@@ -43,6 +45,291 @@ func _on_tutorial_pressed() -> void:
 [sub_resource type="Theme" id="Theme_mfct4"]
 default_font = ExtResource("2_b236o")
 default_font_size = 34
+
+[sub_resource type="GDScript" id="GDScript_yp7d7"]
+resource_name = "introTransition"
+script/source = "extends Node2D
+@onready var anim_player: AnimationPlayer = $animPlayer
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(\"action1\"):
+		anim_player.play(\"introTransition\")
+		await anim_player.animation_finished
+		get_tree().change_scene_to_file(\"res://scenes/mainGame.tscn\")
+"
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1qa5v"]
+size = Vector2(200, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4ofr"]
+atlas = ExtResource("5_yp7d7")
+region = Rect2(0, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahygv"]
+atlas = ExtResource("5_yp7d7")
+region = Rect2(720, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfh6i"]
+atlas = ExtResource("5_yp7d7")
+region = Rect2(1440, 0, 720, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpb78"]
+atlas = ExtResource("5_yp7d7")
+region = Rect2(0, 540, 720, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qa5v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4ofr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahygv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfh6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpb78")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x4ofr"]
+resource_name = "hintStyle"
+font = ExtResource("6_yp7d7")
+font_size = 49
+outline_size = 33
+outline_color = Color(0, 0, 0, 1)
+stacked_outline_count = 1
+stacked_outline_0/size = 12
+stacked_outline_0/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_yp7d7"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(887, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(95, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("close:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("prompttext:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("prompttext:scale:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.9049994, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("prompttext:scale:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.7900006, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("prompttext:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("prompttext:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(257, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_x4ofr"]
+resource_name = "introTransition"
+length = 4.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(887, -0.25, 0, 0.25, 0, 793, -0.021666666, 15.666667, 0, 0, 656.00006, -0.028333336, 22.833323, 0, 0),
+"times": PackedFloat32Array(0, 0.13, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(95, -0.25, 0, 0.25, 0, 78, -0.021666666, 2.8333335, 0, 0, 215, -0.028333336, -22.833334, 0, 0),
+"times": PackedFloat32Array(0, 0.13, 0.3)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("close:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("close")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("prompttext:visible")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.6333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("prompt")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_8ljda")
+}],
+"times": PackedFloat32Array(2.7333333)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("prompttext:scale:x")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.6666667, 2.8000002, 2.9333334, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.1, 0.89, 1.2, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("prompttext:scale:y")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.6666667, 2.8000002, 2.9333334, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0.75, 1.6, 0.865, 1.0]
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("prompttext:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0),
+"points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 32, -0.013395986, 0, 0, 0, 32, -0.0060890913, 0, 0, 0, 32.000004, -0.0109603405, -6.3578284e-07, 0, 0, 32, -0.040187996, 6.357829e-07, 0, 0, 32, -0.0060890913, 0, 0, 0, 32, -0.013395986, 0, 0, 0),
+"times": PackedFloat32Array(2.6231785, 2.7035544, 2.740089, 2.805851, 3.8497562, 3.8862908, 3.9666667)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("prompttext:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 0, 0, 0, 0),
+"points": PackedFloat32Array(257, -0.25, 0, 0.25, 0, 238, -0.013395986, 3.1666667, 0, 0, 247.99998, -0.0060890913, -1.6666641, 0, 0, 246.00002, -0.0109603405, 0.33332825, 0, 0, 250, -0.01583163, 0.5433142, 0.11043744, -3.790022, 220, -0.040187996, -0.9999975, 0, 0, 237, -0.0060890913, 2.5, 0, 0, 550, -0.013395986, -44.500004, 0, 0),
+"times": PackedFloat32Array(2.6231785, 2.7035544, 2.740089, 2.805851, 3, 3.8497562, 3.8862908, 3.9666667)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ahygv"]
+_data = {
+&"RESET": SubResource("Animation_yp7d7"),
+&"introTransition": SubResource("Animation_x4ofr")
+}
 
 [node name="Landing" type="Node" unique_id=1507338433]
 script = ExtResource("1_mfct4")
@@ -94,5 +381,53 @@ stream = ExtResource("4_8ljda")
 [node name="bg" type="Sprite2D" parent="." unique_id=47684183]
 texture = ExtResource("5_j5py0")
 centered = false
+
+[node name="Label" type="Label" parent="bg" unique_id=875910813]
+offset_left = 362.00003
+offset_top = 174.00002
+offset_right = 638.0
+offset_bottom = 275.0
+rotation = -0.2617994
+theme_override_font_sizes/font_size = 73
+text = "unidays"
+
+[node name="startAnim" type="Node2D" parent="." unique_id=1088759915]
+script = SubResource("GDScript_yp7d7")
+
+[node name="hand" type="Sprite2D" parent="startAnim" unique_id=1821454313]
+position = Vector2(887, 95)
+rotation = -0.2760104
+texture = SubResource("PlaceholderTexture2D_1qa5v")
+
+[node name="close" type="AnimatedSprite2D" parent="startAnim" unique_id=198344654]
+visible = false
+sprite_frames = SubResource("SpriteFrames_1qa5v")
+centered = false
+
+[node name="prompttext" type="Label" parent="startAnim" unique_id=2058870852]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = 257.0
+offset_right = 702.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9049994, 1.7900006)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+text = "How was your day?"
+label_settings = SubResource("LabelSettings_x4ofr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prompt" type="AudioStreamPlayer" parent="startAnim" unique_id=1928103146]
+
+[node name="animPlayer" type="AnimationPlayer" parent="startAnim" unique_id=1776013601]
+libraries/ = SubResource("AnimationLibrary_ahygv")
 
 [connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]

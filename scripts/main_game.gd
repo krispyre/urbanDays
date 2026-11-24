@@ -11,8 +11,11 @@ var cur_level_node: Node
 var levels: Array[InstancePlaceholder] = []
 @onready var levels_node: Node = $gameProcess/levels
 
+@export var introTransition_ap: AnimationPlayer
+@export var music_player: AudioStreamPlayer
+@export var intro_ap: AnimationPlayer
+
 func _unhandled_input(event: InputEvent):
-	
 	if (event.is_action_pressed("pause")):
 		$gameProcess.get_tree().paused = !($gameProcess.get_tree().paused)
 		set_music_vol(Globals.volume) # where is better idk
@@ -27,6 +30,12 @@ func _ready() -> void:
 	outro.hide()
 	for child in level_nodes.get_children():
 		levels.append(child as InstancePlaceholder)
+	introTransition_ap.play("rollout")
+	await introTransition_ap.animation_finished
+	music_player.play()
+	$gameProcess/intro.show()
+	intro_ap.play("intro")
+	
 
 func load_level(index: int) -> Node:
 	var level := levels[index].create_instance(false)
@@ -57,4 +66,4 @@ func _on_bgm_next_level() -> void:
 	
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):
-	%bgm.find_child("music_player").volume_db = linear_to_db(volume)+1
+	music_player.volume_db = linear_to_db(volume)+1

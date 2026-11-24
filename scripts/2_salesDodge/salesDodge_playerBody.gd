@@ -11,16 +11,16 @@ func _ready() -> void:
 	anim.speed_scale = 0.8
 
 func _process(_delta: float) -> void:
-	if not can_move or not owner.game_start:
+	if not owner.game_start:
 		return
 	for dir in ["left", "right", "up", "down"]:
 		if Input.is_action_just_pressed("ui_" + dir):
 			anim.play(dir)
 
 func play_relieve() -> void:
-	if not can_move:
+	if not owner.game_start:
 		return
-	can_move = false
+	owner.game_start = false
 	anim.play("relieve")
 
 func _on_anim_animation_finished(anim_name: StringName) -> void:

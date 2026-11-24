@@ -165,7 +165,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/path = NodePath("textbg:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -265,7 +265,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/path = NodePath("textbg:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -494,7 +494,7 @@ sprite_frames = SubResource("SpriteFrames_ka23v")
 autoplay = "default"
 centered = false
 
-[node name="TextureRect" type="TextureRect" parent="gameProcess/outro" unique_id=69595001]
+[node name="textbg" type="TextureRect" parent="gameProcess/outro" unique_id=69595001]
 visible = false
 self_modulate = Color(1, 1, 1, 0.7058824)
 offset_top = 413.0

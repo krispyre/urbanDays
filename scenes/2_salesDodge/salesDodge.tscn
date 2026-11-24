@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://dvwuktiy0lj8s" path="res://scripts/2_salesDodge/salesDodge_playerView.gd" id="2_kg4i3"]
 [ext_resource type="PackedScene" uid="uid://choesj0ncgmq4" path="res://scenes/2_salesDodge/lamp.tscn" id="2_qeu0u"]
 [ext_resource type="Texture2D" uid="uid://bbdmv56enfu1v" path="res://assets/sprites/stripes.png" id="3_eveh6"]
-[ext_resource type="Texture2D" uid="uid://c184dnvxgo2du" path="res://assets/sprites/salesDodge/salesDodge_wall.png" id="3_vmci3"]
+[ext_resource type="Texture2D" uid="uid://dpc5cu8761it4" path="res://assets/sprites/salesDodge/salesDodge_wall.png" id="3_vmci3"]
 [ext_resource type="Material" uid="uid://coi8sxmvcfpal" path="res://assets/resources/salesDodge_wall.tres" id="4_efqh3"]
 [ext_resource type="Script" uid="uid://do5wivj41disl" path="res://scripts/2_salesDodge/salesDodge_playerBody.gd" id="4_xxdqm"]
-[ext_resource type="Texture2D" uid="uid://b8ygow872sovb" path="res://assets/sprites/salesDodge/salesDodge_fail.png" id="5_b8js2"]
 [ext_resource type="Texture2D" uid="uid://c6rof4274fwf5" path="res://assets/sprites/salesDodge/salesDodge_0003.png" id="5_bnn1c"]
 [ext_resource type="Texture2D" uid="uid://b3j6n73frl3cq" path="res://assets/sprites/salesDodge/salesDodge_win.png" id="5_f3fa5"]
 [ext_resource type="Texture2D" uid="uid://gl8iivjorcce" path="res://assets/sprites/salesDodge/salesDodge_0001.png" id="6_eveh6"]
@@ -26,8 +25,7 @@
 transparency = 1
 albedo_color = Color(0.3180198, 0.31801978, 0.31801975, 0.6039216)
 albedo_texture = ExtResource("3_vmci3")
-uv1_scale = Vector3(10, 2, 1)
-uv1_offset = Vector3(0, -0.12, 0)
+uv1_scale = Vector3(25, 3, 1)
 texture_filter = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_ch1rl"]
@@ -463,37 +461,37 @@ _data = {
 &"up": SubResource("Animation_agfh5")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bnn1c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmwyd"]
 atlas = ExtResource("10_xxdqm")
-region = Rect2(0, 0, 192, 211)
+region = Rect2(0, 0, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eveh6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfmdh"]
 atlas = ExtResource("10_xxdqm")
-region = Rect2(192, 0, 192, 211)
+region = Rect2(805, 0, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vmci3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bn5h3"]
 atlas = ExtResource("10_xxdqm")
-region = Rect2(0, 211, 192, 211)
+region = Rect2(0, 729, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_efqh3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6jys"]
 atlas = ExtResource("10_xxdqm")
-region = Rect2(192, 211, 192, 211)
+region = Rect2(805, 729, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gun4l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_75eok"]
 atlas = ExtResource("10_8ymbi")
-region = Rect2(0, 0, 192, 211)
+region = Rect2(0, 0, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3g6q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bou5p"]
 atlas = ExtResource("10_8ymbi")
-region = Rect2(192, 0, 192, 211)
+region = Rect2(805, 0, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s2kvf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_l34u2"]
 atlas = ExtResource("10_8ymbi")
-region = Rect2(0, 211, 192, 211)
+region = Rect2(0, 729, 805, 729)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_agfh5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ilq5"]
 atlas = ExtResource("10_8ymbi")
-region = Rect2(192, 211, 192, 211)
+region = Rect2(805, 729, 805, 729)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_274bk"]
 animations = [{
@@ -539,16 +537,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bnn1c")
+"texture": SubResource("AtlasTexture_hmwyd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eveh6")
+"texture": SubResource("AtlasTexture_rfmdh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vmci3")
+"texture": SubResource("AtlasTexture_bn5h3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_efqh3")
+"texture": SubResource("AtlasTexture_t6jys")
 }],
 "loop": 1,
 "name": &"relieve",
@@ -556,16 +554,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gun4l")
+"texture": SubResource("AtlasTexture_75eok")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m3g6q")
+"texture": SubResource("AtlasTexture_bou5p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s2kvf")
+"texture": SubResource("AtlasTexture_l34u2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_agfh5")
+"texture": SubResource("AtlasTexture_6ilq5")
 }],
 "loop": 1,
 "name": &"running",
@@ -576,11 +574,9 @@ animations = [{
 size = Vector2(232, 187)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f3fa5"]
-atlas = ExtResource("5_b8js2")
 region = Rect2(0, 0, 720, 540)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu4ip"]
-atlas = ExtResource("5_b8js2")
 region = Rect2(720, 0, 720, 540)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8js2"]
@@ -1146,9 +1142,9 @@ libraries/ = SubResource("AnimationLibrary_4213q")
 
 [node name="spr" type="AnimatedSprite2D" parent="gameplay/player/playerBody" unique_id=722246757]
 texture_filter = 1
-scale = Vector2(2.7200003, 2.7200005)
 sprite_frames = SubResource("SpriteFrames_274bk")
 animation = &"dodge_d"
+offset = Vector2(42.265, -106)
 
 [node name="hb" type="CollisionShape2D" parent="gameplay/player/playerBody" unique_id=1599301126]
 position = Vector2(0, -100.5)

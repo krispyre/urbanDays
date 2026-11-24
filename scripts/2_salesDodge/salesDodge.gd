@@ -52,7 +52,6 @@ func _level_ready() -> void:
 
 	
 func on_beat(local_beat: int) -> void:
-	prints("beat:", local_beat)
 	if local_beat == WIN_BEAT and not isResultsShown:
 		win.emit()
 
@@ -72,6 +71,7 @@ func on_beat(local_beat: int) -> void:
 		sales_container.add_child(s)
 			
 func _on_fail():
+	print("umm")
 	if not mark_results_shown():
 		return
 	anim_player.play("showFail")

@@ -71,6 +71,7 @@ func _on_bgm_next_level() -> void:
 	
 func _on_level_win():
 	wins += 1
+	print("wih")
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):
 	music_player.volume_db = linear_to_db(volume)+1

@@ -50,10 +50,10 @@ func _ready() -> void:
 	#either reference the bgm node in the parent or load ur own+offset (during testign)
 	var shared := get_tree().current_scene.get_node_or_null("%bgm")
 	if shared:
-		print("globally playing")
+		#print("globally playing")
 		musicNode = shared
 	else:
-		print("testing one level")
+		#print("testing one level")
 		musicNode = bgmScene.instantiate() as bgm
 		add_child(musicNode)
 		# add_child during _ready defers t child's _ready/@onready until next idle frame
@@ -63,11 +63,9 @@ func _ready() -> void:
 	$animPlayer.play("showHint")
 	
 	progress_bar.max_value = LEVEL_DURATION_BEAT * 60.0 / musicNode.bpm
-	prints("level dur bea", LEVEL_DURATION_BEAT)
 	timer.wait_time = progress_bar.max_value + hint_anim_player.get_animation("showHint").length
 	progress_bar.value = progress_bar.max_value
 	timer.start()
-	prints(progress_bar.value, timer.wait_time)
 	if not timer.timeout.is_connected(_on_timer_timeout):
 		# lambda so the subclass override runs, not Level's empty handler
 		timer.timeout.connect(func(): _on_timer_timeout())
@@ -109,7 +107,6 @@ func set_timer_bar_recharge():
 
 ## Returns true for the first caller, which should play the results. this is stupdi
 func mark_results_shown() -> bool:
-	print(isResultsShown)
 	if isResultsShown:
 		return false
 	isResultsShown = true

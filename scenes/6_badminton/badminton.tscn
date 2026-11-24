@@ -351,7 +351,6 @@ var first_return = true
 
 func _ready() -> void:
 	play(\"start\")
-	print(animation)
 	
 func _on_racket_body_entered(body: Node2D) -> void:
 	if first_return:

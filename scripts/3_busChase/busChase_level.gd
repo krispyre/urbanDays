@@ -52,7 +52,6 @@ func _on_level_win():
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.process_mode = Node.PROCESS_MODE_DISABLED
-	print("win")
 
 func _on_level_fail() -> void:
 	if not mark_results_shown():
@@ -61,7 +60,6 @@ func _on_level_fail() -> void:
 	tr_anim.play("zoom")
 	await tr_anim.animation_finished
 	level.process_mode = Node.PROCESS_MODE_DISABLED
-	print("fail")
 
 func _on_goal_body_entered(_body: Node3D) -> void:
 	win.emit()

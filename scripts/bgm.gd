@@ -37,7 +37,6 @@ func _ready():
 	r.beats(LEVEL_BEATS, true, INTRO_BEATS).connect(emitNextLevel)
 	#outro
 	r.beats(0, false, INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT).connect(emitOutro)
-	prints(INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT, (INTRO_BEATS + LEVEL_BEATS * LEVEL_COUNT)*60/bpm)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("skip")):

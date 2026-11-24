@@ -28,7 +28,6 @@ func _physics_process(delta: float) -> void:
 	for r in col_checks.get_children():
 		if r.is_colliding():
 			var dir = r.target_position.normalized()
-			#prints("next to me, ", dir)
 			
 			if dir == step:
 				anim_spr.position = 5 * step

@@ -27,7 +27,6 @@ func _init():
 	LEVEL_DURATION_BEAT = 17 #timeout AFTER nth beat
 func _level_ready() -> void:
 	isResultsShown = false
-	print(beat_offset)
 	level_number = 4
 	
 	#randomize entrances. choose 1-3 people to block seats on the row with red chairs
@@ -38,14 +37,12 @@ func _level_ready() -> void:
 func _on_win() -> void:
 	if not mark_results_shown():
 		return
-	print(\"correct\")
 	results.show()
 	results.play_win()
 
 func _on_fail() -> void:
 	if not mark_results_shown():
 		return
-	print(\"false\")
 	results.show()
 	results.play_fail()
 
@@ -58,11 +55,9 @@ func _level_process(delta) -> void:
 		
 func _on_player_body_entered(_area: TileMapLayer) -> void:
 	on_seat = true
-	print(\"yay\")
 
 func _on_player_body_exited(_area: TileMapLayer) -> void:
 	on_seat = false
-	print(\"no\")
 "
 
 [sub_resource type="Animation" id="Animation_ye1h0"]

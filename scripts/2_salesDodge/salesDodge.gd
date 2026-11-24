@@ -52,11 +52,7 @@ func _level_ready() -> void:
 
 	
 func on_beat(local_beat: int) -> void:
-	if local_beat == WIN_BEAT and not isResultsShown:
-		win.emit()
-
 	if not isResultsShown and local_beat > sequence_len:
-		print("end")
 		player_body.play_relieve()
 			
 	if local_beat >= sequence.size() or local_beat < 0:

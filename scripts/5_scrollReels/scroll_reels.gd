@@ -25,7 +25,6 @@ func _on_win():
 		return
 	lana_view.play("finish")
 	results_transition.play_win()
-	print("wins")
 
 func _on_fail() -> void:
 	if not mark_results_shown():
@@ -83,5 +82,4 @@ func _on_timer_timeout() -> void:
 	
 	if !isResultsShown:
 		fail.emit()
-		print("fail")
 	

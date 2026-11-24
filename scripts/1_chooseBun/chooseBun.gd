@@ -30,7 +30,6 @@ func _on_bun_selected(index: int) -> void:
 func _on_win() -> void:
 	if not mark_results_shown():
 		return
-	print("correct")
 	lana_anim.play("jump")
 	await get_tree().create_timer(.5).timeout
 	results.play_win()
@@ -38,7 +37,6 @@ func _on_win() -> void:
 func _on_fail() -> void:
 	if not mark_results_shown():
 		return
-	print("fail")
 	lana_anim.play("oops")
 	await get_tree().create_timer(.5).timeout
 	results.play_fail()

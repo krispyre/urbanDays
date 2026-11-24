@@ -57,7 +57,7 @@ func _on_fail():
 resource_name = "focusBar"
 script/source = "extends TextureProgressBar
 
-var focus_thres = 50
+var focus_thres = 30
 var push_force = 100
 var velocity := 0.0 #make sure its a float BRUH
 var gravity := 0.0
@@ -267,6 +267,10 @@ region = Rect2(0, 0, 720, 540)
 atlas = ExtResource("17_mjh48")
 region = Rect2(720, 0, 720, 540)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p3ya"]
+atlas = ExtResource("17_mjh48")
+region = Rect2(0, 540, 720, 540)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_f7n5a"]
 animations = [{
 "frames": [{
@@ -275,6 +279,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iohg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p3ya")
 }],
 "loop": 1,
 "name": &"default",

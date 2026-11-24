@@ -18,7 +18,6 @@ func _ready() -> void:
 
 #0 indexed
 func _on_bun_selected(bun_index: int):
-	prints("bun", bun_index, "selected")
 	select_frame.get_node("animPlayer").play("select")
 	bun_selected.emit(bun_index)
 
@@ -27,5 +26,4 @@ func _on_bun_focused(bun_index: int):
 	var center := (get_child(bun_index) as Control).get_global_rect().get_center()
 	select_frame.get_node("animPlayer").play("focus")
 	select_frame.global_position = center
-	prints("bun", bun_index, "focused")
 	bun_focused.emit(bun_index)

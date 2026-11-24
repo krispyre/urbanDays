@@ -51,6 +51,8 @@ func _on_bgm_outro() -> void:
 	$gameProcess/outro/results/fail.text = "Failed microgames: "+str(bgm.LEVEL_COUNT-wins)
 	outro.show()
 	outro.find_child("animPlayer").play("outro")
+	await outro.find_child("animPlayer").animation_finished
+	get_tree().quit()
 
 func _on_bgm_next_level() -> void:
 	if curLevel == -1:
@@ -71,7 +73,6 @@ func _on_bgm_next_level() -> void:
 	
 func _on_level_win():
 	wins += 1
-	print("wih")
 ## volume is 0 to 1 (float).
 func set_music_vol(volume:float):
 	music_player.volume_db = linear_to_db(volume)+1

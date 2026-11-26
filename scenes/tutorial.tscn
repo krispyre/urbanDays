@@ -76,7 +76,7 @@ var push_force = 300
 var pull_strength = 20
 
 func _process(dt: float) -> void:
-	bedPull = (bed.position-position).normalized()* (pull_strength)
+	bedPull = (bed.position-position).normalized()* clampf((bed.position-position).length(),-10,10)
 	#var inputH = Input.get_axis(\"left\",\"right\")
 	#var inputV = Input.get_axis(\"up\",\"down\")
 	#go copyupaster

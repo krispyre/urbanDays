@@ -52,11 +52,14 @@ resource_name = "introTransition"
 script/source = "extends Node2D
 @onready var anim_player: AnimationPlayer = $animPlayer
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(\"action1\"):
-		anim_player.play(\"introTransition\")
-		await anim_player.animation_finished
-		get_tree().change_scene_to_file(\"res://scenes/mainGame.tscn\")
+func start():
+	anim_player.play(\"introTransition\")
+	await anim_player.animation_finished
+	get_tree().change_scene_to_file(\"res://scenes/mainGame.tscn\")
+
+
+func _on_start_pressed() -> void:
+	start()
 "
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1qa5v"]
@@ -473,4 +476,5 @@ theme_override_font_sizes/font_size = 177
 text = "...
 "
 
+[connection signal="pressed" from="Control/start" to="startAnim" method="_on_start_pressed"]
 [connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]

@@ -47,11 +47,11 @@ func unload_level(level: Node) -> void:
 
 func _on_bgm_outro() -> void:
 	print("play outro")
-	$gameProcess/outro/results/successful.text = "Successful microgames: "+str(wins)
-	$gameProcess/outro/results/fail.text = "Failed microgames: "+str(bgm.LEVEL_COUNT-wins)
+	$gameProcess/outro/results/results/successful.text = "Successful microgames: "+str(wins)
+	$gameProcess/outro/results/results/fail.text = "Failed microgames: "+str(bgm.LEVEL_COUNT-wins)
 	outro.show()
-	outro.find_child("animPlayer").play("outro")
-	await outro.find_child("animPlayer").animation_finished
+	outro.play_outro()
+	await outro.outro_finished
 	get_tree().quit()
 
 func _on_bgm_next_level() -> void:

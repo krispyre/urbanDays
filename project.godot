@@ -43,7 +43,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terminal/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotAPKeyFrameShifter-be004cc3add0a8ff7312b6b720cedad9eabbe1d9/plugin.cfg", "res://addons/perspective_quads/plugin.cfg", "res://addons/terminal/plugin.cfg")
 
 [input]
 

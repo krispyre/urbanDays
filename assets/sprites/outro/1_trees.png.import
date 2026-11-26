@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcdmnav1dwjuy"
-path="res://.godot/imported/3_lap.png-0fd423afb8c80cd7fea23f2c4738283a.ctex"
+uid="uid://irrqkwf7mfei"
+path="res://.godot/imported/1_trees.png-577364f1209c69084c1aad75f1d3193e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/outo/3_lap.png"
-dest_files=["res://.godot/imported/3_lap.png-0fd423afb8c80cd7fea23f2c4738283a.ctex"]
+source_file="res://assets/sprites/outro/1_trees.png"
+dest_files=["res://.godot/imported/1_trees.png-577364f1209c69084c1aad75f1d3193e.ctex"]
 
 [params]
 

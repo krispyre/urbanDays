@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d16q37mkf0deb"
-path="res://.godot/imported/2_lamp.png-0d5e41d52aa84e10d82ce85b366888c8.ctex"
+uid="uid://dcdmnav1dwjuy"
+path="res://.godot/imported/3_lap.png-5f84267afcdfc3de2b5729a2c12bfe93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/outo/2_lamp.png"
-dest_files=["res://.godot/imported/2_lamp.png-0d5e41d52aa84e10d82ce85b366888c8.ctex"]
+source_file="res://assets/sprites/outro/3_lap.png"
+dest_files=["res://.godot/imported/3_lap.png-5f84267afcdfc3de2b5729a2c12bfe93.ctex"]
 
 [params]
 

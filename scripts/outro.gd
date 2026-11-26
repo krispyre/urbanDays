@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action1"):
 		play_outro()
 
-
-func _on_slides_slider_animation_finished(anim_name: StringName) -> void:
-	if anim_name == '3':
+func _on_anim_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == 'showResults':
 		outro_finished.emit()
+	

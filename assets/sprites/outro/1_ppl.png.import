@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c12fhxfxeek15"
-path="res://.godot/imported/2_lana.png-9f529ffe93ac18758ff9cb8e8860fa87.ctex"
+uid="uid://bv6yskipp78bg"
+path="res://.godot/imported/1_ppl.png-33759abf61525668d678656df4c6782b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/outo/2_lana.png"
-dest_files=["res://.godot/imported/2_lana.png-9f529ffe93ac18758ff9cb8e8860fa87.ctex"]
+source_file="res://assets/sprites/outro/1_ppl.png"
+dest_files=["res://.godot/imported/1_ppl.png-33759abf61525668d678656df4c6782b.ctex"]
 
 [params]
 

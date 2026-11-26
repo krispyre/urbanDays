@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0rj2dd2a1wy6"
-path="res://.godot/imported/1_lana.png-a1f297083996703cb7b5aefe14a8c2ca.ctex"
+uid="uid://cvaljmtr1f2np"
+path="res://.godot/imported/3_hand.png-b727750ea18839bb9d5802e02f4feb63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/outo/1_lana.png"
-dest_files=["res://.godot/imported/1_lana.png-a1f297083996703cb7b5aefe14a8c2ca.ctex"]
+source_file="res://assets/sprites/outro/3_hand.png"
+dest_files=["res://.godot/imported/3_hand.png-b727750ea18839bb9d5802e02f4feb63.ctex"]
 
 [params]
 

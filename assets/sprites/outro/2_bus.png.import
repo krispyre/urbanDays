@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di67u8s3i7n8i"
-path="res://.godot/imported/2_scene.png-dcefdf5f79fa68f651c1bcec031bca9f.ctex"
+uid="uid://dayt7rrokuk3f"
+path="res://.godot/imported/2_bus.png-57eb85f4f1cc53a46b6073692d24add2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/outo/2_scene.png"
-dest_files=["res://.godot/imported/2_scene.png-dcefdf5f79fa68f651c1bcec031bca9f.ctex"]
+source_file="res://assets/sprites/outro/2_bus.png"
+dest_files=["res://.godot/imported/2_bus.png-57eb85f4f1cc53a46b6073692d24add2.ctex"]
 
 [params]
 

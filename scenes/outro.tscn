@@ -525,7 +525,7 @@ tracks/5/use_blend = true
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("2/2Lana:frame")
+tracks/6/path = NodePath("2/2Bus/2Lana:frame")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -533,6 +533,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("2/2Bus:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1.0666667, 2.2, 3.4333334, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(360, 270), Vector2(360, 272), Vector2(358, 270), Vector2(360, 272), Vector2(360, 270)]
 }
 
 [sub_resource type="Animation" id="Animation_lsp6n"]
@@ -615,6 +627,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("3/3Book:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("3/3Lap:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.6666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-6, -5.0000005), Vector2(-6.0000005, -8)]
 }
 
 [sub_resource type="Animation" id="Animation_ya6b3"]
@@ -730,7 +766,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("2/2Lana:frame")
+tracks/9/path = NodePath("2/2Bus/2Lana:frame")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -772,6 +808,42 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("2/2Bus:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(360, 270)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("3/3Book:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("3/3Lap:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, -5.0000005)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_611wi"]
@@ -917,13 +989,13 @@ region_enabled = true
 region_rect = Rect2(0, 0, 580, 140)
 
 [node name="2Bus" type="Sprite2D" parent="2" unique_id=1372691056]
+position = Vector2(360, 270)
+scale = Vector2(1.02, 1.02)
 texture = ExtResource("6_0b11s")
-centered = false
 
-[node name="2Lana" type="AnimatedSprite2D" parent="2" unique_id=499715629]
+[node name="2Lana" type="AnimatedSprite2D" parent="2/2Bus" unique_id=499715629]
 scale = Vector2(1, 1.0018518)
 sprite_frames = SubResource("SpriteFrames_7nwcv")
-centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=863602258]
 
@@ -931,10 +1003,13 @@ centered = false
 visible = false
 
 [node name="3Lap" type="Sprite2D" parent="3" unique_id=544643652]
+position = Vector2(-6, -5.0000005)
+scale = Vector2(1.02, 1.02)
 texture = ExtResource("14_h6h3x")
 centered = false
 
 [node name="3Book" type="Sprite2D" parent="3" unique_id=1582187001]
+position = Vector2(0, -4)
 texture = ExtResource("12_lsp6n")
 centered = false
 

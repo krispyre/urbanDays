@@ -11,7 +11,7 @@ func play_outro():
 	results_ap.play("showResults")
 	slides_at["parameters/playback"].start("1")
 	
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action1"):
 		play_outro()
 

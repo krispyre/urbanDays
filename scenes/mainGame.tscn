@@ -168,7 +168,6 @@ autoplay = false
 
 [node name="introTransition" type="CanvasLayer" parent="gameProcess" unique_id=652699440]
 layer = 2
-visible = false
 
 [node name="introTransition" type="Sprite2D" parent="gameProcess/introTransition" unique_id=2030789862]
 z_index = 4096

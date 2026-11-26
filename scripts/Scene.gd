@@ -20,3 +20,7 @@ func random_n_numbers(min:int, max:int, n:int)-> Array[int]:
 	res.shuffle()
 	return res.slice(0,n)
 		
+
+
+func _on_start_focus_entered() -> void:
+	pass # Replace with function body.

@@ -2,14 +2,27 @@
 
 [ext_resource type="Script" uid="uid://dyu7vq6ejs5gp" path="res://scripts/Scene.gd" id="1_mfct4"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="2_b236o"]
+[ext_resource type="Texture2D" uid="uid://diyipcuoontlg" path="res://assets/sprites/landing/startBtn0000.png" id="3_0a5qi"]
 [ext_resource type="AudioStream" uid="uid://c3j07vty5ckaa" path="res://assets/sound/snd_nes_nocontroller.wav" id="4_8ljda"]
+[ext_resource type="Texture2D" uid="uid://b202ny6x7bisn" path="res://assets/sprites/landing/tutBtn0000.png" id="4_41e1x"]
 [ext_resource type="Texture2D" uid="uid://dcdmnav1dwjuy" path="res://assets/sprites/outro/3_lap.png" id="4_ahygv"]
+[ext_resource type="Script" uid="uid://ci2qflopqrq1r" path="res://scripts/btn_uniqueFocus.gd" id="4_ljfqm"]
+[ext_resource type="Texture2D" uid="uid://clidf3rjemm2s" path="res://assets/sprites/landing/startBtn0001.png" id="5_ljfqm"]
 [ext_resource type="Texture2D" uid="uid://cvaljmtr1f2np" path="res://assets/sprites/outro/3_hand.png" id="5_vpb78"]
 [ext_resource type="Texture2D" uid="uid://br2imn7bcjj0h" path="res://assets/sprites/ui/transition_blink.png" id="5_yp7d7"]
 [ext_resource type="FontFile" uid="uid://caaenuahe3p1g" path="res://assets/fonts/DepartureMonoNerdFontPropo-Regular.otf" id="6_yp7d7"]
+[ext_resource type="Texture2D" uid="uid://cmxhirr0uo5q1" path="res://assets/sprites/landing/tutBtn0001.png" id="7_on0tx"]
 [ext_resource type="FontFile" uid="uid://cnmw8ju3cxtdh" path="res://assets/fonts/3270NerdFontMono-Condensed.ttf" id="8_0a5qi"]
 [ext_resource type="Texture2D" uid="uid://nmju5r3vqn44" path="res://assets/sprites/outro/3_book.png" id="8_bfh6i"]
+[ext_resource type="Texture2D" uid="uid://ccbxta7wb8ss2" path="res://assets/sprites/landing/tutBtn.png" id="8_qqn2v"]
 [ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="8_vpb78"]
+[ext_resource type="Texture2D" uid="uid://cnegd3y0c0q1p" path="res://assets/sprites/landing/startBtn.png" id="10_0yydn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vpb78"]
+shader = ExtResource("8_vpb78")
+shader_parameter/brightness = 0.0499999765304
+shader_parameter/contrast = 0.57999998703584
+shader_parameter/saturation = 0.0
 
 [sub_resource type="GDScript" id="GDScript_usvfl"]
 resource_name = "startMenu"
@@ -19,6 +32,8 @@ signal item_selected(index:int)
 signal item_focused(index:int)
 
 var tut_scene= \"res://scenes/tutorial.tscn\"
+@export var tut_btn_anim: AnimatedSprite2D
+@export var start_btn_anim: AnimatedSprite2D
 
 func _ready() -> void:
 	var children = get_children()
@@ -50,11 +65,91 @@ func _on_tutorial_pressed() -> void:
 default_font = ExtResource("2_b236o")
 default_font_size = 34
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfivj"]
+atlas = ExtResource("10_0yydn")
+region = Rect2(0, 0, 138, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o318e"]
+atlas = ExtResource("10_0yydn")
+region = Rect2(138, 0, 138, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk8mb"]
+atlas = ExtResource("10_0yydn")
+region = Rect2(0, 76, 138, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erau8"]
+atlas = ExtResource("10_0yydn")
+region = Rect2(138, 76, 138, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka23v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfivj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o318e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk8mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erau8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nxj1"]
+atlas = ExtResource("8_qqn2v")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7txvb"]
+atlas = ExtResource("8_qqn2v")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdxn5"]
+atlas = ExtResource("8_qqn2v")
+region = Rect2(0, 128, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvose"]
+atlas = ExtResource("8_qqn2v")
+region = Rect2(192, 128, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qudme"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nxj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7txvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdxn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvose")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
 [sub_resource type="GDScript" id="GDScript_yp7d7"]
 resource_name = "introTransition"
 script/source = "extends Node2D
 @onready var anim_player: AnimationPlayer = $animPlayer
 
+func _ready() -> void:
+	anim_player.play(\"RESET\")
 func start():
 	anim_player.play(\"introTransition\")
 	await anim_player.animation_finished
@@ -215,6 +310,42 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Control:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../tutBtnAnim:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../startBtnAnim:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_x4ofr"]
 resource_name = "introTransition"
@@ -352,6 +483,70 @@ tracks/10/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Control:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../tutBtnAnim:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../startBtnAnim:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "method"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../tutBtnAnim")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/15/type = "method"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../startBtnAnim")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"default", 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ahygv"]
 _data = {
@@ -359,62 +554,78 @@ _data = {
 &"introTransition": SubResource("Animation_x4ofr")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vpb78"]
-shader = ExtResource("8_vpb78")
-shader_parameter/brightness = 0.0499999765304
-shader_parameter/contrast = 0.57999998703584
-shader_parameter/saturation = 0.0
-
 [node name="Landing" type="Node" unique_id=1507338433]
 script = ExtResource("1_mfct4")
 metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
 
-[node name="bg2" type="ColorRect" parent="." unique_id=681111362]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.67570114, 0.5775306, 0.6624778, 1)
+[node name="bg" type="Sprite2D" parent="." unique_id=47684183]
+texture = ExtResource("4_ahygv")
+centered = false
 
-[node name="Control" type="Control" parent="." unique_id=2107179078]
+[node name="3Book" type="Sprite2D" parent="." unique_id=2023497553]
+material = SubResource("ShaderMaterial_vpb78")
+texture = ExtResource("8_bfh6i")
+centered = false
+
+[node name="Control" type="Control" parent="." unique_id=2107179078 node_paths=PackedStringArray("tut_btn_anim", "start_btn_anim")]
+z_index = 2
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 720.0
 offset_bottom = 540.0
 script = SubResource("GDScript_usvfl")
+tut_btn_anim = NodePath("../tutBtnAnim")
+start_btn_anim = NodePath("../startBtnAnim")
 
-[node name="start" type="Button" parent="Control" unique_id=202300087]
+[node name="start" type="TextureButton" parent="Control" unique_id=1381536061]
 layout_mode = 0
-offset_left = 468.99997
-offset_top = 262.0
-offset_right = 682.3338
-offset_bottom = 341.1663
+offset_left = 558.0
+offset_top = 267.99997
+offset_right = 771.33386
+offset_bottom = 347.16626
 rotation = -0.2617994
 focus_neighbor_left = NodePath("../tutorial")
 focus_neighbor_bottom = NodePath("../tutorial")
 focus_previous = NodePath("../tutorial")
 theme = SubResource("Theme_mfct4")
+texture_normal = ExtResource("5_ljfqm")
+script = ExtResource("4_ljfqm")
+focusTexture = ExtResource("3_0a5qi")
 
-[node name="tutorial" type="Button" parent="Control" unique_id=1800044504]
+[node name="tutorial" type="TextureButton" parent="Control" unique_id=25584896]
 layout_mode = 0
-offset_left = 38.999992
-offset_top = 412.0
-offset_right = 243.0
-offset_bottom = 484.0
+offset_left = 54.0
+offset_top = 398.0
+offset_right = 258.0
+offset_bottom = 526.0
 rotation = -0.19681683
 focus_neighbor_top = NodePath("../start")
 focus_neighbor_right = NodePath("../start")
 focus_next = NodePath("../start")
+texture_normal = ExtResource("4_41e1x")
+script = ExtResource("4_ljfqm")
+focusTexture = ExtResource("7_on0tx")
+
+[node name="startBtnAnim" type="AnimatedSprite2D" parent="." unique_id=763640239]
+visible = false
+position = Vector2(558, 267.99997)
+rotation = -0.26179937
+scale = Vector2(0.9999999, 0.9999999)
+sprite_frames = SubResource("SpriteFrames_ka23v")
+centered = false
+
+[node name="tutBtnAnim" type="AnimatedSprite2D" parent="." unique_id=77148590]
+visible = false
+position = Vector2(54, 398)
+rotation = -0.19681683
+scale = Vector2(0.9999999, 0.9999999)
+sprite_frames = SubResource("SpriteFrames_qudme")
+centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=385678757]
 editor_description = "source: https://sounds.spriters-resource.com/pc_computer/deltarune/asset/455868/"
 stream = ExtResource("4_8ljda")
-
-[node name="bg" type="Sprite2D" parent="." unique_id=47684183]
-texture = ExtResource("4_ahygv")
-centered = false
 
 [node name="startAnim" type="Node2D" parent="." unique_id=1088759915]
 z_index = 9
@@ -461,23 +672,22 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 329.0
-offset_top = 172.0
-offset_right = 414.0
-offset_bottom = 557.0
+offset_left = 299.5
+offset_top = 226.0
+offset_right = 443.5
+offset_bottom = 611.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.54509807, 0.54509807, 0.54509807, 0.8666667)
 theme_override_fonts/font = ExtResource("8_0a5qi")
-theme_override_font_sizes/font_size = 177
+theme_override_font_sizes/font_size = 110
 text = "...
 "
 
-[node name="3Book" type="Sprite2D" parent="." unique_id=2023497553]
-material = SubResource("ShaderMaterial_vpb78")
-texture = ExtResource("8_bfh6i")
-centered = false
-
+[connection signal="focus_entered" from="Control/start" to="Control/start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Control/start" to="Control/start" method="_on_focus_exited"]
 [connection signal="pressed" from="Control/start" to="startAnim" method="_on_start_pressed"]
+[connection signal="focus_entered" from="Control/tutorial" to="Control/tutorial" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Control/tutorial" to="Control/tutorial" method="_on_focus_exited"]
 [connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]

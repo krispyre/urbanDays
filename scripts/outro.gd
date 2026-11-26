@@ -11,9 +11,6 @@ func play_outro():
 	results_ap.play("showResults")
 	slides_at["parameters/playback"].start("1")
 	
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("action1"):
-		play_outro()
 
 func _on_anim_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == 'showResults':

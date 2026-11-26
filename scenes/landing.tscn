@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://26oersj7h16g"]
 
-[ext_resource type="Script" uid="uid://dyu7vq6ejs5gp" path="res://scripts/Scene.gd" id="1_mfct4"]
 [ext_resource type="FontFile" uid="uid://dyx5lw12vekd3" path="res://assets/fonts/NanumPenScript-Regular.ttf" id="2_b236o"]
 [ext_resource type="Texture2D" uid="uid://diyipcuoontlg" path="res://assets/sprites/landing/startBtn0000.png" id="3_0a5qi"]
 [ext_resource type="AudioStream" uid="uid://c3j07vty5ckaa" path="res://assets/sound/snd_nes_nocontroller.wav" id="4_8ljda"]
@@ -17,12 +16,35 @@
 [ext_resource type="Texture2D" uid="uid://ccbxta7wb8ss2" path="res://assets/sprites/landing/tutBtn.png" id="8_qqn2v"]
 [ext_resource type="Shader" uid="uid://bmid8bvup0ol6" path="res://assets/shader/adjust_brightContrSat.gdshader" id="8_vpb78"]
 [ext_resource type="Texture2D" uid="uid://cnegd3y0c0q1p" path="res://assets/sprites/landing/startBtn.png" id="10_0yydn"]
+[ext_resource type="Shader" uid="uid://doq84wbfuxhe4" path="res://assets/shader/blendingModes.gdshader" id="17_0yydn"]
+[ext_resource type="Texture2D" uid="uid://ds55g67poqbve" path="res://assets/sprites/landing/scrible.png" id="18_6nxj1"]
+
+[sub_resource type="GDScript" id="GDScript_0yydn"]
+resource_name = "landingcamera"
+script/source = "extends Camera2D
+
+func _on_start_focus_entered() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,\"position\",$\"../right\".global_position,.5)
+
+func _on_tutorial_focus_entered() -> void:
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,\"position\",$\"../left\".global_position,.5)
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vpb78"]
 shader = ExtResource("8_vpb78")
 shader_parameter/brightness = 0.0499999765304
 shader_parameter/contrast = 0.57999998703584
 shader_parameter/saturation = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka23v"]
+shader = ExtResource("17_0yydn")
+shader_parameter/blend_mode = 8
 
 [sub_resource type="GDScript" id="GDScript_usvfl"]
 resource_name = "startMenu"
@@ -146,7 +168,8 @@ animations = [{
 [sub_resource type="GDScript" id="GDScript_yp7d7"]
 resource_name = "introTransition"
 script/source = "extends Node2D
-@onready var anim_player: AnimationPlayer = $animPlayer
+
+@export var anim_player: AnimationPlayer
 
 func _ready() -> void:
 	anim_player.play(\"RESET\")
@@ -313,7 +336,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../Control:visible")
+tracks/9/path = NodePath("../Parallax2D/book/Control:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -325,7 +348,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../tutBtnAnim:visible")
+tracks/10/path = NodePath("../Parallax2D/book/tutBtnAnim:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -337,7 +360,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../startBtnAnim:visible")
+tracks/11/path = NodePath("../Parallax2D/book/startBtnAnim:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -486,7 +509,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Control:visible")
+tracks/11/path = NodePath("../Parallax2D/book/Control:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -498,7 +521,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../tutBtnAnim:visible")
+tracks/12/path = NodePath("../Parallax2D/book/tutBtnAnim:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -510,7 +533,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../startBtnAnim:visible")
+tracks/13/path = NodePath("../Parallax2D/book/startBtnAnim:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -522,7 +545,7 @@ tracks/13/keys = {
 tracks/14/type = "method"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../tutBtnAnim")
+tracks/14/path = NodePath("../Parallax2D/book/tutBtnAnim")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -536,7 +559,7 @@ tracks/14/keys = {
 tracks/15/type = "method"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../startBtnAnim")
+tracks/15/path = NodePath("../Parallax2D/book/startBtnAnim")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -554,20 +577,43 @@ _data = {
 &"introTransition": SubResource("Animation_x4ofr")
 }
 
-[node name="Landing" type="Node" unique_id=1507338433]
-script = ExtResource("1_mfct4")
-metadata/_custom_type_script = "uid://dyu7vq6ejs5gp"
+[node name="Landing" type="Node" unique_id=558858274]
+
+[node name="right" type="Marker2D" parent="." unique_id=1720715542]
+position = Vector2(371, 262)
+
+[node name="left" type="Marker2D" parent="." unique_id=1859242459]
+position = Vector2(345, 281)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=824956804]
+position = Vector2(360, 270)
+zoom = Vector2(1.04, 1.04)
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 720
+limit_bottom = 540
+script = SubResource("GDScript_0yydn")
 
 [node name="bg" type="Sprite2D" parent="." unique_id=47684183]
+texture_filter = 1
 texture = ExtResource("4_ahygv")
 centered = false
 
-[node name="3Book" type="Sprite2D" parent="." unique_id=2023497553]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1513224315]
+scroll_scale = Vector2(1.1, 1.4)
+
+[node name="book" type="Sprite2D" parent="Parallax2D" unique_id=2023497553]
 material = SubResource("ShaderMaterial_vpb78")
 texture = ExtResource("8_bfh6i")
 centered = false
 
-[node name="Control" type="Control" parent="." unique_id=2107179078 node_paths=PackedStringArray("tut_btn_anim", "start_btn_anim")]
+[node name="Scrible" type="Sprite2D" parent="Parallax2D/book" unique_id=903231322]
+material = SubResource("ShaderMaterial_ka23v")
+position = Vector2(361, 226)
+texture = ExtResource("18_6nxj1")
+
+[node name="Control" type="Control" parent="Parallax2D/book" unique_id=2107179078 node_paths=PackedStringArray("tut_btn_anim", "start_btn_anim")]
 z_index = 2
 texture_filter = 1
 layout_mode = 3
@@ -578,7 +624,7 @@ script = SubResource("GDScript_usvfl")
 tut_btn_anim = NodePath("../tutBtnAnim")
 start_btn_anim = NodePath("../startBtnAnim")
 
-[node name="start" type="TextureButton" parent="Control" unique_id=1381536061]
+[node name="start" type="TextureButton" parent="Parallax2D/book/Control" unique_id=1381536061]
 layout_mode = 0
 offset_left = 558.0
 offset_top = 267.99997
@@ -593,7 +639,7 @@ texture_normal = ExtResource("5_ljfqm")
 script = ExtResource("4_ljfqm")
 focusTexture = ExtResource("3_0a5qi")
 
-[node name="tutorial" type="TextureButton" parent="Control" unique_id=25584896]
+[node name="tutorial" type="TextureButton" parent="Parallax2D/book/Control" unique_id=25584896]
 layout_mode = 0
 offset_left = 54.0
 offset_top = 398.0
@@ -607,7 +653,7 @@ texture_normal = ExtResource("4_41e1x")
 script = ExtResource("4_ljfqm")
 focusTexture = ExtResource("7_on0tx")
 
-[node name="startBtnAnim" type="AnimatedSprite2D" parent="." unique_id=763640239]
+[node name="startBtnAnim" type="AnimatedSprite2D" parent="Parallax2D/book" unique_id=763640239]
 visible = false
 position = Vector2(558, 267.99997)
 rotation = -0.26179937
@@ -615,7 +661,7 @@ scale = Vector2(0.9999999, 0.9999999)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 centered = false
 
-[node name="tutBtnAnim" type="AnimatedSprite2D" parent="." unique_id=77148590]
+[node name="tutBtnAnim" type="AnimatedSprite2D" parent="Parallax2D/book" unique_id=77148590]
 visible = false
 position = Vector2(54, 398)
 rotation = -0.19681683
@@ -627,9 +673,10 @@ centered = false
 editor_description = "source: https://sounds.spriters-resource.com/pc_computer/deltarune/asset/455868/"
 stream = ExtResource("4_8ljda")
 
-[node name="startAnim" type="Node2D" parent="." unique_id=1088759915]
+[node name="startAnim" type="Node2D" parent="." unique_id=1088759915 node_paths=PackedStringArray("anim_player")]
 z_index = 9
 script = SubResource("GDScript_yp7d7")
+anim_player = NodePath("../animPlayer")
 
 [node name="hand" type="Sprite2D" parent="startAnim" unique_id=1821454313]
 position = Vector2(967, 22)
@@ -664,9 +711,6 @@ vertical_alignment = 1
 
 [node name="prompt" type="AudioStreamPlayer" parent="startAnim" unique_id=1928103146]
 
-[node name="animPlayer" type="AnimationPlayer" parent="startAnim" unique_id=1776013601]
-libraries/ = SubResource("AnimationLibrary_ahygv")
-
 [node name="dots" type="Label" parent="startAnim" unique_id=862529584]
 visible = false
 anchors_preset = 15
@@ -685,9 +729,15 @@ theme_override_font_sizes/font_size = 110
 text = "...
 "
 
-[connection signal="focus_entered" from="Control/start" to="Control/start" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Control/start" to="Control/start" method="_on_focus_exited"]
-[connection signal="pressed" from="Control/start" to="startAnim" method="_on_start_pressed"]
-[connection signal="focus_entered" from="Control/tutorial" to="Control/tutorial" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Control/tutorial" to="Control/tutorial" method="_on_focus_exited"]
-[connection signal="pressed" from="Control/tutorial" to="Control" method="_on_tutorial_pressed"]
+[node name="animPlayer" type="AnimationPlayer" parent="." unique_id=1776013601]
+root_node = NodePath("../startAnim")
+libraries/ = SubResource("AnimationLibrary_ahygv")
+
+[connection signal="focus_entered" from="Parallax2D/book/Control/start" to="Camera2D" method="_on_start_focus_entered"]
+[connection signal="focus_entered" from="Parallax2D/book/Control/start" to="Parallax2D/book/Control/start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Parallax2D/book/Control/start" to="Parallax2D/book/Control/start" method="_on_focus_exited"]
+[connection signal="pressed" from="Parallax2D/book/Control/start" to="startAnim" method="_on_start_pressed"]
+[connection signal="focus_entered" from="Parallax2D/book/Control/tutorial" to="Camera2D" method="_on_tutorial_focus_entered"]
+[connection signal="focus_entered" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control/tutorial" method="_on_focus_entered"]
+[connection signal="focus_exited" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control/tutorial" method="_on_focus_exited"]
+[connection signal="pressed" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control" method="_on_tutorial_pressed"]

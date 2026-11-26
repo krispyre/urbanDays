@@ -336,7 +336,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../Parallax2D/book/Control:visible")
+tracks/9/path = NodePath("../bok/book/Control:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -348,7 +348,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Parallax2D/book/tutBtnAnim:visible")
+tracks/10/path = NodePath("../bok/book/tutBtnAnim:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -360,7 +360,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Parallax2D/book/startBtnAnim:visible")
+tracks/11/path = NodePath("../bok/book/startBtnAnim:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -382,7 +382,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(973, 0, 0, 0.07833334, -14.333334, 821, -0.021666666, 22.894444, 0.028333327, -29.93888, 656.00006, -0.028333336, 22.833323, 0, 0),
-"times": PackedFloat32Array(0.5366667, 0.6666667, 0.83666664)
+"times": PackedFloat32Array(0.5366667, 0.73, 1.3666667)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -393,7 +393,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0),
 "points": PackedFloat32Array(40, 0, 0, 0.07833334, 9.166667, 95, -0.25, 0, 0.25, 0, 0, -0.021666666, -8.666668, 0.028333327, 11.333332, 215, -0.028333336, -22.833334, 0, 0),
-"times": PackedFloat32Array(0.53333336, 0.5366667, 0.6666667, 0.83666664)
+"times": PackedFloat32Array(0.53333336, 0.5366667, 0.73, 1.3666667)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -402,7 +402,7 @@ tracks/2/path = NodePath("close:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1.0366666, 1.9999999),
+"times": PackedFloat32Array(1.5033333, 2.4666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -414,7 +414,7 @@ tracks/3/path = NodePath("close")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.9999999),
+"times": PackedFloat32Array(2.4666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"default", 1.0, false],
@@ -428,7 +428,7 @@ tracks/4/path = NodePath("prompttext:visible")
 tracks/4/interp = 0
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.0366666, 4.0333333),
+"times": PackedFloat32Array(1.5033333, 4.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [false, true]
@@ -445,7 +445,7 @@ tracks/5/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("4_8ljda")
 }],
-"times": PackedFloat32Array(4.133333)
+"times": PackedFloat32Array(4.6)
 }
 tracks/5/use_blend = true
 tracks/6/type = "value"
@@ -455,7 +455,7 @@ tracks/6/path = NodePath("prompttext:scale:x")
 tracks/6/interp = 0
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(4.0666666, 4.2, 4.3333335, 4.4),
+"times": PackedFloat32Array(4.5333333, 4.6666665, 4.8, 4.866667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [1.1, 0.89, 1.2, 1.0]
@@ -467,7 +467,7 @@ tracks/7/path = NodePath("prompttext:scale:y")
 tracks/7/interp = 0
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(4.0666666, 4.2, 4.3333335, 4.4),
+"times": PackedFloat32Array(4.5333333, 4.6666665, 4.8, 4.866667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0.75, 1.6, 0.865, 1.0]
@@ -481,7 +481,7 @@ tracks/8/loop_wrap = true
 tracks/8/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(32, -0.25, 0, 0.25, 0, 32, -0.013395986, 0, 0, 0, 32, -0.0060890913, 0, 0, 0, 32.000004, -0.0109603405, -6.3578284e-07, 0, 0, 32, -0.040187996, 6.357829e-07, 0, 0, 32, -0.0060890913, 0, 0, 0, 32, -0.013395986, 0, 0, 0),
-"times": PackedFloat32Array(4.023178, 4.1035542, 4.1400886, 4.2058506, 5.2497563, 5.2862906, 5.3666663)
+"times": PackedFloat32Array(4.489845, 4.570221, 4.6067553, 4.6725173, 5.716423, 5.7529573, 5.833333)
 }
 tracks/9/type = "bezier"
 tracks/9/imported = false
@@ -492,7 +492,7 @@ tracks/9/loop_wrap = true
 tracks/9/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0),
 "points": PackedFloat32Array(257, -0.25, 0, 0.25, 0, 238, -0.013395986, 3.1666667, 0, 0, 247.99998, -0.0060890913, -1.6666641, 0, 0, 246.00002, -0.0109603405, 0.33332825, 0, 0, 250, -0.01583163, 0.5433142, 0.11043744, -3.790022, 220, -0.040187996, -0.9999975, 0, 0, 237, -0.0060890913, 2.5, 0, 0, 550, -0.013395986, -44.500004, 0, 0),
-"times": PackedFloat32Array(4.023178, 4.1035542, 4.1400886, 4.2058506, 4.4, 5.2497563, 5.2862906, 5.3666663)
+"times": PackedFloat32Array(4.489845, 4.570221, 4.6067553, 4.6725173, 4.866667, 5.716423, 5.7529573, 5.833333)
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -501,7 +501,7 @@ tracks/10/path = NodePath("dots:visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(1.0366666, 3.0666666, 4.023178),
+"times": PackedFloat32Array(1.5033333, 3.5333333, 4.489845),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -509,7 +509,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Parallax2D/book/Control:visible")
+tracks/11/path = NodePath("../bok/book/Control:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -521,7 +521,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Parallax2D/book/tutBtnAnim:visible")
+tracks/12/path = NodePath("../bok/book/tutBtnAnim:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -533,7 +533,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Parallax2D/book/startBtnAnim:visible")
+tracks/13/path = NodePath("../bok/book/startBtnAnim:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -545,7 +545,7 @@ tracks/13/keys = {
 tracks/14/type = "method"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../Parallax2D/book/tutBtnAnim")
+tracks/14/path = NodePath("../bok/book/tutBtnAnim")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -559,7 +559,7 @@ tracks/14/keys = {
 tracks/15/type = "method"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../Parallax2D/book/startBtnAnim")
+tracks/15/path = NodePath("../bok/book/startBtnAnim")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -600,20 +600,31 @@ texture_filter = 1
 texture = ExtResource("4_ahygv")
 centered = false
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1513224315]
+[node name="shadow" type="Parallax2D" parent="." unique_id=471532982]
+scroll_scale = Vector2(1.05, 1.4)
+scroll_offset = Vector2(5, 7)
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+
+[node name="shadow" type="Sprite2D" parent="shadow" unique_id=1706037049]
+modulate = Color(0, 0, 0, 0.39607844)
+texture = ExtResource("8_bfh6i")
+centered = false
+
+[node name="bok" type="Parallax2D" parent="." unique_id=1513224315]
 scroll_scale = Vector2(1.1, 1.4)
 
-[node name="book" type="Sprite2D" parent="Parallax2D" unique_id=2023497553]
+[node name="book" type="Sprite2D" parent="bok" unique_id=2023497553]
 material = SubResource("ShaderMaterial_vpb78")
 texture = ExtResource("8_bfh6i")
 centered = false
 
-[node name="Scrible" type="Sprite2D" parent="Parallax2D/book" unique_id=903231322]
+[node name="Scrible" type="Sprite2D" parent="bok/book" unique_id=903231322]
 material = SubResource("ShaderMaterial_ka23v")
 position = Vector2(361, 226)
 texture = ExtResource("18_6nxj1")
 
-[node name="Control" type="Control" parent="Parallax2D/book" unique_id=2107179078 node_paths=PackedStringArray("tut_btn_anim", "start_btn_anim")]
+[node name="Control" type="Control" parent="bok/book" unique_id=2107179078 node_paths=PackedStringArray("tut_btn_anim", "start_btn_anim")]
 z_index = 2
 texture_filter = 1
 layout_mode = 3
@@ -624,7 +635,7 @@ script = SubResource("GDScript_usvfl")
 tut_btn_anim = NodePath("../tutBtnAnim")
 start_btn_anim = NodePath("../startBtnAnim")
 
-[node name="start" type="TextureButton" parent="Parallax2D/book/Control" unique_id=1381536061]
+[node name="start" type="TextureButton" parent="bok/book/Control" unique_id=1381536061]
 layout_mode = 0
 offset_left = 558.0
 offset_top = 267.99997
@@ -639,12 +650,12 @@ texture_normal = ExtResource("5_ljfqm")
 script = ExtResource("4_ljfqm")
 focusTexture = ExtResource("3_0a5qi")
 
-[node name="tutorial" type="TextureButton" parent="Parallax2D/book/Control" unique_id=25584896]
+[node name="tutorial" type="TextureButton" parent="bok/book/Control" unique_id=25584896]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 398.0
-offset_right = 258.0
-offset_bottom = 526.0
+offset_left = 61.0
+offset_top = 399.99997
+offset_right = 265.0
+offset_bottom = 528.0
 rotation = -0.19681683
 focus_neighbor_top = NodePath("../start")
 focus_neighbor_right = NodePath("../start")
@@ -653,7 +664,7 @@ texture_normal = ExtResource("4_41e1x")
 script = ExtResource("4_ljfqm")
 focusTexture = ExtResource("7_on0tx")
 
-[node name="startBtnAnim" type="AnimatedSprite2D" parent="Parallax2D/book" unique_id=763640239]
+[node name="startBtnAnim" type="AnimatedSprite2D" parent="bok/book" unique_id=763640239]
 visible = false
 position = Vector2(558, 267.99997)
 rotation = -0.26179937
@@ -661,11 +672,10 @@ scale = Vector2(0.9999999, 0.9999999)
 sprite_frames = SubResource("SpriteFrames_ka23v")
 centered = false
 
-[node name="tutBtnAnim" type="AnimatedSprite2D" parent="Parallax2D/book" unique_id=77148590]
+[node name="tutBtnAnim" type="AnimatedSprite2D" parent="bok/book" unique_id=77148590]
 visible = false
-position = Vector2(54, 398)
+position = Vector2(63.999992, 407.99997)
 rotation = -0.19681683
-scale = Vector2(0.9999999, 0.9999999)
 sprite_frames = SubResource("SpriteFrames_qudme")
 centered = false
 
@@ -733,11 +743,11 @@ text = "...
 root_node = NodePath("../startAnim")
 libraries/ = SubResource("AnimationLibrary_ahygv")
 
-[connection signal="focus_entered" from="Parallax2D/book/Control/start" to="Camera2D" method="_on_start_focus_entered"]
-[connection signal="focus_entered" from="Parallax2D/book/Control/start" to="Parallax2D/book/Control/start" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Parallax2D/book/Control/start" to="Parallax2D/book/Control/start" method="_on_focus_exited"]
-[connection signal="pressed" from="Parallax2D/book/Control/start" to="startAnim" method="_on_start_pressed"]
-[connection signal="focus_entered" from="Parallax2D/book/Control/tutorial" to="Camera2D" method="_on_tutorial_focus_entered"]
-[connection signal="focus_entered" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control/tutorial" method="_on_focus_entered"]
-[connection signal="focus_exited" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control/tutorial" method="_on_focus_exited"]
-[connection signal="pressed" from="Parallax2D/book/Control/tutorial" to="Parallax2D/book/Control" method="_on_tutorial_pressed"]
+[connection signal="focus_entered" from="bok/book/Control/start" to="Camera2D" method="_on_start_focus_entered"]
+[connection signal="focus_entered" from="bok/book/Control/start" to="bok/book/Control/start" method="_on_focus_entered"]
+[connection signal="focus_exited" from="bok/book/Control/start" to="bok/book/Control/start" method="_on_focus_exited"]
+[connection signal="pressed" from="bok/book/Control/start" to="startAnim" method="_on_start_pressed"]
+[connection signal="focus_entered" from="bok/book/Control/tutorial" to="Camera2D" method="_on_tutorial_focus_entered"]
+[connection signal="focus_entered" from="bok/book/Control/tutorial" to="bok/book/Control/tutorial" method="_on_focus_entered"]
+[connection signal="focus_exited" from="bok/book/Control/tutorial" to="bok/book/Control/tutorial" method="_on_focus_exited"]
+[connection signal="pressed" from="bok/book/Control/tutorial" to="bok/book/Control" method="_on_tutorial_pressed"]

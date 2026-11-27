@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://biec38iaoey4j"]
 
 [ext_resource type="Script" uid="uid://dv0pdia6ehuiw" path="res://scripts/main_game.gd" id="1_mwwrp"]
+[ext_resource type="Texture2D" uid="uid://by0fggj08lf6j" path="res://assets/sprites/intro/frame0001.png" id="5_1lxpl"]
 [ext_resource type="Texture2D" uid="uid://b7xauquuku5s1" path="res://assets/sprites/intro/frame0000.png" id="5_aadn1"]
 [ext_resource type="AudioStream" uid="uid://cm324033m0g7v" path="res://assets/quizFragments/quiz.intro.ogg" id="5_umfan"]
+[ext_resource type="Texture2D" uid="uid://kb15m6sk3td6" path="res://assets/sprites/intro/frame0002.png" id="6_e1yew"]
 [ext_resource type="Texture2D" uid="uid://bp3lxlpls5aes" path="res://assets/sprites/intro/frame0004.png" id="6_umfan"]
 [ext_resource type="Texture2D" uid="uid://c1dhruula0pwj" path="res://assets/sprites/intro/frame0006.png" id="7_1lxpl"]
-[ext_resource type="Texture2D" uid="uid://b4cnrvcghyqeg" path="res://assets/sprites/intro/frame0008.png" id="8_e1yew"]
-[ext_resource type="Texture2D" uid="uid://ddl8ltrk0yogd" path="res://assets/sprites/intro/frame0015.png" id="9_j74od"]
-[ext_resource type="Texture2D" uid="uid://b8aad6fgqftpx" path="res://assets/sprites/intro/frame0022.png" id="10_fpgdv"]
-[ext_resource type="Texture2D" uid="uid://bfyldxyyg165m" path="res://assets/sprites/intro/frame0028.png" id="11_pkqdw"]
-[ext_resource type="Texture2D" uid="uid://bu7lkqxkm6rim" path="res://assets/sprites/intro/frame0033.png" id="12_1sewj"]
+[ext_resource type="Texture2D" uid="uid://be0m6ujk4tnxb" path="res://assets/sprites/intro/frame0003.png" id="7_j74od"]
+[ext_resource type="Texture2D" uid="uid://dsf6i41lr1ux4" path="res://assets/sprites/intro/frame0005.png" id="9_fpgdv"]
+[ext_resource type="Texture2D" uid="uid://bykup5nch37de" path="res://assets/sprites/intro/frame0007.png" id="11_pkqdw"]
 [ext_resource type="PackedScene" uid="uid://cgdmjrkxw45t1" path="res://scenes/outro.tscn" id="12_umfan"]
 [ext_resource type="PackedScene" uid="uid://dj6vheaj2m1eo" path="res://scenes/bgm.tscn" id="13_1lxpl"]
 [ext_resource type="PackedScene" uid="uid://dhwhdkrbpdksf" path="res://scenes/pause.tscn" id="14_1lxpl"]
@@ -122,25 +122,25 @@ animations = [{
 "texture": ExtResource("5_aadn1")
 }, {
 "duration": 1.0,
+"texture": ExtResource("5_1lxpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e1yew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j74od")
+}, {
+"duration": 1.0,
 "texture": ExtResource("6_umfan")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fpgdv")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_1lxpl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_e1yew")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_j74od")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_fpgdv")
-}, {
-"duration": 1.0,
 "texture": ExtResource("11_pkqdw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_1sewj")
 }],
 "loop": 0,
 "name": &"default",

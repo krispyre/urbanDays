@@ -257,6 +257,20 @@ tracks/8/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.96666664),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flash_result"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpgdv"]
 _data = {
@@ -854,12 +868,14 @@ _data = {
 &"RESET": SubResource("Animation_ya6b3")
 }
 
-[node name="outro" type="Node2D" unique_id=399390384 node_paths=PackedStringArray("results_ap", "slides_at")]
+[node name="outro" type="Node2D" unique_id=399390384 node_paths=PackedStringArray("results_ap", "slides_at", "successful", "fail")]
 z_index = 99
 texture_filter = 1
 script = ExtResource("1_ssjpb")
 results_ap = NodePath("results/animPlayer")
 slides_at = NodePath("slidesSlider")
+successful = NodePath("results/results/successful")
+fail = NodePath("results/results/fail")
 
 [node name="results" type="CanvasLayer" parent="." unique_id=1050760460]
 

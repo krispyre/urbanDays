@@ -1383,6 +1383,9 @@ z_index = 99
 [node name="ProgressBar" parent="timeLeft" index="0" unique_id=1032405580]
 material = SubResource("ShaderMaterial_d5kf6")
 
+[node name="Timer" parent="timeLeft" index="1" unique_id=2126670480]
+process_mode = 0
+
 [connection signal="fail" from="." to="." method="_on_fail"]
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="playerHit" from="gameplay/player" to="." method="_on_player_hit"]

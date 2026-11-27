@@ -49,6 +49,7 @@ func _on_bgm_outro() -> void:
 	print("play outro")
 	$gameProcess/outro/results/results/successful.text = "Successful microgames: "+str(wins)
 	$gameProcess/outro/results/results/fail.text = "Failed microgames: "+str(bgm.LEVEL_COUNT-wins)
+	outro.moreWins = wins > (bgm.LEVEL_COUNT-wins)
 	outro.show()
 	outro.play_outro()
 	await outro.outro_finished

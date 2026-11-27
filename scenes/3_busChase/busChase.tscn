@@ -889,7 +889,6 @@ texture_progress = ExtResource("20_2lkdi")
 metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="level/timeLeft" unique_id=226844839]
-process_mode = 3
 wait_time = 50.0
 one_shot = true
 

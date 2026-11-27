@@ -150,6 +150,9 @@ metadata/_custom_type_script = "uid://bselhtgx4enop"
 
 [node name="timeLeft" parent="CanvasLayer" unique_id=1236679750 instance=ExtResource("3_6lum8")]
 
+[node name="Timer" parent="CanvasLayer/timeLeft" index="1" unique_id=2126670480]
+process_mode = 0
+
 [node name="animPlayer" type="AnimationPlayer" parent="." unique_id=167420536]
 libraries/ = SubResource("AnimationLibrary_un07w")
 

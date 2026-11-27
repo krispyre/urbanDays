@@ -1,6 +1,5 @@
 extends Level
 @onready var results_transition: ResultsTransition = $ResultsTransition
-#todo change transition and miss anim and winfail graphic
 func _level_ready():
 	isResultsShown = false
 

@@ -89,7 +89,7 @@ func _ready() -> void:
 func _process(dt: float) -> void:
 	if !owner.game_start:
 		return
-	gravity = randi_range(4,9)*sign(value-1) #todo randomize every interval
+	gravity = randi_range(4,9)*sign(value-1)
 	if Input.is_action_just_pressed(\"right\"):
 		velocity = 0
 		velocity += push_force * dt

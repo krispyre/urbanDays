@@ -436,7 +436,7 @@ tracks/7/keys = {
 tracks/8/type = "audio"
 tracks/8/imported = false
 tracks/8/enabled = false
-tracks/8/path = NodePath("AudioStreamPlayer")
+tracks/8/path = NodePath("audioPreview")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -524,7 +524,7 @@ tracks/4/keys = {
 tracks/5/type = "audio"
 tracks/5/imported = false
 tracks/5/enabled = false
-tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/path = NodePath("audioPreview")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -572,7 +572,7 @@ markers = [{
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = false
-tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/path = NodePath("audioPreview")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1013,7 +1013,7 @@ texture = ExtResource("6_0b11s")
 scale = Vector2(1, 1.0018518)
 sprite_frames = SubResource("SpriteFrames_7nwcv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=863602258]
+[node name="audioPreview" type="AudioStreamPlayer" parent="." unique_id=863602258]
 
 [node name="3" type="Node2D" parent="." unique_id=499576066]
 visible = false

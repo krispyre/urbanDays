@@ -385,7 +385,6 @@ var target_height
 var gravity = 981
 var in_range = false
 
-#temp todo ignore bounce if its the first serve from friend
 var is_first_serve = true
 
 func _ready():

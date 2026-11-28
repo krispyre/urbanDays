@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://bt50x40kl0odh" path="res://assets/resources/font_tutText.tres" id="3_gbqnl"]
 [ext_resource type="FontFile" uid="uid://dt6sselium7cp" path="res://assets/fonts/3270NerdFont-SemiCondensed.ttf" id="4_4kmhl"]
 [ext_resource type="Texture2D" uid="uid://cknxvdlo4qrhh" path="res://assets/sprites/ui/panel.png" id="5_cq4me"]
-[ext_resource type="Texture2D" uid="uid://ctmxuenx4qa0" path="res://assets/sprites/smiley.png" id="6_6yjpi"]
+[ext_resource type="Texture2D" uid="uid://b1l2gfxu7krkl" path="res://assets/sprites/ui/cursors.png" id="7_gbqnl"]
 
 [sub_resource type="GDScript" id="GDScript_ph3nu"]
 resource_name = "tutorial"
@@ -62,6 +62,44 @@ size = Vector2(94, 96)
 font = ExtResource("3_4kmhl")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="GDScript" id="GDScript_ckvwl"]
+script/source = "extends RigidBody2D
+
+@export var bed: Marker2D
+@export var playuh: Area2D
+
+@export var force_amp = 600
+@export var stiffness = 8
+@export var c = 1
+func _ready():
+	prints(playuh.global_position, bed.global_position)
+func _physics_process(delta: float) -> void:
+	#var inputH = Input.get_axis(\"left\",\"right\")
+	#var inputV = Input.get_axis(\"up\",\"down\")
+	#go copyupaster
+	if Input.is_action_just_pressed(\"right\"):
+		linear_velocity = Vector2.ZERO
+		apply_impulse(Vector2(force_amp,0))
+	elif Input.is_action_just_pressed(\"left\"):
+		linear_velocity = Vector2.ZERO
+		apply_impulse(Vector2(-force_amp,0))
+	elif Input.is_action_just_pressed(\"up\"):
+		linear_velocity = Vector2.ZERO
+		apply_impulse(Vector2(0,-force_amp))
+	elif Input.is_action_just_pressed(\"down\"):
+		linear_velocity = Vector2.ZERO
+		apply_impulse(Vector2(0,force_amp))
+	else:
+		# im sorry kenny i forgot about spring physics
+		if playuh.global_position.distance_to(bed.global_position)> 10:
+			var offset = bed.global_position - playuh.global_position
+			var spring = offset * stiffness
+			var damper = c * -linear_velocity
+			apply_force(spring + damper)
+			
+		
+"
+
 [sub_resource type="GDScript" id="GDScript_gbqnl"]
 resource_name = "tutorialControl"
 script/source = "extends Area2D
@@ -70,42 +108,20 @@ script/source = "extends Area2D
 @export var hb: CollisionShape2D
 @export var goback: Area2D
 
-var velocity : Vector2
-var bedPull: Vector2
-var push_force = 300
-var pull_strength = 20
+@export var spr: Sprite2D
 
 func _process(dt: float) -> void:
-	bedPull = (bed.position-position).normalized()* clampf((bed.position-position).length(),-10,10)
-	#var inputH = Input.get_axis(\"left\",\"right\")
-	#var inputV = Input.get_axis(\"up\",\"down\")
-	#go copyupaster
-	if Input.is_action_just_pressed(\"right\"):
-		velocity = Vector2.ZERO
-		velocity.x += push_force * dt
-	elif Input.is_action_just_pressed(\"left\"):
-		velocity = Vector2.ZERO
-		velocity.x -= push_force * dt
-	elif Input.is_action_just_pressed(\"up\"):
-		velocity = Vector2.ZERO
-		velocity.y -= push_force * dt
-	elif Input.is_action_just_pressed(\"down\"):
-		velocity = Vector2.ZERO
-		velocity.y += push_force * dt
+
+	if goback in get_overlapping_areas():
+		spr.frame = 1
+		if Input.is_action_just_pressed(\"action1\"):
+			get_tree().change_scene_to_file(\"res://scenes/landing.tscn\")
 	else:
-		if false:#position.distance_to(bed.position)<10:
-			velocity = Vector2.ZERO
-		else:
-			velocity += bedPull *dt
-	
-	position += velocity
-	
-	if goback in get_overlapping_areas() and Input.is_action_just_pressed(\"action1\"):
-		get_tree().change_scene_to_file(\"res://scenes/landing.tscn\")
+		spr.frame = 0
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qudme"]
-size = Vector2(56, 58)
+size = Vector2(19, 21)
 
 [node name="Tutorial" type="Node" unique_id=1513749202 node_paths=PackedStringArray("bgm_player")]
 script = SubResource("GDScript_ph3nu")
@@ -249,18 +265,33 @@ label_settings = SubResource("LabelSettings_f7n5a")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="playuh" type="Area2D" parent="." unique_id=1345528476 node_paths=PackedStringArray("bed", "hb", "goback")]
+[node name="playerRb" type="RigidBody2D" parent="." unique_id=2007716756 node_paths=PackedStringArray("bed", "playuh")]
+gravity_scale = 0.0
+lock_rotation = true
+script = SubResource("GDScript_ckvwl")
+bed = NodePath("../bed")
+playuh = NodePath("playuh")
+stiffness = 10
+c = 5
+
+[node name="playuh" type="Area2D" parent="playerRb" unique_id=1345528476 node_paths=PackedStringArray("bed", "hb", "goback", "spr")]
 position = Vector2(499.5, 306.5)
 script = SubResource("GDScript_gbqnl")
-bed = NodePath("../bed")
+bed = NodePath("../../bed")
 hb = NodePath("hb")
-goback = NodePath("../goback")
+goback = NodePath("../../goback")
+spr = NodePath("spr")
 
-[node name="playuh" type="Sprite2D" parent="playuh" unique_id=21183106]
-scale = Vector2(0.2265625, 0.2265625)
-texture = ExtResource("6_6yjpi")
+[node name="spr" type="Sprite2D" parent="playerRb/playuh" unique_id=21183106]
+scale = Vector2(1.0555524, 1.0555524)
+texture = ExtResource("7_gbqnl")
+hframes = 2
 
-[node name="hb" type="CollisionShape2D" parent="playuh" unique_id=714530110]
+[node name="hb" type="CollisionShape2D" parent="playerRb/playuh" unique_id=714530110]
+shape = SubResource("RectangleShape2D_qudme")
+
+[node name="hb2" type="CollisionShape2D" parent="playerRb" unique_id=833819648]
+position = Vector2(499.5, 306.5)
 shape = SubResource("RectangleShape2D_qudme")
 
 [node name="bed" type="Marker2D" parent="." unique_id=962997829]
